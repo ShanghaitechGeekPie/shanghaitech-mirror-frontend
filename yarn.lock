@@ -3237,6 +3237,11 @@ call-bind@^1.0.0, call-bind@^1.0.2:
     function-bind "^1.1.1"
     get-intrinsic "^1.0.2"
 
+callapp-lib@^3.5.1:
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/callapp-lib/-/callapp-lib-3.5.1.tgz#be8a4345c05978fd4688e468a417c01551fd3b5b"
+  integrity sha512-w0gkWE58+o6wyd7k7Cg7iq341ycs0Euuotf8moIHymXK/q74FAL315DI5rF6IshvF7X2vklQeLAIKz+FtIhAhQ==
+
 caller-callsite@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/caller-callsite/-/caller-callsite-2.0.0.tgz#847e0fce0a223750a9a027c54b33731ad3154134"
