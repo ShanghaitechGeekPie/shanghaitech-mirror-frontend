@@ -47,8 +47,8 @@ export default function Mirrors() {
                 <Link to={item.name}>{item.name}</Link>
               </TableCell>
               <TableCell component="th" scope="row">{format(item.last_finished, 'zh_CN')}</TableCell>
-              {item.Idle ?
-                (item.Result ? <TableCell align="right">同步成功</TableCell> : <TableCell align="right">同步失败</TableCell>) :
+              {item.idle ?
+                (item.result ? <TableCell align="right">同步成功</TableCell> : <TableCell align="right">同步失败</TableCell>) :
                 (<TableCell align="right">正在同步</TableCell>)
               }
             </TableRow>
