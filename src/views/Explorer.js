@@ -1,5 +1,6 @@
 import Container from '@mui/material/Container'
-import Table from '@mui/material/Table';
+import Table from '@mui/material/Table'
+import Typography from '@mui/material/Typography'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
@@ -26,7 +27,7 @@ export default function Mirrors(props) {
   const location = useLocation()
   useEffect(() => {
     (async () => {
-      const content = await axios.get('https://mirrors.geekpie.tech/api/v1' + location.pathname + '/')
+      const content = await axios.get('https://mirrors.geekpie.tech/api/v1' + location.pathname)
       setContent({
         content: content.data
       })
@@ -34,6 +35,7 @@ export default function Mirrors(props) {
   }, [props.location])
   return (
     <Container maxWidth="lg" sx={{ pt: 8, pb: 6 }}>
+      <Typography variant="h5" gutterBottom>{"Index of: " + location.pathname}</Typography>
       <TableContainer component={Paper} sx={{ mt: 4, mb: 6 }}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
@@ -46,7 +48,7 @@ export default function Mirrors(props) {
           <TableBody>
             <TableRow>
               <TableCell>
-                <Link to={location.pathname.slice(0, location.pathname.lastIndexOf("/"))} >Parent directory/</Link>
+                <Link to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)} >Parent directory/</Link>
               </TableCell>
               <TableCell component="th" scope="row">-</TableCell>
               <TableCell align="right">-</TableCell>
@@ -54,7 +56,7 @@ export default function Mirrors(props) {
             {content.content.map((item) => (
               <TableRow key={item.name}>
                 <TableCell>
-                  {item.type == "directory" ? <Link to={location.pathname + "/" + item.name}>{item.name + "/"}</Link> : <Link href={location.pathname + "/" + item.name}>{item.name}</Link>}
+                  {item.type == "directory" ? <Link to={location.pathname + item.name + "/"}>{item.name + "/"}</Link> : <Link to={location.pathname + item.name}>{item.name}</Link>}
                 </TableCell>
                 <TableCell component="th" scope="row">{format(item.last_finished, 'zh_CN')}</TableCell>
                 <TableCell align="right">
