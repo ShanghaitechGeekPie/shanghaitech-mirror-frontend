@@ -1,72 +1,33 @@
 import Container from '@mui/material/Container'
-import Table from '@mui/material/Table'
-import Typography from '@mui/material/Typography'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
-import { Link, useLocation } from 'react-router-dom'
-import { format } from 'timeago.js'
+import { useLocation } from 'react-router-dom'
 import axios from "axios"
-import { useEffect, useState, componentWillReceiveProps } from 'react'
+import { useEffect, useState } from 'react'
+import List from "../components/List"
+import Loading from "../components/Loading"
+import Failed from "../components/Failed"
 
-function formatFileSize(size) {
-  var sizes = [' Bytes', ' KiB', ' MiB', ' GiB'];
-  for (var index = 1; index < sizes.length; index++)
-    if (size < Math.pow(1024, index))
-      return (Math.round((size / Math.pow(1024, index - 1)) * 100) / 100) + sizes[index - 1]
-  return size;
-}
-
-export default function Mirrors(props) {
-  const [content, setContent] = useState({
-    content: []
-  })
+export default function Explorer(props) {
+  const [failed, setFailed] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [content, setContent] = useState([])
   const location = useLocation()
   useEffect(() => {
     (async () => {
-      const content = await axios.get('https://mirrors.geekpie.tech/api/v1' + location.pathname)
-      setContent({
-        content: content.data
+      setLoading(true)
+      await axios.get(Config.serverUrl + '/api/v1' + location.pathname)
+      .then(function (content) {
+        if (!(content.data instanceof Array)) setFailed(true)
+        else {
+          setContent(content.data)
+          setLoading(false)
+        }
       })
+      .catch(() => (setFailed(true)))
     })()
   }, [props.location])
   return (
     <Container maxWidth="lg" sx={{ pt: 8, pb: 6 }}>
-      <Typography variant="h5" gutterBottom>{"Index of: " + location.pathname}</Typography>
-      <TableContainer component={Paper} sx={{ mt: 4, mb: 6 }}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell>文件名</TableCell>
-              <TableCell>上次同步</TableCell>
-              <TableCell align="right">大小</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell>
-                <Link to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)} >Parent directory/</Link>
-              </TableCell>
-              <TableCell component="th" scope="row">-</TableCell>
-              <TableCell align="right">-</TableCell>
-            </TableRow>
-            {content.content.map((item) => (
-              <TableRow key={item.name}>
-                <TableCell>
-                  {item.type == "directory" ? <Link to={location.pathname + item.name + "/"}>{item.name + "/"}</Link> : <Link to={location.pathname + item.name}>{item.name}</Link>}
-                </TableCell>
-                <TableCell component="th" scope="row">{format(item.last_finished, 'zh_CN')}</TableCell>
-                <TableCell align="right">
-                  {item.type == "directory" ? "-" : formatFileSize(item.size)}
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      { failed ? (<Failed />) : ( loading ? <Loading /> : <List data={content} /> )}
     </Container>
   )
 }
