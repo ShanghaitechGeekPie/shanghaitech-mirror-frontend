@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom'
 import { format } from 'timeago.js'
 import axios from "axios"
 import { useEffect, useState } from 'react'
+import Config from 'Config'
 
 export default function Mirrors() {
   const [status, setStatus] = useState({
@@ -17,7 +18,7 @@ export default function Mirrors() {
   })
   useEffect(() => {
     (async () => {
-      const summary = await axios.get('https://mirrors.geekpie.tech/summary')
+      const summary = await axios.get(Config.serverUrl + '/summary')
       let status = []
       for (const key in summary.data.WorkerStatus) {
         const value = summary.data.WorkerStatus[key]
@@ -44,7 +45,7 @@ export default function Mirrors() {
           {status.worker_status.map((item) => (
             <TableRow key={item.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
               <TableCell>
-                <Link to={item.name}>{item.name}</Link>
+                <Link to={item.name + "/"}>{item.name + "/"}</Link>
               </TableCell>
               <TableCell component="th" scope="row">{format(item.last_finished, 'zh_CN')}</TableCell>
               {item.idle ?
