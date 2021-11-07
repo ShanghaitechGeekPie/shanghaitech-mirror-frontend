@@ -5,14 +5,18 @@ import { useEffect, useState } from 'react'
 import List from "../components/List"
 import Loading from "../components/Loading"
 import Failed from "../components/Failed"
+import Config from 'Config'
 
-export default function Explorer(props) {
+export default () => {
+  console.log("Begin loading")
   const [failed, setFailed] = useState(false)
   const [loading, setLoading] = useState(false)
   const [content, setContent] = useState([])
   const location = useLocation()
+  console.log(location)
   useEffect(() => {
     (async () => {
+      console.log("doing")
       setLoading(true)
       await axios.get(Config.serverUrl + '/api/v1' + location.pathname)
       .then(function (content) {
@@ -24,7 +28,8 @@ export default function Explorer(props) {
       })
       .catch(() => (setFailed(true)))
     })()
-  }, [props.location])
+  }, [location.pathname])
+  console.log("End loading")
   return (
     <Container maxWidth="lg" sx={{ pt: 8, pb: 6 }}>
       { failed ? (<Failed />) : ( loading ? <Loading /> : <List data={content} /> )}
