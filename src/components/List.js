@@ -9,6 +9,8 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { Link } from 'react-router-dom'
 import { format } from 'timeago.js'
+import { useEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
 function formatFileSize(size) {
   var sizes = [' Bytes', ' KiB', ' MiB', ' GiB'];
@@ -18,7 +20,7 @@ function formatFileSize(size) {
   return size;
 }
 
-export default function List(props) {
+export default (props) => {
   console.log(props)
   return (
     <Box>
