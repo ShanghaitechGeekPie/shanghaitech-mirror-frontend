@@ -1,38 +1,19 @@
-import Container from '@mui/material/Container'
+import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
-import axios from "axios"
-import { useEffect, useState } from 'react'
 import List from "../components/List"
 import Loading from "../components/Loading"
 import Failed from "../components/Failed"
 import Config from 'Config'
+import React from 'react'
 
 export default () => {
-  console.log("Begin loading")
-  const [failed, setFailed] = useState(false)
-  const [loading, setLoading] = useState(false)
-  const [content, setContent] = useState([])
   const location = useLocation()
-  console.log(location)
-  useEffect(() => {
-    (async () => {
-      console.log("doing")
-      setLoading(true)
-      await axios.get(Config.serverUrl + '/api/v1' + location.pathname)
-      .then(function (content) {
-        if (!(content.data instanceof Array)) setFailed(true)
-        else {
-          setContent(content.data)
-          setLoading(false)
-        }
-      })
-      .catch(() => (setFailed(true)))
-    })()
-  }, [location.pathname])
-  console.log("End loading")
-  return (
-    <Container maxWidth="lg" sx={{ pt: 8, pb: 6 }}>
-      { failed ? (<Failed />) : ( loading ? <Loading /> : <List data={content} /> )}
-    </Container>
+  const { isLoading, isError, data } = useQuery(['summarydata', {path: location.pathname}], () =>
+    fetch(Config.serverUrl + '/api/v1' + location.pathname).then(result => result.json()), {
+      retry: 0
+    }
   )
+  if (isLoading) return <Loading />
+  if (isError) return <Failed />
+  return <List data={data} />
 }

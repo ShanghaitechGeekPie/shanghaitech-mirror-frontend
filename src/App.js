@@ -4,13 +4,20 @@ import CssBaseline from '@mui/material/CssBaseline'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import Router from './router/index'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
+
+const queryClient = new QueryClient()
 
 export default () => (
   <React.Fragment>
-    <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
-    <CssBaseline />
-    <Header />
-    <Router />
-    <Footer />
+    <QueryClientProvider client={queryClient}>
+      <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
+      <CssBaseline />
+      <Header />
+      <Router />
+      <Footer />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   </React.Fragment>
 )
