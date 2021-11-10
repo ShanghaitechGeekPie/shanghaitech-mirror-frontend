@@ -1,4 +1,4 @@
-import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
 import Table from '@mui/material/Table'
 import Typography from '@mui/material/Typography'
 import TableBody from '@mui/material/TableBody'
@@ -9,7 +9,6 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import { Link } from 'react-router-dom'
 import { format } from 'timeago.js'
-import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 function formatFileSize(size) {
@@ -21,9 +20,9 @@ function formatFileSize(size) {
 }
 
 export default (props) => {
-  console.log(props)
+  const location = useLocation()
   return (
-    <Box>
+    <Container maxWidth="lg" sx={{ pt: 8, pb: 6 }}>
       <Typography variant="h1" variant="h4" gutterBottom>{"Index of: " + location.pathname}</Typography>
       <TableContainer component={Paper} sx={{ mt: 4, mb: 6 }}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
@@ -56,6 +55,6 @@ export default (props) => {
           </TableBody>
         </Table>
       </TableContainer>
-    </Box>
+    </Container>
   )
 }
