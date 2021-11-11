@@ -27,9 +27,7 @@ export default function Mirrors() {
         })
       }
       return status
-    }), {
-      retry: 0
-    }
+    })
   )
   if (isLoading) return <Loading />
   if (isError) return <Failed />

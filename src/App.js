@@ -7,7 +7,15 @@ import Router from './router/index'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false
+    }
+  }
+})
 
 export default () => (
   <React.Fragment>
