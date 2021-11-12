@@ -7,15 +7,21 @@ module.exports = {
     main: './src/index.js'
   },
   output: {
-    filename: '[name].[fullhash].js',
+    filename: 'js/[name].[fullhash].js',
     path: path.resolve(__dirname, '../dist'),
   },
   module: {
-    rules: [{
-      test: /\.js$/,
-      use: 'babel-loader',
-      exclude: /node_modules/
-    }]
+    rules: [
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.css$/,
+        use: 'css-loader'
+      }
+    ]
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -24,10 +30,14 @@ module.exports = {
       inject: 'body',
       minify: {
         removeComments: true,
-        collapseWhitespace: true
-      },
+        collapseWhitespace: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        removeAttributeQuotes: true
+      }
     }),
-	new CleanWebpackPlugin(),
+	  new CleanWebpackPlugin(),
   ],
   externals: {
     'Config': JSON.stringify({
