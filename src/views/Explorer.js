@@ -4,7 +4,6 @@ import List from "../components/List"
 import Loading from "../components/Loading"
 import Failed from "../components/Failed"
 import Config from 'Config'
-import React from 'react'
 
 export default () => {
   const location = useLocation()

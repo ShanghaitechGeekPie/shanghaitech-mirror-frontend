@@ -7,7 +7,8 @@ import TableContainer from '@mui/material/TableContainer'
 import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import { Link } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
+import Link from '@mui/material/Link'
 import { format } from 'timeago.js'
 import { useLocation } from 'react-router-dom'
 
@@ -23,7 +24,8 @@ export default (props) => {
   const location = useLocation()
   return (
     <Container maxWidth="lg" sx={{ pt: 8, pb: 6 }}>
-      <Typography variant="h1" variant="h4" gutterBottom>{"Index of: " + location.pathname}</Typography>
+      <Typography variant="h1" variant="h5" sx={{ fontWeight: 'medium' }} gutterBottom>{"Index of: " + location.pathname}</Typography>
+      <Paper elevation={3}>
       <TableContainer component={Paper} sx={{ mt: 4, mb: 6 }}>
         <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
           <TableHead>
@@ -36,15 +38,15 @@ export default (props) => {
           <TableBody>
             <TableRow>
               <TableCell>
-                <Link to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)} >Parent directory/</Link>
+                <Link component={RouterLink} underline="none" to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)} >Parent directory/</Link>
               </TableCell>
               <TableCell component="th" scope="row">-</TableCell>
               <TableCell align="right">-</TableCell>
             </TableRow>
             {props.data.map((item) => (
-              <TableRow key={item.name}>
+              <TableRow hover key={item.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell>
-                  {item.type == "directory" ? <Link to={location.pathname + item.name + "/"}>{item.name + "/"}</Link> : <Link to={location.pathname + item.name}>{item.name}</Link>}
+                  {item.type == "directory" ? <Link component={RouterLink} underline="none" to={location.pathname + item.name + "/"}>{item.name + "/"}</Link> : <Link component={RouterLink} underline="none" to={location.pathname + item.name} target="_blank">{item.name}</Link>}
                 </TableCell>
                 <TableCell component="th" scope="row">{format(item.last_finished, 'zh_CN')}</TableCell>
                 <TableCell align="right">
@@ -55,6 +57,7 @@ export default (props) => {
           </TableBody>
         </Table>
       </TableContainer>
+      </Paper>
     </Container>
   )
 }
