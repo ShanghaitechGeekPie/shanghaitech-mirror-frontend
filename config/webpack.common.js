@@ -7,8 +7,9 @@ module.exports = {
     main: './src/index.js'
   },
   output: {
+    publicPath: '/',
     filename: 'js/[name].[fullhash].js',
-    path: path.resolve(__dirname, '../dist'),
+    path: path.resolve(__dirname, '../dist')
   },
   module: {
     rules: [
