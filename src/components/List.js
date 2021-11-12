@@ -27,7 +27,7 @@ export default (props) => {
       <Typography variant="h1" variant="h5" sx={{ fontWeight: 'medium' }} gutterBottom>{"Index of: " + location.pathname}</Typography>
       <Paper elevation={3}>
       <TableContainer component={Paper} sx={{ mt: 4, mb: 6 }}>
-        <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
+        <Table sx={{ minWidth: 650 }} aria-label="a dense table">
           <TableHead>
             <TableRow>
               <TableCell>文件名</TableCell>
