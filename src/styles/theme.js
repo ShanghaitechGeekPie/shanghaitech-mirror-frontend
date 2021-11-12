@@ -1,8 +1,14 @@
-import { createTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
-
-export default createTheme({
-  palette: {
-    mode: 'dark',
+const Theme = {
+  'light': {
+    palette: {
+      mode: 'light'
+    }
   },
-});
+  'dark': {
+    palette: {
+      mode: 'dark'
+    }
+  }
+}
+
+export default Theme
