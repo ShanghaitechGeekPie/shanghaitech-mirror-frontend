@@ -9,9 +9,9 @@ RUN yarn build
 # production stage
 FROM peytonyip/nginx-brotli as production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
-COPY 40-start-node-exporter.sh /docker-entrypoint.d
+COPY start.sh /start.sh
 RUN curl -L https://github.com/prometheus/node_exporter/releases/download/v1.2.2/node_exporter-1.2.2.linux-amd64.tar.gz --output /tmp/node_exporter-1.2.2.linux-amd64.tar.gz && \
     tar -xzf /tmp/node_exporter-1.2.2.linux-amd64.tar.gz -C /tmp && \
     mv /tmp/node_exporter-1.2.2.linux-amd64/node_exporter /usr/local/bin/
 EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/start.sh"]
