@@ -36,7 +36,7 @@ export default (props) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
+            <TableRow hover>
               <TableCell>
                 <Link component={RouterLink} underline="none" to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)} >Parent directory/</Link>
               </TableCell>
