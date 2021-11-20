@@ -19,12 +19,11 @@ export default () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="default" elevation={0}>
         <Toolbar sx={{ flexWrap: 'wrap' }}>
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            SHTU Open Source Mirror
-          </Typography>
+          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>SHTU Open Source Mirror</Typography>
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
           <Button variant="button" to='/' sx={{ my: 1, mx: 1.5 }} component={Link}>Home</Button>
           <Button variant="button" to='/help' sx={{ my: 1, mx: 1.5 }} component={Link}>Help</Button>
+          <Button variant="button" to='/news' sx={{ my: 1, mx: 1.5 }} component={Link}>News</Button>
           <Button variant="button" to='/about' sx={{ my: 1, mx: 1.5 }} component={Link}>About</Button>
           </Box>
           <Box sx={{ display: { xs: 'flex', md: 'none' } }}>

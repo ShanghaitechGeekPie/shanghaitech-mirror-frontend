@@ -13,8 +13,8 @@ import { useQuery } from 'react-query'
 import DoneIcon from '@mui/icons-material/Done'
 import LoopIcon from '@mui/icons-material/Loop'
 import CloseIcon from '@mui/icons-material/Close'
-import Loading from "../global/Loading"
-import Failed from "../global/Failed"
+import Loading from "@/components/global/Loading"
+import Failed from "@/components/global/Failed"
 import Config from 'Config'
 
 export default function Mirrors() {

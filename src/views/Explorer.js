@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
-import List from "../components/views/List"
-import Loading from "../components/global/Loading"
-import Failed from "../components/global/Failed"
+import List from "@/components/views/List"
+import Loading from "@/components/global/Loading"
+import Failed from "@/components/global/Failed"
 import Config from 'Config'
 
 export default () => {

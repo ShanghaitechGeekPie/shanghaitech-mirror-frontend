@@ -11,6 +11,11 @@ module.exports = {
     filename: 'js/[name].[fullhash].js',
     path: path.resolve(__dirname, '../dist')
   },
+  resolve: {
+    alias: {
+      '@': path.join(__dirname, '../src')
+    }
+  },
   module: {
     rules: [
       {
@@ -21,6 +26,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: 'css-loader'
+      },
+      {
+        test: /\.md$/,
+        use: ['./src/plugins/markdown-loader']
       }
     ],
     exprContextCritical: false
@@ -32,14 +41,10 @@ module.exports = {
       inject: 'body',
       minify: {
         removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
         removeAttributeQuotes: true
       }
     }),
-	  new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(),
   ],
   externals: {
     'Config': JSON.stringify({
