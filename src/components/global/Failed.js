@@ -9,7 +9,7 @@ export default () => (
     <Card>
       <CardContent>
         <Box sx={{ mx: 'auto', textAlign: 'center', pt: 4, pb: 4 }}>
-          <Typography component="div" variant="h5" gutterBottom>Failed</Typography>
+          <Typography variant="h5" gutterBottom>Failed</Typography>
         </Box>
       </CardContent>
     </Card>
