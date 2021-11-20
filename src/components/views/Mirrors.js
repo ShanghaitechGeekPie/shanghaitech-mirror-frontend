@@ -13,8 +13,8 @@ import { useQuery } from 'react-query'
 import DoneIcon from '@mui/icons-material/Done'
 import LoopIcon from '@mui/icons-material/Loop'
 import CloseIcon from '@mui/icons-material/Close'
-import Loading from "../components/Loading"
-import Failed from "../components/Failed"
+import Loading from "../global/Loading"
+import Failed from "../global/Failed"
 import Config from 'Config'
 
 export default function Mirrors() {
@@ -56,7 +56,7 @@ export default function Mirrors() {
                 <TableCell component="th" scope="row" align="center">{format(item.last_finished, 'zh_CN')}</TableCell>
                 <TableCell align="right">
                   {item.idle ?
-                    (item.result ? <Chip icon={<DoneIcon />} label="同步成功" size="small" color="success" /> : <Chip icon={<CloseIcon />} label="同步失败" size="small" color="danger" />) :
+                    (item.result ? <Chip icon={<DoneIcon />} label="同步成功" size="small" color="success" /> : <Chip icon={<CloseIcon />} label="同步失败" size="small" color="warning" />) :
                     (<Chip icon={<LoopIcon />} label="正在同步" size="small" color="primary" />)
                   }
                 </TableCell>

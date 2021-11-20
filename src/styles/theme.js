@@ -1,13 +1,6 @@
 const Theme = {
-  'light': {
-    palette: {
-      mode: 'light'
-    }
-  },
-  'dark': {
-    palette: {
-      mode: 'dark'
-    }
+  palette: {
+    mode: 'light'
   }
 }
 

@@ -1,8 +1,8 @@
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
-import Mirrors from '../components/Mirrors'
-import News from '../components/News'
+import Mirrors from '../components/views/Mirrors'
+import News from '../components/views/News'
 
 export default () => (
   <Container maxWidth="lg" sx={{ pt: 8, pb: 6 }}>

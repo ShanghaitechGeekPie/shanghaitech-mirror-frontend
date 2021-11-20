@@ -22,6 +22,8 @@
     "core-js": "3",
     "css-loader": "^6.5.1",
     "html-webpack-plugin": "^5.5.0",
+    "markdown-it": "^12.2.0",
+    "markdown-it-prism": "^2.2.1",
     "react": "latest",
     "react-dom": "latest",
     "react-query": "^3.32.1",

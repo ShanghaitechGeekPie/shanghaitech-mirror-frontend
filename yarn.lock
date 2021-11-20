@@ -1523,6 +1523,11 @@ anymatch@~3.1.2:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
+argparse@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.nlark.com/argparse/download/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
+  integrity sha1-JG9Q88p4oyQPbJl+ipvR6sSeSzg=
+
 array-flatten@1.1.1:
   version "1.1.1"
   resolved "https://registry.nlark.com/array-flatten/download/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
@@ -2209,6 +2214,11 @@ entities@^2.0.0:
   version "2.2.0"
   resolved "https://registry.nlark.com/entities/download/entities-2.2.0.tgz?cache=0&sync_timestamp=1628508126700&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fentities%2Fdownload%2Fentities-2.2.0.tgz#098dc90ebb83d8dffa089d55256b351d34c4da55"
   integrity sha1-CY3JDruD2N/6CJ1VJWs1HTTE2lU=
+
+entities@~2.1.0:
+  version "2.1.0"
+  resolved "https://registry.nlark.com/entities/download/entities-2.1.0.tgz?cache=0&sync_timestamp=1628508126700&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fentities%2Fdownload%2Fentities-2.1.0.tgz#992d3129cf7df6870b96c57858c249a120f8b8b5"
+  integrity sha1-mS0xKc999ocLlsV4WMJJoSD4uLU=
 
 envinfo@^7.7.3:
   version "7.8.1"
@@ -3083,6 +3093,13 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.nlark.com/lines-and-columns/download/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
+linkify-it@^3.0.1:
+  version "3.0.3"
+  resolved "https://registry.npmmirror.com/linkify-it/download/linkify-it-3.0.3.tgz?cache=0&sync_timestamp=1633117408381&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Flinkify-it%2Fdownload%2Flinkify-it-3.0.3.tgz#a98baf44ce45a550efb4d49c769d07524cc2fa2e"
+  integrity sha1-qYuvRM5FpVDvtNScdp0HUkzC+i4=
+  dependencies:
+    uc.micro "^1.0.1"
+
 loader-runner@^4.2.0:
   version "4.2.0"
   resolved "https://registry.npm.taobao.org/loader-runner/download/loader-runner-4.2.0.tgz?cache=0&sync_timestamp=1610027880902&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Floader-runner%2Fdownload%2Floader-runner-4.2.0.tgz#d7022380d66d14c5fb1d496b89864ebcfd478384"
@@ -3142,6 +3159,24 @@ make-dir@^3.0.2, make-dir@^3.1.0:
   dependencies:
     semver "^6.0.0"
 
+markdown-it-prism@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.npmmirror.com/markdown-it-prism/download/markdown-it-prism-2.2.1.tgz#9335ae5084c270f461f5008e8f219f5e3b49175b"
+  integrity sha1-kzWuUITCcPRh9QCOjyGfXjtJF1s=
+  dependencies:
+    prismjs "1.25.0"
+
+markdown-it@^12.2.0:
+  version "12.2.0"
+  resolved "https://registry.nlark.com/markdown-it/download/markdown-it-12.2.0.tgz#091f720fd5db206f80de7a8d1f1a7035fd0d38db"
+  integrity sha1-CR9yD9XbIG+A3nqNHxpwNf0NONs=
+  dependencies:
+    argparse "^2.0.1"
+    entities "~2.1.0"
+    linkify-it "^3.0.1"
+    mdurl "^1.0.1"
+    uc.micro "^1.0.5"
+
 match-sorter@^6.0.2:
   version "6.3.1"
   resolved "https://registry.npmmirror.com/match-sorter/download/match-sorter-6.3.1.tgz#98cc37fda756093424ddf3cbc62bfe9c75b92bda"
@@ -3149,6 +3184,11 @@ match-sorter@^6.0.2:
   dependencies:
     "@babel/runtime" "^7.12.5"
     remove-accents "0.4.2"
+
+mdurl@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.nlark.com/mdurl/download/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
+  integrity sha1-/oWy7HWlkDfyrf7BAP1sYBdhFS4=
 
 media-typer@0.3.0:
   version "0.3.0"
@@ -3642,6 +3682,11 @@ pretty-error@^4.0.0:
   dependencies:
     lodash "^4.17.20"
     renderkid "^3.0.0"
+
+prismjs@1.25.0:
+  version "1.25.0"
+  resolved "https://registry.nlark.com/prismjs/download/prismjs-1.25.0.tgz#6f822df1bdad965734b310b315a23315cf999756"
+  integrity sha1-b4It8b2tllc0sxCzFaIzFc+Zl1Y=
 
 process-nextick-args@~2.0.0:
   version "2.0.1"
@@ -4306,6 +4351,11 @@ type-is@~1.6.17, type-is@~1.6.18:
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.1.24"
+
+uc.micro@^1.0.1, uc.micro@^1.0.5:
+  version "1.0.6"
+  resolved "https://registry.npm.taobao.org/uc.micro/download/uc.micro-1.0.6.tgz#9c411a802a409a91fc6cf74081baba34b24499ac"
+  integrity sha1-nEEagCpAmpH8bPdAgbq6NLJEmaw=
 
 unicode-canonical-property-names-ecmascript@^2.0.0:
   version "2.0.0"

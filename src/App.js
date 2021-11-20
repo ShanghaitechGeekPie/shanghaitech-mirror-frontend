@@ -1,8 +1,8 @@
 import * as React from 'react'
 import GlobalStyles from '@mui/material/GlobalStyles'
 import CssBaseline from '@mui/material/CssBaseline'
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from './components/global/Header'
+import Footer from './components/global/Footer'
 import Router from './router/index'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
@@ -20,8 +20,8 @@ const queryClient = new QueryClient({
 })
 
 export default () => {
-  const perferTheme = useMediaQuery('(prefers-color-scheme: dark)') ? 'dark' : 'light'
-  const theme = React.useMemo(() => responsiveFontSizes(createTheme(Theme[perferTheme])), [perferTheme])
+  Theme.palette.mode = useMediaQuery('(prefers-color-scheme: dark)') ? 'dark' : 'light'
+  const theme = responsiveFontSizes(createTheme(Theme))
   return (
     <React.Fragment>
       <QueryClientProvider client={queryClient}>
