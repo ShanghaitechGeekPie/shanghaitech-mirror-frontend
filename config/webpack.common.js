@@ -22,7 +22,8 @@ module.exports = {
         test: /\.css$/,
         use: 'css-loader'
       }
-    ]
+    ],
+    exprContextCritical: false
   },
   plugins: [
     new HtmlWebpackPlugin({
