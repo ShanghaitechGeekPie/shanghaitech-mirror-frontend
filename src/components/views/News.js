@@ -26,12 +26,12 @@ export default () => {
     "downtime": <ThumbDownAltIcon color="error" />
   }
   return (
-    <Box sx={{ mt: 4, mb: 6 }}>
+    <Box sx={{ mt: 4 }}>
       <Card elevation={3}>
         <CardContent sx={{ pb: 0 }}>
           <Typography variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>News</Typography>
         </CardContent>
-        <List>
+        <List sx={{ pb: 0 }}>
           {data.map((item) => (
             <Box key={item.title}>
               <Divider component="li" />
