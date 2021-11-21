@@ -38,7 +38,7 @@ export default function Mirrors() {
   if (isError) return <Failed />
   return (
     <Paper elevation={3}>
-      <TableContainer sx={{ mt: 4, mb: 6 }}>
+      <TableContainer sx={{ mt: 4 }}>
         <Table sx={{ minWidth: 650 }} style={{ tableLayout: 'fixed' }}>
           <TableHead>
             <TableRow>
@@ -51,13 +51,13 @@ export default function Mirrors() {
             {data.worker_status.map((item) => (
               <TableRow key={item.name} rowSpan={item.length} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell align="left">
-                  <Link component={RouterLink} underline="none" to={item.name + "/"}>{item.name}</Link>
+                  <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={item.name + "/"}>{item.name}</Link>
                 </TableCell>
                 <TableCell component="th" scope="row" align="center">{format(item.last_finished, 'zh_CN')}</TableCell>
                 <TableCell align="right">
                   {item.idle ?
                     (item.result ? <Chip icon={<DoneIcon />} label="同步成功" size="small" color="success" /> : <Chip icon={<CloseIcon />} label="同步失败" size="small" color="warning" />) :
-                    (<Chip icon={<LoopIcon />} label="正在同步" size="small" color="primary" />)
+                    (<Chip icon={<LoopIcon />} label="正在同步" size="small" color="info" />)
                   }
                 </TableCell>
               </TableRow>

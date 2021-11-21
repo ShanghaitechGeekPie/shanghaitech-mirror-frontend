@@ -10,7 +10,7 @@ const Explorer = lazy(() => import("@/views/Explorer"))
 export default () => {
   const location = useLocation()
   return (
-    <Routes>
+    <Routes location={location}>
       <Route path='/' element={<Suspense fallback={<>...</>}><Home /></Suspense>} />
       <Route path='/help' element={<Suspense fallback={<>...</>}><Help /></Suspense>} />
       <Route path='/news' element={<Suspense fallback={<>...</>}><News /></Suspense>} />

@@ -38,7 +38,7 @@ export default (props) => {
           <TableBody>
             <TableRow hover>
               <TableCell>
-                <Link component={RouterLink} underline="none" to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)} >Parent directory/</Link>
+                <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)} >Parent directory/</Link>
               </TableCell>
               <TableCell component="th" scope="row">-</TableCell>
               <TableCell align="right">-</TableCell>
@@ -46,7 +46,7 @@ export default (props) => {
             {props.data.map((item) => (
               <TableRow hover key={item.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell>
-                  {item.type == "directory" ? <Link component={RouterLink} underline="none" to={location.pathname + item.name + "/"}>{item.name + "/"}</Link> : <Link component={RouterLink} underline="none" to={location.pathname + item.name} target="_blank">{item.name}</Link>}
+                  {item.type == "directory" ? <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={location.pathname + item.name + "/"}>{item.name + "/"}</Link> : <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={location.pathname + item.name} target="_blank">{item.name}</Link>}
                 </TableCell>
                 <TableCell component="th" scope="row">{format(item.last_finished, 'zh_CN')}</TableCell>
                 <TableCell align="right">

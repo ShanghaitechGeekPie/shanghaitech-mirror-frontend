@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from 'react-query'
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Theme from '@/styles/theme'
+import '@/styles/transition.css'
 
 const queryClient = new QueryClient({
   defaultOptions: {

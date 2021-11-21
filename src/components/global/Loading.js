@@ -11,7 +11,7 @@ export default () => (
       <CardContent>
         <Box sx={{ mx: 'auto', textAlign: 'center', pt: 4, pb: 4 }}>
           <CircularProgress />
-          <Typography variant="h5" gutterBottom>Loading</Typography>
+          <Typography variant="h5" sx={{ fontWeight: 'medium' }} gutterBottom>Loading</Typography>
         </Box>
       </CardContent>
     </Card>
