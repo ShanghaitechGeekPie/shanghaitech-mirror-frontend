@@ -17,7 +17,7 @@ export default () => {
   const content = parser.render(require("@/assets/news/" + id + ".md"))
   return (
     <Container maxWidth="lg">
-      <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 'bold' }} gutterBottom>{ news[id].title }</Typography>
+      <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 'bold', mb: 4 }} gutterBottom>{ news[id].title }</Typography>
       <Card elevation={3}>
         <CardContent sx={{ pb: 0 }} dangerouslySetInnerHTML={{__html: content}} />
       </Card>

@@ -39,7 +39,7 @@ export default function Mirrors() {
   return (
     <Paper elevation={3}>
       <TableContainer>
-        <Table sx={{ minWidth: 650 }} style={{ tableLayout: 'fixed' }}>
+        <Table sx={{ width: "100%" }} style={{ tableLayout: 'fixed' }}>
           <TableHead>
             <TableRow>
               <TableCell align="left" sx={{ fontWeight: 'bold' }}>名称</TableCell>
