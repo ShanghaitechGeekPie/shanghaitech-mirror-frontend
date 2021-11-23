@@ -7,7 +7,7 @@ import Router from '@/router/index'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
-import Theme from '@/styles/theme'
+import getTheme from '@/styles/theme'
 import '@/styles/transition.css'
 
 const queryClient = new QueryClient({
@@ -21,8 +21,8 @@ const queryClient = new QueryClient({
 })
 
 export default () => {
-  Theme.palette.mode = useMediaQuery('(prefers-color-scheme: dark)') ? 'dark' : 'light'
-  const theme = responsiveFontSizes(createTheme(Theme))
+  const darkmode = useMediaQuery('(prefers-color-scheme: dark)')
+  const theme = responsiveFontSizes(createTheme(getTheme(darkmode)))
   return (
     <Fragment>
       <QueryClientProvider client={queryClient}>
