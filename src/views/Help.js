@@ -1,48 +1,75 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Container from '@mui/material/Container'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
 import SwipeableDrawer from '@mui/material/SwipeableDrawer'
 import Button from '@mui/material/Button'
 import List from '@mui/material/List'
-import Typography from '@mui/material/Typography'
 import Divider from '@mui/material/Divider'
 import ListItem from '@mui/material/ListItem'
 import ListSubheader from '@mui/material/ListSubheader'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
+import MarkdownIt from "markdown-it"
+import prism from "markdown-it-prism"
+import "prismjs/components/prism-bash"
+import "@/styles/prism.css"
+import "@/styles/markdown.css"
 
+function getHelpData() {
+  const data = {
+    "list": {
+      "system": [],
+      "software": []
+    },
+    "content": null
+  }
+  const parser = new MarkdownIt()
+  const help = require("@/assets/help.json")
+  let { id } = useParams()
+  for (let key in help) {
+    data.list[help[key].type].push(key)
+  }
+  parser.use(prism)
+  data.content = parser.render(require("@/assets/help/" + (id ? id : "default") + ".md"))
+  return data
+}
 
 export default () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
+  const data = getHelpData()
   const toggleDrawer = (status) => () => setOpen(status)
   return (
     <Container maxWidth="lg">
-      <Button onClick={toggleDrawer(true)}>open</Button>
+      <Button variant="contained" sx={{ mb: 6 }} onClick={toggleDrawer(true)}>open</Button>
+      <Card elevation={3}>
+        <CardContent sx={{ pb: 0 }} dangerouslySetInnerHTML={{ __html: data.content }} />
+      </Card>
       <SwipeableDrawer
         anchor="left"
         open={open}
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
         ModalProps={{ keepMounted: true }}>
-        <List sx={{ width: 250 }}>
+        <List sx={{ width: "17.5rem", pt: 0 }} onClick={toggleDrawer(false)}>
           <ListSubheader>System</ListSubheader>
-          <ListItem disablePadding>
-            <ListItemButton to="#" component={Link}>
-              <ListItemText primary="AOSP" />
-            </ListItemButton>
-          </ListItem>
-          <ListItem disablePadding>
-            <ListItemButton to="#" component={Link}>
-              <ListItemText primary="Archlinux" />
-            </ListItemButton>
-          </ListItem>
+          {data.list.system.map((item) => (
+            <ListItem key={item} disablePadding>
+              <ListItemButton to={'/help/' + item} component={Link}>
+                <ListItemText primary={item} />
+              </ListItemButton>
+            </ListItem>
+          ))}
           <Divider component="li" />
           <ListSubheader>Software</ListSubheader>
-          <ListItem disablePadding>
-            <ListItemButton to="#" component={Link}>
-              <ListItemText primary="Hola" />
-            </ListItemButton>
-          </ListItem>
+          {data.list.software.map((item) => (
+            <ListItem key={item} disablePadding>
+              <ListItemButton to={'/help/' + item} component={Link}>
+                <ListItemText primary={item} />
+              </ListItemButton>
+            </ListItem>
+          ))}
         </List>
       </SwipeableDrawer>
     </Container>

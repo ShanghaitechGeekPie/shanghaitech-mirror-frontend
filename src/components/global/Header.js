@@ -28,7 +28,7 @@ export default () => {
   const handleMenuOpen = (event) => setAnchorEl(event.currentTarget)
   const handleMenuClose = () => setAnchorEl(null)
   return (
-    <Box sx={{ flexGrow: 1, pb: 8 }}>
+    <Box sx={{ flexGrow: 1, mb: 8 }}>
       <HideOnScroll>
         <AppBar color="primary" elevation={3}>
           <Toolbar>

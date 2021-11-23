@@ -1,0 +1,8 @@
+{
+    "archlinux": {
+        "type": "system"
+    },
+    "anaconda": {
+        "type": "software"
+    }
+}
