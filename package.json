@@ -28,7 +28,6 @@
     "react-dom": "latest",
     "react-query": "^3.32.1",
     "react-router-dom": "^6.0.2",
-    "react-transition-group": "^4.4.2",
     "style-loader": "^3.3.1",
     "timeago.js": "^4.0.2",
     "webpack": "^5.62.1",
