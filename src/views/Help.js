@@ -44,7 +44,7 @@ export default () => {
     <Container maxWidth="lg">
       <Button variant="contained" sx={{ mb: 6 }} onClick={toggleDrawer(true)}>open</Button>
       <Card elevation={3}>
-        <CardContent sx={{ pb: 0 }} dangerouslySetInnerHTML={{ __html: data.content }} />
+        <CardContent className="markdown-body" dangerouslySetInnerHTML={{ __html: data.content }} />
       </Card>
       <SwipeableDrawer
         anchor="left"
