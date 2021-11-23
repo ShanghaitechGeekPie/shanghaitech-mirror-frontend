@@ -2,7 +2,6 @@ code[class*="language-"], pre[class*="language-"] {
 	color: #ccc !important;
 	background: #2d2d2d !important;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-size: 0.9em;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
@@ -23,6 +22,7 @@ code {
 	background: none !important;
 	color: #ccc !important;
 	padding: 0 !important;
+	font-size: 0.9em;
 }
 
 /* Code blocks */
