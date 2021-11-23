@@ -1,6 +1,6 @@
-## Arch Linux 软件仓库镜像使用帮助
+## Arch Linux 镜像使用帮助
 
-编辑 /etc/pacman.d/mirrorlist， 在文件的最顶端添加：
+编辑 `/etc/pacman.d/mirrorlist`， 在文件的最顶端添加：
 
 ```
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
