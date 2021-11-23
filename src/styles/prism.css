@@ -2,6 +2,7 @@ code[class*="language-"], pre[class*="language-"] {
 	color: #ccc !important;
 	background: #2d2d2d !important;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-size: 0.9em;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
@@ -20,7 +21,7 @@ code[class*="language-"], pre[class*="language-"] {
 
 code {
 	background: none !important;
-	color: #ccc !important;
+	color: #cfcfcf !important;
 	padding: 0 !important;
 	font-size: 0.9em;
 }
@@ -35,12 +36,14 @@ pre {
 :not(pre) > code[class*="language-"],
 pre {
 	background: #2d2d2d !important;
+	border-radius: .5em;
 }
 
-/* Inline code */
 :not(pre) > code {
-	padding: .1em;
-	border-radius: .3em;
+	padding: .35em !important;
+	background: #3f3f3f !important;
+	border-radius: .5em;
+	font-size: 0.85em;
 	white-space: normal;
 }
 
@@ -53,7 +56,7 @@ pre {
 }
 
 .token.punctuation {
-	color: #ccc;
+	color: #cfcfcf;
 }
 
 .token.tag,
