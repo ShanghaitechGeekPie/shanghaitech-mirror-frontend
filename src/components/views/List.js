@@ -23,7 +23,7 @@ function formatFileSize(size) {
 export default (props) => {
   const location = useLocation()
   return (
-    <Container maxWidth="lg" sx={{ pt: 8, pb: 6 }}>
+    <Container maxWidth="lg">
       <Typography variant="h5" sx={{ fontWeight: 'medium' }} gutterBottom>{"Index of: " + location.pathname}</Typography>
       <Paper elevation={3}>
       <TableContainer component={Paper} sx={{ mt: 4, mb: 6 }}>

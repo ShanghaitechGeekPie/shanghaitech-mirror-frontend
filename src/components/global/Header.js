@@ -28,7 +28,7 @@ export default () => {
   const handleMenuOpen = (event) => setAnchorEl(event.currentTarget)
   const handleMenuClose = () => setAnchorEl(null)
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, pb: 8 }}>
       <HideOnScroll>
         <AppBar color="primary" elevation={3}>
           <Toolbar>
@@ -63,7 +63,7 @@ export default () => {
         open={isMenuOpen}
         onClose={handleMenuClose}
       >
-        <MenuItem onClick={handleMenuClose} to='/' component={Link}>Home</MenuItem>
+        <MenuItem sx={{ minWidth: 100 }} onClick={handleMenuClose} to='/' component={Link}>Home</MenuItem>
         <MenuItem onClick={handleMenuClose} to='/help' component={Link}>Help</MenuItem>
         <MenuItem onClick={handleMenuClose} to='/news' component={Link}>News</MenuItem>
         <MenuItem onClick={handleMenuClose} to='/about' component={Link}>About</MenuItem>

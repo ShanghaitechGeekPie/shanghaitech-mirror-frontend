@@ -38,7 +38,7 @@ export default function Mirrors() {
   if (isError) return <Failed />
   return (
     <Paper elevation={3}>
-      <TableContainer sx={{ mt: 4 }}>
+      <TableContainer>
         <Table sx={{ minWidth: 650 }} style={{ tableLayout: 'fixed' }}>
           <TableHead>
             <TableRow>
