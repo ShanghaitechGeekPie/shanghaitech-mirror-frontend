@@ -1,4 +1,5 @@
 import Container from '@mui/material/Container'
+import Box from '@mui/material/Box'
 import Table from '@mui/material/Table'
 import Typography from '@mui/material/Typography'
 import TableBody from '@mui/material/TableBody'
@@ -26,37 +27,37 @@ export default (props) => {
     <Container maxWidth="lg">
       <Typography variant="h5" sx={{ fontWeight: 'medium' }} gutterBottom>{"Index of: " + location.pathname}</Typography>
       <Paper elevation={3}>
-      <TableContainer component={Paper} sx={{ mt: 4, mb: 6 }}>
-        <Table sx={{ minWidth: 650 }} aria-label="a dense table">
-          <TableHead>
-            <TableRow>
-              <TableCell>文件名</TableCell>
-              <TableCell>上次同步</TableCell>
-              <TableCell align="right">大小</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow hover>
-              <TableCell>
-                <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)} >Parent directory/</Link>
-              </TableCell>
-              <TableCell component="th" scope="row">-</TableCell>
-              <TableCell align="right">-</TableCell>
-            </TableRow>
-            {props.data.map((item) => (
-              <TableRow hover key={item.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell>
-                  {item.type == "directory" ? <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={location.pathname + item.name + "/"}>{item.name + "/"}</Link> : <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={location.pathname + item.name} target="_blank">{item.name}</Link>}
-                </TableCell>
-                <TableCell component="th" scope="row">{format(item.last_finished, 'zh_CN')}</TableCell>
-                <TableCell align="right">
-                  {item.type == "directory" ? "-" : formatFileSize(item.size)}
-                </TableCell>
+        <TableContainer component={Paper} sx={{ mt: 4, mb: 6 }}>
+          <Table sx={{ width: "100%" }} aria-label="a dense table">
+            <TableHead>
+              <TableRow>
+                <TableCell>文件名</TableCell>
+                <TableCell>上次同步</TableCell>
+                <TableCell align="right">大小</TableCell>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+            </TableHead>
+            <TableBody>
+              <TableRow hover>
+                <TableCell>
+                  <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)} >Parent directory/</Link>
+                </TableCell>
+                <TableCell component="th" scope="row">-</TableCell>
+                <TableCell align="right">-</TableCell>
+              </TableRow>
+              {props.data.map((item) => (
+                <TableRow hover key={item.name} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+                  <TableCell>
+                    {item.type == "directory" ? <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={location.pathname + item.name + "/"}>{item.name + "/"}</Link> : <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={location.pathname + item.name} target="_blank">{item.name}</Link>}
+                  </TableCell>
+                  <TableCell component="th" scope="row">{format(item.last_finished, 'zh_CN')}</TableCell>
+                  <TableCell align="right">
+                    {item.type == "directory" ? "-" : formatFileSize(item.size)}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Paper>
     </Container>
   )
