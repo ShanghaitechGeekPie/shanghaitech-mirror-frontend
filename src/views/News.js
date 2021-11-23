@@ -15,7 +15,7 @@ export default () => {
     })
   }
   return (
-    <Container maxWidth="lg" sx={{ py: 8 }}>
+    <Container maxWidth="lg">
       <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 'bold' }} gutterBottom>News</Typography>
       {data.map((item) => (
         <Card key={item.title} elevation={3} sx={{ m: 4 }}>

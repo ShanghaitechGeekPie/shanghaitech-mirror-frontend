@@ -16,7 +16,7 @@ export default () => {
   parser.use(prism)
   const content = parser.render(require("@/assets/news/" + id + ".md"))
   return (
-    <Container maxWidth="lg" sx={{ pt: 8, pb: 6 }}>
+    <Container maxWidth="lg">
       <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 'bold' }} gutterBottom>{ news[id].title }</Typography>
       <Card elevation={3} sx={{ mt: 8, mb: 6 }}>
         <CardContent sx={{ pb: 0 }} dangerouslySetInnerHTML={{__html: content}} />

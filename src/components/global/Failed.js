@@ -5,7 +5,7 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 
 export default () => (
-  <Container maxWidth="lg" sx={{ pt: 8, pb: 6 }}>
+  <Container maxWidth="lg">
     <Card>
       <CardContent>
         <Box sx={{ mx: 'auto', textAlign: 'center', pt: 4, pb: 4 }}>

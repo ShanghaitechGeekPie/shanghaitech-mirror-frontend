@@ -26,7 +26,7 @@ export default () => {
     "downtime": <ThumbDownAltIcon color="error" />
   }
   return (
-    <Box sx={{ mt: 4 }}>
+    <Box>
       <Card elevation={3}>
         <CardContent sx={{ pb: 0 }}>
           <Typography variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>News</Typography>
