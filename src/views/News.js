@@ -16,9 +16,9 @@ export default () => {
   }
   return (
     <Container maxWidth="lg">
-      <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 'bold' }} gutterBottom>News</Typography>
+      <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 'bold', mb: 4 }} gutterBottom>News</Typography>
       {data.map((item) => (
-        <Card key={item.title} elevation={3} sx={{ m: 4 }}>
+        <Card key={item.title} elevation={3} sx={{ mb: 4 }}>
           <CardActionArea to={'/news/' + item.id} component={Link}>
             <CardContent sx={{ px: 2, py: 4 }}>
               <Typography variant="h5" sx={{ fontWeight: 'bold' }} gutterBottom>{item.title}</Typography>

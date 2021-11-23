@@ -18,7 +18,7 @@ export default () => {
   return (
     <Container maxWidth="lg">
       <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 'bold' }} gutterBottom>{ news[id].title }</Typography>
-      <Card elevation={3} sx={{ mt: 8, mb: 6 }}>
+      <Card elevation={3}>
         <CardContent sx={{ pb: 0 }} dangerouslySetInnerHTML={{__html: content}} />
       </Card>
     </Container>
