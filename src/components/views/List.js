@@ -31,7 +31,7 @@ export default (props) => {
             <TableHead>
               <TableRow>
                 <TableCell>文件名</TableCell>
-                <TableCell>上次同步</TableCell>
+                <TableCell>上次修改</TableCell>
                 <TableCell align="right">大小</TableCell>
               </TableRow>
             </TableHead>
@@ -48,7 +48,7 @@ export default (props) => {
                   <TableCell>
                     {item.type == "directory" ? <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={location.pathname + item.name + "/"}>{item.name + "/"}</Link> : <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={location.pathname + item.name} target="_blank">{item.name}</Link>}
                   </TableCell>
-                  <TableCell component="th" scope="row">{format(item.last_finished, 'zh_CN')}</TableCell>
+                  <TableCell component="th" scope="row">{format(item.mtime, 'zh_CN')}</TableCell>
                   <TableCell align="right">
                     {item.type == "directory" ? "-" : formatFileSize(item.size)}
                   </TableCell>
