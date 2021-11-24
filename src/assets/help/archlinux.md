@@ -8,6 +8,6 @@ Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
 
 更新软件包缓存：
 
-```
+```bash
 sudo pacman -Syy
 ```

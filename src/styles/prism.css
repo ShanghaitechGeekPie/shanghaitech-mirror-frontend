@@ -37,6 +37,7 @@ pre {
 pre {
 	background: #2d2d2d !important;
 	border-radius: .5em;
+	font-size: 0.9em;
 }
 
 :not(pre) > code {

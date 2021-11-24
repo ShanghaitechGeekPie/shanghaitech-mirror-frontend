@@ -15,9 +15,9 @@ import { useLocation } from 'react-router-dom'
 
 function formatFileSize(size) {
   var sizes = [' Bytes', ' KiB', ' MiB', ' GiB'];
-  for (var index = 1; index < sizes.length; index++)
-    if (size < Math.pow(1024, index))
-      return (Math.round((size / Math.pow(1024, index - 1)) * 100) / 100) + sizes[index - 1]
+  for (let index = 0; index < sizes.length; index++)
+    if (size < Math.pow(1024, index + 1))
+      return (Math.round((size / Math.pow(1024, index)) * 100) / 100) + sizes[index]
   return size;
 }
 

@@ -34,7 +34,7 @@ export default () => {
         <List sx={{ pb: 0 }}>
           {data.map((item) => (
             <Box key={item.title}>
-              <Divider component="li" />
+              <Divider />
               <ListItem disablePadding>
                 <ListItemButton to={'/news/' + item.id} component={Link}>
                   <ListItemIcon>{icons[item.icon]}</ListItemIcon>
