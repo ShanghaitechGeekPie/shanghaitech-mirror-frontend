@@ -31,7 +31,7 @@ export default () => {
         <CardContent sx={{ pb: 0 }}>
           <Typography variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>News</Typography>
         </CardContent>
-        <List sx={{ pb: 0 }}>
+        <List component="div" sx={{ pb: 0 }}>
           {data.map((item) => (
             <Box key={item.title}>
               <Divider />
