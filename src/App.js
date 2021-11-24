@@ -2,7 +2,6 @@ import { Fragment } from 'react'
 import GlobalStyles from '@mui/material/GlobalStyles'
 import CssBaseline from '@mui/material/CssBaseline'
 import Header from '@/components/global/Header'
-import Footer from '@/components/global/Footer'
 import Router from '@/router/index'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
@@ -31,7 +30,6 @@ export default () => {
           <CssBaseline />
           <Header />
           <Router />
-          <Footer />
         </ThemeProvider>
       </QueryClientProvider>
     </Fragment>

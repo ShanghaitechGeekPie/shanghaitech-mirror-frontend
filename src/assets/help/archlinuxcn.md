@@ -13,6 +13,6 @@ Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 
 然后请安装 `archlinuxcn-keyring` 包以导入 GPG key。
 
-```
+```bash
 sudo pacman -S archlinuxcn-keyring
 ```

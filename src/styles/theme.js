@@ -13,7 +13,7 @@ const lightPalette = {
     main: "#ffa000"
   },
   info: {
-    main: "#1976d2"
+    main: "#1565c0"
   },
   success: {
     main: "#388e3c"
@@ -35,7 +35,7 @@ const darPalette = {
     main: "#ffc107"
   },
   info: {
-    main: "#2196f3"
+    main: "#1976d2"
   },
   success: {
     main: "#4caf50"
