@@ -7,11 +7,14 @@ import SwipeableDrawer from '@mui/material/SwipeableDrawer'
 import Button from '@mui/material/Button'
 import List from '@mui/material/List'
 import Divider from '@mui/material/Divider'
+import Collapse from '@mui/material/Collapse'
 import ListItem from '@mui/material/ListItem'
 import ListSubheader from '@mui/material/ListSubheader'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import MarkdownIt from "markdown-it"
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import ExpandMore from '@mui/icons-material/ExpandMore'
 import prism from "markdown-it-prism"
 import "prismjs/components/prism-bash"
 import "@/styles/prism.css"
@@ -38,8 +41,12 @@ function getHelpData() {
 
 export default () => {
   const [open, setOpen] = useState(false)
-  const data = getHelpData()
+  const [openSystem, setOpenSysyem] = useState(true)
+  const [openSoftware, setopenSoftware] = useState(true)
   const toggleDrawer = (status) => () => setOpen(status)
+  const doOpenSystem = () => setOpenSysyem(!openSystem)
+  const doOpenSoftware = () => setopenSoftware(!openSoftware)
+  const data = getHelpData()
   return (
     <Container maxWidth="lg">
       <Button variant="contained" sx={{ mb: 6 }} onClick={toggleDrawer(true)}>open</Button>
@@ -52,24 +59,38 @@ export default () => {
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
         ModalProps={{ keepMounted: true }}>
-        <List sx={{ width: "17.5rem", pt: 0 }} onClick={toggleDrawer(false)}>
-          <ListSubheader>System</ListSubheader>
-          {data.list.system.map((item) => (
-            <ListItem key={item} disablePadding>
-              <ListItemButton to={'/help/' + item} component={Link}>
-                <ListItemText primary={item} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+        <List component="div" sx={{ width: "17.5rem", pt: 0 }}>
+          <ListItemButton onClick={doOpenSystem}>
+            <ListItemText primary="System" />
+            {openSystem ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={openSystem} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {data.list.system.map((item) => (
+                <ListItem key={item} onClick={toggleDrawer(false)} disablePadding>
+                  <ListItemButton to={'/help/' + item} component={Link}>
+                    <ListItemText inset primary={item} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Collapse>
           <Divider component="li" />
-          <ListSubheader>Software</ListSubheader>
-          {data.list.software.map((item) => (
-            <ListItem key={item} disablePadding>
-              <ListItemButton to={'/help/' + item} component={Link}>
-                <ListItemText primary={item} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItemButton onClick={doOpenSoftware}>
+            <ListItemText primary="Software" />
+            {openSoftware ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={openSoftware} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              {data.list.software.map((item) => (
+                <ListItem key={item} onClick={toggleDrawer(false)} disablePadding>
+                  <ListItemButton to={'/help/' + item} component={Link}>
+                    <ListItemText inset primary={item} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Collapse>
         </List>
       </SwipeableDrawer>
     </Container>
