@@ -1,5 +1,4 @@
 import Container from '@mui/material/Container'
-import Box from '@mui/material/Box'
 import Table from '@mui/material/Table'
 import Typography from '@mui/material/Typography'
 import TableBody from '@mui/material/TableBody'

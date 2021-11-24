@@ -979,12 +979,24 @@
   resolved "https://registry.npm.taobao.org/@emotion/hash/download/@emotion/hash-0.8.0.tgz#bbbff68978fefdbe68ccb533bc8cbe1d1afb5413"
   integrity sha1-u7/2iXj+/b5ozLUzvIy+HRr7VBM=
 
+"@emotion/is-prop-valid@^0.8.2":
+  version "0.8.8"
+  resolved "https://registry.npmmirror.com/@emotion/is-prop-valid/download/@emotion/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
+  integrity sha1-2yixxDaKJZtgqXMR1qlS1P0BrBo=
+  dependencies:
+    "@emotion/memoize" "0.7.4"
+
 "@emotion/is-prop-valid@^1.1.1":
   version "1.1.1"
   resolved "https://registry.npmmirror.com/@emotion/is-prop-valid/download/@emotion/is-prop-valid-1.1.1.tgz#cbd843d409dfaad90f9404e7c0404c55eae8c134"
   integrity sha512-bW1Tos67CZkOURLc0OalnfxtSXQJMrAMV0jZTVGJUPSOd4qgjF3+tTD5CwJM13PHA8cltGW1WGbbvV9NpvUZPw==
   dependencies:
     "@emotion/memoize" "^0.7.4"
+
+"@emotion/memoize@0.7.4":
+  version "0.7.4"
+  resolved "https://registry.npm.taobao.org/@emotion/memoize/download/@emotion/memoize-0.7.4.tgz#19bf0f5af19149111c40d98bb0cf82119f5d9eeb"
+  integrity sha1-Gb8PWvGRSREcQNmLsM+CEZ9dnus=
 
 "@emotion/memoize@^0.7.4", "@emotion/memoize@^0.7.5":
   version "0.7.5"
@@ -2445,6 +2457,26 @@ forwarded@0.2.0:
   resolved "https://registry.nlark.com/forwarded/download/forwarded-0.2.0.tgz?cache=0&sync_timestamp=1622503451002&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fforwarded%2Fdownload%2Fforwarded-0.2.0.tgz#2269936428aad4c15c7ebe9779a84bf0b2a81811"
   integrity sha1-ImmTZCiq1MFcfr6XeahL8LKoGBE=
 
+framer-motion@^5.3.2:
+  version "5.3.2"
+  resolved "https://registry.npmmirror.com/framer-motion/download/framer-motion-5.3.2.tgz#d749f597d8083a4ae2fba3a2c0821930f2cc7ad4"
+  integrity sha512-39xU+ev4inXRAMb2DtdrMnWEinlMLTsk1lmYKcHmHy2WjwewqN9vL+dzqRuhzoPz3fia4U4x2h2w/bNpgh7egA==
+  dependencies:
+    framesync "6.0.1"
+    hey-listen "^1.0.8"
+    popmotion "11.0.0"
+    style-value-types "5.0.0"
+    tslib "^2.1.0"
+  optionalDependencies:
+    "@emotion/is-prop-valid" "^0.8.2"
+
+framesync@6.0.1, framesync@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.npmmirror.com/framesync/download/framesync-6.0.1.tgz#5e32fc01f1c42b39c654c35b16440e07a25d6f20"
+  integrity sha1-XjL8AfHEKznGVMNbFkQOB6JdbyA=
+  dependencies:
+    tslib "^2.1.0"
+
 fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.nlark.com/fresh/download/fresh-0.5.2.tgz?cache=0&sync_timestamp=1618846949012&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ffresh%2Fdownload%2Ffresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
@@ -2584,6 +2616,11 @@ he@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npm.taobao.org/he/download/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha1-hK5l+n6vsWX922FWauFLrwVmTw8=
+
+hey-listen@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.npm.taobao.org/hey-listen/download/hey-listen-1.0.8.tgz#8e59561ff724908de1aa924ed6ecc84a56a9aa68"
+  integrity sha1-jllWH/ckkI3hqpJO1uzISlapqmg=
 
 history@^5.1.0:
   version "5.1.0"
@@ -3616,6 +3653,16 @@ pkg-dir@^4.1.0, pkg-dir@^4.2.0:
   dependencies:
     find-up "^4.0.0"
 
+popmotion@11.0.0:
+  version "11.0.0"
+  resolved "https://registry.npmmirror.com/popmotion/download/popmotion-11.0.0.tgz#910e2e7077d9aeba520db8744d40bb5354992212"
+  integrity sha1-kQ4ucHfZrrpSDbh0TUC7U1SZIhI=
+  dependencies:
+    framesync "^6.0.1"
+    hey-listen "^1.0.8"
+    style-value-types "5.0.0"
+    tslib "^2.1.0"
+
 portfinder@^1.0.28:
   version "1.0.28"
   resolved "https://registry.npm.taobao.org/portfinder/download/portfinder-1.0.28.tgz#67c4622852bd5374dd1dd900f779f53462fac778"
@@ -4268,6 +4315,14 @@ style-loader@^3.3.1:
   resolved "https://registry.npmmirror.com/style-loader/download/style-loader-3.3.1.tgz#057dfa6b3d4d7c7064462830f9113ed417d38575"
   integrity sha1-BX36az1NfHBkRigw+RE+1BfThXU=
 
+style-value-types@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.npmmirror.com/style-value-types/download/style-value-types-5.0.0.tgz#76c35f0e579843d523187989da866729411fc8ad"
+  integrity sha1-dsNfDleYQ9UjGHmJ2oZnKUEfyK0=
+  dependencies:
+    hey-listen "^1.0.8"
+    tslib "^2.1.0"
+
 stylis@^4.0.10, stylis@^4.0.3:
   version "4.0.10"
   resolved "https://registry.npm.taobao.org/stylis/download/stylis-4.0.10.tgz#446512d1097197ab3f02fb3c258358c3f7a14240"
@@ -4344,7 +4399,7 @@ toidentifier@1.0.0:
   resolved "https://registry.npmmirror.com/toidentifier/download/toidentifier-1.0.0.tgz?cache=0&sync_timestamp=1636938797674&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Ftoidentifier%2Fdownload%2Ftoidentifier-1.0.0.tgz#7e1be3470f1e77948bc43d94a3c8f4d7752ba553"
   integrity sha1-fhvjRw8ed5SLxD2Uo8j013UrpVM=
 
-tslib@^2.0.3:
+tslib@^2.0.3, tslib@^2.1.0:
   version "2.3.1"
   resolved "https://registry.nlark.com/tslib/download/tslib-2.3.1.tgz?cache=0&sync_timestamp=1628722580350&other_urls=https%3A%2F%2Fregistry.nlark.com%2Ftslib%2Fdownload%2Ftslib-2.3.1.tgz#e8a335add5ceae51aa261d32a490158ef042ef01"
   integrity sha1-6KM1rdXOrlGqJh0ypJAVjvBC7wE=
