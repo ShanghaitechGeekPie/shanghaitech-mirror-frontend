@@ -5,6 +5,15 @@
     "archlinuxcn": {
         "type": "system"
     },
+    "centos": {
+        "type": "system"
+    },
+    "manjaro": {
+        "type": "system"
+    },
+    "linuxmint": {
+        "type": "system"
+    },
     "anaconda": {
         "type": "software"
     }
