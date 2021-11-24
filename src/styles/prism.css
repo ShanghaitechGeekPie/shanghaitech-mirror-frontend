@@ -1,8 +1,8 @@
-code[class*="language-"], pre[class*="language-"] {
+.markdown-body code, pre {
 	color: #ccc !important;
 	background: #2d2d2d !important;
 	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
-	font-size: 0.9em;
+	font-size: 0.95em;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
@@ -19,28 +19,28 @@ code[class*="language-"], pre[class*="language-"] {
 	
 }
 
-code {
+.markdown-body code {
 	background: none !important;
 	color: #cfcfcf !important;
 	padding: 0 !important;
-	font-size: 0.9em;
+	font-size: 0.95em;
 }
 
 /* Code blocks */
-pre {
+.markdown-body pre {
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;
 }
 
-:not(pre) > code[class*="language-"],
+.markdown-body :not(pre) > code,
 pre {
 	background: #2d2d2d !important;
 	border-radius: .5em;
 	font-size: 0.9em;
 }
 
-:not(pre) > code {
+.markdown-body :not(pre) > code {
 	padding: .35em !important;
 	background: #3f3f3f !important;
 	border-radius: .5em;
