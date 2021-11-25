@@ -1,20 +1,19 @@
 {
-    "archlinux": {
-        "type": "system"
-    },
-    "archlinuxcn": {
-        "type": "system"
-    },
-    "centos": {
-        "type": "system"
-    },
-    "manjaro": {
-        "type": "system"
-    },
-    "linuxmint": {
-        "type": "system"
-    },
-    "anaconda": {
-        "type": "software"
-    }
+    "system": [
+        "archlinux",
+        "archlinuxcn",
+        "centos",
+        "debian",
+        "deepin",
+        "fedora",
+        "kali",
+        "linuxmint",
+        "manjaro",
+        "opensuse",
+        "raspbian",
+        "ubuntu"
+    ],
+    "software": [
+        "anaconda"
+    ]
 }

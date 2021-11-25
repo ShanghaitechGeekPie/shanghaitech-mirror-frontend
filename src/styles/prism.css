@@ -1,7 +1,7 @@
 .markdown-body code, pre {
 	color: #ccc !important;
 	background: #313131 !important;
-	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace, 'Source Code Pro';
 	font-size: 0.92em;
 	text-align: left;
 	white-space: pre;

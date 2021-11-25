@@ -20,19 +20,9 @@ import "@/styles/prism.css"
 import "@/styles/markdown.css"
 
 function getHelpData() {
-  const data = {
-    "list": {
-      "system": [],
-      "software": []
-    },
-    "content": null
-  }
   const parser = new MarkdownIt()
-  const help = require("@/assets/help.json")
+  const data = require("@/assets/help.json")
   let { id } = useParams()
-  for (let key in help) {
-    data.list[help[key].type].push(key)
-  }
   parser.use(prism)
   data.content = parser.render(require("@/assets/help/" + (id ? id : "default") + ".md"))
   return data
@@ -49,7 +39,7 @@ export default () => {
   return (
     <Container maxWidth="lg">
       <Button variant="contained" sx={{ mb: 6 }} onClick={toggleDrawer(true)}>open</Button>
-      <Card elevation={3}>
+      <Card elevation={3} sx={{ px: { lg: 1 } }}>
         <CardContent className="markdown-body" dangerouslySetInnerHTML={{ __html: data.content }} />
       </Card>
       <SwipeableDrawer
@@ -65,7 +55,7 @@ export default () => {
           </ListItemButton>
           <Collapse in={openSystem} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {data.list.system.map((item) => (
+              {data.system.map((item) => (
                 <ListItem component="div" key={item} onClick={toggleDrawer(false)} disablePadding>
                   <ListItemButton to={'/help/' + item} component={Link}>
                     <ListItemText inset primary={item} />
@@ -81,7 +71,7 @@ export default () => {
           </ListItemButton>
           <Collapse in={openSoftware} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {data.list.software.map((item) => (
+              {data.software.map((item) => (
                 <ListItem component="div" key={item} onClick={toggleDrawer(false)} disablePadding>
                   <ListItemButton to={'/help/' + item} component={Link}>
                     <ListItemText inset primary={item} />
