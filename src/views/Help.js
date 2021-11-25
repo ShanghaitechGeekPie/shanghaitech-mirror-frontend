@@ -9,7 +9,6 @@ import List from '@mui/material/List'
 import Divider from '@mui/material/Divider'
 import Collapse from '@mui/material/Collapse'
 import ListItem from '@mui/material/ListItem'
-import ListSubheader from '@mui/material/ListSubheader'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import MarkdownIt from "markdown-it"
@@ -67,7 +66,7 @@ export default () => {
           <Collapse in={openSystem} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               {data.list.system.map((item) => (
-                <ListItem key={item} onClick={toggleDrawer(false)} disablePadding>
+                <ListItem component="div" key={item} onClick={toggleDrawer(false)} disablePadding>
                   <ListItemButton to={'/help/' + item} component={Link}>
                     <ListItemText inset primary={item} />
                   </ListItemButton>
@@ -83,7 +82,7 @@ export default () => {
           <Collapse in={openSoftware} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               {data.list.software.map((item) => (
-                <ListItem key={item} onClick={toggleDrawer(false)} disablePadding>
+                <ListItem component="div" key={item} onClick={toggleDrawer(false)} disablePadding>
                   <ListItemButton to={'/help/' + item} component={Link}>
                     <ListItemText inset primary={item} />
                   </ListItemButton>

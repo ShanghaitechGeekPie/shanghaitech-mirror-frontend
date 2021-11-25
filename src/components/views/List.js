@@ -24,7 +24,7 @@ export default (props) => {
   const location = useLocation()
   return (
     <Container maxWidth="lg">
-      <Typography variant="h5" sx={{ fontWeight: 'medium' }} gutterBottom>{"Index of: " + location.pathname}</Typography>
+      <Typography component="div" variant="h5" sx={{ fontWeight: 'medium' }} gutterBottom>{"Index of: " + location.pathname}</Typography>
       <Paper elevation={3}>
         <TableContainer component={Paper} sx={{ mt: 4, mb: 6 }}>
           <Table sx={{ width: "100%" }} aria-label="a dense table">

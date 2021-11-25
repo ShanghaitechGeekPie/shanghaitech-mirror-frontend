@@ -29,13 +29,13 @@ export default () => {
     <Box>
       <Card elevation={3}>
         <CardContent sx={{ pb: 0 }}>
-          <Typography variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>News</Typography>
+          <Typography component="div" variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>News</Typography>
         </CardContent>
         <List component="div" sx={{ pb: 0 }}>
           {data.map((item) => (
             <Box key={item.title}>
               <Divider />
-              <ListItem disablePadding>
+              <ListItem component="div" disablePadding>
                 <ListItemButton to={'/news/' + item.id} component={Link}>
                   <ListItemIcon>{icons[item.icon]}</ListItemIcon>
                   <ListItemText primary={item.title} />

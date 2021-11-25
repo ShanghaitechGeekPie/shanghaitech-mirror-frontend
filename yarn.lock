@@ -1078,7 +1078,7 @@
   dependencies:
     "@babel/runtime" "^7.16.3"
 
-"@mui/material@^5.1.0":
+"@mui/material@^5.2.0":
   version "5.2.0"
   resolved "https://registry.npmmirror.com/@mui/material/download/@mui/material-5.2.0.tgz#ad37b7cfb1467ce303c1a2a7e5309b45d370130e"
   integrity sha512-AJehUbf0pWA+X9x+rXM4xHjLdNSf3YZzVt9YP/Pa75HCIDn4Dg2neiZu/Cg57C19WMlUf3nyn4Vkz4nD48DgPA==
@@ -3811,14 +3811,14 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-dom@latest:
-  version "17.0.2"
-  resolved "https://registry.npmmirror.com/react-dom/download/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
-  integrity sha1-7P+2hF462Nv83EmPDQqTlzZQLCM=
+react-dom@^18.0.0-beta-c1220ebdd-20211123:
+  version "18.0.0-beta-c1220ebdd-20211123"
+  resolved "https://registry.npmmirror.com/react-dom/download/react-dom-18.0.0-beta-c1220ebdd-20211123.tgz#e98d0e28cfc3665730b2a7abf00c087cdd41abeb"
+  integrity sha512-kY++te33IPgLbuRlVrm5uYrxla9y1lkW/icHNHD1zeSa4x0rKOqyW01HLBJPT6bN+PT89b98I5I/Qr0CXN+w6Q==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
-    scheduler "^0.20.2"
+    scheduler "0.21.0-beta-c1220ebdd-20211123"
 
 react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
@@ -3864,10 +3864,10 @@ react-transition-group@^4.4.2:
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
 
-react@latest:
-  version "17.0.2"
-  resolved "https://registry.npmmirror.com/react/download/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
-  integrity sha1-0LXMUW0p6z7uOD91tihkz7aAADc=
+react@^18.0.0-beta-c1220ebdd-20211123:
+  version "18.0.0-beta-c1220ebdd-20211123"
+  resolved "https://registry.npmmirror.com/react/download/react-18.0.0-beta-c1220ebdd-20211123.tgz#1577d2e59dfde826e110074c5f20160e0c1d36d9"
+  integrity sha512-yP8Lvre7RS0TXFYEyRkijpaqilwM0kMG1iEkoIWgeNyjBDMeKjmqKDFCNtXoUca0WdJ0Y+DvmjKPce5XksJMaA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -4066,10 +4066,10 @@ safe-buffer@>=5.1.0, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@~5.2.0:
   resolved "https://registry.nlark.com/safer-buffer/download/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
   integrity sha1-RPoWGwGHuVSd2Eu5GAL5vYOFzWo=
 
-scheduler@^0.20.2:
-  version "0.20.2"
-  resolved "https://registry.npmmirror.com/scheduler/download/scheduler-0.20.2.tgz#4baee39436e34aa93b4874bddcbf0fe8b8b50e91"
-  integrity sha1-S67jlDbjSqk7SHS93L8P6Li1DpE=
+scheduler@0.21.0-beta-c1220ebdd-20211123:
+  version "0.21.0-beta-c1220ebdd-20211123"
+  resolved "https://registry.npmmirror.com/scheduler/download/scheduler-0.21.0-beta-c1220ebdd-20211123.tgz#6a4c3cc426f4316e5f0df448b01e99b364aa7fc7"
+  integrity sha512-3qOlWLIx2gMB5FUgCuycE7vQhXyoTsy5VF9elrsXOSvpM7j4NMYYRf9ehjsllQK+8sSmmAlXHx/8kdcA500tdA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
