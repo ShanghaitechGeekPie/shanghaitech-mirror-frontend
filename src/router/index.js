@@ -11,20 +11,9 @@ const Explorer = lazy(() => import("@/views/Explorer"))
 export const Wrapper = () => {
   return (
     <motion.div
-      initial="initial"
-      animate="in"
-      exit="out"
-      variants={{
-        initial: {
-          opacity: 9
-        },
-        in: {
-          opacity: 1
-        },
-        out: {
-          opacity: 0
-        }
-      }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
       transition={{
         duration: 0.25
       }}

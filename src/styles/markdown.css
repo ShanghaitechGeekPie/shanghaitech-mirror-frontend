@@ -2,7 +2,6 @@
   outline-width: 0;
 }
 
-.markdown-body b,
 .markdown-body strong {
   font-weight: 600;
 }
@@ -11,6 +10,10 @@
   border-style: none;
   max-width: 100%;
   box-sizing: content-box;
+}
+
+.markdown-body p {
+  line-height: 1.8em;
 }
 
 .markdown-body a:hover {
@@ -70,6 +73,7 @@
 }
 
 .markdown-body table th {
+  background-color: rgba(128, 128, 128, .3);
   font-weight: 600;
 }
 

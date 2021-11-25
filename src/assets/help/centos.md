@@ -6,9 +6,9 @@
 
 以上步骤可以被下方的命令一步完成
 
-```
+```bash
 sudo sed -e 's|^mirrorlist=|#mirrorlist=|g' \
-         -e 's|^#baseurl=http://mirror.centos.org|baseurl=https://mirrors.tuna.tsinghua.edu.cn|g' \
+         -e 's|^#baseurl=http://mirror.centos.org|baseurl=https://mirrors.shanghaitech.edu.cn|g' \
          -i.bak \
          /etc/yum.repos.d/CentOS-*.repo
 ```
@@ -19,6 +19,6 @@ sudo sed -e 's|^mirrorlist=|#mirrorlist=|g' \
 
 最后，更新软件包缓存
 
-```
+```bash
 sudo yum makecache
 ```

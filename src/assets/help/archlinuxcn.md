@@ -8,7 +8,7 @@ Arch Linux 中文社区仓库是由 Arch Linux 中文社区驱动的非官方用
 
 ```
 [archlinuxcn]
-Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.shanghaitech.edu.cn/archlinuxcn/$arch
 ```
 
 然后请安装 `archlinuxcn-keyring` 包以导入 GPG key。

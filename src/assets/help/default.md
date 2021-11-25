@@ -4,10 +4,10 @@ See if markdown styles of these components work ~~correctly~~.
 
 #### Unordered Lists
                 
-+ Foo
-+ Bar
-    + Doo
-    + Lar
+- Foo
+- Bar
+    - Doo
+    - Lar
 
 #### Ordered Lists
                 
