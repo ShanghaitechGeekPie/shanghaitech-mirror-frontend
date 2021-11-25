@@ -10,14 +10,17 @@ import { Link as RouterLink } from 'react-router-dom'
 import Link from '@mui/material/Link'
 import { format } from 'timeago.js'
 import { useQuery } from 'react-query'
+import IconButton from '@mui/material/IconButton'
 import DoneIcon from '@mui/icons-material/Done'
 import LoopIcon from '@mui/icons-material/Loop'
 import CloseIcon from '@mui/icons-material/Close'
+import HelpIcon from '@mui/icons-material/Help'
 import Loading from "@/components/global/Loading"
 import Failed from "@/components/global/Failed"
 import Config from 'Config'
 
 export default function Mirrors() {
+  const help = require("@/assets/help.json")
   const { isLoading, isError, data } = useQuery('summarydata', () =>
     fetch(Config.serverUrl + '/summary').then(async function (data) {
       data = await data.json()
@@ -52,12 +55,17 @@ export default function Mirrors() {
               <TableRow key={item.name} rowSpan={item.length} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
                 <TableCell align="left">
                   <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={item.name + "/"}>{item.name}</Link>
+                  {
+                    (help.system.indexOf(item.name) >= 0 || help.software.indexOf(name) >= 0)
+                      ? <IconButton color="primary" size="small" component={RouterLink} to={"/help/" + item.name}><HelpIcon fontSize="inherit" /></IconButton>
+                      : null
+                  }
                 </TableCell>
                 <TableCell component="th" scope="row" align="center">{format(item.last_finished, 'zh_CN')}</TableCell>
                 <TableCell align="right">
-                  {item.idle ?
-                    (item.result ? <Chip icon={<DoneIcon />} label="同步成功" size="small" color="success" /> : <Chip icon={<CloseIcon />} label="同步失败" size="small" color="warning" />) :
-                    (<Chip icon={<LoopIcon />} label="正在同步" size="small" color="info" />)
+                  {item.idle
+                    ? (item.result ? <Chip icon={<DoneIcon />} label="同步成功" size="small" color="success" /> : <Chip icon={<CloseIcon />} label="同步失败" size="small" color="warning" />)
+                    : (<Chip icon={<LoopIcon />} label="正在同步" size="small" color="info" />)
                   }
                 </TableCell>
               </TableRow>
