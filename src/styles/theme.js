@@ -16,7 +16,7 @@ const lightPalette = {
     main: "#1565c0"
   },
   success: {
-    main: "#388e3c"
+    main: "#2e7d32"
   }
 }
 

@@ -1,6 +1,6 @@
 ## openSUSE 镜像使用帮助
 
-#### Leap 15.2 或更新版本
+### Leap 15.2 或更新版本
 
 禁用官方软件源并添加本镜像源：
 
@@ -28,7 +28,7 @@ sudo zypper ref
 
 注：若您使用`Leap 15.3`，且在安装时未启用在线软件源，`sle`源以及`backports`源将在系统首次更新后自动引入，请确保系统在更新后仅启用了六个所需软件源。您可使用`zypper lr` 以检查软件源状态，并使用`zypper mr -d`禁用多余软件源。
 
-#### openSUSE Tumbleweed 使用方法
+### openSUSE Tumbleweed 使用方法
 
 禁用官方软件源并添加本镜像源：
 
