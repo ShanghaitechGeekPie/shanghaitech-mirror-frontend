@@ -3,6 +3,7 @@ import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Mirrors from '@/components/views/Mirrors'
 import News from '@/components/views/News'
+import Links from '@/components/views/Links'
 
 export default () => (
   <Container maxWidth="lg">
@@ -14,6 +15,7 @@ export default () => (
       </Grid>
       <Grid item xs={12} md={4}>
         <News />
+        <Links />
       </Grid>
     </Grid>
   </Container>

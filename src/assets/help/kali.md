@@ -20,7 +20,7 @@ apt update
 
 ```
 deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
-#deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+# deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
 ```
 
 并更新索引：

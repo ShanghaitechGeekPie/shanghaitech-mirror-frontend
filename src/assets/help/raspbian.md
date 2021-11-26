@@ -4,7 +4,7 @@
 
 ```
 deb http://mirrors.shanghaitech.edu.cn/raspbian/raspbian/ $version main non-free contrib rpi
-deb-src http://mirrors.shanghaitech.edu.cn/raspbian/raspbian/ $version main non-free contrib rpi
+# deb-src http://mirrors.shanghaitech.edu.cn/raspbian/raspbian/ $version main non-free contrib rpi
 ```
 
 更新索引以检查是否配置正确：
