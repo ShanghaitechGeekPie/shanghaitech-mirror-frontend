@@ -20,8 +20,22 @@ import "@/styles/prism.css"
 import "@/styles/markdown.css"
 
 function getHelpData() {
+  const data = {
+    "list": {
+      "system": [],
+      "software": []
+    },
+    "content": null
+  }
   const parser = new MarkdownIt()
-  const data = require("@/assets/help.json")
+  const help = require("@/assets/help.json")
+  for (let type in help)
+    for (let key in help[type]) {
+      const value = help[type][key]
+      data.list[type].push({
+        key: key, title: value.display
+      })
+    }
   let { id } = useParams()
   parser.use(prism)
   data.content = parser.render(require("@/assets/help/" + (id ? id : "default") + ".md"))
@@ -55,10 +69,10 @@ export default () => {
           </ListItemButton>
           <Collapse in={openSystem} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {data.system.map((item) => (
-                <ListItem component="div" key={item} onClick={toggleDrawer(false)} disablePadding>
-                  <ListItemButton to={'/help/' + item} component={Link}>
-                    <ListItemText inset primary={item} />
+              {data.list.system.map((item) => (
+                <ListItem component="div" key={item.key} onClick={toggleDrawer(false)} disablePadding>
+                  <ListItemButton to={'/help/' + item.key} component={Link}>
+                    <ListItemText inset primary={item.title} />
                   </ListItemButton>
                 </ListItem>
               ))}
@@ -71,10 +85,10 @@ export default () => {
           </ListItemButton>
           <Collapse in={openSoftware} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {data.software.map((item) => (
-                <ListItem component="div" key={item} onClick={toggleDrawer(false)} disablePadding>
-                  <ListItemButton to={'/help/' + item} component={Link}>
-                    <ListItemText inset primary={item} />
+              {data.list.software.map((item) => (
+                <ListItem component="div" key={item.key} onClick={toggleDrawer(false)} disablePadding>
+                  <ListItemButton to={'/help/' + item.key} component={Link}>
+                    <ListItemText inset primary={item.title} />
                   </ListItemButton>
                 </ListItem>
               ))}
