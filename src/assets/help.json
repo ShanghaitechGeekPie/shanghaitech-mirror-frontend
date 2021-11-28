@@ -1,19 +1,45 @@
 {
-    "system": [
-        "archlinux",
-        "archlinuxcn",
-        "centos",
-        "debian",
-        "deepin",
-        "fedora",
-        "kali",
-        "linuxmint",
-        "manjaro",
-        "opensuse",
-        "raspbian",
-        "ubuntu"
-    ],
-    "software": [
-        "anaconda"
-    ]
+    "system": {
+        "archlinux": {
+            "display": "Arch Linux"
+        },
+        "archlinuxcn": {
+            "display": "Arch Linux CN"
+        },
+        "centos": {
+            "display": "CentOS"
+        },
+        "debian": {
+            "display": "Debian"
+        },
+        "deepin": {
+            "display": "Deepin"
+        },
+        "fedora": {
+            "display": "Fedora"
+        },
+        "kali": {
+            "display": "Kali Linux"
+        },
+        "linuxmint": {
+            "display": "Linux Mint"
+        },
+        "manjaro": {
+            "display": "Manjaro"
+        },
+        "opensuse": {
+            "display": "openSUSE"
+        },
+        "raspbian": {
+            "display": "Raspbian"
+        },
+        "ubuntu": {
+            "display": "Ubuntu"
+        }
+    },
+    "software": {
+        "anaconda": {
+            "display": "Anaconda"
+        }
+    }
 }

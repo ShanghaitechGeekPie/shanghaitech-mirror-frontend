@@ -56,7 +56,7 @@ export default function Mirrors() {
                 <TableCell align="left">
                   <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={item.name + "/"}>{item.name}</Link>
                   {
-                    (help.system.indexOf(item.name) >= 0 || help.software.indexOf(name) >= 0)
+                    (help.system.hasOwnProperty(item.name) || help.software.hasOwnProperty(item.name))
                       ? <IconButton color="primary" size="small" component={RouterLink} to={"/help/" + item.name}><HelpIcon fontSize="inherit" /></IconButton>
                       : null
                   }
