@@ -16,7 +16,6 @@
 	-moz-hyphens: none;
 	-ms-hyphens: none;
 	hyphens: none;
-	
 }
 
 .markdown-body code {
@@ -25,7 +24,6 @@
 	padding: 0 !important;
 }
 
-/* Code blocks */
 .markdown-body pre {
 	padding: 1em;
 	margin: .5em 0;
@@ -51,6 +49,15 @@ pre {
 	.markdown-body :not(pre) > code {
 		background: #faf0ee !important;
 		color: #905 !important;
+	}
+}
+
+@media (min-width: 1200px) {
+	.markdown-body code, pre {
+    	font-size: 1em;
+	}
+	.markdown-body :not(pre) > code {
+		font-size: 0.82em;
 	}
 }
 
