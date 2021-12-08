@@ -1,5 +1,8 @@
 {
     "system": {
+        "alpine": {
+            "display": "Alpine"
+        },
         "archlinux": {
             "display": "Arch Linux"
         },
