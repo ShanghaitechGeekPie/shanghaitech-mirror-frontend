@@ -25,6 +25,7 @@ export default () => {
     "smile": <MoodOutlinedIcon color="secondary" />,
     "downtime": <ThumbDownAltIcon color="error" />
   }
+
   return (
     <Card elevation={3} sx={{ mb: 4 }}>
       <CardContent sx={{ pb: 0 }}>

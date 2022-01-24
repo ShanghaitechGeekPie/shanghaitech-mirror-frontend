@@ -12,7 +12,7 @@ import Link from '@mui/material/Link'
 import { format } from 'timeago.js'
 import { useLocation } from 'react-router-dom'
 
-function formatFileSize(size) {
+const formatFileSize = (size) => {
   var sizes = [' Bytes', ' KiB', ' MiB', ' GiB'];
   for (let index = 0; index < sizes.length; index++)
     if (size < Math.pow(1024, index + 1))
@@ -22,6 +22,7 @@ function formatFileSize(size) {
 
 export default (props) => {
   const location = useLocation()
+
   return (
     <Container maxWidth="lg">
       <Typography component="div" variant="h5" sx={{ fontWeight: 'medium' }} gutterBottom>{"Index of: " + location.pathname}</Typography>

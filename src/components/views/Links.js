@@ -15,6 +15,7 @@ export default () => {
   const data = [
     {"title": "SHTU Offical Website", "href": "https://www.shanghaitech.edu.cn", "icon": <HomeIcon />}
   ]
+
   return (
     <Card elevation={3}>
       <CardContent sx={{ pb: 0 }}>

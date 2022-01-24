@@ -1,12 +1,27 @@
-import GlobalStyles from '@mui/material/GlobalStyles'
-import CssBaseline from '@mui/material/CssBaseline'
-import Box from '@mui/material/Box'
-import Header from '@/components/global/Header'
-import Router from '@/router/index'
-import { useLocation } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
+import { styled, useTheme, ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
 import useMediaQuery from '@mui/material/useMediaQuery'
+import Box from '@mui/material/Box'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Drawer from '@mui/material/Drawer'
+import Typography from '@mui/material/Typography'
+import Divider from '@mui/material/Divider'
+import IconButton from '@mui/material/IconButton'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemText from '@mui/material/ListItemText'
+import MenuIcon from '@mui/icons-material/Menu'
+import HomeIcon from '@mui/icons-material/Home'
+import HelpCenterIcon from '@mui/icons-material/HelpCenter'
+import FeedIcon from '@mui/icons-material/Feed'
+import InfoIcon from '@mui/icons-material/Info'
+import HelpMenu from '@/components/views/HelpMenu'
+import Router from '@/router/index'
 import getTheme from '@/styles/theme'
 
 const queryClient = new QueryClient({
@@ -19,18 +34,91 @@ const queryClient = new QueryClient({
   }
 })
 
+const drawerWidth = 300
+
+const Main = styled('main')(({ theme, open }) => ({
+  flexGrow: 1,
+  marginTop: theme.spacing(8),
+  marginBottom: theme.spacing(8),
+  [theme.breakpoints.up('lg')]: {
+    marginLeft: `-${drawerWidth}px`,
+    transition: theme.transitions.create("margin", {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen
+    }),
+    ...(open && {
+      marginLeft: 0,
+      transition: theme.transitions.create("margin", {
+        easing: theme.transitions.easing.easeOut,
+        duration: theme.transitions.duration.enteringScreen
+      })
+    })
+  }
+}))
+
+const navLinks = [
+  { name: "Home", link: "/", icon: <HomeIcon /> },
+  { name: "Help", link: "/help", icon: <HelpCenterIcon /> },
+  { name: "News", link: "/news", icon: <FeedIcon /> },
+  { name: "About", link: "/about", icon: <InfoIcon /> },
+]
+
 export default () => {
+
   const location = useLocation()
   const darkmode = useMediaQuery('(prefers-color-scheme: dark)')
   const theme = responsiveFontSizes(createTheme(getTheme(darkmode)))
+
+  const notMobileScreen = useMediaQuery(useTheme().breakpoints.up('lg'))
+
+  const [drawerOpen, setDrawerOpen] = useState(notMobileScreen);
+  const handleDrawerToggle = () => {
+    setDrawerOpen(!drawerOpen);
+  }
+
+  const NavItems = (
+    <List>
+      {navLinks.map((item) => (
+        <ListItem to={item.link} onClick={handleDrawerToggle} button component={Link} key={item.name}>
+          <ListItemIcon>{item.icon}</ListItemIcon>
+          <ListItemText primary={item.name} />
+        </ListItem>
+      ))}
+    </List>
+  )
+
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <GlobalStyles styles={{ ul: { margin: 0, padding: 0, listStyle: 'none' } }} />
-        <CssBaseline />
-        <Header />
-        <Box sx={{ pb: 8 }}>
-          <Router />
+        <Box sx={{ display: { lg: 'flex' } }}>
+          <CssBaseline />
+          <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+            <Toolbar>
+              <IconButton onClick={handleDrawerToggle} sx={{ mr: 3 }}>
+                <MenuIcon sx={{ color: "white" }} />
+              </IconButton>
+              <Typography variant="h6" component="div">SHTU Open Source Mirror</Typography>
+            </Toolbar>
+          </AppBar>
+          <Box sx={{ width: { sm: drawerWidth } }}>
+            <Drawer
+              variant={notMobileScreen ? "persistent" : "temporary"}
+              open={drawerOpen}
+              onClose={handleDrawerToggle}
+              sx={{ '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth } }}
+            >
+              <Toolbar />
+              <Box sx={{ overflow: "auto" }}>
+                {NavItems}
+                <Divider />
+                {location.pathname.startsWith("/help") ? <HelpMenu handleDrawerToggle={handleDrawerToggle} /> : null}
+              </Box>
+            </Drawer>
+          </Box>
+          <Main open={drawerOpen}>
+            <Toolbar />
+            <Router />
+          </Main>
         </Box>
       </ThemeProvider>
     </QueryClientProvider>
