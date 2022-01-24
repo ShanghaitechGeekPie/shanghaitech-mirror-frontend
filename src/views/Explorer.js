@@ -21,5 +21,6 @@ export default () => {
       <Failed />
     </Container>
   )
+
   return <List data={data} />
 }

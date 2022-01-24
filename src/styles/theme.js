@@ -43,8 +43,8 @@ const darPalette = {
 }
 
 export default (darkMode) => {
-  let Theme = {
-    palette: {},
+  let theme = {
+    palette: darkMode ? darPalette : lightPalette,
     shape: {
       borderRadius: 12
     },
@@ -52,6 +52,5 @@ export default (darkMode) => {
       fontWeightMedium: 600
     }
   }
-  Theme.palette = darkMode ? darPalette : lightPalette
-  return Theme
+  return theme
 }

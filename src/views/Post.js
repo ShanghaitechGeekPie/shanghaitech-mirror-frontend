@@ -15,6 +15,7 @@ export default () => {
   const parser = new MarkdownIt()
   parser.use(prism)
   const content = parser.render(require("@/assets/news/" + id + ".md"))
+
   return (
     <Container maxWidth="lg">
       <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 'bold', mb: 4 }} gutterBottom>{ news[id].title }</Typography>

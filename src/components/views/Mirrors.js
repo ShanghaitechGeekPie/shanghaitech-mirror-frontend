@@ -19,7 +19,7 @@ import Loading from "@/components/global/Loading"
 import Failed from "@/components/global/Failed"
 import Config from 'Config'
 
-export default function Mirrors() {
+export default () => {
   const help = require("@/assets/help.json")
   const { isLoading, isError, data } = useQuery('summarydata', () =>
     fetch(Config.serverUrl + '/summary').then(async function (data) {
@@ -39,6 +39,7 @@ export default function Mirrors() {
   )
   if (isLoading) return <Loading />
   if (isError) return <Failed />
+
   return (
     <Paper elevation={3}>
       <TableContainer>

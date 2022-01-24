@@ -14,6 +14,7 @@ export default () => {
       id: key, title: value.title, time: value.time, icon: value.icon
     })
   }
+
   return (
     <Container maxWidth="lg">
       <Typography variant="h4" sx={{ textAlign: 'center', fontWeight: 'bold', mb: 4 }} gutterBottom>News</Typography>
