@@ -8,7 +8,7 @@ export default () => (
   <Card>
     <CardContent>
       <Box sx={{ mx: 'auto', textAlign: 'center', pt: 4, pb: 4 }}>
-        <CircularProgress />
+        <CircularProgress sx={{ mb: 2 }} />
         <Typography component="div" variant="h5" sx={{ fontWeight: 'medium' }} gutterBottom>Loading</Typography>
       </Box>
     </CardContent>

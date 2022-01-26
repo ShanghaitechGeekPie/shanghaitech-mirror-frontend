@@ -1,9 +1,10 @@
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
-import Mirrors from '@/components/views/Mirrors'
-import News from '@/components/views/News'
-import Links from '@/components/views/Links'
+import Mirrors from '@/components/views/HomeMirrors'
+import News from '@/components/views/HomeNews'
+import Tools from '@/components/views/HomeTools'
+import Links from '@/components/views/HomeLinks'
 
 export default () => (
   <Container maxWidth="lg">
@@ -15,6 +16,7 @@ export default () => (
       </Grid>
       <Grid item xs={12} md={4}>
         <News />
+        <Tools />
         <Links />
       </Grid>
     </Grid>

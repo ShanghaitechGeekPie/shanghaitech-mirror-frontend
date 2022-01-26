@@ -36,6 +36,13 @@ const queryClient = new QueryClient({
 
 const drawerWidth = 300
 
+const navLinks = [
+  { name: "Home", link: "/", icon: <HomeIcon /> },
+  { name: "Help", link: "/help", icon: <HelpCenterIcon /> },
+  { name: "News", link: "/news", icon: <FeedIcon /> },
+  { name: "About", link: "/about", icon: <InfoIcon /> },
+]
+
 const Main = styled('main')(({ theme, open }) => ({
   flexGrow: 1,
   marginTop: theme.spacing(8),
@@ -56,19 +63,10 @@ const Main = styled('main')(({ theme, open }) => ({
   }
 }))
 
-const navLinks = [
-  { name: "Home", link: "/", icon: <HomeIcon /> },
-  { name: "Help", link: "/help", icon: <HelpCenterIcon /> },
-  { name: "News", link: "/news", icon: <FeedIcon /> },
-  { name: "About", link: "/about", icon: <InfoIcon /> },
-]
-
 export default () => {
-
   const location = useLocation()
   const darkmode = useMediaQuery('(prefers-color-scheme: dark)')
   const theme = responsiveFontSizes(createTheme(getTheme(darkmode)))
-
   const notMobileScreen = useMediaQuery(useTheme().breakpoints.up('lg'))
 
   const [drawerOpen, setDrawerOpen] = useState(notMobileScreen);

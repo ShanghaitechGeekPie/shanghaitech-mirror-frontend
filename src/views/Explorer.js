@@ -1,7 +1,7 @@
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom'
 import Container from '@mui/material/Container'
-import List from "@/components/views/List"
+import List from "@/components/views/ExplorerList"
 import Loading from "@/components/global/Loading"
 import Failed from "@/components/global/Failed"
 import Config from 'Config'
