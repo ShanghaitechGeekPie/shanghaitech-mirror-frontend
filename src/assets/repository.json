@@ -1,0 +1,8 @@
+{
+    "Archlinux": ["rolling"],
+    "Debian": ["bullseye", "buster", "stretch", "bookworm", "sid"],
+    "Kali": ["rolling"],
+    "Manjaro": ["rolling"],
+    "Raspbian": ["bullseye", "buster", "stretch"],
+    "Ubuntu": ["jammy", "impish"]
+}

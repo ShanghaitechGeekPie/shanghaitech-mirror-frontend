@@ -1,0 +1,1 @@
+Server = {{ PROTOCOL }}://{{ URL }}/manjaro/stable/$repo/$arch

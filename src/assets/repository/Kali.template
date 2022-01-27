@@ -1,0 +1,2 @@
+deb {{ PROTOCOL }}://{{ URL }}/kali kali-rolling main non-free contrib
+# deb-src {{ PROTOCOL }}://{{ URL }}/kali kali-rolling main non-free contrib

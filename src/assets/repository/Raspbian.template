@@ -1,0 +1,2 @@
+deb {{ PROTOCOL }}://{{ URL }}/raspbian/raspbian/ {{ VERSION }} main non-free contrib rpi
+# deb-src {{ PROTOCOL }}://{{ URL }}/raspbian/raspbian/ {{ VERSION }} main non-free contrib rpi
