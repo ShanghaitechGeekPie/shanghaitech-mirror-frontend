@@ -30,6 +30,10 @@ module.exports = {
       {
         test: /\.md$/,
         use: ['./src/plugins/markdown-loader']
+      },
+      {
+        test: /\.template$/,
+        use: ['./src/plugins/template-loader']
       }
     ],
     exprContextCritical: false
