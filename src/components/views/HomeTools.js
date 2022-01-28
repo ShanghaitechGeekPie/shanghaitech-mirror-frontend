@@ -58,8 +58,7 @@ export default () => {
         open={openDialog}
         onClose={handleCloseDialog}
         scroll="paper"
-        maxWidth="md"
-        fullWidth
+        maxWidth="lg"
         TransitionComponent={Transition}
       >
         <DialogTitle>{dialogData.title}</DialogTitle>

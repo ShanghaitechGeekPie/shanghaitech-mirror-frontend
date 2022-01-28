@@ -1,0 +1,2 @@
+deb {{ PROTOCOL }}://{{ URL }}/debian/ sid main contrib non-free
+# deb-src {{ PROTOCOL }}://{{ URL }}/debian/ sid main contrib non-free

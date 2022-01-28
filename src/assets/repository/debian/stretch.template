@@ -1,0 +1,11 @@
+deb {{ PROTOCOL }}://{{ URL }}/debian/ stretch main contrib non-free
+# deb-src {{ PROTOCOL }}://{{ URL }}/debian/ stretch main contrib non-free
+
+deb {{ PROTOCOL }}://{{ URL }}/debian/ stretch-updates main contrib non-free
+# deb-src {{ PROTOCOL }}://{{ URL }}/debian/ stretch-updates main contrib non-free
+
+deb {{ PROTOCOL }}://{{ URL }}/debian/ stretch-backports main contrib non-free
+# deb-src {{ PROTOCOL }}://{{ URL }}/debian/ stretch-backports main contrib non-free
+
+deb {{ PROTOCOL }}://{{ URL }}/debian-security/ stretch/updates main contrib non-free
+# deb-src {{ PROTOCOL }}://{{ URL }}/debian-security/ stretch/updates main contrib non-free

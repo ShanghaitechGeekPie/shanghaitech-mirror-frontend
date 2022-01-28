@@ -1,8 +1,32 @@
 {
-    "Archlinux": ["rolling"],
-    "Debian": ["bullseye", "buster", "stretch", "bookworm", "sid"],
-    "Kali": ["rolling"],
-    "Manjaro": ["rolling"],
-    "Raspbian": ["bullseye", "buster", "stretch"],
-    "Ubuntu": ["jammy", "impish"]
+    "archlinux": {
+        "name": "Archlinux",
+        "seperated": false,
+        "versions": ["rolling"]
+    },
+    "debian": {
+        "name": "Debian",
+        "seperated": true,
+        "versions": ["bullseye", "buster", "stretch", "bookworm", "sid"]
+    },
+    "kali": {
+        "name": "Kali Linux",
+        "seperated": false,
+        "versions": ["rolling"]
+    },
+    "manjaro": {
+        "name": "Manjaro",
+        "seperated": false,
+        "versions": ["rolling"]
+    },
+    "raspbian": {
+        "name": "Raspbian",
+        "seperated": false,
+        "versions": ["bullseye", "buster", "stretch"]
+    },
+    "ubuntu": {
+        "name": "Ubuntu",
+        "seperated": false,
+        "versions": ["jammy", "impish", "hirsute", "groovy", "focal", "eoan", "disco", "cosmic", "bionic", "artful", "zesty", "yakkety", "xenial"]
+    }
 }
