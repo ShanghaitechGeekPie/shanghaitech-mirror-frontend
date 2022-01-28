@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
+import Alert from '@mui/material/Alert'
 import Autocomplete from '@mui/material/Autocomplete'
 import TextField from '@mui/material/TextField'
 import FormControl from '@mui/material/FormControl'
@@ -16,6 +17,14 @@ import "prismjs/components/prism-bash"
 import "@/styles/prism.css"
 import "@/styles/markdown.css"
 
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: 250
+    }
+  }
+}
+
 const distributionsData = require("@/assets/repository.json")
 
 const replaceVariables = (template, version, https) => {
@@ -26,8 +35,9 @@ const replaceVariables = (template, version, https) => {
 }
 
 const getResultText = (distribution, version, https) => {
-  const template = require("@/assets/repository/" + distribution + ".template")
-  return replaceVariables(template, version, https)
+  const templatePath = distributionsData[distribution].seperated ? distribution + "/" + version + ".template" : distribution + ".template"
+  const templateContent = require("@/assets/repository/" + templatePath)
+  return replaceVariables(templateContent, version, https)
 }
 
 const parseMarkdown = (resultText) => {
@@ -37,17 +47,19 @@ const parseMarkdown = (resultText) => {
 }
 
 export default () => {
-  const [selectedDistribution, setSelectedDistribution] = useState("Archlinux")
+  const [selectedDistribution, setSelectedDistribution] = useState("archlinux")
   const [allVersions, setAllVersions] = useState(["rolling"])
   const [selectedVersion, setSelectedVersion] = useState("rolling")
   const [enableHTTPS, setEnableHTTPS] = useState(true)
   const [resultText, setResultText] = useState()
 
-  const handleDistribution = (value) => {
-    setSelectedDistribution(value)
-    setAllVersions(distributionsData[value])
-    setSelectedVersion(distributionsData[value][0])
+  const handleDistribution = (distribution) => {
+    setSelectedDistribution(distribution)
+    setAllVersions(distributionsData[distribution].versions)
+    setSelectedVersion(distributionsData[distribution].versions[0])
   }
+
+  const shouldShowDebSrcInfo = ["debian", "kali", "ubuntu"].includes(selectedDistribution)
 
   useEffect(() => {
     const generatedResultText = getResultText(selectedDistribution, selectedVersion, enableHTTPS)
@@ -63,6 +75,8 @@ export default () => {
             onChange={(event, value) => { handleDistribution(value) }}
             options={Object.keys(distributionsData)}
             disableClearable
+            noOptionsText="No such distribution"
+            getOptionLabel={(distribution) => distributionsData[distribution].name}
             sx={{ width: "100%" }}
             renderInput={(params) => <TextField {...params} label="发行版" />}
           />
@@ -70,9 +84,9 @@ export default () => {
         <Grid item sm={4} xs={7}>
           <FormControl sx={{ width: "100%" }}>
             <InputLabel>版本</InputLabel>
-            <Select value={selectedVersion} onChange={(event) => { setSelectedVersion(event.target.value) }}>
-              {allVersions.map((item) => (
-                <MenuItem key={item} value={item}>{item}</MenuItem>
+            <Select value={selectedVersion} MenuProps={MenuProps} onChange={(event) => { setSelectedVersion(event.target.value) }}>
+              {allVersions.map((version) => (
+                <MenuItem key={version} value={version}>{version}</MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -89,6 +103,11 @@ export default () => {
         <Grid item xs={12}>
           <Box className="markdown-body" dangerouslySetInnerHTML={{ __html: parseMarkdown(resultText) }} />
         </Grid>
+        {shouldShowDebSrcInfo ?
+          <Grid item xs={12}>
+            <Alert variant="filled" severity="info">源码库默认被禁用以提高同步性能，您可以删除注释符号以启用之！</Alert>
+          </Grid> : null
+        }
       </Grid>
     </Container>
   )
