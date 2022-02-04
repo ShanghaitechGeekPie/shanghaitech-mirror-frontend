@@ -69,7 +69,7 @@ export default () => {
   const theme = responsiveFontSizes(createTheme(getTheme(darkmode)))
   const notMobileScreen = useMediaQuery(useTheme().breakpoints.up('lg'))
 
-  const [drawerOpen, setDrawerOpen] = useState(notMobileScreen);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
   }
@@ -77,7 +77,13 @@ export default () => {
   const NavItems = (
     <List>
       {navLinks.map((item) => (
-        <ListItem to={item.link} onClick={handleDrawerToggle} button component={Link} key={item.name}>
+        <ListItem
+          to={item.link}
+          onClick={handleDrawerToggle}
+          button
+          component={Link}
+          key={item.name}
+        >
           <ListItemIcon>{item.icon}</ListItemIcon>
           <ListItemText primary={item.name} />
         </ListItem>
@@ -92,7 +98,7 @@ export default () => {
           <CssBaseline />
           <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
             <Toolbar>
-              <IconButton onClick={handleDrawerToggle} sx={{ mr: 3 }}>
+              <IconButton onClick={handleDrawerToggle} sx={{ mr: 3 }} aria-label="Open Drawer">
                 <MenuIcon sx={{ color: "white" }} />
               </IconButton>
               <Typography variant="h6" component="div">SHTU Open Source Mirror</Typography>
@@ -109,7 +115,7 @@ export default () => {
               <Box sx={{ overflow: "auto" }}>
                 {NavItems}
                 <Divider />
-                {location.pathname.startsWith("/help") ? <HelpMenu handleDrawerToggle={handleDrawerToggle} /> : null}
+                {location.pathname.startsWith("/help") && <HelpMenu handleDrawerToggle={handleDrawerToggle} />}
               </Box>
             </Drawer>
           </Box>

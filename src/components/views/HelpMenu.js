@@ -42,7 +42,11 @@ export default (props) => {
         <List component="div" disablePadding>
           {data.system.map((item) => (
             <ListItem component="div" key={item.key} disablePadding>
-              <ListItemButton to={'/help/' + item.key} component={Link} onClick={props.handleDrawerToggle}>
+              <ListItemButton
+                component={Link}
+                to={'/help/' + item.key}
+                onClick={props.handleDrawerToggle}
+              >
                 <ListItemText inset primary={item.title} />
               </ListItemButton>
             </ListItem>
