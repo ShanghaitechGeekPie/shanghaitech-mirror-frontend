@@ -14,9 +14,21 @@ export default () => {
       <CardContent>
         <Fade in={true} {...{ timeout: 1000 }}>
           <Box sx={{ mx: 'auto', textAlign: 'center', pt: 4, pb: 4 }}>
-            <SentimentDissatisfiedIcon sx={{ fontSize: "5rem", mb: 4 }} />
-            <Typography component="div" variant="h5" sx={{ fontWeight: 'medium', mb: 4 }} gutterBottom>Oops, it failed!</Typography>
-            <Button variant="contained" component={Link} to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)}>Back</Button>
+            <SentimentDissatisfiedIcon color="primary" sx={{ fontSize: "5rem", mb: 4 }} />
+            <Typography
+              component="div"
+              variant="h5"
+              sx={{ fontWeight: 'medium', mb: 4 }}
+              gutterBottom
+            >
+              Oops, it failed!
+            </Typography>
+            <Button
+              variant="contained"
+              component={Link}
+              to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)}>
+              Back
+            </Button>
           </Box>
         </Fade>
       </CardContent>

@@ -1,9 +1,3 @@
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import Chip from '@mui/material/Chip'
 import { Link as RouterLink } from 'react-router-dom'
@@ -17,22 +11,49 @@ import CloseIcon from '@mui/icons-material/Close'
 import HelpIcon from '@mui/icons-material/Help'
 import Loading from "@/components/global/Loading"
 import Failed from "@/components/global/Failed"
+import VirtualizedTable from "@/components/global/Table"
 import Config from 'Config'
 
+const helpData = require("@/assets/help.json")
+
+const generateNameLink = (name) => (
+  <>
+    <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={name + "/"}>{name}</Link>
+    {
+      (helpData.system.hasOwnProperty(name) || helpData.software.hasOwnProperty(name)) &&
+      <IconButton
+        color="primary"
+        size="small"
+        component={RouterLink}
+        to={"/help/" + name}
+      >
+        <HelpIcon fontSize="inherit" />
+      </IconButton>
+    }
+  </>
+)
+
+const generateStatus = (ifIdle, ifSuccess) => {
+  if (ifIdle)
+    if (ifSuccess) return <Chip icon={<DoneIcon />} label="同步成功" size="small" color="success" />
+    else return <Chip icon={<CloseIcon />} label="同步失败" size="small" color="warning" />
+  else return <Chip icon={<LoopIcon />} label="正在同步" size="small" color="info" />
+}
+
 export default () => {
-  const help = require("@/assets/help.json")
   const { isLoading, isError, data } = useQuery('summarydata', () =>
     fetch(Config.serverUrl + '/summary').then(async function (data) {
-      data = await data.json()
-      const status = {
-        running: data.Running,
-        worker_status: []
-      }
-      for (let key in data.WorkerStatus) {
-        const value = data.WorkerStatus[key]
-        status.worker_status.push({
-          idle: value.Idle, name: key, last_finished: value.LastFinished, result: value.Result
+      const { WorkerStatus } = await data.json(), status = []
+      let index = 0
+      for (let key in WorkerStatus) {
+        const value = WorkerStatus[key]
+        status.push({
+          id: index,
+          name: generateNameLink(key),
+          update: format(value.LastFinished, 'zh_CN'),
+          status: generateStatus(value.Idle, value.Result)
         })
+        index += 1
       }
       return status
     })
@@ -42,38 +63,27 @@ export default () => {
 
   return (
     <Paper elevation={3}>
-      <TableContainer>
-        <Table sx={{ width: "100%" }} style={{ tableLayout: 'fixed' }}>
-          <TableHead>
-            <TableRow>
-              <TableCell align="left" sx={{ fontWeight: 'bold' }}>名称</TableCell>
-              <TableCell align="center" sx={{ fontWeight: 'bold' }}>上次同步</TableCell>
-              <TableCell align="right" sx={{ fontWeight: 'bold' }}>状态</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.worker_status.map((item) => (
-              <TableRow key={item.name} rowSpan={item.length} hover sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-                <TableCell align="left">
-                  <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={item.name + "/"}>{item.name}</Link>
-                  {
-                    (help.system.hasOwnProperty(item.name) || help.software.hasOwnProperty(item.name))
-                      ? <IconButton color="primary" size="small" component={RouterLink} to={"/help/" + item.name}><HelpIcon fontSize="inherit" /></IconButton>
-                      : null
-                  }
-                </TableCell>
-                <TableCell component="th" scope="row" align="center">{format(item.last_finished, 'zh_CN')}</TableCell>
-                <TableCell align="right">
-                  {item.idle
-                    ? (item.result ? <Chip icon={<DoneIcon />} label="同步成功" size="small" color="success" /> : <Chip icon={<CloseIcon />} label="同步失败" size="small" color="warning" />)
-                    : (<Chip icon={<LoopIcon />} label="正在同步" size="small" color="info" />)
-                  }
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <VirtualizedTable
+        rowCount={data.length}
+        rowGetter={({ index }) => data[index]}
+        columns={[
+          {
+            label: '名称',
+            dataKey: 'name',
+            align: 'left'
+          },
+          {
+            label: '上次同步',
+            dataKey: 'update',
+            align: 'center'
+          },
+          {
+            label: '状态',
+            dataKey: 'status',
+            align: 'right'
+          },
+        ]}
+      />
     </Paper>
   )
 }
