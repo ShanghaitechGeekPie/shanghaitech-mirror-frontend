@@ -1,7 +1,7 @@
 const { merge } = require('webpack-merge')
 const common = require('./webpack.common.js')
 const CompressionWebpackPlugin = require('compression-webpack-plugin')
-const productionGzipExtensions = /\.(js|css|json|md|html)(\?.*)?$/i
+const productionGzipExtensions = /\.(js|css|json|md|html|svg)(\?.*)?$/i
 
 module.exports = merge(common, {
   mode: 'production',

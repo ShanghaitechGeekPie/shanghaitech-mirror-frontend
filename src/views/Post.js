@@ -3,6 +3,8 @@ import Container from '@mui/material/Container'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
+import Stack from '@mui/material/Stack'
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled'
 import MarkdownIt from "markdown-it"
 import prism from "markdown-it-prism"
 import "prismjs/components/prism-bash"
@@ -20,11 +22,19 @@ export default () => {
     <Container maxWidth="lg">
       <Typography
         variant="h4"
-        gutterBottom
-        sx={{ textAlign: 'center', fontWeight: 'bold', mb: 4 }}
+        sx={{ textAlign: 'center', fontWeight: 'bold', mb: 3 }}
       >
         {news[id].title}
       </Typography>
+      <Stack direction="row" spacing={2} sx={{ justifyContent: "center", mb: 3 }}>
+        <AccessTimeFilledIcon fontSize="small" />
+        <Typography
+          variant="body1"
+          sx={{ textAlign: 'center', fontWeight: 'bold' }}
+        >
+          {news[id].time}
+        </Typography>
+      </Stack>
       <Card elevation={3} sx={{ px: { lg: 1 } }}>
         <CardContent className="markdown-body" dangerouslySetInnerHTML={{ __html: content }} />
       </Card>

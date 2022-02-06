@@ -8,7 +8,7 @@ module.exports = {
   },
   output: {
     publicPath: '/',
-    filename: 'js/[name].[fullhash].js',
+    filename: 'js/[name].[contenthash].js',
     path: path.resolve(__dirname, '../dist')
   },
   resolve: {
@@ -28,12 +28,12 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.md$/,
-        use: ['./src/plugins/markdown-loader']
+        test: /\.svg$/,
+        use: ['url-loader']
       },
       {
-        test: /\.template$/,
-        use: ['./src/plugins/template-loader']
+        test: /\.(md|template)$/,
+        use: ['./src/plugins/raw-loader']
       }
     ],
     exprContextCritical: false
