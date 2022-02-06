@@ -4,7 +4,6 @@ import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
@@ -35,12 +34,10 @@ export default () => {
         {data.map((item) => (
           <Box key={item.title}>
             <Divider />
-            <ListItem component="div" disablePadding>
-              <ListItemButton to={'/news/' + item.id} component={Link}>
-                <ListItemIcon>{icons[item.icon]}</ListItemIcon>
-                <ListItemText primary={item.title} />
-              </ListItemButton>
-            </ListItem>
+            <ListItemButton component="div" to={'/news/' + item.id} component={Link}>
+              <ListItemIcon>{icons[item.icon]}</ListItemIcon>
+              <ListItemText primary={item.title} />
+            </ListItemButton>
           </Box>
         ))}
       </List>

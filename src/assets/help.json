@@ -38,6 +38,12 @@
         },
         "ubuntu": {
             "display": "Ubuntu"
+        },
+        "ubuntu-ports": {
+            "display": "Ubuntu Ports"
+        },
+        "ubuntu-releases": {
+            "display": "Ubuntu Releases"
         }
     },
     "software": {

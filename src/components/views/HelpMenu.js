@@ -1,9 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import List from '@mui/material/List'
-import Divider from '@mui/material/Divider'
 import Collapse from '@mui/material/Collapse'
-import ListItem from '@mui/material/ListItem'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import ExpandLess from '@mui/icons-material/ExpandLess'
@@ -32,35 +30,48 @@ export default (props) => {
   const doOpenSoftware = () => setopenSoftware(!openSoftware)
   const data = getHelpMenu()
 
-  const ListToggleGroup = ({ data, clickFunction }) => (
+  return (
     <>
-      <ListItemButton onClick={clickFunction}>
-        <ListItemText primary="System" />
-        {openSystem ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <Collapse in={openSystem} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          {data.map((item) => (
-            <ListItem component="div" key={item.key} disablePadding>
+      <List component="div" sx={{ pt: 0 }}>
+        <ListItemButton variant="drawer" onClick={doOpenSystem}>
+          <ListItemText primary="System" sx={{ fontWeight: 'bold', fontSize: "0.9rem" }} />
+          {openSystem ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openSystem} timeout="auto" unmountOnExit>
+          <List component="div">
+            {data.system.map((item) => (
               <ListItemButton
                 component={Link}
+                key={item.key}
+                variant="drawer"
                 to={'/help/' + item.key}
                 onClick={props.handleDrawerToggle}
               >
                 <ListItemText inset primary={item.title} />
               </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Collapse>
+            ))}
+          </List>
+        </Collapse>
+        <ListItemButton variant="drawer" onClick={doOpenSoftware}>
+          <ListItemText primary="Software" />
+          {openSoftware ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+        <Collapse in={openSoftware} timeout="auto" unmountOnExit>
+          <List component="div">
+            {data.software.map((item) => (
+              <ListItemButton
+                component={Link}
+                key={item.key}
+                variant="drawer"
+                to={'/help/' + item.key}
+                onClick={props.handleDrawerToggle}
+              >
+                <ListItemText inset primary={item.title} />
+              </ListItemButton>
+            ))}
+          </List>
+        </Collapse>
+      </List>
     </>
-  )
-
-  return (
-    <List component="div" sx={{ width: "17.5rem", pt: 0 }}>
-      <ListToggleGroup data={data.system} clickFunction={doOpenSystem} />
-      <Divider component="li" />
-      <ListToggleGroup data={data.software} clickFunction={doOpenSoftware} />
-    </List>
   )
 }

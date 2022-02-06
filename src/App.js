@@ -9,10 +9,9 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Drawer from '@mui/material/Drawer'
 import Typography from '@mui/material/Typography'
-import Divider from '@mui/material/Divider'
 import IconButton from '@mui/material/IconButton'
 import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
+import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import MenuIcon from '@mui/icons-material/Menu'
@@ -40,18 +39,6 @@ const navLinks = [
   { name: "Help", link: "/help", icon: <HelpCenterIcon /> },
   { name: "About", link: "/about", icon: <InfoIcon /> }
 ]
-
-const DrawerItem = styled(ListItem)({
-  width: "auto",
-  borderRadius: "8px",
-  marginLeft: "8px",
-  marginRight: "8px",
-  marginBottom: "6px",
-  paddingTop: "8px",
-  paddingBottom: "8px",
-  paddingLeft: "16px",
-  paddingRight: "16px"
-})
 
 const Main = styled('main')(({ theme, open }) => ({
   flexGrow: 1,
@@ -85,23 +72,19 @@ export default () => {
   }
 
   const NavItems = (
-    <List>
+    <List sx={{ mt: 1 }}>
       {navLinks.map((item) => (
-        <DrawerItem
+        <ListItemButton
           component={Link}
           key={item.name}
+          variant="drawer"
           to={item.link}
-          button
           onClick={handleDrawerToggle}
           selected={location.pathname == item.link}
         >
           <ListItemIcon>{item.icon}</ListItemIcon>
-          <ListItemText
-            primary={item.name}
-            disableTypography
-            sx={{ fontWeight: 'bold', fontSize: "0.9rem" }}
-          />
-        </DrawerItem>
+          <ListItemText primary={item.name} />
+        </ListItemButton>
       ))}
     </List>
   )
@@ -129,13 +112,7 @@ export default () => {
               <Toolbar />
               <Box sx={{ overflow: "auto" }}>
                 {NavItems}
-                {
-                  location.pathname.startsWith("/help") &&
-                  <>
-                    <Divider />
-                    <HelpMenu handleDrawerToggle={handleDrawerToggle} />
-                  </>
-                }
+                {location.pathname.startsWith("/help") && <HelpMenu handleDrawerToggle={handleDrawerToggle} />}
               </Box>
             </Drawer>
           </Box>

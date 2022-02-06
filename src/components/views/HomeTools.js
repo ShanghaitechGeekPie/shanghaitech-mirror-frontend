@@ -4,9 +4,8 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
-import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
+import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import Dialog from '@mui/material/Dialog'
 import DialogTitle from '@mui/material/DialogTitle'
@@ -45,12 +44,10 @@ export default () => {
         {tools.map((item) => (
           <Box key={item.title}>
             <Divider />
-            <ListItem component="div" disablePadding>
-              <ListItemButton onClick={handleOpenDialog(item.title, item.component)}>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.title} />
-              </ListItemButton>
-            </ListItem>
+            <ListItemButton component="div" onClick={handleOpenDialog(item.title, item.component)}>
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.title} />
+            </ListItemButton>
           </Box>
         ))}
       </List>

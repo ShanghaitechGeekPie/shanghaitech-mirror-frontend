@@ -26,6 +26,47 @@ export default (darkMode) => {
     },
     typography: {
       fontWeightMedium: 600
+    },
+    components: {
+      MuiList: {
+        defaultProps: {
+          disablePadding: true
+        }
+      },
+      MuiListItemButton: {
+        variants: [{
+          props: { variant: "drawer" },
+          style: {
+            width: "auto",
+            borderRadius: "8px",
+            marginLeft: "8px",
+            marginRight: "8px",
+            marginBottom: "6px",
+            paddingTop: "8px",
+            paddingBottom: "8px",
+            paddingLeft: "16px",
+            paddingRight: "16px"
+          }
+        }]
+      },
+      MuiListItemText: {
+        styleOverrides: {
+          root: {
+            fontWeight: 'bold',
+            fontSize: "0.9rem"
+          }
+        },
+        defaultProps: {
+          disableTypography: true
+        }
+      },
+      MuiCardContent: {
+        styleOverrides: {
+          root: {
+            paddingTop: "12px"
+          }
+        }
+      }
     }
   }
   return theme

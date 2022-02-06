@@ -1,6 +1,6 @@
 ## Raspbian 镜像使用帮助
 
-打开`/etc/apt/sources.list`，检查您的版本代号，并将所有原来的内容修改为如下所示，您应手动将示例中的`$version`替换为您自己使用的Raspbian的版本代号：
+打开`/etc/apt/sources.list`，检查您的版本代号，并将所有原来的内容修改为如下所示，您应手动将示例中的`$version`替换为您自己使用的Raspbian的版本代号。
 
 ```
 deb http://mirrors.shanghaitech.edu.cn/raspbian/raspbian/ $version main non-free contrib rpi
