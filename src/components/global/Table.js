@@ -20,7 +20,7 @@ const VirtualizedTable = withStyles(styles, { defaultTheme })((props) => {
       <TableCell
         component="div"
         variant="head"
-        style={{ height: headerHeight, display: "block" }}
+        style={{ height: headerHeight, display: "block", fontSize: "0.95rem" }}
         align={columns[columnIndex].align}
       >
         {label}

@@ -4,7 +4,6 @@ import Box from '@mui/material/Box'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
@@ -13,7 +12,7 @@ import HomeIcon from '@mui/icons-material/Home'
 
 export default () => {
   const data = [
-    {"title": "SHTU Offical Website", "href": "https://www.shanghaitech.edu.cn", "icon": <HomeIcon />}
+    { "title": "SHTU Offical Website", "href": "https://www.shanghaitech.edu.cn", "icon": <HomeIcon /> }
   ]
 
   return (
@@ -25,12 +24,10 @@ export default () => {
         {data.map((item) => (
           <Box key={item.title}>
             <Divider />
-            <ListItem component="div" disablePadding>
-              <ListItemButton href={item.href} rel="noopener" target="_blank" component={Link}>
-                <ListItemIcon>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.title} />
-              </ListItemButton>
-            </ListItem>
+            <ListItemButton component="div" href={item.href} rel="noopener" target="_blank" component={Link}>
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.title} />
+            </ListItemButton>
           </Box>
         ))}
       </List>

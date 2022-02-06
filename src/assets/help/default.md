@@ -1,6 +1,6 @@
 ## Welcome
 
-See if markdown styles of these components work ~~correctly~~.
+See whether markdown styles of these components work ~~correctly~~ or not.
 
 #### Unordered Lists
                 
@@ -17,12 +17,12 @@ See if markdown styles of these components work ~~correctly~~.
                   
 ### Table
 
-| Animal | Price | Sold |
-|:------ |:-----:| ----:|
-|  Dog   |  100  | True |
-|  Cat   |  200  | False|
-|  Pig   |  250  | True |
-|  Frog  |  150  | False|
+| Animal |  Price  | Sold |
+|:------ |:-------:| ----:|
+|  Dog   |  100.0  | True |
+|  Cat   |  200.5  | False|
+|  Pig   |  255.0  | True |
+|  Frog  |  150.0  | False|
 
 Let me test whether the **highlight** is *available* or *not*.
 
