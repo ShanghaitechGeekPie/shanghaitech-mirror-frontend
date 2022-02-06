@@ -32,15 +32,15 @@ export default (props) => {
   const doOpenSoftware = () => setopenSoftware(!openSoftware)
   const data = getHelpMenu()
 
-  return (
-    <List component="div" sx={{ width: "17.5rem", pt: 0 }}>
-      <ListItemButton onClick={doOpenSystem}>
+  const ListToggleGroup = ({ data, clickFunction }) => (
+    <>
+      <ListItemButton onClick={clickFunction}>
         <ListItemText primary="System" />
         {openSystem ? <ExpandLess /> : <ExpandMore />}
       </ListItemButton>
       <Collapse in={openSystem} timeout="auto" unmountOnExit>
         <List component="div" disablePadding>
-          {data.system.map((item) => (
+          {data.map((item) => (
             <ListItem component="div" key={item.key} disablePadding>
               <ListItemButton
                 component={Link}
@@ -53,22 +53,14 @@ export default (props) => {
           ))}
         </List>
       </Collapse>
+    </>
+  )
+
+  return (
+    <List component="div" sx={{ width: "17.5rem", pt: 0 }}>
+      <ListToggleGroup data={data.system} clickFunction={doOpenSystem} />
       <Divider component="li" />
-      <ListItemButton onClick={doOpenSoftware}>
-        <ListItemText primary="Software" />
-        {openSoftware ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
-      <Collapse in={openSoftware} timeout="auto" unmountOnExit>
-        <List component="div" disablePadding>
-          {data.software.map((item) => (
-            <ListItem component="div" key={item.key} disablePadding>
-              <ListItemButton to={'/help/' + item.key} component={Link}>
-                <ListItemText inset primary={item.title} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Collapse>
+      <ListToggleGroup data={data.software} clickFunction={doOpenSoftware} />
     </List>
   )
 }

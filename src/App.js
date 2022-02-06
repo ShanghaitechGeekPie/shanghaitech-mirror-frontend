@@ -18,7 +18,6 @@ import ListItemText from '@mui/material/ListItemText'
 import MenuIcon from '@mui/icons-material/Menu'
 import HomeIcon from '@mui/icons-material/Home'
 import HelpCenterIcon from '@mui/icons-material/HelpCenter'
-import FeedIcon from '@mui/icons-material/Feed'
 import InfoIcon from '@mui/icons-material/Info'
 import HelpMenu from '@/components/views/HelpMenu'
 import Router from '@/router/index'
@@ -39,9 +38,20 @@ const drawerWidth = 300
 const navLinks = [
   { name: "Home", link: "/", icon: <HomeIcon /> },
   { name: "Help", link: "/help", icon: <HelpCenterIcon /> },
-  { name: "News", link: "/news", icon: <FeedIcon /> },
-  { name: "About", link: "/about", icon: <InfoIcon /> },
+  { name: "About", link: "/about", icon: <InfoIcon /> }
 ]
+
+const DrawerItem = styled(ListItem)({
+  width: "auto",
+  borderRadius: "8px",
+  marginLeft: "8px",
+  marginRight: "8px",
+  marginBottom: "6px",
+  paddingTop: "8px",
+  paddingBottom: "8px",
+  paddingLeft: "16px",
+  paddingRight: "16px"
+})
 
 const Main = styled('main')(({ theme, open }) => ({
   flexGrow: 1,
@@ -77,16 +87,21 @@ export default () => {
   const NavItems = (
     <List>
       {navLinks.map((item) => (
-        <ListItem
-          to={item.link}
-          onClick={handleDrawerToggle}
-          button
+        <DrawerItem
           component={Link}
           key={item.name}
+          to={item.link}
+          button
+          onClick={handleDrawerToggle}
+          selected={location.pathname == item.link}
         >
           <ListItemIcon>{item.icon}</ListItemIcon>
-          <ListItemText primary={item.name} />
-        </ListItem>
+          <ListItemText
+            primary={item.name}
+            disableTypography
+            sx={{ fontWeight: 'bold', fontSize: "0.9rem" }}
+          />
+        </DrawerItem>
       ))}
     </List>
   )
@@ -114,8 +129,13 @@ export default () => {
               <Toolbar />
               <Box sx={{ overflow: "auto" }}>
                 {NavItems}
-                <Divider />
-                {location.pathname.startsWith("/help") && <HelpMenu handleDrawerToggle={handleDrawerToggle} />}
+                {
+                  location.pathname.startsWith("/help") &&
+                  <>
+                    <Divider />
+                    <HelpMenu handleDrawerToggle={handleDrawerToggle} />
+                  </>
+                }
               </Box>
             </Drawer>
           </Box>
