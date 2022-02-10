@@ -1,11 +1,10 @@
+import { Link as RouterLink, useLocation } from 'react-router-dom'
+import { format } from 'timeago.js'
 import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
-import { Link as RouterLink } from 'react-router-dom'
 import Link from '@mui/material/Link'
 import VirtualizedTable from "@/components/global/Table"
-import { format } from 'timeago.js'
-import { useLocation } from 'react-router-dom'
 
 const formatFileSize = (size) => {
   var sizes = [' Bytes', ' KiB', ' MiB', ' GiB'];
@@ -52,7 +51,6 @@ const getData = (data) => {
     size: "-"
   })
   data.forEach((value, index) => result.push({
-    id: index + 1,
     name: generateNameLink(value.name, value.type),
     update: format(value.mtime, 'zh_CN'),
     size: value.type == "directory" ? "-" : formatFileSize(value.size)
