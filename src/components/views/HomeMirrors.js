@@ -1,17 +1,17 @@
-import Paper from '@mui/material/Paper'
-import Chip from '@mui/material/Chip'
 import { Link as RouterLink } from 'react-router-dom'
 import { format } from 'timeago.js'
 import { useQuery } from 'react-query'
+import Paper from '@mui/material/Paper'
+import Chip from '@mui/material/Chip'
 import Link from '@mui/material/Link'
 import IconButton from '@mui/material/IconButton'
 import DoneIcon from '@mui/icons-material/Done'
 import LoopIcon from '@mui/icons-material/Loop'
 import CloseIcon from '@mui/icons-material/Close'
 import HelpIcon from '@mui/icons-material/Help'
-import Loading from "@/components/global/Loading"
-import Failed from "@/components/global/Failed"
-import VirtualizedTable from "@/components/global/Table"
+import Loading from '@/components/global/Loading'
+import Failed from '@/components/global/Failed'
+import VirtualizedTable from '@/components/global/Table'
 import Config from 'Config'
 
 const helpData = require("@/assets/help.json")
@@ -22,10 +22,11 @@ const generateNameLink = (name) => (
     {
       (helpData.system.hasOwnProperty(name) || helpData.software.hasOwnProperty(name)) &&
       <IconButton
+        component={RouterLink}
         color="primary"
         size="small"
-        component={RouterLink}
         to={"/help/" + name}
+        aria-label={"Help for " + name}
       >
         <HelpIcon fontSize="inherit" />
       </IconButton>
@@ -44,16 +45,13 @@ export default () => {
   const { isLoading, isError, data } = useQuery('summarydata', () =>
     fetch(Config.serverUrl + '/summary').then(async function (data) {
       const { WorkerStatus } = await data.json(), status = []
-      let index = 0
       for (let key in WorkerStatus) {
         const value = WorkerStatus[key]
         status.push({
-          id: index,
           name: generateNameLink(key),
           update: format(value.LastFinished, 'zh_CN'),
           status: generateStatus(value.Idle, value.Result)
         })
-        index += 1
       }
       return status
     })

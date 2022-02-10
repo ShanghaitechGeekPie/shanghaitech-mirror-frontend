@@ -2,6 +2,7 @@ import { withStyles } from '@mui/styles'
 import { createTheme } from '@mui/material/styles'
 import TableCell from '@mui/material/TableCell'
 import { WindowScroller, AutoSizer, Column, Table } from 'react-virtualized'
+import { Scrollbars } from 'react-custom-scrollbars'
 
 const styles = () => ({
   display: {
@@ -33,10 +34,29 @@ const VirtualizedTable = withStyles(styles, { defaultTheme })((props) => {
       <TableCell
         component="div"
         variant="body"
-        style={{ height: rowHeight, flex: "auto" }}
+        style={{ height: rowHeight, flex: "auto", whiteSpace: "nowrap" }}
         align={columns[columnIndex].align}
       >
-        {cellData}
+        {/* react-custom-scrollbars does not adapt to mobile scrollbars,
+            so you must add overflowY: "hidden" to ensure that
+            the mobile side will not scroll in the Y-axis,
+            but I do not know whether it is just a bug of the package,
+            which will lead to the scrollbar of the desktop side 
+            can not display the content completely,
+            so here you must use both marginRight: 0 and overflowY: "hidden"
+            in order to ensure that the content can be displayed completely.
+        */}
+        <Scrollbars
+          autoHide
+          autoHideTimeout={200}
+          renderTrackVertical={() => <div></div>}
+          renderThumbVertical={() => <div></div>}
+          renderView={props => (
+            <div {...props} style={{ ...props.style, marginRight: 0, overflowY: "hidden" }} />
+          )}
+        >
+          {cellData}
+        </Scrollbars>
       </TableCell>
     )
   }
