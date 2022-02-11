@@ -46,16 +46,16 @@ export default () => {
             <Divider />
             <ListItemButton component="div" onClick={handleOpenDialog(item.title, item.component)}>
               <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.title} />
+              <ListItemText variant="button" primary={item.title} disableTypography />
             </ListItemButton>
           </Box>
         ))}
       </List>
       <Dialog
         open={openDialog}
+        fullWidth
+        maxWidth="md"
         onClose={handleCloseDialog}
-        scroll="paper"
-        maxWidth="lg"
         TransitionComponent={Transition}
       >
         <DialogTitle>{dialogData.title}</DialogTitle>

@@ -34,7 +34,7 @@ export default (props) => {
     <>
       <List component="div" sx={{ pt: 0 }}>
         <ListItemButton variant="drawer" onClick={doOpenSystem}>
-          <ListItemText primary="System" sx={{ fontWeight: 'bold', fontSize: "0.9rem" }} />
+          <ListItemText variant="button" primary="System" disableTypography />
           {openSystem ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={openSystem} timeout="auto" unmountOnExit>
@@ -47,13 +47,13 @@ export default (props) => {
                 to={'/help/' + item.key}
                 onClick={props.handleDrawerToggle}
               >
-                <ListItemText inset primary={item.title} />
+                <ListItemText variant="button" inset primary={item.title} disableTypography />
               </ListItemButton>
             ))}
           </List>
         </Collapse>
         <ListItemButton variant="drawer" onClick={doOpenSoftware}>
-          <ListItemText primary="Software" />
+          <ListItemText variant="button" primary="Software" disableTypography />
           {openSoftware ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
         <Collapse in={openSoftware} timeout="auto" unmountOnExit>
@@ -66,7 +66,7 @@ export default (props) => {
                 to={'/help/' + item.key}
                 onClick={props.handleDrawerToggle}
               >
-                <ListItemText inset primary={item.title} />
+                <ListItemText variant="button" inset primary={item.title} disableTypography />
               </ListItemButton>
             ))}
           </List>

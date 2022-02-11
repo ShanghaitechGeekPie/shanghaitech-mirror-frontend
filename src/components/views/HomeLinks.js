@@ -26,7 +26,7 @@ export default () => {
             <Divider />
             <ListItemButton component="div" href={item.href} rel="noopener" target="_blank" component={Link}>
               <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.title} />
+              <ListItemText variant="button" primary={item.title} disableTypography />
             </ListItemButton>
           </Box>
         ))}

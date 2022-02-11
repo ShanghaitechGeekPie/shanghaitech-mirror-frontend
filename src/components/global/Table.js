@@ -3,10 +3,16 @@ import { createTheme } from '@mui/material/styles'
 import TableCell from '@mui/material/TableCell'
 import { WindowScroller, AutoSizer, Column, Table } from 'react-virtualized'
 import { Scrollbars } from 'react-custom-scrollbars'
+import clsx from 'clsx'
 
-const styles = () => ({
-  display: {
+const styles = (theme) => ({
+  flex: {
     display: 'flex'
+  },
+  hover: {
+    '&:hover': {
+      backgroundColor: theme.palette.action.hover
+    }
   }
 })
 
@@ -34,23 +40,24 @@ const VirtualizedTable = withStyles(styles, { defaultTheme })((props) => {
       <TableCell
         component="div"
         variant="body"
-        style={{ height: rowHeight, flex: "auto", whiteSpace: "nowrap" }}
+        style={{ height: rowHeight, flex: "auto", paddingBottom: "12px", whiteSpace: "nowrap" }}
         align={columns[columnIndex].align}
       >
-        {/* react-custom-scrollbars does not adapt to mobile scrollbars,
-            so you must add overflowY: "hidden" to ensure that
-            the mobile side will not scroll in the Y-axis,
-            but I do not know whether it is just a bug of the package,
-            which will lead to the scrollbar of the desktop side 
-            can not display the content completely,
-            so here you must use both marginRight: 0 and overflowY: "hidden"
-            in order to ensure that the content can be displayed completely.
+        {/*
+          react-custom-scrollbars does not adapt to mobile scrollbars,
+          so you must add overflowY: "hidden" to ensure that
+          the mobile side will not scroll in the Y-axis,
+          but I do not know whether it is just a bug of the package,
+          which will lead to the scrollbar of the desktop side 
+          can not display the content completely,
+          so here you must use both marginRight: 0 and overflowY: "hidden"
+          in order to ensure that the content can be displayed completely.
         */}
         <Scrollbars
           autoHide
           autoHideTimeout={200}
-          renderTrackVertical={() => <div></div>}
-          renderThumbVertical={() => <div></div>}
+          renderTrackVertical={() => <div />}
+          renderThumbVertical={() => <div />}
           renderView={props => (
             <div {...props} style={{ ...props.style, marginRight: 0, overflowY: "hidden" }} />
           )}
@@ -75,7 +82,7 @@ const VirtualizedTable = withStyles(styles, { defaultTheme })((props) => {
               scrollTop={scrollTop}
               rowHeight={rowHeight}
               headerHeight={headerHeight}
-              rowClassName={classes.display}
+              rowClassName={clsx(classes.flex, classes.hover)}
               {...tableProps}
             >
               {columns.map(({ dataKey, ...columnProps }, index) => {
@@ -84,7 +91,7 @@ const VirtualizedTable = withStyles(styles, { defaultTheme })((props) => {
                     key={dataKey}
                     width={width}
                     headerRenderer={(headerProps) => headerRenderer({ ...headerProps, columnIndex: index })}
-                    className={classes.display}
+                    className={classes.flex}
                     cellRenderer={cellRenderer}
                     dataKey={dataKey}
                     {...columnProps}
