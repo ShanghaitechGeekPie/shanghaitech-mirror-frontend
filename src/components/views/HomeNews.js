@@ -36,7 +36,7 @@ export default () => {
             <Divider />
             <ListItemButton component="div" to={'/news/' + item.id} component={Link}>
               <ListItemIcon>{icons[item.icon]}</ListItemIcon>
-              <ListItemText primary={item.title} />
+              <ListItemText variant="button" primary={item.title} disableTypography />
             </ListItemButton>
           </Box>
         ))}

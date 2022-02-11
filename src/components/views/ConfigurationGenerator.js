@@ -69,12 +69,12 @@ export default () => {
       <Grid item sm={6} xs={12} container>
         <Autocomplete
           value={selectedDistribution}
-          onChange={(event, value) => { handleDistribution(value) }}
           options={Object.keys(distributionsData)}
+          sx={{ width: "100%" }}
           disableClearable
           noOptionsText="No such distribution"
+          onChange={(event, value) => { handleDistribution(value) }}
           getOptionLabel={(distribution) => distributionsData[distribution].name}
-          sx={{ width: "100%" }}
           renderInput={(params) => <TextField {...params} label="发行版" />}
         />
       </Grid>

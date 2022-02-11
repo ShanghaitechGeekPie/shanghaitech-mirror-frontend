@@ -49,16 +49,19 @@ export default (darkMode) => {
           }
         }]
       },
+      /* 
+        The button font style should be used with disableTypography prop
+        because the text in the ListItemText is wrapped by Typography.
+        You can find examples in App.js, Home(News|Tools|Links).js and so on.
+      */
       MuiListItemText: {
-        styleOverrides: {
-          root: {
+        variants: [{
+          props: { variant: "button" },
+          style: {
             fontWeight: 'bold',
             fontSize: "0.9rem"
           }
-        },
-        defaultProps: {
-          disableTypography: true
-        }
+        }]
       },
       MuiCardContent: {
         styleOverrides: {

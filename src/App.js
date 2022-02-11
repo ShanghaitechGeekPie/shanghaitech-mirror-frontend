@@ -83,7 +83,7 @@ export default () => {
           selected={location.pathname == item.link}
         >
           <ListItemIcon>{item.icon}</ListItemIcon>
-          <ListItemText primary={item.name} />
+          <ListItemText variant="button" primary={item.name} disableTypography />
         </ListItemButton>
       ))}
     </List>
