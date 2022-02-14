@@ -3,7 +3,7 @@
 ### 地址
 
 ```
-https://mirrors.geekpie.tech/anthon/
+https://mirrors.geekpie.club/anthon/
 ```
 
 ### 说明
