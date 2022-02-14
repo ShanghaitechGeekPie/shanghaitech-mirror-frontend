@@ -15,14 +15,10 @@ const getHelpContent = () => {
   return parser.render(require("@/assets/help/" + (id ? id : "default") + ".md"))
 }
 
-export default () => {
-  const data = getHelpContent()
-
-  return (
-    <Container maxWidth="lg">
-      <Card elevation={3} sx={{ px: { lg: 1 } }}>
-        <CardContent className="markdown-body" dangerouslySetInnerHTML={{ __html: data }} />
-      </Card>
-    </Container>
-  )
-}
+export default () => (
+  <Container maxWidth="lg">
+    <Card elevation={3} sx={{ px: { lg: 1 } }}>
+      <CardContent className="markdown-body" dangerouslySetInnerHTML={{ __html: getHelpContent() }} />
+    </Card>
+  </Container>
+)

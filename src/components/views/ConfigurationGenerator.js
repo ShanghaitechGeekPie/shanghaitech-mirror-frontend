@@ -11,9 +11,9 @@ import MenuItem from '@mui/material/MenuItem'
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MarkdownIt from "markdown-it"
-import prism from "markdown-it-prism"
-import "@/styles/prism.css"
-import "@/styles/markdown.css"
+import prism from 'markdown-it-prism'
+import '@/styles/prism.css'
+import '@/styles/markdown.css'
 
 const MenuProps = {
   PaperProps: {
@@ -97,7 +97,7 @@ export default () => {
         <FormControlLabel
           checked={enableHTTPS}
           onChange={(event, value) => { setEnableHTTPS(value) }}
-          sx={{ mt: 1 }}
+          sx={{ marginTop: 1 }}
           control={<Checkbox />}
           label="HTTPS"
         />

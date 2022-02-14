@@ -17,10 +17,10 @@ export default () => {
 
   return (
     <Card elevation={3}>
-      <CardContent sx={{ pb: 0 }}>
+      <CardContent sx={{ paddingBottom: 0 }}>
         <Typography component="div" variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>Links</Typography>
       </CardContent>
-      <List component="div" sx={{ pb: 0 }}>
+      <List component="div">
         {data.map((item) => (
           <Box key={item.title}>
             <Divider />

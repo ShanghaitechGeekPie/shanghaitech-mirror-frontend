@@ -29,7 +29,7 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        use: ['url-loader']
+        use: ['@svgr/webpack', 'url-loader']
       },
       {
         test: /\.(md|template)$/,

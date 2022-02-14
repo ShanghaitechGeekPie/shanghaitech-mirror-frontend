@@ -1,0 +1,11 @@
+deb {{ PROTOCOL }}://{{ URL }}/ubuntu/ {{ VERSION }} main restricted universe multiverse
+# deb-src {{ PROTOCOL }}://{{ URL }}/ubuntu/ {{ VERSION }} main restricted universe multiverse
+
+deb {{ PROTOCOL }}://{{ URL }}/ubuntu/ {{ VERSION }}-security main restricted universe multiverse
+# deb-src {{ PROTOCOL }}://{{ URL }}/ubuntu/ {{ VERSION }}-security main restricted universe multiverse
+
+deb {{ PROTOCOL }}://{{ URL }}/ubuntu/ {{ VERSION }}-updates main restricted universe multiverse
+# deb-src {{ PROTOCOL }}://{{ URL }}/ubuntu/ {{ VERSION }}-updates main restricted universe multiverse
+
+deb {{ PROTOCOL }}://{{ URL }}/ubuntu/ {{ VERSION }}-backports main restricted universe multiverse
+# deb-src {{ PROTOCOL }}://{{ URL }}/ubuntu/ {{ VERSION }}-backports main restricted universe multiverse

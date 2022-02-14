@@ -32,7 +32,7 @@ export default (props) => {
 
   return (
     <>
-      <List component="div" sx={{ pt: 0 }}>
+      <List component="div">
         <ListItemButton variant="drawer" onClick={doOpenSystem}>
           <ListItemText variant="button" primary="System" disableTypography />
           {openSystem ? <ExpandLess /> : <ExpandMore />}

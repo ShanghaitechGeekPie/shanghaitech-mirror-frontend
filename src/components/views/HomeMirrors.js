@@ -43,7 +43,7 @@ const generateStatus = (ifIdle, ifSuccess) => {
 
 export default () => {
   const { isLoading, isError, data } = useQuery('summarydata', () =>
-    fetch(Config.serverUrl + '/summary').then(async function (data) {
+    fetch(Config.serverUrl + '/summary').then(async (data) => {
       const { WorkerStatus } = await data.json(), status = []
       for (let key in WorkerStatus) {
         const value = WorkerStatus[key]
@@ -56,8 +56,9 @@ export default () => {
       return status
     })
   )
+
   if (isLoading) return <Loading />
-  if (isError) return <Failed />
+  if (isError) return <Failed disableButton />
 
   return (
     <Paper elevation={3}>
