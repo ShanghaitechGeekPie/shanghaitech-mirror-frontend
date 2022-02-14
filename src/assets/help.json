@@ -3,6 +3,9 @@
         "alpine": {
             "display": "Alpine"
         },
+        "anthon": {
+            "display": "AOSC OS"
+        },
         "archlinux": {
             "display": "Arch Linux"
         },
