@@ -36,11 +36,11 @@ export default () => {
   }
 
   return (
-    <Card elevation={3} sx={{ mb: 4 }}>
-      <CardContent sx={{ pb: 0 }}>
+    <Card elevation={3}>
+      <CardContent sx={{ paddingBottom: 0 }}>
         <Typography component="div" variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>Tools</Typography>
       </CardContent>
-      <List component="div" sx={{ pb: 0 }}>
+      <List component="div">
         {tools.map((item) => (
           <Box key={item.title}>
             <Divider />

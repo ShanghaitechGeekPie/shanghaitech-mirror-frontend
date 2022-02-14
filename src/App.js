@@ -72,7 +72,7 @@ export default () => {
   }
 
   const NavItems = (
-    <List sx={{ mt: 1 }}>
+    <List sx={{ marginTop: 1 }}>
       {navLinks.map((item) => (
         <ListItemButton
           component={Link}
@@ -96,7 +96,7 @@ export default () => {
           <CssBaseline />
           <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
             <Toolbar>
-              <IconButton onClick={handleDrawerToggle} sx={{ mr: 3 }} aria-label="Open Drawer">
+              <IconButton onClick={handleDrawerToggle} sx={{ marginRight: 3 }} aria-label="Open Drawer">
                 <MenuIcon sx={{ color: "white" }} />
               </IconButton>
               <Typography variant="h6" component="div">SHTU Open Source Mirror</Typography>

@@ -4,7 +4,7 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Link from '@mui/material/Link'
-import VirtualizedTable from "@/components/global/Table"
+import VirtualizedTable from '@/components/global/Table'
 
 const formatFileSize = (size) => {
   var sizes = [' Bytes', ' KiB', ' MiB', ' GiB'];
@@ -67,7 +67,7 @@ export default (props) => {
       <Typography
         component="div"
         variant="h5"
-        sx={{ fontWeight: 'medium', mb: 4 }}
+        sx={{ fontWeight: 'medium', marginBottom: 4 }}
         gutterBottom
       >
         {"Index of: " + location.pathname}

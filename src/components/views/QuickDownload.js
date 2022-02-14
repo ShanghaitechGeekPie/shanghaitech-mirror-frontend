@@ -1,36 +1,49 @@
-import { useEffect, useState } from 'react'
-import List from '@mui/material/List'
-import ListItem from '@mui/material/ListItem'
+import { useState } from 'react'
+import { useQuery } from 'react-query'
+import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
-import DownloadIcon from '@mui/icons-material/Download'
-import ListItemText from '@mui/material/ListItemText'
-import Autocomplete from '@mui/material/Autocomplete'
-import TextField from '@mui/material/TextField'
 import Stack from '@mui/material/Stack'
 import Paper from '@mui/material/Paper'
 import Divider from '@mui/material/Divider'
-import Box from '@mui/material/Box'
+import Autocomplete from '@mui/material/Autocomplete'
+import List from '@mui/material/List'
+import ListItem from '@mui/material/ListItem'
+import ListItemText from '@mui/material/ListItemText'
+import TextField from '@mui/material/TextField'
+import DownloadIcon from '@mui/icons-material/Download'
+import Loading from '@/components/global/Loading'
+import Failed from '@/components/global/Failed'
 import Config from 'Config'
 
 export default () => {
-  const [selection, setSelection] = useState(Object.keys(options)[0])
+  const [selection, setSelection] = useState()
+  const { isLoading, isError, data } = useQuery('quickDownloadData', () =>
+    fetch(Config.serverUrl + '/downloads').then(async (data) => {
+      const result = await data.json()
+      setSelection(result[0])
+      return result
+    })
+  )
+
+  if (isLoading) return <Loading variant="outlined" />
+  if (isError) return <Failed variant="outlined" disableButton />
 
   return (
     <Stack spacing={2}>
       <Autocomplete
         value={selection}
-        options={Object.keys(options)}
+        options={Object.keys(data)}
         sx={{ width: "100%" }}
         disableClearable
         noOptionsText="No result"
         onChange={(event, value) => { setSelection(value) }}
-        getOptionLabel={(item) => options[item].display}
+        getOptionLabel={(item) => data[item].display}
         renderInput={(params) => <TextField {...params} />}
       />
       <Paper variant="outlined">
         <List>
-          {options[selection].links.map((item, key) => (
-            <Box key={item.name}>
+          {data[selection].links.map((item, key) => (
+            <Box key={item.link}>
               {Boolean(key) && <Divider />}
               <ListItem>
                 <ListItemText primary={item.name} secondary={item.external} />
@@ -51,34 +64,4 @@ export default () => {
       </Paper>
     </Stack>
   )
-}
-
-const options = {
-  "archlinux": {
-    display: "Archlinux",
-    type: "system",
-    links: [
-      {
-        name: "2022.02.01",
-        external: "x86_64, CLI-only",
-        link: "/archlinux/iso/latest/archlinux-2022.02.01-x86_64.iso"
-      }
-    ]
-  },
-  "anaconda": {
-    display: "Anaconda",
-    type: "software",
-    links: [
-      {
-        name: "Miniconda3-py38 4.10.3",
-        external: "Windows/x86_64, exe",
-        link: "/anaconda/miniconda/Miniconda3-py38_4.10.3-Windows-x86_64.exe"
-      },
-      {
-        name: "Miniconda3-py38 4.10.3",
-        external: "Windows/x86, exe",
-        link: "/anaconda/miniconda/Miniconda3-py38_4.10.3-Windows-x86.exe"
-      }
-    ]
-  },
 }

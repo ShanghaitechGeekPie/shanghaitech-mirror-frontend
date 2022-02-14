@@ -22,11 +22,11 @@ export default () => {
     <Container maxWidth="lg">
       <Typography
         variant="h4"
-        sx={{ textAlign: 'center', fontWeight: 'bold', mb: 3 }}
+        sx={{ textAlign: 'center', fontWeight: 'bold', marginBottom: 3 }}
       >
         {news[id].title}
       </Typography>
-      <Stack direction="row" spacing={2} sx={{ justifyContent: "center", mb: 3 }}>
+      <Stack direction="row" spacing={2} sx={{ justifyContent: "center", marginBottom: 3 }}>
         <AccessTimeFilledIcon fontSize="small" />
         <Typography
           variant="body1"
