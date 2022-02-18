@@ -18,11 +18,7 @@ import Config from 'Config'
 export default () => {
   const [selection, setSelection] = useState()
   const { isLoading, isError, data } = useQuery('quickDownloadData', () =>
-    fetch(Config.serverUrl + '/downloads').then(async (data) => {
-      const result = await data.json()
-      setSelection(result[0])
-      return result
-    })
+    fetch(Config.serverUrl + '/downloads').then(async (data) => await data.json())
   )
 
   if (isLoading) return <Loading inline />
@@ -31,7 +27,7 @@ export default () => {
   return (
     <Stack spacing={2}>
       <Autocomplete
-        value={selection}
+        value={selection ? selection : Object.keys(data)[0]}
         options={Object.keys(data)}
         sx={{ width: "100%" }}
         disableClearable
@@ -42,7 +38,7 @@ export default () => {
       />
       <Paper variant="outlined">
         <List>
-          {data[selection].links.map((item, key) => (
+          {data[selection ? selection : Object.keys(data)[0]].links.map((item, key) => (
             <Box key={item.link}>
               {Boolean(key) && <Divider />}
               <ListItem>
@@ -54,8 +50,9 @@ export default () => {
                   rel="noopener"
                   target="_blank"
                   href={Config.serverUrl + item.link}
+                  sx={{ minWidth: "96px", marginLeft: 1 }}
                 >
-                  Download
+                  下载
                 </Button>
               </ListItem>
             </Box>
