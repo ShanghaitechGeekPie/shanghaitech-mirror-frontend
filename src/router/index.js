@@ -1,6 +1,5 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Progress from '@/components/global/Progress'
 const Home = lazy(() => import("@/views/Home"))
 const Post = lazy(() => import("@/views/Post"))
 const Help = lazy(() => import("@/views/Help"))
@@ -9,7 +8,7 @@ const Explorer = lazy(() => import("@/views/Explorer"))
 
 export default () => {
   return (
-    <Suspense fallback={<Progress />}>
+    <Suspense fallback={<></>}>
       <Routes>
         <Route path="/" >
           <Route index element={<Home />} />

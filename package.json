@@ -25,7 +25,6 @@
     "html-webpack-plugin": "^5.5.0",
     "markdown-it": "^12.3.2",
     "markdown-it-prism": "^2.2.3",
-    "nprogress": "^0.2.0",
     "react": "^18.0.0-rc.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^18.0.0-rc.0",
