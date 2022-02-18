@@ -12,9 +12,7 @@ const styles = (theme) => ({
   }
 })
 
-const defaultTheme = createTheme()
-
-const VirtualizedTable = withStyles(styles, { defaultTheme })((props) => {
+const VirtualizedTable = withStyles(styles)((props) => {
   const headerHeight = 56, rowHeight = 56
   const { classes, columns, ...tableProps } = props
 

@@ -34,7 +34,7 @@ const FontAwesomeIcon = styled(SvgIcon)({
 })
 
 const ChipGridItem = ({ label, icon, href, viewBox }) => (
-  <Grid item component={Link} href={href} rel="noopener" target="_blank">
+  <Grid item component={Link} href={href} underline="none" rel="noopener" target="_blank">
     <Chip clickable variant="outlined" color="primary" icon={<FontAwesomeIcon component={icon} viewBox={viewBox} />} label={label} />
   </Grid>
 )

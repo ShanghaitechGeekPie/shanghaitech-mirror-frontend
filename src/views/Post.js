@@ -11,12 +11,15 @@ import "prismjs/components/prism-bash"
 import "@/styles/prism.css"
 import "@/styles/markdown.css"
 
+const getPostContent = (id) => {
+  const parser = new MarkdownIt()
+  parser.use(prism)
+  return parser.render(require("@/assets/news/" + id + ".md"))
+}
+
 export default () => {
   const { id } = useParams()
   const news = require("@/assets/news.json")
-  const parser = new MarkdownIt()
-  parser.use(prism)
-  const content = parser.render(require("@/assets/news/" + id + ".md"))
 
   return (
     <Container maxWidth="lg">
@@ -36,7 +39,7 @@ export default () => {
         </Typography>
       </Stack>
       <Card elevation={3} sx={{ px: { lg: 1 } }}>
-        <CardContent className="markdown-body" dangerouslySetInnerHTML={{ __html: content }} />
+        <CardContent className="markdown-body" dangerouslySetInnerHTML={{ __html: getPostContent(id) }} />
       </Card>
     </Container>
   )
