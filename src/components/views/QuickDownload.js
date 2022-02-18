@@ -36,7 +36,7 @@ export default () => {
         getOptionLabel={(item) => data[item].display}
         renderInput={(params) => <TextField {...params} />}
       />
-      <Paper variant="outlined">
+      <Paper variant="outlined" sx={{ backgroundColor: "transparent" }}>
         <List>
           {data[selection ? selection : Object.keys(data)[0]].links.map((item, key) => (
             <Box key={item.link}>

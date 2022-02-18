@@ -1,6 +1,10 @@
 import { useState, forwardRef } from 'react'
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import List from '@mui/material/List'
@@ -12,6 +16,8 @@ import DialogTitle from '@mui/material/DialogTitle'
 import DialogContent from '@mui/material/DialogContent'
 import Divider from '@mui/material/Divider'
 import Slide from '@mui/material/Slide'
+import IconButton from '@mui/material/IconButton'
+import CloseIcon from '@mui/icons-material/Close'
 import LinkIcon from '@mui/icons-material/Link'
 import CodeIcon from '@mui/icons-material/Code'
 import QuickDownload from '@/components/views/QuickDownload'
@@ -27,6 +33,7 @@ const Transition = forwardRef((props, ref) => {
 })
 
 export default () => {
+  const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('lg'))
   const [dialogData, setDialogData] = useState({})
   const [openDialog, setOpenDialog] = useState(false)
   const handleCloseDialog = () => setOpenDialog(false)
@@ -55,11 +62,28 @@ export default () => {
         open={openDialog}
         fullWidth
         maxWidth="md"
+        fullScreen={isMobileScreen}
         onClose={handleCloseDialog}
         TransitionComponent={Transition}
+        PaperProps={{ elevation: 2 }}
       >
-        <DialogTitle>{dialogData.title}</DialogTitle>
-        <DialogContent dividers>{dialogData.component}</DialogContent>
+        {isMobileScreen ?
+          <AppBar sx={{ position: 'relative' }}>
+            <Toolbar>
+              <IconButton
+                onClick={handleCloseDialog}
+                sx={{ marginRight: 2 }}
+              >
+                <CloseIcon sx={{ color: "white" }} />
+              </IconButton>
+              {dialogData.title}
+            </Toolbar>
+          </AppBar> :
+          <DialogTitle sx={{ paddingBottom: isMobileScreen ? 1 : 2, paddingX: isMobileScreen ? 2 : 3 }}>
+            {dialogData.title}
+          </DialogTitle>
+        }
+        <DialogContent dividers sx={{ paddingTop: 3 }}>{dialogData.component}</DialogContent>
       </Dialog>
     </Card>
   )
