@@ -12,7 +12,7 @@ export default ({ inline }) => {
   return (
     <Paper variant={inline ? "outlined" : "elevation"} elevation={inline ? 0 : 3}>
       <Fade in={true} {...{ timeout: 1000 }}>
-        <Box sx={{ mx: 'auto', textAlign: 'center', paddingTop: 4, paddingBottom: 4 }}>
+        <Box sx={{ mx: 'auto', textAlign: 'center', paddingY: inline ? 4 : 8 }}>
           <SentimentDissatisfiedIcon color="primary" sx={{ fontSize: "5rem", marginBottom: 4 }} />
           <Typography
             component="div"

@@ -64,7 +64,7 @@ export default () => {
   const location = useLocation()
   const darkmode = useMediaQuery('(prefers-color-scheme: dark)')
   const theme = responsiveFontSizes(createTheme(getTheme(darkmode)))
-  const notMobileScreen = useMediaQuery(useTheme().breakpoints.up('lg'))
+  const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('lg'))
 
   const [drawerOpen, setDrawerOpen] = useState(false);
   const handleDrawerToggle = () => {
@@ -104,7 +104,7 @@ export default () => {
           </AppBar>
           <Box sx={{ width: { sm: drawerWidth } }}>
             <Drawer
-              variant={notMobileScreen ? "persistent" : "temporary"}
+              variant={isMobileScreen ? "temporary" : "persistent"}
               open={drawerOpen}
               onClose={handleDrawerToggle}
               sx={{ '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth } }}

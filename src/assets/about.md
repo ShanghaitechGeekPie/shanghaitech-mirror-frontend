@@ -16,5 +16,6 @@ Both email and Github Issue are accessible. Feel free to join the Telegram group
 
 ### TODO
 
+- Search bar
 - A more modern home page
 - Animations and transitions
