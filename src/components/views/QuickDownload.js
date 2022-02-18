@@ -25,8 +25,8 @@ export default () => {
     })
   )
 
-  if (isLoading) return <Loading variant="outlined" />
-  if (isError) return <Failed variant="outlined" disableButton />
+  if (isLoading) return <Loading inline />
+  if (isError) return <Failed inline />
 
   return (
     <Stack spacing={2}>

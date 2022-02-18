@@ -4,7 +4,7 @@ This site was founded with the support of the ShanghaiTech Library, and is run a
 
 ### Feedback
 
-Both email and github issue are accessible. Feel free to join the Telegram group for more real-time feedback.
+Both email and Github Issue are accessible. Feel free to join the Telegram group for more real-time reply.
 
 ### Source Code
 
@@ -17,3 +17,4 @@ Both email and github issue are accessible. Feel free to join the Telegram group
 ### TODO
 
 - A more modern home page
+- Animations and transitions

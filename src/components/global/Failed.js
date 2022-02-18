@@ -6,11 +6,11 @@ import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied'
 
-export default ({disableButton, ...others}) => {
+export default ({ inline }) => {
   const location = useLocation()
 
   return (
-    <Paper {...others} elevation={disableButton ? 0 : 3}>
+    <Paper variant={inline ? "outlined" : "elevation"} elevation={inline ? 0 : 3}>
       <Fade in={true} {...{ timeout: 1000 }}>
         <Box sx={{ mx: 'auto', textAlign: 'center', paddingTop: 4, paddingBottom: 4 }}>
           <SentimentDissatisfiedIcon color="primary" sx={{ fontSize: "5rem", marginBottom: 4 }} />
@@ -22,12 +22,13 @@ export default ({disableButton, ...others}) => {
           >
             Oops, it failed!
           </Typography>
-          {!disableButton &&
+          {!inline &&
             <Button
               variant="contained"
               component={Link}
               sx={{ fontWeight: 'medium', marginTop: 4 }}
-              to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)}>
+              to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)}
+            >
               Back
             </Button>
           }
