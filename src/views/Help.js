@@ -10,9 +10,9 @@ import "@/styles/markdown.css"
 
 const getHelpContent = () => {
   const parser = new MarkdownIt()
-  let { id } = useParams()
+  let { name } = useParams()
   parser.use(prism)
-  return parser.render(require("@/assets/help/" + (id ? id : "default") + ".md"))
+  return parser.render(require("@/assets/help/" + (name ? name : "default") + ".md"))
 }
 
 export default () => (

@@ -13,7 +13,7 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '@': path.join(__dirname, '../src')
+      '@': path.resolve(__dirname, '../src')
     }
   },
   module: {
@@ -41,11 +41,13 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'public/index.html',
+      template: path.resolve(__dirname, '../public/index.html'),
+      favicon: path.resolve(__dirname, '../public/favicon.ico'),
       inject: 'body',
       minify: {
         removeComments: true,
-        removeAttributeQuotes: true
+        removeAttributeQuotes: true,
+        collapseWhitespace: true
       }
     }),
     new CleanWebpackPlugin(),

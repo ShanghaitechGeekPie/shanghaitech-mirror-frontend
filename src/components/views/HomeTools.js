@@ -68,13 +68,13 @@ export default () => {
         PaperProps={{ elevation: 2 }}
       >
         {isMobileScreen ?
-          <AppBar sx={{ position: 'relative' }}>
+          <AppBar color="inherit" sx={{ position: 'relative' }}>
             <Toolbar>
               <IconButton
                 onClick={handleCloseDialog}
                 sx={{ marginRight: 2 }}
               >
-                <CloseIcon sx={{ color: "white" }} />
+                <CloseIcon />
               </IconButton>
               {dialogData.title}
             </Toolbar>
