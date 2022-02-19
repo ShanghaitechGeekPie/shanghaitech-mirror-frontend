@@ -17,7 +17,7 @@ export default () => {
           </Route>
           <Route path='help'>
             <Route index element={<Help />} />
-            <Route path=':id' element={<Help />} />
+            <Route path=':name' element={<Help />} />
           </Route>
           <Route path='about' element={<About />} />
           <Route path='*' element={<Explorer />} />
