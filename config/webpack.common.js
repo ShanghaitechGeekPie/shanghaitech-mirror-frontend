@@ -1,6 +1,8 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const ProgressBarPlugin = require("progress-bar-webpack-plugin")
 const path = require('path')
+const chalk = require("chalk")
 
 module.exports = {
   entry: {
@@ -8,10 +10,12 @@ module.exports = {
   },
   output: {
     publicPath: '/',
+    pathinfo: false,
     filename: 'js/[name].[contenthash].js',
     path: path.resolve(__dirname, '../dist')
   },
   resolve: {
+    symlinks: false,
     alias: {
       '@': path.resolve(__dirname, '../src')
     }
@@ -51,10 +55,16 @@ module.exports = {
       }
     }),
     new CleanWebpackPlugin(),
+    new ProgressBarPlugin({
+      format: `:msg [:bar] ${chalk.green.bold(":percent")} (:elapsed s)`,
+    })
   ],
   externals: {
     'Config': JSON.stringify({
       serverUrl: "https://mirrors.geekpie.tech"
     })
+  },
+  cache: {
+    type: "filesystem"
   }
 }

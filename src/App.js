@@ -1,7 +1,9 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { unstable_ClassNameGenerator } from '@mui/material/utils'
 import { styled, useTheme, ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
+import getTheme from '@/styles/theme'
 import CssBaseline from '@mui/material/CssBaseline'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Box from '@mui/material/Box'
@@ -20,7 +22,10 @@ import HelpCenterIcon from '@mui/icons-material/HelpCenter'
 import InfoIcon from '@mui/icons-material/Info'
 import HelpMenu from '@/components/views/HelpMenu'
 import Router from '@/router/index'
-import getTheme from '@/styles/theme'
+
+unstable_ClassNameGenerator.configure((componentName) =>
+  componentName.replace('Mui', '')
+)
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,8 +47,8 @@ const navLinks = [
 
 const Main = styled('main')(({ theme, open }) => ({
   flexGrow: 1,
-  marginTop: theme.spacing(8),
-  marginBottom: theme.spacing(8),
+  marginTop: theme.spacing(4),
+  marginBottom: theme.spacing(4),
   [theme.breakpoints.up('lg')]: {
     marginLeft: `-${drawerWidth}px`,
     transition: theme.transitions.create("margin", {
@@ -107,7 +112,7 @@ export default () => {
               variant={isMobileScreen ? "temporary" : "persistent"}
               open={drawerOpen}
               onClose={handleDrawerToggle}
-              sx={{ '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth } }}
+              sx={{ '& .Drawer-paper': { boxSizing: 'border-box', width: drawerWidth } }}
             >
               <Toolbar />
               <Box sx={{ overflow: "auto" }}>

@@ -79,7 +79,7 @@ export default () => {
               {dialogData.title}
             </Toolbar>
           </AppBar> :
-          <DialogTitle sx={{ paddingBottom: isMobileScreen ? 1 : 2, paddingX: isMobileScreen ? 2 : 3 }}>
+          <DialogTitle sx={{ paddingBottom: 2, paddingX: 3 }}>
             {dialogData.title}
           </DialogTitle>
         }

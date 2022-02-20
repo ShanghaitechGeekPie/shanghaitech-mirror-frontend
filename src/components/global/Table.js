@@ -1,5 +1,4 @@
 import { withStyles } from '@mui/styles'
-import { createTheme } from '@mui/material/styles'
 import { WindowScroller, AutoSizer, Column, Table } from 'react-virtualized'
 import { Scrollbars } from 'react-custom-scrollbars'
 import TableCell from '@mui/material/TableCell'
