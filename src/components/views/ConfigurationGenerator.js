@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Alert from '@mui/material/Alert'
@@ -12,16 +14,9 @@ import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MarkdownIt from "markdown-it"
 import prism from 'markdown-it-prism'
-import '@/styles/prism.css'
-import '@/styles/markdown.css'
-
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: 250
-    }
-  }
-}
+import markdownStyle from '@/styles/modules/markdown.module.css'
+import "@/styles/markdown/prism.css"
+import "@/styles/markdown/common.css"
 
 const distributionsData = require("@/assets/repository.json")
 
@@ -45,6 +40,8 @@ const parseMarkdown = (resultText) => {
 }
 
 export default () => {
+  const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('lg'))
+
   const [selectedDistribution, setSelectedDistribution] = useState("archlinux")
   const [allVersions, setAllVersions] = useState(["rolling"])
   const [selectedVersion, setSelectedVersion] = useState("rolling")
@@ -84,7 +81,13 @@ export default () => {
           <Select
             label="版本"
             value={selectedVersion}
-            MenuProps={MenuProps}
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  maxHeight: 300
+                }
+              }
+            }}
             onChange={(event) => { setSelectedVersion(event.target.value) }}
           >
             {allVersions.map((version) => (
@@ -103,7 +106,11 @@ export default () => {
         />
       </Grid>
       <Grid item xs={12}>
-        <Box className="markdown-body" dangerouslySetInnerHTML={{ __html: parseMarkdown(resultText) }} />
+        {/* Word break of mobile screen for better reading experience */}
+        <Box
+          className={`markdown-body ${isMobileScreen && markdownStyle['word-break']}`}
+          dangerouslySetInnerHTML={{ __html: parseMarkdown(resultText) }}
+        />
       </Grid>
       {shouldShowDebSrcInfo &&
         <Grid item xs={12}>

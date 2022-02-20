@@ -16,10 +16,10 @@ import { ReactComponent as LinkIcon } from '@/assets/img/icons/link.svg'
 import { ReactComponent as EnvelopeIcon } from '@/assets/img/icons/envelope.svg'
 import { ReactComponent as GithubIcon } from '@/assets/img/icons/github.svg'
 import { ReactComponent as TelegramIcon } from '@/assets/img/icons/telegram.svg'
-import MarkdownIt from "markdown-it"
-import prism from "markdown-it-prism"
-import "@/styles/prism.css"
-import "@/styles/markdown.css"
+import MarkdownIt from 'markdown-it'
+import prism from 'markdown-it-prism'
+import '@/styles/markdown/prism.css'
+import '@/styles/markdown/common.css'
 
 const getAboutContent = () => {
   const parser = new MarkdownIt()

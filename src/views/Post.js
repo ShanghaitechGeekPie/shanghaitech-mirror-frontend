@@ -5,11 +5,11 @@ import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled'
-import MarkdownIt from "markdown-it"
-import prism from "markdown-it-prism"
-import "prismjs/components/prism-bash"
-import "@/styles/prism.css"
-import "@/styles/markdown.css"
+import MarkdownIt from 'markdown-it'
+import prism from 'markdown-it-prism'
+import 'prismjs/components/prism-bash'
+import '@/styles/markdown/prism.css'
+import '@/styles/markdown/common.css'
 
 const getPostContent = (id) => {
   const parser = new MarkdownIt()

@@ -30,8 +30,7 @@
 	overflow: auto;
 }
 
-.markdown-body :not(pre) > code,
-pre {
+.markdown-body :not(pre) > code, pre {
 	background: #313131 !important;
 	border-radius: .5em;
 }
