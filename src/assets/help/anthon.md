@@ -3,7 +3,7 @@
 ### 地址
 
 ```
-https://mirrors.geekpie.club/anthon/
+https://mirrors.shanghaitech.edu.cn/anthon/
 ```
 
 ### 说明
@@ -15,7 +15,7 @@ AOSC OS（安同 OS）软件源。AOSC OS 是一个由安同开源社区（<http
 打开`/etc/apt/sources.list`，并手动替换：
 ```
 # AOSC repository (mirrored by GeekPie)
-deb https://mirrors.geekpie.club/anthon/debs/ stable main
+deb https://mirrors.shanghaitech.edu.cn/anthon/debs/ stable main
 ```
 并更新索引：
 

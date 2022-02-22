@@ -3,7 +3,7 @@
 编辑 `/etc/pacman.d/mirrorlist`， 在文件的最顶端添加：
 
 ```
-Server = https://mirrors.geekpie.tech/manjaro/stable/$repo/$arch
+Server = https://mirrors.shanghaitech.edu.cn/manjaro/stable/$repo/$arch
 ```
 
 更新软件包缓存：
