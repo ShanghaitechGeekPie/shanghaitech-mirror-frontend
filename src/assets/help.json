@@ -39,6 +39,9 @@
         "raspbian": {
             "display": "Raspbian"
         },
+        "ros": {
+            "display": "ROS"
+        },
         "ubuntu": {
             "display": "Ubuntu"
         },
