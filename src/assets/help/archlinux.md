@@ -3,7 +3,7 @@
 编辑 `/etc/pacman.d/mirrorlist`， 在文件的最顶端添加：
 
 ```
-Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.shanghaitech.edu.cn/archlinux/$repo/os/$arch
 ```
 
 更新软件包缓存：

@@ -19,8 +19,8 @@ apt update
 打开`/etc/apt/sources.list`，将原来的内容修改为如下所示：
 
 ```
-deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
-# deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib
+deb http://mirrors.shanghaitech.edu.cn/kali kali-rolling main non-free contrib
+# deb-src http://mirrors.shanghaitech.edu.cn/kali kali-rolling main non-free contrib
 ```
 
 并更新索引：
