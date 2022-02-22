@@ -39,9 +39,6 @@
         "raspbian": {
             "display": "Raspbian"
         },
-        "ros": {
-            "display": "ROS"
-        },
         "ubuntu": {
             "display": "Ubuntu"
         },
@@ -55,6 +52,9 @@
     "software": {
         "anaconda": {
             "display": "Anaconda"
+        },
+        "ros": {
+            "display": "ROS"
         }
     }
 }
