@@ -48,7 +48,7 @@ const navLinks = [
 const Main = styled('main')(({ theme, open }) => ({
   flexGrow: 1,
   marginTop: theme.spacing(4),
-  marginBottom: theme.spacing(4),
+  marginBottom: theme.spacing(6),
   [theme.breakpoints.up('lg')]: {
     marginLeft: `-${drawerWidth}px`,
     transition: theme.transitions.create("margin", {
@@ -104,7 +104,7 @@ export default () => {
               <IconButton onClick={handleDrawerToggle} sx={{ marginRight: 3 }} aria-label="Open Drawer">
                 <MenuIcon sx={{ color: "white" }} />
               </IconButton>
-              <Typography variant="h6" component="div">SHTU Open Source Mirror</Typography>
+              <Typography variant="h6" component="div">Geekpie Open Source Mirror</Typography>
             </Toolbar>
           </AppBar>
           <Box sx={{ width: { sm: drawerWidth } }}>

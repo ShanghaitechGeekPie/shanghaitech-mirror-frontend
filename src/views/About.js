@@ -1,5 +1,4 @@
 import { styled } from '@mui/material/styles'
-import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Divider from '@mui/material/Divider'
@@ -52,8 +51,8 @@ export default () => {
                 <ChipGridItem
                   icon={LinkIcon}
                   viewBox="0 0 640 512"
-                  label="ShanghaiTech Library"
-                  href="https://library.shanghaitech.edu.cn"
+                  label="ShanghaiTech IT Services"
+                  href="https://it.shanghaitech.edu.cn"
                 />
               </Grid>
             </CardContent>

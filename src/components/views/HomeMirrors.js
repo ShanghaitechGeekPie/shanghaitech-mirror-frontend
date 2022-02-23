@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Link as RouterLink } from 'react-router-dom'
 import { format } from 'timeago.js'
 import { useQuery } from 'react-query'
@@ -41,7 +42,7 @@ const generateStatus = (ifIdle, ifSuccess) => {
   else return <Chip icon={<LoopIcon />} label="正在同步" size="small" color="info" />
 }
 
-export default () => {
+export default memo(() => {
   const { isLoading, isError, data } = useQuery('summarydata', () =>
     fetch(Config.serverUrl + '/summary').then(async (data) => {
       const { WorkerStatus } = await data.json(), status = []
@@ -85,4 +86,4 @@ export default () => {
       />
     </Paper>
   )
-}
+})

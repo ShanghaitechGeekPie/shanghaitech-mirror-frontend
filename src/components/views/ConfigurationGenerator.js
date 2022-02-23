@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useTheme } from '@mui/material/styles'
-import useMediaQuery from '@mui/material/useMediaQuery'
 import Grid from '@mui/material/Grid'
 import Box from '@mui/material/Box'
 import Alert from '@mui/material/Alert'
@@ -14,16 +12,16 @@ import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MarkdownIt from "markdown-it"
 import prism from 'markdown-it-prism'
-import markdownStyle from '@/styles/modules/markdown.module.css'
-import "@/styles/markdown/prism.css"
-import "@/styles/markdown/common.css"
+import styles from '@/styles/modules/index.module.css'
+import '@/styles/markdown/prism.css'
+import '@/styles/markdown/common.css'
 
 const distributionsData = require("@/assets/repository.json")
 
 const replaceVariables = (template, version, https) => {
   let result = template.replace(/{{ PROTOCOL }}/g, https ? "https" : "http")
   result = result.replace(/{{ VERSION }}/g, version)
-  result = result.replace(/{{ URL }}/g, "mirrors.geekpie.tech")
+  result = result.replace(/{{ URL }}/g, "mirrors.shanghaitech.edu.cn")
   return result
 }
 
@@ -40,8 +38,6 @@ const parseMarkdown = (resultText) => {
 }
 
 export default () => {
-  const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('lg'))
-
   const [selectedDistribution, setSelectedDistribution] = useState("archlinux")
   const [allVersions, setAllVersions] = useState(["rolling"])
   const [selectedVersion, setSelectedVersion] = useState("rolling")
@@ -107,10 +103,9 @@ export default () => {
       </Grid>
       <Grid item xs={12}>
         {/* Word break of mobile screen for better reading experience */}
-        <Box
-          className={`markdown-body ${isMobileScreen && markdownStyle['word-break']}`}
-          dangerouslySetInnerHTML={{ __html: parseMarkdown(resultText) }}
-        />
+        <Box className={styles.wordBreak}>
+          <Box className="markdown-body" dangerouslySetInnerHTML={{ __html: parseMarkdown(resultText) }} />
+        </Box>
       </Grid>
       {shouldShowDebSrcInfo &&
         <Grid item xs={12}>

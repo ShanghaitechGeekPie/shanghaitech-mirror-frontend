@@ -23,12 +23,14 @@ const getHelpMenu = () => {
   return data
 }
 
-export default (props) => {
+export default ({ handleDrawerToggle }) => {
   const [openSystem, setOpenSysyem] = useState(true)
   const [openSoftware, setopenSoftware] = useState(true)
   const doOpenSystem = () => setOpenSysyem(!openSystem)
   const doOpenSoftware = () => setopenSoftware(!openSoftware)
   const data = getHelpMenu()
+
+  console.log('help rendered')
 
   return (
     <>
@@ -45,7 +47,7 @@ export default (props) => {
                 key={item.key}
                 variant="drawer"
                 to={'/help/' + item.key}
-                onClick={props.handleDrawerToggle}
+                onClick={handleDrawerToggle}
               >
                 <ListItemText variant="button" inset primary={item.title} disableTypography />
               </ListItemButton>
@@ -64,7 +66,7 @@ export default (props) => {
                 key={item.key}
                 variant="drawer"
                 to={'/help/' + item.key}
-                onClick={props.handleDrawerToggle}
+                onClick={handleDrawerToggle}
               >
                 <ListItemText variant="button" inset primary={item.title} disableTypography />
               </ListItemButton>
