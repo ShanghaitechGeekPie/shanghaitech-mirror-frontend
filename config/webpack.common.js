@@ -61,7 +61,7 @@ module.exports = {
   ],
   externals: {
     'Config': JSON.stringify({
-      serverUrl: "https://mirrors.geekpie.tech"
+      serverUrl: "https://mirrors.shanghaitech.edu.cn"
     })
   },
   cache: {

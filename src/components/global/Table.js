@@ -2,8 +2,9 @@ import { withStyles } from '@mui/styles'
 import { WindowScroller, AutoSizer, Column, Table } from 'react-virtualized'
 import { Scrollbars } from 'react-custom-scrollbars'
 import TableCell from '@mui/material/TableCell'
+import styles from '@/styles/modules/index.module.css'
 
-const styles = (theme) => ({
+const classes = (theme) => ({
   hover: {
     '&:hover': {
       backgroundColor: theme.palette.action.hover
@@ -11,9 +12,9 @@ const styles = (theme) => ({
   }
 })
 
-const VirtualizedTable = withStyles(styles)((props) => {
-  const headerHeight = 56, rowHeight = 56
-  const { classes, columns, ...tableProps } = props
+const headerHeight = 56, rowHeight = 56
+
+const VirtualizedTable = withStyles(classes)(({ classes, columns, ...tableProps }) => {
 
   const headerRenderer = ({ label, columnIndex }) => {
     return (
@@ -49,10 +50,11 @@ const VirtualizedTable = withStyles(styles)((props) => {
         <Scrollbars
           autoHide
           autoHideTimeout={200}
+          className={styles.noScrollbar}
           renderTrackVertical={() => <div />}
           renderThumbVertical={() => <div />}
-          renderView={props => (
-            <div {...props} style={{ ...props.style, marginRight: 0, overflowY: "hidden" }} />
+          renderView={({ style, ...props }) => (
+            <div {...props} style={{ ...style, marginRight: 0, overflowY: "hidden" }} />
           )}
         >
           {cellData}

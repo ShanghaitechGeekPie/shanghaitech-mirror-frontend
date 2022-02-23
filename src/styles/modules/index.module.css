@@ -1,0 +1,10 @@
+.noScrollbar :local(::-webkit-scrollbar) {
+    display: none
+}
+
+@media screen and (max-width: 900px) {
+    .wordBreak :global(.markdown-body code) {
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+}

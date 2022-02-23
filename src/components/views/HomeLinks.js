@@ -12,7 +12,7 @@ import HomeIcon from '@mui/icons-material/Home'
 
 export default () => {
   const data = [
-    { "title": "SHTU Offical Website", "href": "https://www.shanghaitech.edu.cn", "icon": <HomeIcon /> }
+    { "title": "Shanghaitech Offical", "href": "https://www.shanghaitech.edu.cn", "icon": <HomeIcon /> }
   ]
 
   return (

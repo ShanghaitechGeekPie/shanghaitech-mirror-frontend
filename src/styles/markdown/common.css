@@ -39,12 +39,11 @@
 .markdown-body blockquote {
     margin-left: 0;
     padding: .1em 0 .1em 1.5em;
-    color: #7b848e;
+    color: rgb(128, 128, 128);
     border-left: .3em solid rgba(128, 128, 128, .6);
 }
 
-.markdown-body ul,
-ol {
+.markdown-body ul, ol {
     padding-left: 1em;
 }
 
@@ -69,11 +68,11 @@ ol {
 }
 
 .markdown-body table tr:nth-child(2n) {
-    background-color: rgba(128, 128, 128, .15);
+    background-color: rgba(128, 128, 128, .1);
 }
 
 .markdown-body table th {
-    background-color: rgba(128, 128, 128, .25);
+    background-color: rgba(128, 128, 128, .15);
     font-weight: 600;
 }
 

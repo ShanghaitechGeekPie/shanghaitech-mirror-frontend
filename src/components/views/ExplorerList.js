@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { format } from 'timeago.js'
 import Container from '@mui/material/Container'
@@ -58,7 +59,7 @@ const getData = (data) => {
   return result
 }
 
-export default (props) => {
+export default memo((props) => {
   const location = useLocation()
   const data = getData(props.data)
 
@@ -97,4 +98,4 @@ export default (props) => {
       </Paper>
     </Container>
   )
-}
+})
