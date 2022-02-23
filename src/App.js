@@ -112,6 +112,7 @@ export default () => {
               variant={isMobileScreen ? "temporary" : "persistent"}
               open={drawerOpen}
               onClose={handleDrawerToggle}
+              ModalProps={{ keepMounted: true }}
               sx={{ '& .Drawer-paper': { boxSizing: 'border-box', width: drawerWidth } }}
             >
               <Toolbar />

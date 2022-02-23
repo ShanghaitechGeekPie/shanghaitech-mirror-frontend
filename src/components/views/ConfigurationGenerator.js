@@ -16,7 +16,7 @@ import styles from '@/styles/modules/index.module.css'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 
-const distributionsData = require("@/assets/repository.json")
+const distributionsData = require("@/assets/config/repository.json")
 
 const replaceVariables = (template, version, https) => {
   let result = template.replace(/{{ PROTOCOL }}/g, https ? "https" : "http")
@@ -27,7 +27,7 @@ const replaceVariables = (template, version, https) => {
 
 const getTemplate = (distribution, version, https) => {
   const templatePath = distributionsData[distribution].seperated ? distribution + "/" + version + ".template" : distribution + ".template"
-  const templateContent = require("@/assets/repository/" + templatePath)
+  const templateContent = require("@/assets/hypertext/repository/" + templatePath)
   return replaceVariables(templateContent, version, https)
 }
 

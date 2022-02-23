@@ -14,12 +14,12 @@ import '@/styles/markdown/common.css'
 const getPostContent = (id) => {
   const parser = new MarkdownIt()
   parser.use(prism)
-  return parser.render(require("@/assets/news/" + id + ".md"))
+  return parser.render(require("@/assets/hypertext/news/" + id + ".md"))
 }
 
 export default () => {
   const { id } = useParams()
-  const news = require("@/assets/news.json")
+  const news = require("@/assets/config/news.json")
 
   return (
     <Container maxWidth="lg">

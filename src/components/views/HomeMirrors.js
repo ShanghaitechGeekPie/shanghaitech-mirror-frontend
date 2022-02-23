@@ -15,7 +15,7 @@ import Failed from '@/components/global/Failed'
 import VirtualizedTable from '@/components/global/Table'
 import Config from 'Config'
 
-const helpData = require("@/assets/help.json")
+const helpData = require("@/assets/config/help.json")
 
 const generateNameLink = (name) => (
   <>
