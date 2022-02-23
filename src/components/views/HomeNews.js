@@ -12,7 +12,7 @@ import MoodOutlinedIcon from '@mui/icons-material/MoodOutlined'
 import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt'
 
 export default () => {
-  const news = require("@/assets/news.json")
+  const news = require("@/assets/config/news.json")
   const data = []
   for (let key in news) {
     const value = news[key]

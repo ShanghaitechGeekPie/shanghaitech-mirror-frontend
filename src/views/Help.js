@@ -12,7 +12,7 @@ const getHelpContent = () => {
   const parser = new MarkdownIt()
   let { name } = useParams()
   parser.use(prism)
-  return parser.render(require("@/assets/help/" + (name ? name : "default") + ".md"))
+  return parser.render(require("@/assets/hypertext/help/" + (name ? name : "default") + ".md"))
 }
 
 export default () => (

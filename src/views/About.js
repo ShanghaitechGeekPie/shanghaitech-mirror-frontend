@@ -8,13 +8,13 @@ import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
 import CardContent from '@mui/material/CardContent'
 import SvgIcon from '@mui/material/SvgIcon'
-import ShanghaiTechLogo from '@/assets/img/logo/shanghaitech.svg'
-import GeekpieLogo from '@/assets/img/logo/geekpie.svg'
-import { ReactComponent as QQIcon } from '@/assets/img/icons/qq.svg'
-import { ReactComponent as LinkIcon } from '@/assets/img/icons/link.svg'
-import { ReactComponent as EnvelopeIcon } from '@/assets/img/icons/envelope.svg'
-import { ReactComponent as GithubIcon } from '@/assets/img/icons/github.svg'
-import { ReactComponent as TelegramIcon } from '@/assets/img/icons/telegram.svg'
+import ShanghaiTechLogo from '@/assets/image/logo/shanghaitech.svg'
+import GeekpieLogo from '@/assets/image/logo/geekpie.svg'
+import { ReactComponent as QQIcon } from '@/assets/image/icons/qq.svg'
+import { ReactComponent as LinkIcon } from '@/assets/image/icons/link.svg'
+import { ReactComponent as EnvelopeIcon } from '@/assets/image/icons/envelope.svg'
+import { ReactComponent as GithubIcon } from '@/assets/image/icons/github.svg'
+import { ReactComponent as TelegramIcon } from '@/assets/image/icons/telegram.svg'
 import MarkdownIt from 'markdown-it'
 import prism from 'markdown-it-prism'
 import '@/styles/markdown/prism.css'
@@ -23,7 +23,7 @@ import '@/styles/markdown/common.css'
 const getAboutContent = () => {
   const parser = new MarkdownIt()
   parser.use(prism)
-  return parser.render(require("@/assets/about.md"))
+  return parser.render(require("@/assets/hypertext/about.md"))
 }
 
 const FontAwesomeIcon = styled(SvgIcon)({

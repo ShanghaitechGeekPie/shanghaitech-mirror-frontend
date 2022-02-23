@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import List from '@mui/material/List'
 import Collapse from '@mui/material/Collapse'
 import ListItemButton from '@mui/material/ListItemButton'
@@ -12,7 +12,7 @@ const getHelpMenu = () => {
     "system": [],
     "software": []
   }
-  const help = require("@/assets/help.json")
+  const help = require("@/assets/config/help.json")
   for (let type in help)
     for (let key in help[type]) {
       const value = help[type][key]
@@ -24,13 +24,12 @@ const getHelpMenu = () => {
 }
 
 export default ({ handleDrawerToggle }) => {
+  const location = useLocation()
   const [openSystem, setOpenSysyem] = useState(true)
   const [openSoftware, setopenSoftware] = useState(true)
   const doOpenSystem = () => setOpenSysyem(!openSystem)
   const doOpenSoftware = () => setopenSoftware(!openSoftware)
   const data = getHelpMenu()
-
-  console.log('help rendered')
 
   return (
     <>
@@ -48,6 +47,7 @@ export default ({ handleDrawerToggle }) => {
                 variant="drawer"
                 to={'/help/' + item.key}
                 onClick={handleDrawerToggle}
+                selected={location.pathname == '/help/' + item.key}
               >
                 <ListItemText variant="button" inset primary={item.title} disableTypography />
               </ListItemButton>
@@ -67,6 +67,7 @@ export default ({ handleDrawerToggle }) => {
                 variant="drawer"
                 to={'/help/' + item.key}
                 onClick={handleDrawerToggle}
+                selected={location.pathname == '/help/' + item.key}
               >
                 <ListItemText variant="button" inset primary={item.title} disableTypography />
               </ListItemButton>
