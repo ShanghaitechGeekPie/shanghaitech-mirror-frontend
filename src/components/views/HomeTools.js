@@ -33,7 +33,7 @@ const Transition = forwardRef((props, ref) => {
 })
 
 export default () => {
-  const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('lg'))
+  const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('md'))
   const [dialogData, setDialogData] = useState({})
   const [openDialog, setOpenDialog] = useState(false)
   const handleCloseDialog = () => setOpenDialog(false)

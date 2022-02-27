@@ -1,20 +1,11 @@
-import { withStyles } from '@mui/styles'
 import { WindowScroller, AutoSizer, Column, Table } from 'react-virtualized'
 import { Scrollbars } from 'react-custom-scrollbars'
 import TableCell from '@mui/material/TableCell'
 import styles from '@/styles/modules/index.module.css'
 
-const classes = (theme) => ({
-  hover: {
-    '&:hover': {
-      backgroundColor: theme.palette.action.hover
-    }
-  }
-})
-
 const headerHeight = 56, rowHeight = 56
 
-const VirtualizedTable = withStyles(classes)(({ classes, columns, ...tableProps }) => {
+const VirtualizedTable = ({ columns, ...tableProps }) => {
 
   const headerRenderer = ({ label, columnIndex }) => {
     return (
@@ -77,7 +68,7 @@ const VirtualizedTable = withStyles(classes)(({ classes, columns, ...tableProps 
               scrollTop={scrollTop}
               rowHeight={rowHeight}
               headerHeight={headerHeight}
-              rowClassName={({ index }) => index != -1 && classes.hover}
+              rowClassName={({ index }) => index != -1 && styles.onHover}
               rowStyle={{ display: 'flex' }}
               {...tableProps}
             >
@@ -99,7 +90,7 @@ const VirtualizedTable = withStyles(classes)(({ classes, columns, ...tableProps 
         </AutoSizer>)}
     </WindowScroller>
   )
-})
+}
 
 export default (props) => {
   return <VirtualizedTable {...props} />

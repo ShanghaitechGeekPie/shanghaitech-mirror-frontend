@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { unstable_ClassNameGenerator } from '@mui/material/utils'
 import { styled, useTheme, ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
+import { Scrollbars } from 'react-custom-scrollbars'
 import getTheme from '@/styles/theme'
 import CssBaseline from '@mui/material/CssBaseline'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -24,7 +25,7 @@ import HelpMenu from '@/components/views/HelpMenu'
 import Router from '@/router/index'
 
 unstable_ClassNameGenerator.configure((componentName) =>
-  componentName.replace('Mui', '')
+  componentName.replace('Mui', '').toLowerCase()
 )
 
 const queryClient = new QueryClient({
@@ -98,7 +99,7 @@ export default () => {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <Box sx={{ display: { lg: 'flex' } }}>
-          <CssBaseline />
+          <CssBaseline enableColorScheme />
           <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
             <Toolbar>
               <IconButton onClick={handleDrawerToggle} sx={{ marginRight: 3 }} aria-label="Open Drawer">
@@ -113,13 +114,15 @@ export default () => {
               open={drawerOpen}
               onClose={handleDrawerToggle}
               ModalProps={{ keepMounted: true }}
-              sx={{ '& .Drawer-paper': { boxSizing: 'border-box', width: drawerWidth } }}
+              sx={{ '& .drawer-paper': { boxSizing: 'border-box', width: drawerWidth } }}
             >
-              <Toolbar />
-              <Box sx={{ overflow: "auto" }}>
-                {NavItems}
-                {location.pathname.startsWith("/help") && <HelpMenu handleDrawerToggle={handleDrawerToggle} />}
-              </Box>
+              <Scrollbars autoHide autoHideTimeout={200}>
+                <Toolbar />
+                <Box sx={{ overflow: "auto" }}>
+                  {NavItems}
+                  {location.pathname.startsWith("/help") && <HelpMenu handleDrawerToggle={handleDrawerToggle} />}
+                </Box>
+              </Scrollbars>
             </Drawer>
           </Box>
           <Main open={drawerOpen}>

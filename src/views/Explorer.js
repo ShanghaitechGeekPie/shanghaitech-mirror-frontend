@@ -13,7 +13,7 @@ export default () => {
   )
 
   if (isLoading) return (<Container maxWidth="lg"><Loading /></Container>)
-  if (isError) return (<Container maxWidth="lg"><Failed /></Container>)
+  if (isError) return (<Container maxWidth="lg"><Failed button /></Container>)
 
   return <List data={data} />
 }
