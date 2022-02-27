@@ -1,10 +1,15 @@
-.noScrollbar :local(::-webkit-scrollbar) {
-    display: none
+.noScrollbar ::-webkit-scrollbar {
+    display: none;
 }
 
 @media screen and (max-width: 900px) {
     .wordBreak :global(.markdown-body code) {
         white-space: pre-wrap;
         word-break: break-all;
+        overflow: hidden;
     }
+}
+
+.onHover:hover {
+    background-color: rgba(128, 128, 128, .08);
 }

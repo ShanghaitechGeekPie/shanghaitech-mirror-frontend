@@ -1,6 +1,8 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ProgressBarPlugin = require("progress-bar-webpack-plugin")
+const { IgnorePlugin } = require('webpack')
 const path = require('path')
 const chalk = require("chalk")
 
@@ -54,7 +56,16 @@ module.exports = {
         collapseWhitespace: true
       }
     }),
+    new CopyWebpackPlugin({
+      patterns: [{
+        from: path.resolve(__dirname, '../public/robots.txt'),
+        to: './'
+      }]
+    }),
     new CleanWebpackPlugin(),
+    new IgnorePlugin({
+      resourceRegExp: /prismjs\/plugins/
+    }),
     new ProgressBarPlugin({
       format: `:msg [:bar] ${chalk.green.bold(":percent")} (:elapsed s)`,
     })

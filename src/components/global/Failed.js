@@ -6,7 +6,7 @@ import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
 import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied'
 
-export default ({ inline }) => {
+export default ({ inline, button }) => {
   const location = useLocation()
 
   return (
@@ -22,7 +22,7 @@ export default ({ inline }) => {
           >
             Oops, it failed!
           </Typography>
-          {!inline &&
+          {button &&
             <Button
               variant="contained"
               component={Link}
