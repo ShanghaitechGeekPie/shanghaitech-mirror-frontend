@@ -28,59 +28,63 @@ const darPalette = {
   }
 }
 
-export default (darkMode) => {
-  let theme = {
-    palette: darkMode ? darPalette : lightPalette,
-    shape: {
-      borderRadius: 8
+export default (darkMode) => ({
+  shape: {
+    borderRadius: 8
+  },
+  typography: {
+    fontWeightLight: 300,
+    fontWeightRegular: 500,
+    fontWeightMedium: 700,
+    fontWeightBold: 900
+  },
+  zIndex: {
+    drawer: 1100,
+    appBar: 1200
+  },
+  palette: darkMode ? darPalette : lightPalette,
+  components: {
+    MuiList: {
+      defaultProps: {
+        disablePadding: true
+      }
     },
-    typography: {
-      fontWeightMedium: 600
-    },
-    components: {
-      MuiList: {
-        defaultProps: {
-          disablePadding: true
+    MuiListItemButton: {
+      variants: [{
+        props: { variant: "drawer" },
+        style: {
+          width: "auto",
+          borderRadius: "8px",
+          marginLeft: "8px",
+          marginRight: "8px",
+          marginBottom: "6px",
+          paddingTop: "8px",
+          paddingBottom: "8px",
+          paddingLeft: "16px",
+          paddingRight: "16px"
         }
-      },
-      MuiListItemButton: {
-        variants: [{
-          props: { variant: "drawer" },
-          style: {
-            width: "auto",
-            borderRadius: "8px",
-            marginLeft: "8px",
-            marginRight: "8px",
-            marginBottom: "6px",
-            paddingTop: "8px",
-            paddingBottom: "8px",
-            paddingLeft: "16px",
-            paddingRight: "16px"
-          }
-        }]
-      },
-      /* 
-        The button font style should be used with disableTypography prop
-        because the text in the ListItemText is wrapped by Typography.
-        You can find examples in App.js, Home(News|Tools|Links).js and so on.
-      */
-      MuiListItemText: {
-        variants: [{
-          props: { variant: "button" },
-          style: {
-            fontWeight: "bold",
-            fontSize: "0.9rem"
-          }
-        }]
-      },
-      MuiCardContent: {
-        styleOverrides: {
-          root: {
-            paddingTop: "12px"
-          }
+      }]
+    },
+    /* 
+      The button font style should be used with disableTypography prop
+      because the text in the ListItemText is wrapped by Typography.
+      You can find examples in App.js, Home(News|Tools|Links).js and so on.
+    */
+    MuiListItemText: {
+      variants: [{
+        props: { variant: "button" },
+        style: {
+          fontWeight: "bold",
+          fontSize: "0.9rem"
+        }
+      }]
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          paddingTop: "12px"
         }
       }
     }
   }
-  return theme
-}
+})

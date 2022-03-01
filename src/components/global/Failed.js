@@ -10,15 +10,18 @@ export default ({ inline, button }) => {
   const location = useLocation()
 
   return (
-    <Paper variant={inline ? "outlined" : "elevation"} elevation={inline ? 0 : 3}>
+    <Paper
+      variant={inline ? "outlined" : "elevation"}
+      elevation={inline ? 0 : 3}
+      sx={{ backgroundColor: "transparent" }}
+    >
       <Fade in={true} {...{ timeout: 1000 }}>
-        <Box sx={{ mx: 'auto', textAlign: 'center', paddingY: inline ? 4 : 8 }}>
+        <Box sx={{ mx: 'auto', textAlign: 'center', paddingY: inline ? 6 : 8 }}>
           <SentimentDissatisfiedIcon color="primary" sx={{ fontSize: "5rem", marginBottom: 4 }} />
           <Typography
             component="div"
             variant="h5"
             sx={{ fontWeight: 'medium' }}
-            gutterBottom
           >
             Oops, it failed!
           </Typography>

@@ -38,6 +38,13 @@ module.exports = {
         use: ['@svgr/webpack', 'url-loader']
       },
       {
+        test: /\.(woff|woff2)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: './fonts/[name][ext]'
+        }
+      },
+      {
         test: /\.(md|template)$/,
         use: ['./src/plugins/raw-loader']
       }
