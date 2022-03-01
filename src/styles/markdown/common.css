@@ -1,9 +1,9 @@
-.markdown-body a:hover {
+.markdown-body a :hover {
     outline-width: 0;
 }
 
 .markdown-body strong {
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .markdown-body img {
@@ -16,15 +16,15 @@
     line-height: 1.8em;
 }
 
-.markdown-body a:hover {
+.markdown-body a :hover {
     text-decoration: underline;
 }
 
-.markdown-body img[align=right] {
+.markdown-body img [align = right] {
     padding-left: 20px;
 }
 
-.markdown-body img[align=left] {
+.markdown-body img [align = left] {
     padding-right: 20px;
 }
 
@@ -32,7 +32,8 @@
     color: #d32f2f;
     -webkit-text-decoration: none;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: .5px;
     font-size: 0.95em;
 }
 
@@ -47,11 +48,11 @@
     padding-left: 1em;
 }
 
-.markdown-body ul>li {
+.markdown-body ul > li {
     list-style: inside;
 }
 
-.markdown-body ol>li {
+.markdown-body ol > li {
     list-style-position: inside;
 }
 
@@ -67,17 +68,16 @@
     font-size: 0.95em;
 }
 
-.markdown-body table tr:nth-child(2n) {
+.markdown-body table tr :nth-child(2n) {
     background-color: rgba(128, 128, 128, .1);
 }
 
 .markdown-body table th {
     background-color: rgba(128, 128, 128, .15);
-    font-weight: 600;
+    font-weight: 700;
 }
 
-.markdown-body table th,
-.markdown-body table td {
+.markdown-body table th, .markdown-body table td {
     padding: .5em 1.5em;
     border: .5px solid rgba(128, 128, 128, .5);
 }

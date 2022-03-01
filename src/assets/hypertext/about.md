@@ -1,6 +1,6 @@
 ## ShanghaiTech Open Source Mirror
 
-This site was founded with the support of the ShanghaiTech Library, and is run and maintained by Geekpie, a student association.
+This site was founded with the support of the ShanghaiTech IT Services, and is run and maintained by Geekpie, a student association.
 
 ### Feedback
 

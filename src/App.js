@@ -100,7 +100,7 @@ export default () => {
       <ThemeProvider theme={theme}>
         <Box sx={{ display: { lg: 'flex' } }}>
           <CssBaseline enableColorScheme />
-          <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+          <AppBar position="fixed">
             <Toolbar>
               <IconButton onClick={handleDrawerToggle} sx={{ marginRight: 3 }} aria-label="Open Drawer">
                 <MenuIcon sx={{ color: "white" }} />
