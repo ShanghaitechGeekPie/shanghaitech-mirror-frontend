@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled'
 import MarkdownIt from 'markdown-it'
+import pangu from 'markdown-it-pangu'
 import prism from 'markdown-it-prism'
 import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
@@ -13,7 +14,7 @@ import '@/styles/markdown/common.css'
 
 const getPostContent = (id) => {
   const parser = new MarkdownIt()
-  parser.use(prism)
+  parser.use(pangu).use(prism)
   return parser.render(require("@/assets/hypertext/news/" + id + ".md"))
 }
 
