@@ -1,4 +1,4 @@
-## Kali Linux 镜像使用帮助
+## Kali Linux镜像使用帮助
 
 ### 一键替换
 

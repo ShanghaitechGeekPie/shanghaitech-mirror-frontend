@@ -1,6 +1,6 @@
-## Manjaro Linux 镜像使用帮助
+## Manjaro Linux镜像使用帮助
 
-编辑 `/etc/pacman.d/mirrorlist`， 在文件的最顶端添加：
+编辑`/etc/pacman.d/mirrorlist`，在文件的最顶端添加：
 
 ```
 Server = https://mirrors.shanghaitech.edu.cn/manjaro/stable/$repo/$arch

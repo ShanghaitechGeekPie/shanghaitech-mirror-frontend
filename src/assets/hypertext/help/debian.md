@@ -1,4 +1,4 @@
-## Debian 镜像使用帮助
+## Debian镜像使用帮助
 
 
 先安装`ca-certificates`和`apt-transport-https`保证第三方https源可以使用。

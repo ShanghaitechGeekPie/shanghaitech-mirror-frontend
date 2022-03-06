@@ -3,15 +3,16 @@ import Container from '@mui/material/Container'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import MarkdownIt from 'markdown-it'
+import pangu from 'markdown-it-pangu'
 import prism from 'markdown-it-prism'
 import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 
 const getHelpContent = () => {
-  const parser = new MarkdownIt()
   let { name } = useParams()
-  parser.use(prism)
+  const parser = new MarkdownIt()
+  parser.use(pangu).use(prism)
   return parser.render(require("@/assets/hypertext/help/" + (name ? name : "default") + ".md"))
 }
 

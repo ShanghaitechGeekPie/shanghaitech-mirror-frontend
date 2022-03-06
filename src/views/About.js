@@ -16,13 +16,14 @@ import { ReactComponent as EnvelopeIcon } from '@/assets/image/icons/envelope.sv
 import { ReactComponent as GithubIcon } from '@/assets/image/icons/github.svg'
 import { ReactComponent as TelegramIcon } from '@/assets/image/icons/telegram.svg'
 import MarkdownIt from 'markdown-it'
+import pangu from 'markdown-it-pangu'
 import prism from 'markdown-it-prism'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 
 const getAboutContent = () => {
   const parser = new MarkdownIt()
-  parser.use(prism)
+  parser.use(pangu).use(prism)
   return parser.render(require("@/assets/hypertext/about.md"))
 }
 

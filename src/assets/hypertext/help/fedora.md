@@ -1,4 +1,4 @@
-## Fedora 镜像使用帮助
+## Fedora镜像使用帮助
 
 备份`/etc/yum.repos.d/fedora.repo`、`/etc/yum.repos.d/fedora-updates.repo`、`/etc/yum.repos.d/fedora-modular.repo`和`/etc/yum.repos.d/fedora-updates-modular.repo`四个文件。
 
@@ -18,7 +18,7 @@ sudo sed -e 's|^metalink=|#metalink=|g' \
 
 修改以上文件，替换为下面内容：
 
-**fedora 仓库 (/etc/yum.repos.d/fedora.repo)**
+**fedora仓库（/etc/yum.repos.d/fedora.repo）**
 
 ```
 [fedora]
@@ -31,7 +31,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 skip_if_unavailable=False
 ```
 
-**updates 仓库 (/etc/yum.repos.d/fedora-updates.repo)**
+**updates仓库（/etc/yum.repos.d/fedora-updates.repo）**
 
 ```
 [updates]
@@ -45,7 +45,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 skip_if_unavailable=False
 ```
 
-**fedora-modular 仓库 (/etc/yum.repos.d/fedora-modular.repo)**
+**fedora-modular仓库（/etc/yum.repos.d/fedora-modular.repo）**
 
 ```
 [fedora-modular]
@@ -59,7 +59,7 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
 skip_if_unavailable=False
 ```
 
-**updates-modular 仓库 (/etc/yum.repos.d/fedora-modular.repo)**
+**updates-modular仓库（/etc/yum.repos.d/fedora-modular.repo）**
 
 ```
 [updates-modular]
