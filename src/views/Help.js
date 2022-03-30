@@ -13,7 +13,7 @@ const getHelpContent = () => {
   let { name } = useParams()
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
-  return parser.render(require("@/assets/hypertext/help/" + (name ? name : "default") + ".md"))
+  return parser.render(require("@/assets/content/help/" + (name ? name : "default") + ".md"))
 }
 
 export default () => (

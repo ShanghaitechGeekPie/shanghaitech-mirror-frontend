@@ -15,7 +15,7 @@ import '@/styles/markdown/common.css'
 const getPostContent = (id) => {
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
-  return parser.render(require("@/assets/hypertext/news/" + id + ".md"))
+  return parser.render(require("@/assets/content/news/" + id + ".md"))
 }
 
 export default () => {

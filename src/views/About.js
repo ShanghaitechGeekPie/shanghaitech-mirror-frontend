@@ -24,7 +24,7 @@ import '@/styles/markdown/common.css'
 const getAboutContent = () => {
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
-  return parser.render(require("@/assets/hypertext/about.md"))
+  return parser.render(require("@/assets/content/about.md"))
 }
 
 const FontAwesomeIcon = styled(SvgIcon)({
