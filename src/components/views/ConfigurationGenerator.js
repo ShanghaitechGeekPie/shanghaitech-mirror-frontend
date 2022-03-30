@@ -27,7 +27,7 @@ const replaceVariables = (template, version, https) => {
 
 const getTemplate = (distribution, version, https) => {
   const templatePath = distributionsData[distribution].seperated ? distribution + "/" + version + ".template" : distribution + ".template"
-  const templateContent = require("@/assets/hypertext/repository/" + templatePath)
+  const templateContent = require("@/assets/content/repository/" + templatePath)
   return replaceVariables(templateContent, version, https)
 }
 

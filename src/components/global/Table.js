@@ -92,6 +92,4 @@ const VirtualizedTable = ({ columns, ...tableProps }) => {
   )
 }
 
-export default (props) => {
-  return <VirtualizedTable {...props} />
-}
+export default (props) => <VirtualizedTable {...props} />

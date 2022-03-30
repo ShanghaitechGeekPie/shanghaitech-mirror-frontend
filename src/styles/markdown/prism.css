@@ -16,18 +16,24 @@
 }
 
 .markdown-body pre {
-	padding: 1em;
-	margin: .5em 0;
-	overflow: auto;
-}
-
-.markdown-body :not(pre) > code, pre {
 	color: #cfcfcf;
 	background: #363636;
 	border-radius: .5em;
+	padding: 1em;
+	margin-bottom: 16px;
+	overflow: auto;
+}
+
+.markdown-body pre > code {
+	padding: 0;
+	font-size: .95em;
+	background-color: rgba(255, 255, 255, 0) !important;
 }
 
 .markdown-body :not(pre) > code {
+	color: #cfcfcf;
+	background: #363636;
+	border-radius: .5em;
 	padding: .2em .6em;
 	border-radius: .5em;
 	font-size: 0.8em;
@@ -35,19 +41,19 @@
 	white-space: normal;
 }
 
+@media (min-width: 1200px) {
+	.markdown-body pre > code {
+    	font-size: .95em;
+	}
+	.markdown-body :not(pre) > code {
+		font-size: .9em;
+	}
+}
+
 @media(prefers-color-scheme: light) {
 	.markdown-body :not(pre) > code {
 		color: #905;
 		background: #faf0ee;
-	}
-}
-
-@media (min-width: 1200px) {
-	.markdown-body code, pre {
-    	font-size: 1em;
-	}
-	.markdown-body :not(pre) > code {
-		font-size: 0.9em;
 	}
 }
 

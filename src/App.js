@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { unstable_ClassNameGenerator } from '@mui/material/utils'
+import { unstable_ClassNameGenerator } from '@mui/material/className'
 import { styled, useTheme, ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
 import { Scrollbars } from 'react-custom-scrollbars'
 import getTheme from '@/styles/theme'

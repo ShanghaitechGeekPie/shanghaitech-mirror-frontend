@@ -1,23 +1,10 @@
-.markdown-body a :hover {
-    outline-width: 0;
-}
-
 .markdown-body strong {
     font-weight: 700;
 }
 
-.markdown-body img {
-    border-style: none;
-    max-width: 100%;
-    box-sizing: content-box;
-}
-
 .markdown-body p {
+    margin: 0;
     line-height: 1.8em;
-}
-
-.markdown-body a :hover {
-    text-decoration: underline;
 }
 
 .markdown-body img [align = right] {
@@ -34,14 +21,30 @@
     text-decoration: none;
     font-weight: 700;
     letter-spacing: .5px;
-    font-size: 0.95em;
+}
+
+.markdown-body a :hover {
+    text-decoration: underline;
+    outline-width: 0;
 }
 
 .markdown-body blockquote {
     margin-left: 0;
-    padding: .1em 0 .1em 1.5em;
-    color: rgb(128, 128, 128);
-    border-left: .3em solid rgba(128, 128, 128, .6);
+    margin-bottom: 16px;
+    padding-left: 16px;
+    font-style: italic;
+    border-radius: 4px;
+    color: rgb(160, 160, 160);
+    background-color: rgba(160, 160, 160, .05);
+    border-left: .3em solid rgba(160, 160, 160, .6);
+}
+
+.markdown-body blockquote > p {
+    padding: 16px 0;
+}
+
+.markdown-body hr {
+    margin-bottom: 16px;
 }
 
 .markdown-body ul, ol {
@@ -56,6 +59,18 @@
     list-style-position: inside;
 }
 
+.markdown-body img {
+    border-style: none;
+    max-width: 100%;
+    box-sizing: content-box;
+}
+
+@media screen and (min-width: 900px) {
+    .markdown-body img {
+        max-width: 80%;
+    }
+}
+
 .markdown-body table {
     border-collapse: collapse;
     border-style: hidden;
@@ -63,21 +78,29 @@
     max-width: 100%;
     overflow: auto;
     margin: 20px 0;
+    color: #5f5f5f;
     border-radius: 4px;
     box-shadow: 0 0 0 1px #d8d8d8;
     font-size: 0.95em;
 }
 
-.markdown-body table tr :nth-child(2n) {
-    background-color: rgba(128, 128, 128, .1);
+@media(prefers-color-scheme: dark) {
+	.markdown-body table {
+        color: #d8d8d8;
+        box-shadow: 0 0 0 1px rgba(160, 160, 160, .5);
+    }
+}
+
+.markdown-body table tbody > :nth-child(2n) {
+    background-color: rgba(160, 160, 160, .1);
 }
 
 .markdown-body table th {
-    background-color: rgba(128, 128, 128, .15);
+    background-color: rgba(160, 160, 160, .2);
     font-weight: 700;
 }
 
 .markdown-body table th, .markdown-body table td {
     padding: .5em 1.5em;
-    border: .5px solid rgba(128, 128, 128, .5);
+    border: .5px solid rgba(160, 160, 160, .5);
 }
