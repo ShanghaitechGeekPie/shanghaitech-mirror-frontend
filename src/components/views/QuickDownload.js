@@ -10,15 +10,14 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import TextField from '@mui/material/TextField'
-import DownloadIcon from '@mui/icons-material/Download'
+import { Download } from 'mdi-material-ui'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
-import Config from 'Config'
 
 export default () => {
   const [selection, setSelection] = useState()
   const { isLoading, isError, data } = useQuery('quickDownloadData', () =>
-    fetch(Config.serverUrl + '/downloads').then(async (data) => await data.json())
+    fetch('/downloads').then(async (data) => await data.json())
   )
 
   if (isLoading) return <Loading inline />
@@ -46,10 +45,10 @@ export default () => {
                 <Button
                   edge="end"
                   variant="outlined"
-                  startIcon={<DownloadIcon />}
+                  startIcon={<Download />}
                   rel="noopener"
                   target="_blank"
-                  href={Config.serverUrl + item.link}
+                  href={item.link}
                   sx={{ minWidth: "96px", marginLeft: 1 }}
                 >
                   下载

@@ -77,11 +77,6 @@ module.exports = {
       format: `:msg [:bar] ${chalk.green.bold(":percent")} (:elapsed s)`,
     })
   ],
-  externals: {
-    'Config': JSON.stringify({
-      serverUrl: "https://mirrors.shanghaitech.edu.cn"
-    })
-  },
   cache: {
     type: "filesystem"
   }

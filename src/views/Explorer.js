@@ -8,7 +8,6 @@ import Link from '@mui/material/Link'
 import Table from '@/components/global/Table'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
-import Config from 'Config'
 
 const formatFileSize = (size) => {
   var sizes = [' Bytes', ' KiB', ' MiB', ' GiB'];
@@ -41,7 +40,7 @@ const generateNameLink = (name, type) => (
 export default () => {
   const location = useLocation()
   const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () =>
-    fetch(Config.serverUrl + '/api/v1' + location.pathname).then(async (data) => {
+    fetch('/api/v1' + location.pathname).then(async (data) => {
       let result = [], content = await data.json()
       result.push({
         name: (

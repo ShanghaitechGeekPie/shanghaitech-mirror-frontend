@@ -101,17 +101,17 @@ export default () => {
           label="HTTPS"
         />
       </Grid>
-      <Grid item xs={12}>
-        {/* Word break of mobile screen for better reading experience */}
-        <Box className={styles.wordBreak}>
-          <Box className="markdown-body" dangerouslySetInnerHTML={{ __html: parseMarkdown(resultText) }} />
-        </Box>
-      </Grid>
       {shouldShowDebSrcInfo &&
         <Grid item xs={12}>
           <Alert variant="filled" severity="info">源码库默认被禁用以提高同步速度，您可以取消注释以启用之！</Alert>
         </Grid>
       }
+      <Grid item xs={12}>
+        {/* Word break of mobile screen to enhance reading experience */}
+        <Box className={styles.wordBreak}>
+          <Box className="markdown-body" dangerouslySetInnerHTML={{ __html: parseMarkdown(resultText) }} />
+        </Box>
+      </Grid>
     </Grid>
   )
 }

@@ -4,7 +4,7 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
-import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled'
+import { Clock } from 'mdi-material-ui'
 import MarkdownIt from 'markdown-it'
 import pangu from 'markdown-it-pangu'
 import prism from 'markdown-it-prism'
@@ -31,7 +31,7 @@ export default () => {
         {news[id].title}
       </Typography>
       <Stack direction="row" spacing={2} sx={{ justifyContent: "center", marginBottom: 3 }}>
-        <AccessTimeFilledIcon fontSize="small" />
+        <Clock fontSize="small" />
         <Typography
           variant="body1"
           sx={{ textAlign: 'center', fontWeight: 'bold' }}
@@ -40,7 +40,7 @@ export default () => {
         </Typography>
       </Stack>
       <Card elevation={3} sx={{ px: { lg: 1 } }}>
-        <CardContent className="markdown-body" dangerouslySetInnerHTML={{ __html: getPostContent(id) }} />
+        <CardContent className="markdown-body" sx={{ marginTop: 2 }} dangerouslySetInnerHTML={{ __html: getPostContent(id) }} />
       </Card>
     </Container>
   )

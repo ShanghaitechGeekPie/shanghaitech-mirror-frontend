@@ -19,7 +19,7 @@ const getHelpContent = () => {
 export default () => (
   <Container maxWidth="lg">
     <Card elevation={3} sx={{ px: { lg: 1 } }}>
-      <CardContent className="markdown-body" dangerouslySetInnerHTML={{ __html: getHelpContent() }} />
+      <CardContent className="markdown-body" sx={{ marginTop: 2 }} dangerouslySetInnerHTML={{ __html: getHelpContent() }} />
     </Card>
   </Container>
 )

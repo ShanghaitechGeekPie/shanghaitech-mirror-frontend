@@ -17,15 +17,13 @@ import DialogContent from '@mui/material/DialogContent'
 import Divider from '@mui/material/Divider'
 import Slide from '@mui/material/Slide'
 import IconButton from '@mui/material/IconButton'
-import CloseIcon from '@mui/icons-material/Close'
-import LinkIcon from '@mui/icons-material/Link'
-import CodeIcon from '@mui/icons-material/Code'
+import { Close, Link, CodeTags } from 'mdi-material-ui'
 import QuickDownload from '@/components/views/QuickDownload'
 import ConfigurationGenerator from '@/components/views/ConfigurationGenerator'
 
 const tools = [
-  { "title": "获取下载链接", "component": <QuickDownload />, "icon": <LinkIcon /> },
-  { "title": "生成配置文件", "component": <ConfigurationGenerator />, "icon": <CodeIcon /> }
+  { "title": "获取下载链接", "component": <QuickDownload />, "icon": <Link /> },
+  { "title": "生成配置文件", "component": <ConfigurationGenerator />, "icon": <CodeTags /> }
 ]
 
 const Transition = forwardRef((props, ref) => {
@@ -74,7 +72,7 @@ export default () => {
                 onClick={handleCloseDialog}
                 sx={{ marginRight: 2 }}
               >
-                <CloseIcon />
+                <Close />
               </IconButton>
               {dialogData.title}
             </Toolbar>

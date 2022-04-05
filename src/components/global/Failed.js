@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
-import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied'
+import { EmoticonSadOutline } from 'mdi-material-ui'
 
 export default ({ inline, button }) => {
   const location = useLocation()
@@ -17,7 +17,7 @@ export default ({ inline, button }) => {
     >
       <Fade in={true} {...{ timeout: 1000 }}>
         <Box sx={{ mx: 'auto', textAlign: 'center', paddingY: inline ? 6 : 8 }}>
-          <SentimentDissatisfiedIcon color="primary" sx={{ fontSize: "5rem", marginBottom: 4 }} />
+          <EmoticonSadOutline color="primary" sx={{ fontSize: "5rem", marginBottom: 4 }} />
           <Typography
             component="div"
             variant="h5"
