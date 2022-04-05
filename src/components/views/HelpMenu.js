@@ -4,8 +4,7 @@ import List from '@mui/material/List'
 import Collapse from '@mui/material/Collapse'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
-import ExpandLess from '@mui/icons-material/ExpandLess'
-import ExpandMore from '@mui/icons-material/ExpandMore'
+import { ChevronUp, ChevronDown } from 'mdi-material-ui'
 
 const getHelpMenu = () => {
   const data = {
@@ -36,7 +35,7 @@ export default ({ handleDrawerToggle }) => {
       <List component="div">
         <ListItemButton variant="drawer" onClick={doOpenSystem}>
           <ListItemText variant="button" primary="System" disableTypography />
-          {openSystem ? <ExpandLess /> : <ExpandMore />}
+          {openSystem ? <ChevronUp /> : <ChevronDown />}
         </ListItemButton>
         <Collapse in={openSystem} timeout="auto" unmountOnExit>
           <List component="div">
@@ -56,7 +55,7 @@ export default ({ handleDrawerToggle }) => {
         </Collapse>
         <ListItemButton variant="drawer" onClick={doOpenSoftware}>
           <ListItemText variant="button" primary="Software" disableTypography />
-          {openSoftware ? <ExpandLess /> : <ExpandMore />}
+          {openSoftware ? <ChevronUp /> : <ChevronDown />}
         </ListItemButton>
         <Collapse in={openSoftware} timeout="auto" unmountOnExit>
           <List component="div">

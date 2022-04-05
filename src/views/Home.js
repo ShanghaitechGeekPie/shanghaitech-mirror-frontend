@@ -8,10 +8,7 @@ import Paper from '@mui/material/Paper'
 import Chip from '@mui/material/Chip'
 import Link from '@mui/material/Link'
 import IconButton from '@mui/material/IconButton'
-import DoneIcon from '@mui/icons-material/Done'
-import SyncIcon from '@mui/icons-material/Sync'
-import CloseIcon from '@mui/icons-material/Close'
-import HelpIcon from '@mui/icons-material/Help'
+import { Check, Sync, Close, Help } from 'mdi-material-ui'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
 import Table from '@/components/global/Table'
@@ -19,7 +16,6 @@ import Title from '@/components/views/HomeTitle'
 import News from '@/components/views/HomeNews'
 import Tools from '@/components/views/HomeTools'
 import Links from '@/components/views/HomeLinks'
-import Config from 'Config'
 
 const helpData = require("@/assets/config/help.json")
 
@@ -35,7 +31,7 @@ const generateNameLink = (name) => (
         to={"/help/" + name}
         aria-label={"Help for " + name}
       >
-        <HelpIcon fontSize="inherit" />
+        <Help fontSize="inherit" />
       </IconButton>
     }
   </>
@@ -43,14 +39,14 @@ const generateNameLink = (name) => (
 
 const generateStatus = (ifIdle, ifSuccess) => {
   if (ifIdle)
-    if (ifSuccess) return <Chip icon={<DoneIcon />} label="同步成功" size="small" color="success" />
-    else return <Chip icon={<CloseIcon />} label="同步失败" size="small" color="warning" />
-  else return <Chip icon={<SyncIcon />} label="正在同步" size="small" color="info" />
+    if (ifSuccess) return <Chip icon={<Check />} label="同步成功" size="small" color="success" />
+    else return <Chip icon={<Close />} label="同步失败" size="small" color="warning" />
+  else return <Chip icon={<Sync />} label="正在同步" size="small" color="info" />
 }
 
 export default () => {
   const { isLoading, isError, data } = useQuery('summaryData', () =>
-    fetch(Config.serverUrl + '/summary').then(async (data) => {
+    fetch('/summary').then(async (data) => {
       const { WorkerStatus } = await data.json(), result = []
       for (let key in WorkerStatus) {
         const value = WorkerStatus[key]

@@ -17,10 +17,7 @@ import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import MenuIcon from '@mui/icons-material/Menu'
-import HomeIcon from '@mui/icons-material/Home'
-import HelpCenterIcon from '@mui/icons-material/HelpCenter'
-import InfoIcon from '@mui/icons-material/Info'
+import { Menu, Home, HelpBox, Information } from 'mdi-material-ui'
 import HelpMenu from '@/components/views/HelpMenu'
 import Router from '@/router/index'
 
@@ -41,9 +38,9 @@ const queryClient = new QueryClient({
 const drawerWidth = 300
 
 const navLinks = [
-  { name: "Home", link: "/", icon: <HomeIcon /> },
-  { name: "Help", link: "/help", icon: <HelpCenterIcon /> },
-  { name: "About", link: "/about", icon: <InfoIcon /> }
+  { name: "Home", link: "/", icon: <Home /> },
+  { name: "Help", link: "/help", icon: <HelpBox /> },
+  { name: "About", link: "/about", icon: <Information /> }
 ]
 
 const Main = styled('main')(({ theme, open }) => ({
@@ -103,7 +100,7 @@ export default () => {
           <AppBar position="fixed">
             <Toolbar>
               <IconButton onClick={handleDrawerToggle} sx={{ marginRight: 3 }} aria-label="Open Drawer">
-                <MenuIcon sx={{ color: "white" }} />
+                <Menu sx={{ color: "white" }} />
               </IconButton>
               <Typography variant="h6" component="div">Geekpie Open Source Mirror</Typography>
             </Toolbar>

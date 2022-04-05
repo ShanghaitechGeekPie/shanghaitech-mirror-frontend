@@ -73,7 +73,7 @@ export default () => {
         </Grid>
         <Grid item xs={12} md={8}>
           <Card elevation={3}>
-            <CardContent className="markdown-body" dangerouslySetInnerHTML={{ __html: getAboutContent() }} />
+            <CardContent className="markdown-body" sx={{ marginTop: 2 }} dangerouslySetInnerHTML={{ __html: getAboutContent() }} />
           </Card>
         </Grid>
       </Grid>

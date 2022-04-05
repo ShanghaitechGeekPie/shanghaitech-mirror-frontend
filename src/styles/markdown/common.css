@@ -1,9 +1,15 @@
+.markdown-body h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
 .markdown-body strong {
     font-weight: 700;
 }
 
 .markdown-body p {
     margin: 0;
+    margin-bottom: 16px;
     line-height: 1.8em;
 }
 
@@ -77,7 +83,7 @@
     width: max-content;
     max-width: 100%;
     overflow: auto;
-    margin: 20px 0;
+    margin-bottom: 16px;
     color: #5f5f5f;
     border-radius: 4px;
     box-shadow: 0 0 0 1px #d8d8d8;

@@ -8,8 +8,7 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
-import MoodOutlinedIcon from '@mui/icons-material/MoodOutlined'
-import ThumbDownAltIcon from '@mui/icons-material/ThumbDownAlt'
+import { EmoticonOutline, ThumbDownOutline } from 'mdi-material-ui'
 
 export default () => {
   const news = require("@/assets/config/news.json")
@@ -21,8 +20,8 @@ export default () => {
     })
   }
   const icons = {
-    "smile": <MoodOutlinedIcon color="secondary" />,
-    "downtime": <ThumbDownAltIcon color="error" />
+    "smile": <EmoticonOutline color="secondary" />,
+    "downtime": <ThumbDownOutline color="error" />
   }
 
   return (
