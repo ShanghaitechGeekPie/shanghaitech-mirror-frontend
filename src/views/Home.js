@@ -8,7 +8,7 @@ import Paper from '@mui/material/Paper'
 import Chip from '@mui/material/Chip'
 import Link from '@mui/material/Link'
 import IconButton from '@mui/material/IconButton'
-import { Check, Sync, Close, Help } from 'mdi-material-ui'
+import { Check, Sync, Close, HelpCircle } from 'mdi-material-ui'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
 import Table from '@/components/global/Table'
@@ -31,7 +31,7 @@ const generateNameLink = (name) => (
         to={"/help/" + name}
         aria-label={"Help for " + name}
       >
-        <Help fontSize="inherit" />
+        <HelpCircle fontSize="inherit" />
       </IconButton>
     }
   </>
@@ -46,7 +46,7 @@ const generateStatus = (ifIdle, ifSuccess) => {
 
 export default () => {
   const { isLoading, isError, data } = useQuery('summaryData', () =>
-    fetch('/summary').then(async (data) => {
+    fetch('https://mirrors.geekpie.tech/summary').then(async (data) => {
       const { WorkerStatus } = await data.json(), result = []
       for (let key in WorkerStatus) {
         const value = WorkerStatus[key]

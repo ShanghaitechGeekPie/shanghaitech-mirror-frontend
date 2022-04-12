@@ -36,6 +36,9 @@
         "opensuse": {
             "display": "openSUSE"
         },
+        "pypi": {
+            "display": "PyPI"
+        },
         "raspbian": {
             "display": "Raspbian"
         },

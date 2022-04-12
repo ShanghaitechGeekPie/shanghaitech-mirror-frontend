@@ -65,8 +65,8 @@ const Main = styled('main')(({ theme, open }) => ({
 
 export default () => {
   const location = useLocation()
-  const darkmode = useMediaQuery('(prefers-color-scheme: dark)')
-  const theme = responsiveFontSizes(createTheme(getTheme(darkmode)))
+  const darkMode = useMediaQuery('(prefers-color-scheme: dark)')
+  const theme = responsiveFontSizes(createTheme(getTheme(darkMode)))
   const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('lg'))
 
   const [drawerOpen, setDrawerOpen] = useState(false);
