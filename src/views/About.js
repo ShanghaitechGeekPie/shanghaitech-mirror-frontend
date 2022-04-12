@@ -10,11 +10,10 @@ import CardContent from '@mui/material/CardContent'
 import SvgIcon from '@mui/material/SvgIcon'
 import ShanghaiTechLogo from '@/assets/image/logo/shanghaitech.svg'
 import GeekpieLogo from '@/assets/image/logo/geekpie.svg'
-import { ReactComponent as QQIcon } from '@/assets/image/icons/qq.svg'
-import { ReactComponent as LinkIcon } from '@/assets/image/icons/link.svg'
-import { ReactComponent as EnvelopeIcon } from '@/assets/image/icons/envelope.svg'
-import { ReactComponent as GithubIcon } from '@/assets/image/icons/github.svg'
-import { ReactComponent as TelegramIcon } from '@/assets/image/icons/telegram.svg'
+import { ReactComponent as QQChat } from '@/assets/image/icons/qqchat.svg'
+import { ReactComponent as Github } from '@/assets/image/icons/github.svg'
+import { ReactComponent as Telegram } from '@/assets/image/icons/telegram.svg'
+import { LinkVariant, Email } from 'mdi-material-ui'
 import MarkdownIt from 'markdown-it'
 import pangu from 'markdown-it-pangu'
 import prism from 'markdown-it-prism'
@@ -27,15 +26,15 @@ const getAboutContent = () => {
   return parser.render(require("@/assets/content/about.md"))
 }
 
-const FontAwesomeIcon = styled(SvgIcon)({
+const BrandIcon = styled(SvgIcon)({
   boxSizing: 'content-box',
-  padding: 3,
-  fontSize: '1.125rem',
+  paddingLeft: 5,
+  fontSize: '1rem',
 })
 
-const ChipGridItem = ({ label, icon, href, viewBox }) => (
+const ChipGridItem = ({ label, icon, href }) => (
   <Grid item component={Link} href={href} underline="none" rel="noopener" target="_blank">
-    <Chip clickable variant="outlined" color="primary" icon={<FontAwesomeIcon component={icon} viewBox={viewBox} />} label={label} />
+    <Chip clickable variant="outlined" color="primary" icon={icon} label={label} />
   </Grid>
 )
 
@@ -49,12 +48,7 @@ export default () => {
             <Divider sx={{ marginBottom: 1 }} />
             <CardContent>
               <Grid container spacing={1}>
-                <ChipGridItem
-                  icon={LinkIcon}
-                  viewBox="0 0 640 512"
-                  label="ShanghaiTech IT Services"
-                  href="https://it.shanghaitech.edu.cn"
-                />
+                <ChipGridItem label="ShanghaiTech IT Services" icon={<LinkVariant sx={{ paddingLeft: "5px" }} />} href="mailto:pie@geekpie.club" />
               </Grid>
             </CardContent>
           </Card>
@@ -63,16 +57,16 @@ export default () => {
             <Divider sx={{ marginBottom: 1 }} />
             <CardContent>
               <Grid container spacing={1}>
-                <ChipGridItem label="Email" icon={EnvelopeIcon} href="mailto:pie@geekpie.club" viewBox="0 0 512 512" />
-                <ChipGridItem label="Github" icon={GithubIcon} href="https://github.com/orgs/ShanghaitechGeekPie" viewBox="0 0 496 512" />
-                <ChipGridItem label="Telegram" icon={TelegramIcon} href="https://t.me/GeekPie_mirrors" viewBox="0 0 496 512" />
-                <ChipGridItem label="QQ" icon={QQIcon} href="https://jq.qq.com/?k=UjYsRHCR" viewBox="0 0 448 512" />
+                <ChipGridItem label="Email" icon={<Email sx={{ paddingLeft: "5px" }} />} href="mailto:pie@geekpie.club" />
+                <ChipGridItem label="Github" icon={<BrandIcon component={Github} viewBox="0 0 496 512" />} href="https://github.com/orgs/ShanghaitechGeekPie" />
+                <ChipGridItem label="Telegram" icon={<BrandIcon component={Telegram} viewBox="0 0 496 512" />} href="https://t.me/GeekPie_mirrors" />
+                <ChipGridItem label="QQ" icon={<BrandIcon component={QQChat} viewBox="0 0 448 512" />} href="https://jq.qq.com/?k=UjYsRHCR" />
               </Grid>
             </CardContent>
           </Card>
         </Grid>
         <Grid item xs={12} md={8}>
-          <Card elevation={3}>
+          <Card elevation={3} sx={{ px: { lg: 1 } }}>
             <CardContent className="markdown-body" sx={{ marginTop: 2 }} dangerouslySetInnerHTML={{ __html: getAboutContent() }} />
           </Card>
         </Grid>

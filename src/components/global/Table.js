@@ -72,19 +72,17 @@ const VirtualizedTable = ({ columns, ...tableProps }) => {
               rowStyle={{ display: 'flex' }}
               {...tableProps}
             >
-              {columns.map(({ dataKey, ...columnProps }, index) => {
-                return (
-                  <Column
-                    key={dataKey}
-                    width={width}
-                    headerRenderer={(headerProps) => headerRenderer({ ...headerProps, columnIndex: index })}
-                    cellRenderer={cellRenderer}
-                    dataKey={dataKey}
-                    style={{ display: 'flex' }}
-                    {...columnProps}
-                  />
-                )
-              })}
+              {columns.map(({ dataKey, ...columnProps }, index) => (
+                <Column
+                  key={dataKey}
+                  width={width}
+                  headerRenderer={(headerProps) => headerRenderer({ ...headerProps, columnIndex: index })}
+                  cellRenderer={cellRenderer}
+                  dataKey={dataKey}
+                  style={{ display: 'flex' }}
+                  {...columnProps}
+                />
+              ))}
             </Table>
           )}
         </AutoSizer>)}

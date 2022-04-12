@@ -24,9 +24,7 @@ module.exports = merge(common, {
       filename: '[path][base].br',
       algorithm: 'brotliCompress',
       test: productionGzipExtensions,
-      compressionOptions: {
-        level: 11
-      },
+      compressionOptions: { level: 11 },
       minRatio: 0.8
     }),
     new BundleAnalyzerPlugin({
