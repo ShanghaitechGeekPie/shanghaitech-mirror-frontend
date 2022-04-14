@@ -67,6 +67,9 @@ module.exports = {
       patterns: [{
         from: path.resolve(__dirname, '../public/robots.txt'),
         to: './'
+      },{
+        from: path.resolve(__dirname, '../public/icon.svg'),
+        to: './'
       }]
     }),
     new CleanWebpackPlugin(),
