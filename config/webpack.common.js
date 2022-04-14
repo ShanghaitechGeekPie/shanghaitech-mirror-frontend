@@ -70,6 +70,9 @@ module.exports = {
       },{
         from: path.resolve(__dirname, '../public/icon.svg'),
         to: './'
+      },{
+        from: path.resolve(__dirname, '../public/icon_dark.svg'),
+        to: './'
       }]
     }),
     new CleanWebpackPlugin(),
