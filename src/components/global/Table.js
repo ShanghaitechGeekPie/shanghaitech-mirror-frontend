@@ -58,6 +58,13 @@ const VirtualizedTable = ({ columns, ...tableProps }) => {
     <WindowScroller scrollElement={window}>
       {({ height, isScrolling, onChildScroll, scrollTop }) => (
         <AutoSizer disableHeight>
+          {/*
+            There are accessibility errors due to duplicate role="rowgroup"
+            in both ReactVirtualized__Grid and ReactVirtualized__Grid__innerScrollContainer
+            which breaks the parent-child relationship between ReactVirtualized__Table__row
+            and it true parent(ReactVirtualized__Grid). It is confusing because none issue
+            of this problem mentioned in the original repository has been solved.
+          */}
           {({ width }) => (
             <Table
               autoHeight
@@ -74,18 +81,19 @@ const VirtualizedTable = ({ columns, ...tableProps }) => {
             >
               {columns.map(({ dataKey, ...columnProps }, index) => (
                 <Column
-                  key={dataKey}
                   width={width}
+                  key={dataKey}
+                  dataKey={dataKey}
                   headerRenderer={(headerProps) => headerRenderer({ ...headerProps, columnIndex: index })}
                   cellRenderer={cellRenderer}
-                  dataKey={dataKey}
                   style={{ display: 'flex' }}
                   {...columnProps}
                 />
               ))}
             </Table>
           )}
-        </AutoSizer>)}
+        </AutoSizer>
+      )}
     </WindowScroller>
   )
 }

@@ -1,6 +1,5 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ProgressBarPlugin = require("progress-bar-webpack-plugin")
 const { IgnorePlugin } = require('webpack')
 const path = require('path')
@@ -62,18 +61,6 @@ module.exports = {
         removeAttributeQuotes: true,
         collapseWhitespace: true
       }
-    }),
-    new CopyWebpackPlugin({
-      patterns: [{
-        from: path.resolve(__dirname, '../public/robots.txt'),
-        to: './'
-      },{
-        from: path.resolve(__dirname, '../public/icon.svg'),
-        to: './'
-      },{
-        from: path.resolve(__dirname, '../public/icon_dark.svg'),
-        to: './'
-      }]
     }),
     new CleanWebpackPlugin(),
     new IgnorePlugin({
