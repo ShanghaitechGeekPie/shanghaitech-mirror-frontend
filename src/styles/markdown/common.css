@@ -22,11 +22,17 @@
 }
 
 .markdown-body a {
-    color: #d32f2f;
+    color: #b71c1c;
     -webkit-text-decoration: none;
     text-decoration: none;
     font-weight: 700;
     letter-spacing: .5px;
+}
+
+@media(prefers-color-scheme: dark) {
+	.markdown-body a {
+        color: #d32f2f;
+    }
 }
 
 .markdown-body a :hover {

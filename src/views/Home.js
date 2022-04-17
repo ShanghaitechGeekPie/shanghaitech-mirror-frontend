@@ -46,7 +46,7 @@ const generateStatus = (ifIdle, ifSuccess) => {
 
 export default () => {
   const { isLoading, isError, data } = useQuery('summaryData', () =>
-    fetch('https://mirrors.geekpie.tech/summary').then(async (data) => {
+    fetch('/summary').then(async (data) => {
       const { WorkerStatus } = await data.json(), result = []
       for (let key in WorkerStatus) {
         const value = WorkerStatus[key]
