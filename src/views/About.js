@@ -38,39 +38,37 @@ const ChipGridItem = ({ label, icon, href }) => (
   </Grid>
 )
 
-export default () => {
-  return (
-    <Container maxWidth="lg">
-      <Grid container alignItems="flex" spacing={4}>
-        <Grid item xs={12} md={4}>
-          <Card elevation={3} sx={{ marginBottom: 4 }}>
-            <CardMedia component="img" image={ShanghaiTechLogo} />
-            <Divider sx={{ marginBottom: 1 }} />
-            <CardContent>
-              <Grid container spacing={1}>
-                <ChipGridItem label="ShanghaiTech IT Services" icon={<LinkVariant sx={{ paddingLeft: "5px" }} />} href="mailto:pie@geekpie.club" />
-              </Grid>
-            </CardContent>
-          </Card>
-          <Card elevation={3}>
-            <CardMedia component="img" image={GeekpieLogo} />
-            <Divider sx={{ marginBottom: 1 }} />
-            <CardContent>
-              <Grid container spacing={1}>
-                <ChipGridItem label="Email" icon={<Email sx={{ paddingLeft: "5px" }} />} href="mailto:pie@geekpie.club" />
-                <ChipGridItem label="Github" icon={<BrandIcon component={Github} viewBox="0 0 496 512" />} href="https://github.com/orgs/ShanghaitechGeekPie" />
-                <ChipGridItem label="Telegram" icon={<BrandIcon component={Telegram} viewBox="0 0 496 512" />} href="https://t.me/GeekPie_mirrors" />
-                <ChipGridItem label="QQ" icon={<BrandIcon component={QQChat} viewBox="0 0 448 512" />} href="https://jq.qq.com/?k=UjYsRHCR" />
-              </Grid>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <Card elevation={3} sx={{ px: { lg: 1 } }}>
-            <CardContent className="markdown-body" sx={{ marginTop: 2 }} dangerouslySetInnerHTML={{ __html: getAboutContent() }} />
-          </Card>
-        </Grid>
+export default () => (
+  <Container maxWidth="lg">
+    <Grid container alignItems="flex" spacing={4}>
+      <Grid item xs={12} md={4}>
+        <Card elevation={3} sx={{ marginBottom: 4 }}>
+          <CardMedia component="img" image={ShanghaiTechLogo} />
+          <Divider sx={{ marginBottom: 1 }} />
+          <CardContent>
+            <Grid container spacing={1}>
+              <ChipGridItem label="ShanghaiTech IT Services" icon={<LinkVariant sx={{ paddingLeft: "5px" }} />} href="mailto:pie@geekpie.club" />
+            </Grid>
+          </CardContent>
+        </Card>
+        <Card elevation={3}>
+          <CardMedia component="img" image={GeekpieLogo} />
+          <Divider sx={{ marginBottom: 1 }} />
+          <CardContent>
+            <Grid container spacing={1}>
+              <ChipGridItem label="Email" icon={<Email sx={{ paddingLeft: "5px" }} />} href="mailto:pie@geekpie.club" />
+              <ChipGridItem label="Github" icon={<BrandIcon component={Github} viewBox="0 0 496 512" />} href="https://github.com/orgs/ShanghaitechGeekPie" />
+              <ChipGridItem label="Telegram" icon={<BrandIcon component={Telegram} viewBox="0 0 496 512" />} href="https://t.me/GeekPie_mirrors" />
+              <ChipGridItem label="QQ" icon={<BrandIcon component={QQChat} viewBox="0 0 448 512" />} href="https://jq.qq.com/?k=UjYsRHCR" />
+            </Grid>
+          </CardContent>
+        </Card>
       </Grid>
-    </Container>
-  )
-}
+      <Grid item xs={12} md={8}>
+        <Card elevation={3} sx={{ px: { lg: 1 } }}>
+          <CardContent className="markdown-body" sx={{ marginTop: 2 }} dangerouslySetInnerHTML={{ __html: getAboutContent() }} />
+        </Card>
+      </Grid>
+    </Grid>
+  </Container>
+)
