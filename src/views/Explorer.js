@@ -64,7 +64,7 @@ export default () => {
   const [generatedPage, setGeneratedPage] = useState()
 
   const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () =>
-    fetch('https://mirrors.geekpie.tech/api/v1' + location.pathname).then(async (data) => {
+    fetch('/api/v1' + location.pathname).then(async (data) => {
       const result = await data.json()
       setFileData(result)
       return result
@@ -115,11 +115,11 @@ export default () => {
   }
 
   useEffect(handleSearchText, [searchText])
-  
+
   useEffect(() => {
     initialGeneratePage.current ? setGeneratedPage(generatePage(fileData)) : initialGeneratePage.current = true
   }, [fileData])
-  
+
   return (
     <Container maxWidth="lg">
       <Grid container spacing={2} sx={{ marginTop: { lg: 4 }, marginBottom: 2 }}>
@@ -128,26 +128,28 @@ export default () => {
             {"Index of: " + location.pathname}
           </Typography>
         </Grid>
-        <Grid item sm={3} xs={12} container>
-          <TextField
-            fullWidth
-            size="small"
-            variant="outlined"
-            value={searchText}
-            error={isRegExpError}
-            helperText={isRegExpError && "Invalid regexp pattern!"}
-            placeholder="Search something..."
-            onChange={(event) => { setSearchText(event.target.value) }}
-            InputProps={{
-              endAdornment:
-                <InputAdornment position="end">
-                  <IconButton onClick={handleRegExpMode} edge="end">
-                    <CodeJson color={regExpMode ? "primary" : "default"} />
-                  </IconButton>
-                </InputAdornment>
-            }}
-          />
-        </Grid>
+        {!isLoading && !isError &&
+          <Grid item sm={3} xs={12} container>
+            <TextField
+              fullWidth
+              size="small"
+              variant="outlined"
+              value={searchText}
+              error={isRegExpError}
+              helperText={isRegExpError && "Invalid regexp pattern!"}
+              placeholder="Search something..."
+              onChange={(event) => { setSearchText(event.target.value) }}
+              InputProps={{
+                endAdornment:
+                  <InputAdornment position="end">
+                    <IconButton onClick={handleRegExpMode} edge="end">
+                      <CodeJson color={regExpMode ? "primary" : "default"} />
+                    </IconButton>
+                  </InputAdornment>
+              }}
+            />
+          </Grid>
+        }
       </Grid>
       {isLoading ? <Loading /> :
         (isError ? <Failed button /> :

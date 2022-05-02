@@ -8,8 +8,8 @@ It is the frontend of the ShanghaiTech Open Source Mirror.
 - Search bar (Standard mode / RegRex mode)
 - Quick Downloader & Configuration Generator
 - High performance in rendering large list page (e.g. /archlinux/community/os/x86_64/)
-  - PKU Mirror: 12045ms
-  - Geekpie Mirror: 182ms
+    - PKU Mirror: 12045ms
+    - Geekpie Mirror: 182ms
 - More and more...
 
 

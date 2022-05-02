@@ -57,7 +57,7 @@ export default (darkMode) => ({
           borderRadius: "8px",
           marginLeft: "8px",
           marginRight: "8px",
-          marginBottom: "6px",
+          marginBottom: "8px",
           paddingTop: "8px",
           paddingBottom: "8px",
           paddingLeft: "16px",
