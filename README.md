@@ -2,7 +2,18 @@
 
 It is the frontend of the ShanghaiTech Open Source Mirror.
 
-### How to use
+## Features
+
+- Single page application (Frontend routing)
+- Search bar (Standard mode / RegRex mode)
+- Quick Downloader & Configuration Generator
+- High preferformance in large list page (e.g. /archlinux/community/os/x86_64/)
+  - PKU Mirror: 12045ms
+  - Geekpie Mirror: 182ms
+- More and more...
+
+
+## How to use
 
 Fetch the dependencies.
 
