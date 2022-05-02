@@ -33,7 +33,7 @@
     "react": "^18.1.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^18.1.0",
-    "react-query": "^3.38.0",
+    "react-query": "^3.38.1",
     "react-router-dom": "^6.3.0",
     "react-virtualized": "^9.22.3",
     "style-loader": "^3.3.1",

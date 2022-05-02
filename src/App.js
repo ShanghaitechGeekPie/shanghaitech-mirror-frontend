@@ -69,10 +69,8 @@ export default () => {
   const theme = responsiveFontSizes(createTheme(getTheme(darkMode)))
   const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('lg'))
 
-  const [drawerOpen, setDrawerOpen] = useState(false);
-  const handleDrawerToggle = () => {
-    setDrawerOpen(!drawerOpen);
-  }
+  const [showDrawer, setShowDrawer] = useState(false)
+  const handleDrawerToggle = () => setShowDrawer(!showDrawer)
 
   const NavItems = (
     <List sx={{ marginTop: 1 }}>
@@ -82,7 +80,7 @@ export default () => {
           key={item.name}
           variant="drawer"
           to={item.link}
-          onClick={handleDrawerToggle}
+          onClick={isMobileScreen && handleDrawerToggle}
           selected={location.pathname == item.link}
         >
           <ListItemIcon>{item.icon}</ListItemIcon>
@@ -108,7 +106,7 @@ export default () => {
           <Box sx={{ width: { sm: drawerWidth } }}>
             <Drawer
               variant={isMobileScreen ? "temporary" : "persistent"}
-              open={drawerOpen}
+              open={showDrawer}
               onClose={handleDrawerToggle}
               ModalProps={{ keepMounted: true }}
               sx={{ '& .drawer-paper': { boxSizing: 'border-box', width: drawerWidth } }}
@@ -122,7 +120,7 @@ export default () => {
               </Scrollbars>
             </Drawer>
           </Box>
-          <Main open={drawerOpen}>
+          <Main open={showDrawer}>
             <Toolbar />
             <Router />
           </Main>
