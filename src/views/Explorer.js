@@ -17,31 +17,23 @@ import Failed from '@/components/global/Failed'
 import { CodeJson } from 'mdi-material-ui'
 
 const formatFileSize = (size) => {
-  var sizes = [' Bytes', ' KiB', ' MiB', ' GiB'];
+  var sizes = [' Bytes', ' KiB', ' MiB', ' GiB']
   for (let index = 0; index < sizes.length; index++)
     if (size < Math.pow(1024, index + 1))
       return (Math.round((size / Math.pow(1024, index)) * 100) / 100) + sizes[index]
-  return size;
+  return size
 }
 
 const generateNameLink = (name, type) => (
-  type == "directory" ?
-    <Link
-      component={RouterLink}
-      sx={{ fontWeight: 'medium' }}
-      underline="none" to={location.pathname + name + "/"}
-    >
-      {name + "/"}
-    </Link> :
-    <Link
-      component={RouterLink}
-      sx={{ fontWeight: 'medium' }}
-      to={location.pathname + name}
-      underline="none"
-      target="_blank"
-    >
-      {name}
-    </Link>
+  <Link
+    underline="none"
+    component={RouterLink}
+    sx={{ fontWeight: 'medium' }}
+    target={type == "directory" ? "" : "_blank"}
+    to={location.pathname + name + (type == "directory" ? "/" : "")}
+  >
+    {name + (type == "directory" ? "/" : "")}
+  </Link>
 )
 
 const useDebounce = (callback, delay) => {
@@ -61,49 +53,39 @@ export default () => {
   const [searchText, setSearchText] = useState("")
   const [regExpMode, setRegExpMode] = useState(false)
   const [isRegExpError, setIsRegExpError] = useState(false)
-  const [fileData, setFileData] = useState()
+  const [filteredData, setFilteredData] = useState()
   const [generatedPage, setGeneratedPage] = useState()
 
   const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () =>
-    fetch('/api/v1' + location.pathname).then(async (data) => {
-      const result = await data.json()
-      setFileData(result)
-      return result
-    })
+    fetch('/api/v1' + location.pathname).then(async (data) => await data.json())
   )
+
+  const handleData = () => { if (data) setFilteredData(data) }
 
   const handleRegExpMode = () => {
     handleSearchText()
     setRegExpMode(!regExpMode)
   }
 
-  const handleFileData = () => {
+  const handleFilteredData = () => {
     if (initialGeneratePage.current)
-      setGeneratedPage(generatePage(fileData))
+      setGeneratedPage(generatePage(filteredData))
     else initialGeneratePage.current = true
   }
 
   const handleSearchText = useDebounce(() => {
-    const getResult = (regexp) => {
-      let result = []
-      data.forEach((item) => { if (item.name.match(regexp)) result.push(item) })
-      return result
+    const getResult = (regexp) => data.filter((item) => item.name.match(regexp))
+    if (!initialSearchText.current) initialSearchText.current = true
+    else if (!regExpMode) setFilteredData(getResult(new RegExp(searchText, 'i')))
+    else {
+      try { eval(searchText) } catch { setIsRegExpError(true); return }
+      setIsRegExpError(false)
+      setFilteredData(getResult(eval(searchText)))
     }
-    if (initialSearchText.current) {
-      if (regExpMode) {
-        let isValidRegExp = true
-        try { eval(searchText) } catch { isValidRegExp = false }
-        if (isValidRegExp) {
-          setIsRegExpError(false)
-          setFileData(getResult(eval(searchText)))
-        }
-        else setIsRegExpError(true)
-      }
-      else setFileData(getResult(new RegExp(searchText, 'i')))
-    } else initialSearchText.current = true
   }, 100)
 
   const generatePage = () => {
+    console.log("generatePage", filteredData)
     let result = []
     const sliceIndex = location.pathname.slice(0, -1).lastIndexOf("/") + 1
     const lastPageLink = location.pathname.slice(0, sliceIndex)
@@ -112,7 +94,7 @@ export default () => {
       update: "-",
       size: "-"
     })
-    fileData.forEach((value) => result.push({
+    filteredData.forEach((value) => result.push({
       name: generateNameLink(value.name, value.type),
       update: format(value.mtime, 'zh_CN'),
       size: value.type == "directory" ? "-" : formatFileSize(value.size)
@@ -120,7 +102,8 @@ export default () => {
     return result
   }
 
-  useEffect(handleFileData, [fileData])
+  useEffect(handleData, [data])
+  useEffect(handleFilteredData, [filteredData])
   useEffect(handleSearchText, [searchText])
 
   return (

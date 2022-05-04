@@ -28,6 +28,7 @@ Both email and Github Issue are accessible. Feel free to join our Telegram group
 
 - A more modern home page
 - Animations and transitions
+- Multiple languages
 
 ### Others
 
