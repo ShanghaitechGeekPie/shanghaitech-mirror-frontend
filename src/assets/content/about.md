@@ -12,7 +12,9 @@ Both email and Github Issue are accessible. Feel free to join our Telegram group
 
 ### Source Code 源码
 
-[Gitlab](https://gitlab.isp.moe/geekpie/shanghaitech-mirror-frontend)
+[Github](https://github.com/ShanghaitechGeekPie/shanghaitech-mirror-frontend)
+
+[Gitlab（仅校内）](https://gitlab.isp.moe/geekpie/shanghaitech-mirror-frontend)
 
 ### Special thanks to 特别鸣谢
 
