@@ -7,6 +7,7 @@ import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Link from '@mui/material/Link'
+import Tooltip from '@mui/material/Tooltip'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
@@ -76,26 +77,31 @@ export default () => {
     setRegExpMode(!regExpMode)
   }
 
+  const handleFileData = () => {
+    if (initialGeneratePage.current)
+      setGeneratedPage(generatePage(fileData))
+    else initialGeneratePage.current = true
+  }
+
   const handleSearchText = useDebounce(() => {
-    if (initialSearchText.current) {
+    const getResult = (regexp) => {
       let result = []
+      data.forEach((item) => { if (item.name.match(regexp)) result.push(item) })
+      return result
+    }
+    if (initialSearchText.current) {
       if (regExpMode) {
         let isValidRegExp = true
         try { eval(searchText) } catch { isValidRegExp = false }
         if (isValidRegExp) {
           setIsRegExpError(false)
-          data.forEach((item) => {
-            if (item.name.match(eval(searchText))) result.push(item)
-          })
+          setFileData(getResult(eval(searchText)))
         }
         else setIsRegExpError(true)
       }
-      else data.forEach((item) => {
-        if (item.name.match(new RegExp(searchText, 'i'))) result.push(item)
-      })
-      setFileData(result)
+      else setFileData(getResult(new RegExp(searchText, 'i')))
     } else initialSearchText.current = true
-  }, 200)
+  }, 100)
 
   const generatePage = () => {
     let result = []
@@ -114,11 +120,8 @@ export default () => {
     return result
   }
 
+  useEffect(handleFileData, [fileData])
   useEffect(handleSearchText, [searchText])
-
-  useEffect(() => {
-    initialGeneratePage.current ? setGeneratedPage(generatePage(fileData)) : initialGeneratePage.current = true
-  }, [fileData])
 
   return (
     <Container maxWidth="lg">
@@ -142,9 +145,11 @@ export default () => {
               InputProps={{
                 endAdornment:
                   <InputAdornment position="end">
-                    <IconButton onClick={handleRegExpMode} edge="end">
-                      <CodeJson color={regExpMode ? "primary" : "default"} />
-                    </IconButton>
+                    <Tooltip title="Use RegExp">
+                      <IconButton onClick={handleRegExpMode} edge="end">
+                        <CodeJson color={regExpMode ? "primary" : "default"} />
+                      </IconButton>
+                    </Tooltip>
                   </InputAdornment>
               }}
             />

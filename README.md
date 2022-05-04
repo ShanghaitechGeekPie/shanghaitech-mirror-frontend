@@ -5,7 +5,7 @@ It is the frontend of the ShanghaiTech Open Source Mirror.
 ## Features
 
 - Single page application (Frontend routing)
-- Search bar (Standard mode / RegRex mode)
+- Search bar (Simple mode / RegExp mode)
 - Quick Downloader & Configuration Generator
 - High performance in rendering large list page (e.g. /archlinux/community/os/x86_64/)
     - PKU Mirror: 12045ms
