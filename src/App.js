@@ -82,7 +82,7 @@ export default () => {
           key={item.name}
           variant="drawer"
           to={item.link}
-          onClick={isMobileScreen && handleDrawerToggle}
+          onClick={isMobileScreen ? handleDrawerToggle : null}
           selected={location.pathname == item.link}
         >
           <ListItemIcon>{item.icon}</ListItemIcon>

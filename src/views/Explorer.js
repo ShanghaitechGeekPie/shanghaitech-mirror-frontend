@@ -29,7 +29,7 @@ const generateNameLink = (name, type) => (
     underline="none"
     component={RouterLink}
     sx={{ fontWeight: 'medium' }}
-    target={type == "directory" ? "" : "_blank"}
+    target={type == "directory" ? null : "_blank"}
     to={location.pathname + name + (type == "directory" ? "/" : "")}
   >
     {name + (type == "directory" ? "/" : "")}
@@ -50,17 +50,23 @@ export default () => {
   const initialSearchText = useRef(false)
   const initialGeneratePage = useRef(false)
 
+  const [isLoading, setIsLoading] = useState(true)
   const [searchText, setSearchText] = useState("")
   const [regExpMode, setRegExpMode] = useState(false)
   const [isRegExpError, setIsRegExpError] = useState(false)
   const [filteredData, setFilteredData] = useState()
   const [generatedPage, setGeneratedPage] = useState()
 
-  const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () =>
+  const { isError, data } = useQuery(['explorerData', { path: location.pathname }], () =>
     fetch('/api/v1' + location.pathname).then(async (data) => await data.json())
   )
 
-  const handleData = () => { if (data) setFilteredData(data) }
+  const handleData = () => { 
+    if (data) {
+      setFilteredData(data)
+      setIsLoading(false)
+    }
+  }
 
   const handleRegExpMode = () => {
     handleSearchText()
@@ -68,9 +74,8 @@ export default () => {
   }
 
   const handleFilteredData = () => {
-    if (initialGeneratePage.current)
-      setGeneratedPage(generatePage(filteredData))
-    else initialGeneratePage.current = true
+    if (!initialGeneratePage.current) initialGeneratePage.current = true
+    else setGeneratedPage(generatePage(filteredData))
   }
 
   const handleSearchText = useDebounce(() => {
@@ -85,7 +90,6 @@ export default () => {
   }, 100)
 
   const generatePage = () => {
-    console.log("generatePage", filteredData)
     let result = []
     const sliceIndex = location.pathname.slice(0, -1).lastIndexOf("/") + 1
     const lastPageLink = location.pathname.slice(0, sliceIndex)
@@ -130,7 +134,7 @@ export default () => {
                   <InputAdornment position="end">
                     <Tooltip title="Use RegExp">
                       <IconButton onClick={handleRegExpMode} edge="end">
-                        <CodeJson color={regExpMode ? "primary" : "default"} />
+                        <CodeJson fontSize="small" color={regExpMode ? "primary" : "default"} />
                       </IconButton>
                     </Tooltip>
                   </InputAdornment>

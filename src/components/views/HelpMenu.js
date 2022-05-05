@@ -46,7 +46,7 @@ export default ({ handleDrawerToggle }) => {
                 key={item.key}
                 variant="drawer"
                 to={'/help/' + item.key}
-                onClick={isMobileScreen && handleDrawerToggle}
+                onClick={isMobileScreen ? handleDrawerToggle : null}
                 selected={location.pathname == '/help/' + item.key}
               >
                 <ListItemText variant="button" inset primary={item.title} disableTypography />
@@ -66,7 +66,7 @@ export default ({ handleDrawerToggle }) => {
                 key={item.key}
                 variant="drawer"
                 to={'/help/' + item.key}
-                onClick={isMobileScreen && handleDrawerToggle}
+                onClick={isMobileScreen ? handleDrawerToggle : null}
                 selected={location.pathname == '/help/' + item.key}
               >
                 <ListItemText variant="button" inset primary={item.title} disableTypography />
