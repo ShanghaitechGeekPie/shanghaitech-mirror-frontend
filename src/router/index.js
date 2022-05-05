@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 const Home = lazy(() => import("@/views/Home"))
 const News = lazy(() => import("@/views/News"))
 const Help = lazy(() => import("@/views/Help"))
@@ -7,6 +7,7 @@ const About = lazy(() => import("@/views/About"))
 const Explorer = lazy(() => import("@/views/Explorer"))
 
 export default () => {
+  const location = useLocation()
   return (
     <Suspense fallback={<></>}>
       <Routes>
@@ -20,7 +21,7 @@ export default () => {
             <Route path=':name' element={<Help />} />
           </Route>
           <Route path='about' element={<About />} />
-          <Route path='*' element={<Explorer />} />
+          <Route path='*' element={<Explorer key={location.pathname} />} />
         </Route>
       </Routes>
     </Suspense>
