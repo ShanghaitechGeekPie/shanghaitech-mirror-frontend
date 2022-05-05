@@ -50,23 +50,17 @@ export default () => {
   const initialSearchText = useRef(false)
   const initialGeneratePage = useRef(false)
 
-  const [isLoading, setIsLoading] = useState(true)
   const [searchText, setSearchText] = useState("")
   const [regExpMode, setRegExpMode] = useState(false)
   const [isRegExpError, setIsRegExpError] = useState(false)
   const [filteredData, setFilteredData] = useState()
   const [generatedPage, setGeneratedPage] = useState()
 
-  const { isError, data } = useQuery(['explorerData', { path: location.pathname }], () =>
+  const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () =>
     fetch('/api/v1' + location.pathname).then(async (data) => await data.json())
   )
 
-  const handleData = () => { 
-    if (data) {
-      setFilteredData(data)
-      setIsLoading(false)
-    }
-  }
+  const handleData = () => { if (data) setFilteredData(data) }
 
   const handleRegExpMode = () => {
     handleSearchText()
