@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+
+Disallow: /*
+Allow: /$
+Allow: /about
+Allow: /help
+Allow: /news
