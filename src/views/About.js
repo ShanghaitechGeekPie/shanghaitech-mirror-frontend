@@ -47,7 +47,7 @@ export default () => (
           <Divider sx={{ marginBottom: 1 }} />
           <CardContent>
             <Grid container spacing={1}>
-              <ChipGridItem label="ShanghaiTech IT Services" icon={<LinkVariant sx={{ paddingLeft: "5px" }} />} href="mailto:pie@geekpie.club" />
+              <ChipGridItem label="ShanghaiTech IT Services" icon={<LinkVariant sx={{ paddingLeft: "5px" }} />} href="https://it.shanghaitech.edu.cn" />
             </Grid>
           </CardContent>
         </Card>
