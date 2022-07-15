@@ -12,11 +12,10 @@ import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MarkdownIt from "markdown-it"
 import prism from 'markdown-it-prism'
+import distributionsData from '@/assets/config/repository.json'
 import styles from '@/styles/modules/index.module.css'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
-
-const distributionsData = require("@/assets/config/repository.json")
 
 const replaceVariables = (template, version, https) => {
   let result = template.replace(/{{ PROTOCOL }}/g, https ? "https" : "http")
@@ -27,8 +26,8 @@ const replaceVariables = (template, version, https) => {
 
 const getTemplate = (distribution, version, https) => {
   const templatePath = distributionsData[distribution].seperated ? distribution + "/" + version + ".template" : distribution + ".template"
-  const templateContent = require("@/assets/content/repository/" + templatePath)
-  return replaceVariables(templateContent, version, https)
+  const content = import.meta.globEager('@/assets/content/repository/*.template', { as: "raw" })
+  for (const item in content) if (item.includes(templatePath)) return replaceVariables(content[item], version, https)
 }
 
 const parseMarkdown = (resultText) => {

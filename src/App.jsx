@@ -19,7 +19,7 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import { Menu, Home, HelpBox, Information } from 'mdi-material-ui'
 import HelpMenu from '@/components/views/HelpMenu'
-import Router from '@/router/index'
+import Router from '@/router/index.jsx'
 
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace('Mui', '').toLowerCase()

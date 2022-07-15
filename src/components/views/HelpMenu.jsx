@@ -7,13 +7,13 @@ import Collapse from '@mui/material/Collapse'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import { ChevronUp, ChevronDown } from 'mdi-material-ui'
+import HelpConfig from '@/assets/config/help.json'
 
 const getHelpMenu = () => {
   const data = {"system": [], "software": []}
-  const help = require("@/assets/config/help.json")
-  for (let type in help)
-    for (let key in help[type]) {
-      const value = help[type][key]
+  for (let type in HelpConfig)
+    for (let key in HelpConfig[type]) {
+      const value = HelpConfig[type][key]
       data[type].push({
         key: key, title: value.display
       })

@@ -25,7 +25,7 @@ export default () => {
         {data.map((item) => (
           <Box key={item.title}>
             <Divider />
-            <ListItemButton component="div" href={item.href} rel="noopener" target="_blank" component={Link}>
+            <ListItemButton href={item.href} rel="noopener" target="_blank" component={Link}>
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText variant="button" primary={item.title} disableTypography />
             </ListItemButton>

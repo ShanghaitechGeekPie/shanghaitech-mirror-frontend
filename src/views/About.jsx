@@ -19,11 +19,12 @@ import pangu from 'markdown-it-pangu'
 import prism from 'markdown-it-prism'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
+import AboutContent from '@/assets/content/about.md?raw'
 
 const getAboutContent = () => {
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
-  return parser.render(require("@/assets/content/about.md"))
+  return parser.render(AboutContent)
 }
 
 const BrandIcon = styled(SvgIcon)({

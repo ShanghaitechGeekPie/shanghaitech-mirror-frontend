@@ -10,10 +10,11 @@ import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 
 const getHelpContent = () => {
-  let { name } = useParams()
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
-  return parser.render(require("@/assets/content/help/" + (name ? name : "default") + ".md"))
+  const name = useParams().name ? useParams().name : "default"
+  const content = import.meta.globEager('@/assets/content/help/*.md', { as: "raw" })
+  for (const item in content) if (item.includes(name)) return parser.render(content[item])
 }
 
 export default () => (

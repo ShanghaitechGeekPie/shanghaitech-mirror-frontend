@@ -11,16 +11,17 @@ import prism from 'markdown-it-prism'
 import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
+import newsList from '@/assets/config/news.json'
 
 const getPostContent = (id) => {
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
-  return parser.render(require("@/assets/content/news/" + id + ".md"))
+  const content = import.meta.globEager('@/assets/content/news/*.md', { as: "raw" })
+  for (const item in content) if (item.includes(id)) return parser.render(content[item])
 }
 
 export default () => {
   const { id } = useParams()
-  const news = require("@/assets/config/news.json")
 
   return (
     <Container maxWidth="lg">
@@ -28,7 +29,7 @@ export default () => {
         variant="h4"
         sx={{ textAlign: 'center', fontWeight: 'bold', marginBottom: 3 }}
       >
-        {news[id].title}
+        {newsList[id].title}
       </Typography>
       <Stack direction="row" spacing={2} sx={{ justifyContent: "center", marginBottom: 3 }}>
         <Clock fontSize="small" />
@@ -36,7 +37,7 @@ export default () => {
           variant="body1"
           sx={{ textAlign: 'center', fontWeight: 'bold' }}
         >
-          {news[id].time}
+          {newsList[id].time}
         </Typography>
       </Stack>
       <Card elevation={3} sx={{ px: { lg: 1 } }}>
