@@ -16,8 +16,7 @@ import Title from '@/components/views/HomeTitle'
 import News from '@/components/views/HomeNews'
 import Tools from '@/components/views/HomeTools'
 import Links from '@/components/views/HomeLinks'
-
-const helpData = require("@/assets/config/help.json")
+import helpData from '@/assets/config/help.json'
 
 const generateNameLink = (name) => (
   <>
