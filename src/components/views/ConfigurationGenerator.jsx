@@ -106,7 +106,7 @@ export default () => {
         </Grid>
       }
       <Grid item xs={12}>
-        {/* Word break of mobile screen to enhance reading experience */}
+        {/* Word break on mobile screen to enhance reading experience */}
         <Box className={styles.wordBreak}>
           <Box className="markdown-body" dangerouslySetInnerHTML={{ __html: parseMarkdown(resultText) }} />
         </Box>
