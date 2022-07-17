@@ -1,7 +1,8 @@
 {
   "name": "shanghaitech-mirror-frontend",
+  "homepage": "https://mirrors.shanghaitech.edu.cn",
+  "version": "0.1.0",
   "private": true,
-  "version": "0.0.0",
   "scripts": {
     "start": "vite",
     "build": "vite build",
@@ -11,6 +12,7 @@
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@fontsource/roboto": "^4.5.7",
+    "@honkhonk/vite-plugin-svgr": "^1.1.0",
     "@mui/material": "^5.8.7",
     "@mui/styles": "^5.8.7",
     "@svgr/webpack": "^6.2.1",
@@ -30,8 +32,11 @@
     "timeago.js": "^4.0.2",
     "typeface-roboto": "^1.1.13",
     "vite": "^2.9.14",
+    "vite-plugin-banner": "^0.3.0",
     "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-html": "^3.2.0",
     "vite-plugin-progress": "^0.0.3",
+    "vite-plugin-pwa": "^0.12.3",
     "vite-plugin-svgr": "^2.2.0"
   }
 }
