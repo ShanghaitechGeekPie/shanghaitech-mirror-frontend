@@ -26,7 +26,7 @@ const replaceVariables = (template, version, https) => {
 
 const getTemplate = (distribution, version, https) => {
   const templatePath = distributionsData[distribution].seperated ? distribution + "/" + version + ".template" : distribution + ".template"
-  const content = import.meta.globEager('@/assets/content/repository/*.template', { as: "raw" })
+  const content = import.meta.glob('@/assets/content/repository/*.template', { as: "raw", eager: true })
   for (const item in content) if (item.includes(templatePath)) return replaceVariables(content[item], version, https)
 }
 

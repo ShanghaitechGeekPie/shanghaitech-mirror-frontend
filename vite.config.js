@@ -15,13 +15,16 @@ export default defineConfig({
     viteSvgr(),
     viteReact(),
     viteProgress(),
-    VitePWA({ registerType: 'autoUpdate' }),
     createHtmlPlugin({ minify: true, entry: '/src/index.jsx' }),
     viteCompression({ algorithm: 'brotliCompress', deleteOriginFile: true }),
-    viteBanner(`/**\n * name: ${packageInfo.name}\n * homepage: ${packageInfo.homepage}\n */`)
+    viteBanner(`/**\n * name: ${packageInfo.name}\n * homepage: ${packageInfo.homepage}\n */`),
+    VitePWA({ registerType: 'autoUpdate', injectRegister: 'inline', outDir: 'dist/js', filename: 'service-worker.js' })
   ],
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') }
+  },
+  server: {
+    port: 3000
   },
   optimizeDeps: {
     esbuildOptions: {
@@ -30,8 +33,8 @@ export default defineConfig({
   },
   build: {
     minify: "terser",
-    brotliSize: false,
     assetsInlineLimit: 65536,
+    reportCompressedSize: false,
     terserOptions: {
       compress: {
         drop_console: true,
