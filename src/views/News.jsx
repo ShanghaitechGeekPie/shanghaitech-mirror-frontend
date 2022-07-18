@@ -16,7 +16,7 @@ import newsList from '@/assets/config/news.json'
 const getPostContent = (id) => {
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
-  const content = import.meta.globEager('@/assets/content/news/*.md', { as: "raw" })
+  const content = import.meta.glob('@/assets/content/news/*.md', { as: "raw", eager: true })
   for (const item in content) if (item.includes(id)) return parser.render(content[item])
 }
 
