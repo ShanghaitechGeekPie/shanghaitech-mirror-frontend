@@ -52,8 +52,7 @@ export default () => {
   const shouldShowDebSrcInfo = ["debian", "kali", "ubuntu"].includes(selectedDistribution)
 
   useEffect(() => {
-    const generatedResultText = getTemplate(selectedDistribution, selectedVersion, enableHTTPS)
-    setResultText(generatedResultText)
+    setResultText(getTemplate(selectedDistribution, selectedVersion, enableHTTPS))
   }, [selectedDistribution, selectedVersion, enableHTTPS])
 
   return (
