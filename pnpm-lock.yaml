@@ -25,6 +25,7 @@ specifiers:
   timeago.js: ^4.0.2
   typeface-roboto: ^1.1.13
   vite: ^3.0.0
+  vite-compression-plugin: ^0.0.4
   vite-plugin-banner: ^0.3.0
   vite-plugin-compression: ^0.5.1
   vite-plugin-html: ^3.2.0
@@ -57,6 +58,7 @@ dependencies:
   timeago.js: 4.0.2
   typeface-roboto: 1.1.13
   vite: 3.0.0_terser@5.14.2
+  vite-compression-plugin: 0.0.4
   vite-plugin-banner: 0.3.0
   vite-plugin-compression: 0.5.1_vite@3.0.0
   vite-plugin-html: 3.2.0_vite@3.0.0
@@ -4309,6 +4311,14 @@ packages:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
     dependencies:
       punycode: 2.1.1
+    dev: false
+
+  /vite-compression-plugin/0.0.4:
+    resolution: {integrity: sha512-HvjhSAL+BDCqZIClYk8bbH7ozjIipf7Z5Bn5KEh+2Y0usTXvdyS20rQSM/EuF36WXBnksGyc5CJGqijf3Br0Ug==}
+    dependencies:
+      chalk: 4.1.2
+      fast-glob: 3.2.11
+      fs-extra: 10.1.0
     dev: false
 
   /vite-plugin-banner/0.3.0:
