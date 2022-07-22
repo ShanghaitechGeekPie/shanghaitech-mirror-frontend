@@ -16,9 +16,35 @@ export default defineConfig({
     viteReact(),
     viteProgress(),
     createHtmlPlugin({ minify: true, entry: '/src/index.jsx' }),
-    viteBanner(`/**\n * name: ${packageInfo.name}\n * homepage: ${packageInfo.homepage}\n */`),
-    VitePWA({ registerType: 'autoUpdate', injectRegister: 'inline', filename: 'serviceWorker.js' }),
-    viteCompression({ algorithm: 'brotliCompress', deleteOriginalAssets: true, loginfo: 'silent' })
+    viteBanner(`/**\n * name: ${packageInfo.name}\n * homepage: https://${packageInfo.domain}\n */`),
+    viteCompression({ algorithm: 'brotliCompress', deleteOriginalAssets: true, loginfo: 'silent' }),
+    VitePWA({
+      registerType: 'autoUpdate',
+      injectRegister: 'inline',
+      filename: 'serviceWorker.js',
+      workbox: {
+        runtimeCaching: [{
+          urlPattern: /^https:\/\/mirrors.shanghaitech.edu.cn\/(summary|downloads|api\/v1\/[^\s]+)/i,
+          handler: 'NetworkFirst',
+          options: {
+            cacheName: 'mirror-api-cache',
+            expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 2 },
+            cacheableResponse: { statuses: [0, 200] }
+          }
+        }]
+      },
+      manifest: {
+        name: packageInfo.full_name,
+        short_name: packageInfo.short_name,
+        description: packageInfo.description,
+        theme_color: '#B71C1C',
+        icons: [{
+          src: '/logo/favicon.svg',
+          purpose: "maskable any",
+          sizes: 'any'
+        }]
+      }
+    })
   ],
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') }

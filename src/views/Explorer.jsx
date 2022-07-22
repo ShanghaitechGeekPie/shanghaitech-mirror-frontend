@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { format } from 'timeago.js'
 import Container from '@mui/material/Container'

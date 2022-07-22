@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Stack from '@mui/material/Stack'
@@ -16,7 +16,7 @@ import Failed from '@/components/global/Failed'
 
 export default () => {
   const [selection, setSelection] = useState()
-  const { isLoading, isError, data } = useQuery('quickDownloadData', () =>
+  const { isLoading, isError, data } = useQuery(['quickDownloadData'], () =>
     fetch('/downloads').then(async (data) => await data.json())
   )
 

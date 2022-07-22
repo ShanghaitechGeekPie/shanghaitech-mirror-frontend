@@ -1,6 +1,6 @@
 import { Link as RouterLink } from 'react-router-dom'
 import { format } from 'timeago.js'
-import { useQuery } from 'react-query'
+import { useQuery } from '@tanstack/react-query'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack'
@@ -44,7 +44,7 @@ const generateStatus = (ifIdle, ifSuccess) => {
 }
 
 export default () => {
-  const { isLoading, isError, data } = useQuery('summaryData', () =>
+  const { isLoading, isError, data } = useQuery(['summaryData'], () =>
     fetch('/summary').then(async (data) => {
       const { WorkerStatus } = await data.json(), result = []
       for (let key in WorkerStatus) {
