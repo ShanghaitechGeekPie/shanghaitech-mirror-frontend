@@ -17,7 +17,7 @@ export default defineConfig({
     viteProgress(),
     createHtmlPlugin({ minify: true, entry: '/src/index.jsx' }),
     viteBanner(`/**\n * name: ${packageInfo.name}\n * homepage: https://${packageInfo.domain}\n */`),
-    viteCompression({ algorithm: 'brotliCompress', deleteOriginalAssets: true, loginfo: 'silent' }),
+    viteCompression({ algorithm: 'brotliCompress', loginfo: 'silent' }),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'inline',
