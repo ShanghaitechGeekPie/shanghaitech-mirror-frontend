@@ -37,11 +37,11 @@ export default defineConfig({
         name: packageInfo.full_name,
         short_name: packageInfo.short_name,
         description: packageInfo.description,
-        theme_color: '#B71C1C',
+        theme_color: '#b71c1c',
         icons: [{
           src: '/logo/favicon.svg',
-          purpose: "maskable any",
-          sizes: 'any'
+          type: "image/svg+xml",
+          sizes: "any"
         }]
       }
     })
