@@ -32,7 +32,8 @@ const queryClient = new QueryClient({
       staleTime: 10 * 60 * 1000,
       cacheTime: Infinity,
       refetchOnWindowFocus: false,
-      refetchOnMount: false
+      refetchOnMount: false,
+      networkMode: 'offlineFirst'
     }
   }
 })
