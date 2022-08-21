@@ -1,8 +1,7 @@
 import path from 'path'
 import { defineConfig } from 'vite'
 import { VitePWA } from 'vite-plugin-pwa'
-import { createHtmlPlugin } from 'vite-plugin-html'
-import viteBanner from 'vite-plugin-banner'
+import { createHtmlPlugin as viteHtml } from 'vite-plugin-html'
 import viteReact from '@vitejs/plugin-react'
 import viteProgress from 'vite-plugin-progress'
 import viteSvgr from '@honkhonk/vite-plugin-svgr'
@@ -15,9 +14,14 @@ export default defineConfig({
     viteSvgr(),
     viteReact(),
     viteProgress(),
-    createHtmlPlugin({ minify: true, entry: '/src/index.jsx' }),
-    viteBanner(`/**\n * name: ${packageInfo.name}\n * homepage: https://${packageInfo.domain}\n */`),
-    viteCompression({ algorithm: 'brotliCompress', loginfo: 'silent' }),
+    viteHtml({
+      minify: true,
+      entry: '/src/index.jsx'
+    }),
+    viteCompression({
+      loginfo: 'silent',
+      algorithm: 'brotliCompress'
+    }),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'inline',
