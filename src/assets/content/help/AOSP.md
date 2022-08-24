@@ -71,7 +71,7 @@ repo init -u https://mirrors.shanghaitech.edu.cn/AOSP/platform/manifest.git
 如需签出某个特定的`Android`版本：
 
 ```bash
-repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/AOSP/platform/manifest.git -b android-13.0.0_r3
+repo init -u https://mirrors.shanghaitech.edu.cn/AOSP/platform/manifest.git -b android-13.0.0_r3
 ```
 
 > 您可以在此处获取完整列表：<https://source.android.com/docs/setup/start/build-numbers#source-code-tags-and-builds>
@@ -118,7 +118,7 @@ repo sync
 若您之前已通过某种途径获得了`AOSP`的源码，仅需修改`.repo/manifests.git/config`，将`url`字段更改为：
 
 ```
-url = https://mirrors.tuna.tsinghua.edu.cn/git/AOSP/platform/manifest
+url = https://mirrors.shanghaitech.edu.cn/AOSP/platform/manifest
 ```
 
 即可使用我们的镜像服务。
