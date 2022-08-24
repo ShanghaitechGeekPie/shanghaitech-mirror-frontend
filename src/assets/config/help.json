@@ -1,10 +1,16 @@
 {
     "system": {
+        "AOSP": {
+            "display": "AOSP"
+        },
         "alpine": {
             "display": "Alpine"
         },
         "anthon": {
             "display": "AOSC OS"
+        },
+        "aosp-monthly": {
+            "display": "AOSP Monthly"
         },
         "archlinux": {
             "display": "Arch Linux"
