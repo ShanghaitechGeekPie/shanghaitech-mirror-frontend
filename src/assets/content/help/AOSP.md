@@ -82,9 +82,9 @@ repo init -u https://mirrors.tuna.tsinghua.edu.cn/git/AOSP/platform/manifest.git
 sudo ln -s /usr/bin/python3 /usr/bin/python
 ```
 
-初始化成功后，系统将显示一条消息，告诉您`Repo`已在工作目录中完成初始化。您的客户端目录现在包含一个`.repo`目录，这是清单等文件的存放位置。
+初始化成功后，系统将显示一条消息，告诉您`Repo`已在工作目录中完成初始化。您的客户端目录现在包含一个`.repo`目录，这是清单等文件存放的位置。
 
-### 同步源码树：
+### 同步源码树
 
 如需将`Android`源码树从默认清单中指定的代码库下载到工作目录，请运行以下命令：
 

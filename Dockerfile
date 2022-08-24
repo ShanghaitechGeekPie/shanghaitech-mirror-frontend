@@ -16,5 +16,6 @@ RUN curl -L \
     --output /tmp/node_exporter-1.3.1.linux-amd64.tar.gz && \
     tar -xzf /tmp/node_exporter-1.3.1.linux-amd64.tar.gz -C /tmp && \
     mv /tmp/node_exporter-1.3.1.linux-amd64/node_exporter /usr/local/bin/
+RUN apk add --update git-daemon fcgiwrap spawn-fcgi && rm -rf /var/cache/apk/*
 EXPOSE 80
 CMD ["/start.sh"]

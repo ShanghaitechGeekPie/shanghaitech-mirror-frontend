@@ -1,13 +1,13 @@
 {
     "system": {
-        "AOSP": {
-            "display": "AOSP"
-        },
         "alpine": {
             "display": "Alpine"
         },
         "anthon": {
             "display": "AOSC OS"
+        },
+        "AOSP": {
+            "display": "AOSP"
         },
         "aosp-monthly": {
             "display": "AOSP Monthly"
