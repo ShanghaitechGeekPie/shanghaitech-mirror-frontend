@@ -12,6 +12,7 @@ import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MarkdownIt from "markdown-it"
 import prism from 'markdown-it-prism'
+import packageInfo from '@/../package.json'
 import distributionsData from '@/assets/config/repository.json'
 import styles from '@/styles/modules/index.module.css'
 import '@/styles/markdown/prism.css'
@@ -20,13 +21,15 @@ import '@/styles/markdown/common.css'
 const replaceVariables = (template, version, https) => {
   let result = template.replace(/{{ PROTOCOL }}/g, https ? "https" : "http")
   result = result.replace(/{{ VERSION }}/g, version)
-  result = result.replace(/{{ URL }}/g, "mirrors.shanghaitech.edu.cn")
+  result = result.replace(/{{ URL }}/g, packageInfo.domain)
   return result
 }
 
 const getTemplate = (distribution, version, https) => {
-  const templatePath = distributionsData[distribution].seperated ? distribution + "/" + version + ".template" : distribution + ".template"
-  const content = import.meta.glob('@/assets/content/repository/*.template', { as: "raw", eager: true })
+  const templatePath = distributionsData[distribution].seperated ? `${distribution}/${version}.template` : `${distribution}.template`
+  const metaGlob = import.meta.glob('@/assets/content/repository/*.template', { as: "raw", eager: true })
+  const seperatedMetaGlob = import.meta.glob('@/assets/content/repository/*/*.template', { as: "raw", eager: true })
+  const content = distributionsData[distribution].seperated ? seperatedMetaGlob : metaGlob
   for (const item in content) if (item.includes(templatePath)) return replaceVariables(content[item], version, https)
 }
 

@@ -64,6 +64,10 @@
     padding-left: 1em;
 }
 
+.markdown-body li {
+    padding-bottom: 8px;
+}
+
 .markdown-body ul > li {
     list-style: inside;
 }
