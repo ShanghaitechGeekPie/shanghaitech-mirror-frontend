@@ -16,13 +16,13 @@ import Title from '@/components/views/HomeTitle'
 import News from '@/components/views/HomeNews'
 import Tools from '@/components/views/HomeTools'
 import Links from '@/components/views/HomeLinks'
-import helpData from '@/assets/config/help.json'
+import helpConfig from '@/assets/config/help.json'
 
 const generateNameLink = (name) => (
   <>
     <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={name + "/"}>{name}</Link>
     {
-      (helpData.system.hasOwnProperty(name) || helpData.software.hasOwnProperty(name)) &&
+      helpConfig.hasOwnProperty(name) &&
       <IconButton
         component={RouterLink}
         color="primary"
@@ -45,7 +45,7 @@ const generateStatus = (ifIdle, ifSuccess) => {
 
 export default () => {
   const { isLoading, isError, data } = useQuery(['summaryData'], () =>
-    fetch('/summary').then(async (data) => {
+    fetch('https://mirrors.geekpie.tech/summary').then(async (data) => {
       const { WorkerStatus } = await data.json(), result = []
       for (let key in WorkerStatus) {
         const value = WorkerStatus[key]

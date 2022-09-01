@@ -1,8 +1,5 @@
 {
   "name": "shanghaitech-mirror-frontend",
-  "short_name": "GOS Mirror",
-  "full_name": "Geekpie Open Source Mirror",
-  "description": "The frontend of the geekpie open source mirror",
   "domain": "mirrors.shanghaitech.edu.cn",
   "version": "0.1.0",
   "private": true,
@@ -12,19 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.0",
-    "@emotion/styled": "^11.10.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@fontsource/roboto": "^4.5.8",
     "@honkhonk/vite-plugin-svgr": "^1.1.0",
-    "@mui/material": "^5.10.2",
-    "@mui/styles": "^5.10.2",
+    "@mui/material": "^5.10.3",
+    "@mui/styles": "^5.10.3",
     "@svgr/webpack": "^6.3.1",
-    "@tanstack/react-query": "^4.2.1",
+    "@tanstack/react-query": "^4.2.3",
     "@vitejs/plugin-react": "^2.0.1",
-    "core-js": "3.24.1",
+    "core-js": "3.25.0",
     "markdown-it": "^13.0.1",
     "markdown-it-pangu": "^1.0.2",
-    "markdown-it-prism": "^2.2.5",
+    "markdown-it-prism": "^2.3.0",
     "mdi-material-ui": "^7.5.0",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
@@ -39,7 +36,6 @@
     "vite-compression-plugin": "^0.0.4",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-progress": "^0.0.3",
-    "vite-plugin-pwa": "^0.12.3",
     "vite-plugin-svgr": "^2.2.1"
   }
 }
