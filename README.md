@@ -10,7 +10,6 @@ It is the frontend of the ShanghaiTech Open Source Mirror.
 - High performance in rendering large list page
 - Adaptive dark theme
 - Query Caching
-- PWA Support
 - And many more...
 
 

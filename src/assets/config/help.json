@@ -1,69 +1,24 @@
 {
-    "system": {
-        "alpine": {
-            "display": "Alpine"
-        },
-        "anthon": {
-            "display": "AOSC OS"
-        },
-        "AOSP": {
-            "display": "AOSP"
-        },
-        "aosp-monthly": {
-            "display": "AOSP Monthly"
-        },
-        "archlinux": {
-            "display": "Arch Linux"
-        },
-        "archlinuxcn": {
-            "display": "Arch Linux CN"
-        },
-        "centos": {
-            "display": "CentOS"
-        },
-        "debian": {
-            "display": "Debian"
-        },
-        "deepin": {
-            "display": "Deepin"
-        },
-        "fedora": {
-            "display": "Fedora"
-        },
-        "kali": {
-            "display": "Kali Linux"
-        },
-        "linuxmint": {
-            "display": "Linux Mint"
-        },
-        "manjaro": {
-            "display": "Manjaro"
-        },
-        "opensuse": {
-            "display": "openSUSE"
-        },
-        "pypi": {
-            "display": "PyPI"
-        },
-        "raspbian": {
-            "display": "Raspbian"
-        },
-        "ubuntu": {
-            "display": "Ubuntu"
-        },
-        "ubuntu-ports": {
-            "display": "Ubuntu Ports"
-        },
-        "ubuntu-releases": {
-            "display": "Ubuntu Releases"
-        }
-    },
-    "software": {
-        "anaconda": {
-            "display": "Anaconda"
-        },
-        "ros": {
-            "display": "ROS"
-        }
-    }
+    "alpine": "Alpine",
+    "anaconda": "Anaconda",
+    "anthon": "AOSC OS",
+    "AOSP": "AOSP",
+    "aosp-monthly": "AOSP Monthly",
+    "archlinux": "Arch Linux",
+    "archlinuxcn": "Arch Linux CN",
+    "centos": "CentOS",
+    "debian": "Debian",
+    "deepin": "Deepin",
+    "fedora": "Fedora",
+    "git-repo": "Repo",
+    "kali": "Kali Linux",
+    "linuxmint": "Linux Mint",
+    "manjaro": "Manjaro",
+    "opensuse": "openSUSE",
+    "pypi": "PyPI",
+    "raspbian": "Raspbian",
+    "ros": "ROS",
+    "ubuntu": "Ubuntu",
+    "ubuntu-ports": "Ubuntu Ports",
+    "ubuntu-releases": "Ubuntu Releases"
 }
