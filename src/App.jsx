@@ -8,6 +8,7 @@ import getTheme from '@/styles/theme'
 import CssBaseline from '@mui/material/CssBaseline'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import Box from '@mui/material/Box'
+import Paper from '@mui/material/Paper'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Drawer from '@mui/material/Drawer'
@@ -116,10 +117,10 @@ export default () => {
             >
               <Scrollbars autoHide autoHideTimeout={200}>
                 <Toolbar />
-                <Box sx={{ overflow: "auto" }}>
+                <Paper square sx={{ overflow: "auto", minHeight: "100vh" }}>
                   {NavItems}
                   {location.pathname.startsWith("/help") && <HelpMenu handleDrawerToggle={handleDrawerToggle} />}
-                </Box>
+                </Paper>
               </Scrollbars>
             </Drawer>
           </Box>

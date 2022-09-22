@@ -78,13 +78,7 @@ export default () => {
           <Select
             label="版本"
             value={selectedVersion}
-            MenuProps={{
-              PaperProps: {
-                style: {
-                  maxHeight: 300
-                }
-              }
-            }}
+            MenuProps={{ PaperProps: { style: { maxHeight: 300 } } }}
             onChange={(event) => { setSelectedVersion(event.target.value) }}
           >
             {allVersions.map((version) => (
@@ -104,7 +98,7 @@ export default () => {
       </Grid>
       {shouldShowDebSrcInfo &&
         <Grid item xs={12}>
-          <Alert variant="filled" severity="info">源码库默认被禁用以提高同步速度，您可以取消注释以启用之！</Alert>
+          <Alert variant="filled" severity="info" color="primary">源码库默认被禁用以提高同步速度，您可以取消注释以启用之！</Alert>
         </Grid>
       }
       <Grid item xs={12}>

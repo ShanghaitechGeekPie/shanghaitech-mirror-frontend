@@ -81,7 +81,7 @@ export default () => {
             {dialogData.title}
           </DialogTitle>
         }
-        <DialogContent dividers sx={{ paddingTop: 3 }}>{dialogData.component}</DialogContent>
+        <DialogContent dividers sx={{ paddingTop: 3, borderBottom: 0 }}>{dialogData.component}</DialogContent>
       </Dialog>
     </Card>
   )
