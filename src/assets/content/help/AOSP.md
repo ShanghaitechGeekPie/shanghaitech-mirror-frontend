@@ -65,13 +65,13 @@ git config --global user.email you@example.com
 ### 初始化仓库:
 
 ```bash
-repo init -u https://mirrors.shanghaitech.edu.cn/AOSP/platform/manifest.git
+repo init -u https://mirrors.shanghaitech.edu.cn/git/AOSP/platform/manifest.git
 ```
 
 如需签出某个特定的`Android`版本：
 
 ```bash
-repo init -u https://mirrors.shanghaitech.edu.cn/AOSP/platform/manifest.git -b android-13.0.0_r3
+repo init -u https://mirrors.shanghaitech.edu.cn/git/AOSP/platform/manifest.git -b android-13.0.0_r3
 ```
 
 > 您可以在此处获取完整列表：<https://source.android.com/docs/setup/start/build-numbers#source-code-tags-and-builds>
@@ -92,7 +92,7 @@ sudo ln -s /usr/bin/python3 /usr/bin/python
 repo sync
 ```
 
-如需加快同步速度，请传递`-c`（当前分支）和`-jthreadcount`标记：
+如需加快同步速度，请传递`-c`（当前分支）和`-j${thread}`标记：
 
 ```bash
 repo sync -c -j4
@@ -107,7 +107,7 @@ repo sync -c -j4
 ```bash
 mkdir -p /usr/local/aosp/mirror
 cd /usr/local/aosp/mirror
-repo init -u https://mirrors.shanghaitech.edu.cn/AOSP/platform/manifest.git --mirror
+repo init -u https://mirrors.shanghaitech.edu.cn/git/AOSP/platform/manifest.git --mirror
 repo sync
 ```
 
@@ -118,7 +118,7 @@ repo sync
 若您之前已通过某种途径获得了`AOSP`的源码，仅需修改`.repo/manifests.git/config`，将`url`字段更改为：
 
 ```
-url = https://mirrors.shanghaitech.edu.cn/AOSP/platform/manifest
+url = https://mirrors.shanghaitech.edu.cn/git/AOSP/platform/manifest
 ```
 
 即可使用我们的镜像服务。

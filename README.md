@@ -18,13 +18,13 @@ It is the frontend of the ShanghaiTech Open Source Mirror.
 Fetch the dependencies.
 
 ```
-pnpm install
+yarn install
 ```
 
 Build it.
 
 ```
-pnpm build
+yarn build
 ```
 
 You will get the `dist` folder. Upload it to your server.
@@ -32,5 +32,5 @@ You will get the `dist` folder. Upload it to your server.
 Run this command if you feel like debuging it.
 
 ```
-pnpm start
+yarn start
 ```

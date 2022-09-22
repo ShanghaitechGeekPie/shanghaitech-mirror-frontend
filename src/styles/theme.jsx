@@ -23,8 +23,8 @@ const darPalette = {
   success: { main: "#4caf50" },
   action: { selectedOpacity: 0.6 },
   background: {
-    paper: "#191919",
-    default: "#191919"
+    paper: "#0f0c0c",
+    default: "#181616"
   }
 }
 

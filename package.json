@@ -18,7 +18,7 @@
     "@svgr/webpack": "^6.3.1",
     "@tanstack/react-query": "^4.2.3",
     "@vitejs/plugin-react": "^2.0.1",
-    "core-js": "3.25.0",
+    "core-js": "3.25.2",
     "markdown-it": "^13.0.1",
     "markdown-it-pangu": "^1.0.2",
     "markdown-it-prism": "^2.3.0",
@@ -35,7 +35,7 @@
     "vite": "^3.0.9",
     "vite-compression-plugin": "^0.0.4",
     "vite-plugin-html": "^3.2.0",
-    "vite-plugin-progress": "^0.0.3",
+    "vite-plugin-progress": "^0.0.4",
     "vite-plugin-svgr": "^2.2.1"
   }
 }
