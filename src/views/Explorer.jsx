@@ -14,7 +14,7 @@ import IconButton from '@mui/material/IconButton'
 import Table from '@/components/global/Table'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
-import { CodeJson } from 'mdi-material-ui'
+import { CodeJson, FormatLetterCase } from 'mdi-material-ui'
 
 const formatFileSize = (size) => {
   var sizes = [' Bytes', ' KiB', ' MiB', ' GiB']
@@ -53,6 +53,7 @@ export default () => {
   const [searchText, setSearchText] = useState("")
   const [regExpMode, setRegExpMode] = useState(false)
   const [isRegExpError, setIsRegExpError] = useState(false)
+  const [caseSensitive, setCaseSensitive] = useState(true)
   const [filteredData, setFilteredData] = useState()
   const [generatedPage, setGeneratedPage] = useState()
 
@@ -60,7 +61,14 @@ export default () => {
     fetch('/api/v1' + location.pathname).then(async (data) => await data.json())
   )
 
-  const handleData = () => { if (data) setFilteredData(data) }
+  const handleData = () => {
+    if (data) setFilteredData(data)
+  }
+
+  const handleCaseSensitive = () => {
+    handleSearchText()
+    setCaseSensitive(!caseSensitive)
+  }
 
   const handleRegExpMode = () => {
     handleSearchText()
@@ -73,15 +81,21 @@ export default () => {
   }
 
   const handleSearchText = useDebounce(() => {
-    const getResult = (regexp) => data.filter((item) => item.name.match(regexp))
-    if (!initialSearchText.current) initialSearchText.current = true
-    else if (!regExpMode) setFilteredData(getResult(new RegExp(searchText, 'i')))
-    else {
-      try { eval(searchText) } catch { setIsRegExpError(true); return }
-      setIsRegExpError(false)
-      setFilteredData(getResult(eval(searchText)))
+    if (!initialSearchText.current) {
+      initialSearchText.current = true
     }
-  }, 100)
+    else if (!regExpMode) {
+      setFilteredData(data.filter((item) => {
+        if (caseSensitive) return item.name.includes(searchText)
+        else return item.name.toLowerCase().includes(searchText.toLowerCase())
+      }))
+    } else {
+      const searchRegExp = () => new RegExp(searchText, caseSensitive ? "g" : "gi")
+      try { searchRegExp() } catch { setIsRegExpError(true); return }
+      setIsRegExpError(false)
+      setFilteredData(data.filter((item) => item.name.match(searchRegExp())))
+    }
+  }, 150)
 
   const generatePage = () => {
     let result = []
@@ -126,7 +140,12 @@ export default () => {
               InputProps={{
                 endAdornment:
                   <InputAdornment position="end">
-                    <Tooltip title="Use RegExp">
+                    <Tooltip title="Case sensitive">
+                      <IconButton onClick={handleCaseSensitive} edge="end">
+                        <FormatLetterCase color={caseSensitive ? "primary" : "default"} />
+                      </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Use regular expression">
                       <IconButton onClick={handleRegExpMode} edge="end">
                         <CodeJson fontSize="small" color={regExpMode ? "primary" : "default"} />
                       </IconButton>

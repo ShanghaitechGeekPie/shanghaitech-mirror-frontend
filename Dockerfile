@@ -1,11 +1,10 @@
 # Build Stage
 FROM node:lts-alpine as build-stage
-RUN npm install -g pnpm
 WORKDIR /app
-COPY package*.json pnpm-lock.yaml ./
-RUN pnpm install
+COPY package*.json yarn.lock ./
+RUN yarn install
 COPY . ./
-RUN pnpm build
+RUN yarn build
 
 # Production Stage
 FROM peytonyip/nginx-brotli as production-stage
