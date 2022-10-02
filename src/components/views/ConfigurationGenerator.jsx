@@ -20,7 +20,7 @@ import '@/styles/markdown/common.css'
 const replaceVariables = (template, version, https) => {
   let result = template.replace(/{{ PROTOCOL }}/g, https ? "https" : "http")
   result = result.replace(/{{ VERSION }}/g, version)
-  result = result.replace(/{{ URL }}/g, import.meta.env.VITE_DOMAIN)
+  result = result.replace(/{{ URL }}/g, import.meta.env.MIRROR_DOMAIN)
   return result
 }
 
