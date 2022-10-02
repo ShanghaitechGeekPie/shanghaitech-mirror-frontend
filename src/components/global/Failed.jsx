@@ -13,7 +13,6 @@ export default ({ inline, button }) => {
     <Paper
       variant={inline ? "outlined" : "elevation"}
       elevation={inline ? 0 : 3}
-      sx={{ backgroundColor: "transparent" }}
     >
       <Fade in={true} {...{ timeout: 1000 }}>
         <Box sx={{ mx: 'auto', textAlign: 'center', paddingY: inline ? 6 : 8 }}>

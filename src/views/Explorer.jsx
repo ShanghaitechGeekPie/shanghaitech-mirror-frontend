@@ -19,8 +19,8 @@ import { CodeJson, FormatLetterCase } from 'mdi-material-ui'
 const formatFileSize = (size) => {
   var sizes = [' Bytes', ' KiB', ' MiB', ' GiB']
   for (let index = 0; index < sizes.length; index++)
-    if (size < Math.pow(1024, index + 1))
-      return (Math.round((size / Math.pow(1024, index)) * 100) / 100) + sizes[index]
+    if (size < 1024 ** (index + 1))
+      return (Math.round((size / 1024 ** index) * 100) / 100) + sizes[index]
   return size
 }
 
@@ -57,9 +57,11 @@ export default () => {
   const [filteredData, setFilteredData] = useState()
   const [generatedPage, setGeneratedPage] = useState()
 
-  const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () =>
-    fetch('/api/v1' + location.pathname).then(async (data) => await data.json())
-  )
+  const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () => {
+    const { VITE_API_PROTOCOL, VITE_DOMAIN, VITE_EXPLORER_PREFIX } = import.meta.env
+    const url = VITE_API_PROTOCOL + '://' + VITE_DOMAIN + VITE_EXPLORER_PREFIX + location.pathname
+    return fetch(url).then((res) => res.json())
+  })
 
   const handleData = () => {
     if (data) setFilteredData(data)
@@ -103,8 +105,7 @@ export default () => {
     const lastPageLink = location.pathname.slice(0, sliceIndex)
     result.push({
       name: <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={lastPageLink}>Parent directory/</Link>,
-      update: "-",
-      size: "-"
+      update: "-", size: "-"
     })
     filteredData.forEach((value) => result.push({
       name: generateNameLink(value.name, value.type),
@@ -123,7 +124,7 @@ export default () => {
       <Grid container spacing={2} sx={{ marginTop: { lg: 4 }, marginBottom: 2 }}>
         <Grid item sm={9} xs={12} container>
           <Typography component="div" variant="h5" sx={{ fontWeight: 'bold' }}>
-            {"Index of: " + location.pathname}
+            {`Index of: ${location.pathname}`}
           </Typography>
         </Grid>
         {!isLoading && !isError &&
@@ -134,8 +135,8 @@ export default () => {
               variant="outlined"
               value={searchText}
               error={isRegExpError}
-              helperText={isRegExpError && "Invalid regexp pattern!"}
               placeholder="Search something..."
+              helperText={isRegExpError && "Invalid regexp pattern!"}
               onChange={(event) => { setSearchText(event.target.value) }}
               InputProps={{
                 endAdornment:
@@ -146,7 +147,7 @@ export default () => {
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="Use regular expression">
-                      <IconButton onClick={handleRegExpMode} edge="end">
+                      <IconButton onClick={handleRegExpMode} edge="end" sx={{ marginLeft: "4px" }}>
                         <CodeJson fontSize="small" color={regExpMode ? "primary" : "default"} />
                       </IconButton>
                     </Tooltip>

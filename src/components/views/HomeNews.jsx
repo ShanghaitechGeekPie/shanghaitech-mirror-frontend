@@ -22,17 +22,15 @@ export default () => (
       <Typography component="div" variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>News</Typography>
     </CardContent>
     <List component="div">
-      {Object.keys(newsList)
-        .map((key) => ({ id: key, title: newsList[key].title, time: newsList[key].time, icon: newsList[key].icon }))
-        .map((item) => (
-          <Box key={item.title}>
-            <Divider />
-            <ListItemButton to={"/news/" + item.id} component={Link}>
-              <ListItemIcon>{icons[item.icon]}</ListItemIcon>
-              <ListItemText variant="button" primary={item.title} disableTypography />
-            </ListItemButton>
-          </Box>
-        ))}
+      {Object.entries(newsList).map(([key, value]) => (
+        <Box key={value.title}>
+          <Divider />
+          <ListItemButton to={"/news/" + key} component={Link}>
+            <ListItemIcon>{icons[value.icon]}</ListItemIcon>
+            <ListItemText variant="button" primary={value.title} disableTypography />
+          </ListItemButton>
+        </Box>
+      ))}
     </List>
   </Card>
 )

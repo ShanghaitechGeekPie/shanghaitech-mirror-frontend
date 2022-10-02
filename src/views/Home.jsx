@@ -20,15 +20,15 @@ import helpConfig from '@/assets/config/help.json'
 
 const generateNameLink = (name) => (
   <>
-    <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={name + "/"}>{name}</Link>
+    <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={`${name}/`}>{name}</Link>
     {
       helpConfig.hasOwnProperty(name) &&
       <IconButton
         component={RouterLink}
         color="primary"
         size="small"
-        to={"/help/" + name}
-        aria-label={"Help for " + name}
+        to={`/help/${name}`}
+        aria-label={`Help for ${name}`}
       >
         <HelpCircle fontSize="inherit" />
       </IconButton>
@@ -44,20 +44,17 @@ const generateStatus = (ifIdle, ifSuccess) => {
 }
 
 export default () => {
-  const { isLoading, isError, data } = useQuery(['summaryData'], () =>
-    fetch('/summary').then(async (data) => {
-      const { WorkerStatus } = await data.json(), result = []
-      for (let key in WorkerStatus) {
-        const value = WorkerStatus[key]
-        result.push({
-          name: generateNameLink(key),
-          update: format(value.LastFinished, 'zh_CN'),
-          status: generateStatus(value.Idle, value.Result)
-        })
-      }
-      return result
-    })
-  )
+  const { isLoading, isError, data } = useQuery(['summaryData'], () => {
+    const { VITE_API_PROTOCOL, VITE_DOMAIN, VITE_SUMMARY_PREFIX } = import.meta.env
+    const url = VITE_API_PROTOCOL + '://' + VITE_DOMAIN + VITE_SUMMARY_PREFIX
+    return fetch(url).then(async (data) => (
+      Object.entries((await data.json()).WorkerStatus).map(([key, value]) => ({
+        name: generateNameLink(key),
+        update: format(value.LastFinished, 'zh_CN'),
+        status: generateStatus(value.Idle, value.Result)
+      }))
+    ))
+  })
 
   return (
     <Container maxWidth="lg">

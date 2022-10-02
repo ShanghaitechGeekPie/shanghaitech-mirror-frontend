@@ -8,6 +8,11 @@ import viteCompression from 'vite-compression-plugin'
 import esbuildFixVirtualized from './src/plugins/esbuildFixVirtualized'
 
 export default defineConfig({
+  clearScreen: false,
+  json: { stringify: false },
+  resolve: {
+    alias: { '@': path.resolve(__dirname, './src') }
+  },
   plugins: [
     viteSvgr(),
     viteReact(),
@@ -21,9 +26,6 @@ export default defineConfig({
       algorithm: 'brotliCompress'
     })
   ],
-  resolve: {
-    alias: { '@': path.resolve(__dirname, './src') }
-  },
   optimizeDeps: {
     esbuildOptions: {
       plugins: [esbuildFixVirtualized()],
