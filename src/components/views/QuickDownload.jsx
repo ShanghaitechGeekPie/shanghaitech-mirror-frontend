@@ -16,9 +16,10 @@ import Failed from '@/components/global/Failed'
 
 export default () => {
   const [selection, setSelection] = useState()
-  const { isLoading, isError, data } = useQuery(['quickDownloadData'], () =>
-    fetch('/downloads').then(async (data) => await data.json())
-  )
+  const { isLoading, isError, data } = useQuery(['quickDownloadData'], () => {
+    const { VITE_API_PROTOCOL, VITE_DOMAIN, VITE_QUICKDOWNLOAD_PREFIX } = import.meta.env
+    return fetch(`${VITE_API_PROTOCOL}://${VITE_DOMAIN}${VITE_QUICKDOWNLOAD_PREFIX}`).then((res) => res.json())
+  })
 
   if (isLoading) return <Loading inline />
   if (isError) return <Failed inline />

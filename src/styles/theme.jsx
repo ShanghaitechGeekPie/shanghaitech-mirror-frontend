@@ -24,7 +24,7 @@ const darPalette = {
   action: { selectedOpacity: 0.6 },
   background: {
     paper: "#0b0808",
-    default: "#121010"
+    default: "#120e0e"
   }
 }
 

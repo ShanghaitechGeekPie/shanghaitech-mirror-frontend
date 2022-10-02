@@ -2,6 +2,7 @@ import { WindowScroller, AutoSizer, Column, Table } from 'react-virtualized'
 import { Scrollbars } from 'react-custom-scrollbars'
 import TableCell from '@mui/material/TableCell'
 import styles from '@/styles/modules/index.module.css'
+import clsx from 'clsx'
 
 const headerHeight = 56, rowHeight = 56
 
@@ -25,7 +26,7 @@ const VirtualizedTable = ({ columns, ...tableProps }) => {
       <TableCell
         component="div"
         variant="body"
-        style={{ height: rowHeight, flex: "auto", paddingBottom: "12px", whiteSpace: "nowrap" }}
+        style={{ height: rowHeight, flex: "auto", paddingBottom: "12px", whiteSpace: "nowrap", borderBottom: 0 }}
         align={columns[columnIndex].align}
       >
         {/*
@@ -75,8 +76,11 @@ const VirtualizedTable = ({ columns, ...tableProps }) => {
               scrollTop={scrollTop}
               rowHeight={rowHeight}
               headerHeight={headerHeight}
-              rowClassName={({ index }) => index != -1 && styles.onHover}
               rowStyle={{ display: 'flex' }}
+              rowClassName={({ index }) => {
+                const isOnHover = index != -1, isBorderBottom = index < tableProps.rowCount - 1
+                return clsx(isOnHover && styles.onHover, isBorderBottom && styles.borderBottom)
+              }}
               {...tableProps}
             >
               {columns.map(({ dataKey, ...columnProps }, index) => (

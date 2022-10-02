@@ -13,3 +13,7 @@
 .onHover:hover {
     background-color: rgba(128, 128, 128, .08);
 }
+
+.borderBottom  {
+    border-bottom: 1px solid rgba(81, 81, 81, 1);
+}

@@ -11,7 +11,7 @@ export default ({ inline }) => {
     <Paper
       variant={inline ? "outlined" : "elevation"}
       elevation={inline ? 0 : 3}
-      sx={{ mx: 'auto', textAlign: 'center', paddingY: inline ? 6 : 8, backgroundColor: "transparent" }}
+      sx={{ mx: 'auto', textAlign: 'center', paddingY: inline ? 6 : 8 }}
     >
       <CircularProgress size={50} thickness={4} sx={{ marginBottom: 4 }} />
       <Typography component="div" variant="h5" sx={{ fontWeight: 'medium' }}>Loading</Typography>

@@ -12,7 +12,6 @@ import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MarkdownIt from "markdown-it"
 import prism from 'markdown-it-prism'
-import packageInfo from '@/../package.json'
 import distributionsData from '@/assets/config/repository.json'
 import styles from '@/styles/modules/index.module.css'
 import '@/styles/markdown/prism.css'
@@ -21,7 +20,7 @@ import '@/styles/markdown/common.css'
 const replaceVariables = (template, version, https) => {
   let result = template.replace(/{{ PROTOCOL }}/g, https ? "https" : "http")
   result = result.replace(/{{ VERSION }}/g, version)
-  result = result.replace(/{{ URL }}/g, packageInfo.domain)
+  result = result.replace(/{{ URL }}/g, import.meta.env.VITE_DOMAIN)
   return result
 }
 
