@@ -9,6 +9,7 @@ import esbuildFixVirtualized from './src/plugins/esbuildFixVirtualized'
 
 export default defineConfig({
   clearScreen: false,
+  envPrefix: 'MIRROR_',
   json: { stringify: false },
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') }
@@ -32,7 +33,9 @@ export default defineConfig({
     }
   },
   build: {
+    target: "es2015",
     minify: "terser",
+    cssTarget: "chrome61",
     assetsInlineLimit: 65536,
     reportCompressedSize: false,
     terserOptions: {

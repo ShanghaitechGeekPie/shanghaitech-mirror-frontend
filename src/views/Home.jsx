@@ -45,8 +45,8 @@ const generateStatus = (ifIdle, ifSuccess) => {
 
 export default () => {
   const { isLoading, isError, data } = useQuery(['summaryData'], () => {
-    const { VITE_API_PROTOCOL, VITE_DOMAIN, VITE_SUMMARY_PREFIX } = import.meta.env
-    const url = VITE_API_PROTOCOL + '://' + VITE_DOMAIN + VITE_SUMMARY_PREFIX
+    const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_SUMMARY_PREFIX } = import.meta.env
+    const url = MIRROR_API_PROTOCOL + '://' + MIRROR_DOMAIN + MIRROR_SUMMARY_PREFIX
     return fetch(url).then(async (data) => (
       Object.entries((await data.json()).WorkerStatus).map(([key, value]) => ({
         name: generateNameLink(key),

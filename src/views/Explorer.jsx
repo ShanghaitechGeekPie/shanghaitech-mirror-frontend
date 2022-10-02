@@ -58,8 +58,8 @@ export default () => {
   const [generatedPage, setGeneratedPage] = useState()
 
   const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () => {
-    const { VITE_API_PROTOCOL, VITE_DOMAIN, VITE_EXPLORER_PREFIX } = import.meta.env
-    const url = VITE_API_PROTOCOL + '://' + VITE_DOMAIN + VITE_EXPLORER_PREFIX + location.pathname
+    const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_EXPLORER_PREFIX } = import.meta.env
+    const url = MIRROR_API_PROTOCOL + '://' + MIRROR_DOMAIN + MIRROR_EXPLORER_PREFIX + location.pathname
     return fetch(url).then((res) => res.json())
   })
 
