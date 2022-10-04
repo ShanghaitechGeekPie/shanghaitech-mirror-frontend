@@ -12,7 +12,6 @@ import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 import _newsList from '@/assets/config/news.json'
-import * as React from 'react'
 
 const getPostContent = (id: string) => {
   const parser = new MarkdownIt()

@@ -5,7 +5,6 @@ import Paper from '@mui/material/Paper'
 import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
 import { EmoticonSadOutline } from 'mdi-material-ui'
-import * as React from 'react'
 
 export default ({ isInline = false, hasButton = false }) => {
   const location = useLocation()

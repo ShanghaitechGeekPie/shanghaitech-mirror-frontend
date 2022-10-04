@@ -10,7 +10,7 @@ const getPrevChar = (tokens: Token[], index: number) => {
   let prevChar = ""
   for (let i = index - 1; i >= 0; i -= 1) {
     const { content, type } = tokens[i]
-    if (type === 'html_inline') { break }
+    if (type === 'html_inline') break
     if (content && content.length) { prevChar = content.slice(-1); break }
   }
   return prevChar

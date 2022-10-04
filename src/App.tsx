@@ -21,7 +21,6 @@ import ListItemText from '@mui/material/ListItemText'
 import { Menu, Home, HelpBox, Information } from 'mdi-material-ui'
 import HelpMenu from '@/components/views/HelpMenu'
 import Router from '@/router/index'
-import * as React from 'react'
 
 unstable_ClassNameGenerator.configure((componentName) =>
   componentName.replace('Mui', '').toLowerCase()

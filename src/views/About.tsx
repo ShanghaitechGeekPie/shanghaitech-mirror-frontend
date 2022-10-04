@@ -1,4 +1,3 @@
-import { styled } from '@mui/material/styles'
 import { FC, SVGProps } from 'react'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
@@ -21,7 +20,6 @@ import prism from 'markdown-it-prism'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 import AboutContent from '@/assets/content/about.md?raw'
-import React from 'react'
 
 const getAboutContent = () => {
   const parser = new MarkdownIt()

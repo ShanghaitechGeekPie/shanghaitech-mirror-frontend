@@ -15,7 +15,6 @@ import { Scrollbars } from 'react-custom-scrollbars'
 import TableCell from '@mui/material/TableCell'
 import styles from '@/styles/modules/index.module.css'
 import clsx from 'clsx'
-import * as React from 'react'
 
 const WindowScroller = _WindowScroller as unknown as FC<WindowScrollerProps>
 const AutoSizer = _AutoSizer as unknown as FC<AutoSizerProps>

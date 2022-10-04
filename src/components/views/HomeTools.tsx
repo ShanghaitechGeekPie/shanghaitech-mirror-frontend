@@ -21,7 +21,6 @@ import { TransitionProps } from '@mui/material/transitions'
 import { Close, Link, CodeTags } from 'mdi-material-ui'
 import QuickDownload from '@/components/views/QuickDownload'
 import ConfigurationGenerator from '@/components/views/ConfigurationGenerator'
-import * as React from 'react'
 
 const tools = [
   { "title": "获取下载链接", "component": <QuickDownload />, "icon": <Link /> },

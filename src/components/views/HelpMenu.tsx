@@ -5,7 +5,6 @@ import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import HelpConfig from '@/assets/config/help.json'
-import * as React from 'react'
 
 export default ({ handleDrawerToggle = () => { } }) => {
   const location = useLocation()

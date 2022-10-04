@@ -9,7 +9,6 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
 import { Home, EmoticonCoolOutline } from 'mdi-material-ui'
-import * as React from 'react'
 
 export default () => {
   const data = [

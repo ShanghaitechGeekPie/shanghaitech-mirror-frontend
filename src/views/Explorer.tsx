@@ -15,7 +15,6 @@ import Table from '@/components/global/Table'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
 import { CodeJson, FormatLetterCase } from 'mdi-material-ui'
-import React from 'react'
 
 const formatFileSize = (size: number) => {
   var sizes = [' Bytes', ' KiB', ' MiB', ' GiB']
@@ -77,7 +76,7 @@ export default () => {
   })
 
   const handleData = () => {
-    if (data) { setFilteredData(data) }
+    if (data) setFilteredData(data)
   }
 
   const handleCaseSensitive = () => {
@@ -91,24 +90,24 @@ export default () => {
   }
 
   const handleFilteredData = () => {
-    if (!initialGeneratePage.current) { initialGeneratePage.current = true }
-    else { setGeneratedPage(generatePage()) }
+    if (!initialGeneratePage.current) initialGeneratePage.current = true
+    else setGeneratedPage(generatePage())
   }
 
   const handleSearchText = useDebounce(() => {
     if (!initialSearchText.current) {
       initialSearchText.current = true
     }
-    else if (regExpMode) {
+    else if (!regExpMode) {
+      setFilteredData(data.filter((item: ExplorerItem) => {
+        if (caseSensitive) return item.name.includes(searchText)
+        else return item.name.toLowerCase().includes(searchText.toLowerCase())
+      }))
+    } else {
       const searchRegExp = () => new RegExp(searchText, caseSensitive ? "g" : "gi")
       try { searchRegExp() } catch { setIsRegExpError(true); return }
       setIsRegExpError(false)
-      setFilteredData(data.filter((item: any) => item.name.match(searchRegExp())))
-    } else {
-      setFilteredData(data.filter((item: any) => {
-        if (caseSensitive) { return item.name.includes(searchText) }
-        else { return item.name.toLowerCase().includes(searchText.toLowerCase()) }
-      }))
+      setFilteredData(data.filter((item: ExplorerItem) => item.name.match(searchRegExp())))
     }
   }, 150)
 

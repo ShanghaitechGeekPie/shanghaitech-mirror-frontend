@@ -17,7 +17,6 @@ import News from '@/components/views/HomeNews'
 import Tools from '@/components/views/HomeTools'
 import Links from '@/components/views/HomeLinks'
 import helpConfig from '@/assets/config/help.json'
-import React from 'react'
 
 const generateNameLink = (name: string) => (
   <>
