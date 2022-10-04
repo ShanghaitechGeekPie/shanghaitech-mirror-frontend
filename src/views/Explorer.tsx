@@ -29,10 +29,10 @@ const generateNameLink = (name: string, type: string) => (
     underline="none"
     component={RouterLink}
     sx={{ fontWeight: 'medium' }}
-    target={type == "directory" ? undefined : "_blank"}
-    to={location.pathname + name + (type == "directory" ? "/" : "")}
+    target={type === "directory" ? undefined : "_blank"}
+    to={location.pathname + name + (type === "directory" ? "/" : "")}
   >
-    {name + (type == "directory" ? "/" : "")}
+    {name + (type === "directory" ? "/" : "")}
   </Link>
 )
 

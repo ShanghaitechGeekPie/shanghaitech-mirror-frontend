@@ -89,7 +89,7 @@ export default () => {
           variant="drawer"
           to={item.link}
           onClick={isMobileScreen ? handleDrawerToggle : undefined}
-          selected={location.pathname == item.link}
+          selected={location.pathname === item.link}
         >
           <ListItemIcon>{item.icon}</ListItemIcon>
           <ListItemText variant="button" primary={item.name} disableTypography />

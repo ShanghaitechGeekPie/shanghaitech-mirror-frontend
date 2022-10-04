@@ -101,7 +101,7 @@ const VirtualizedTable = ({ columns, ...tableProps }: VirtualizedTableProps) => 
               headerHeight={headerHeight}
               rowStyle={{ display: 'flex' }}
               rowClassName={({ index = 0 }) => {
-                const isOnHover = index != -1, isBorderBottom = index < tableProps.rowCount - 1
+                const isOnHover = index !== -1, isBorderBottom = index < tableProps.rowCount - 1
                 return clsx(isOnHover && styles.onHover, isBorderBottom && styles.borderBottom)
               }}
               {...tableProps}
