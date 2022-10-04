@@ -1,3 +1,4 @@
+import React from 'react'
 import { lazy, Suspense } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 const Home = lazy(() => import("@/views/Home"))

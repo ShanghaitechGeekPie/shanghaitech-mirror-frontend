@@ -15,12 +15,15 @@ import Table from '@/components/global/Table'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
 import { CodeJson, FormatLetterCase } from 'mdi-material-ui'
+import React from 'react'
 
 const formatFileSize = (size) => {
   var sizes = [' Bytes', ' KiB', ' MiB', ' GiB']
-  for (let index = 0; index < sizes.length; index++)
-    if (size < 1024 ** (index + 1))
+  for (let index = 0; index < sizes.length; index++) {
+    if (size < 1024 ** (index + 1)) {
       return (Math.round((size / 1024 ** index) * 100) / 100) + sizes[index]
+    }
+  }
   return size
 }
 
@@ -29,10 +32,10 @@ const generateNameLink = (name, type) => (
     underline="none"
     component={RouterLink}
     sx={{ fontWeight: 'medium' }}
-    target={type == "directory" ? null : "_blank"}
-    to={location.pathname + name + (type == "directory" ? "/" : "")}
+    target={type === "directory" ? null : "_blank"}
+    to={location.pathname + name + (type === "directory" ? "/" : "")}
   >
-    {name + (type == "directory" ? "/" : "")}
+    {name + (type === "directory" ? "/" : "")}
   </Link>
 )
 
@@ -40,7 +43,7 @@ const useDebounce = (callback, delay) => {
   const { current } = useRef({ callback, timer: null })
   useEffect(() => { current.callback = callback }, [callback])
   return useCallback((...args) => {
-    if (current.timer) clearTimeout(current.timer)
+    if (current.timer) { clearTimeout(current.timer) }
     current.timer = setTimeout(() => { current.callback(...args) }, delay)
   }, [])
 }
@@ -54,8 +57,8 @@ export default () => {
   const [regExpMode, setRegExpMode] = useState(false)
   const [isRegExpError, setIsRegExpError] = useState(false)
   const [caseSensitive, setCaseSensitive] = useState(true)
-  const [filteredData, setFilteredData] = useState()
-  const [generatedPage, setGeneratedPage] = useState()
+  const [filteredData, setFilteredData] = useState([])
+  const [generatedPage, setGeneratedPage] = useState([])
 
   const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () => {
     const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_EXPLORER_PREFIX } = import.meta.env
@@ -64,7 +67,7 @@ export default () => {
   })
 
   const handleData = () => {
-    if (data) setFilteredData(data)
+    if (data) { setFilteredData(data) }
   }
 
   const handleCaseSensitive = () => {
@@ -78,24 +81,24 @@ export default () => {
   }
 
   const handleFilteredData = () => {
-    if (!initialGeneratePage.current) initialGeneratePage.current = true
-    else setGeneratedPage(generatePage(filteredData))
+    if (initialGeneratePage.current) { setGeneratedPage(generatePage(filteredData)) }
+    else { initialGeneratePage.current = true }
   }
 
   const handleSearchText = useDebounce(() => {
     if (!initialSearchText.current) {
       initialSearchText.current = true
     }
-    else if (!regExpMode) {
-      setFilteredData(data.filter((item) => {
-        if (caseSensitive) return item.name.includes(searchText)
-        else return item.name.toLowerCase().includes(searchText.toLowerCase())
-      }))
-    } else {
+    else if (regExpMode) {
       const searchRegExp = () => new RegExp(searchText, caseSensitive ? "g" : "gi")
       try { searchRegExp() } catch { setIsRegExpError(true); return }
       setIsRegExpError(false)
       setFilteredData(data.filter((item) => item.name.match(searchRegExp())))
+    } else {
+      setFilteredData(data.filter((item) => {
+        if (caseSensitive) { return item.name.includes(searchText) }
+        else { return item.name.toLowerCase().includes(searchText.toLowerCase()) }
+      }))
     }
   }, 150)
 
@@ -110,7 +113,7 @@ export default () => {
     filteredData.forEach((value) => result.push({
       name: generateNameLink(value.name, value.type),
       update: format(value.mtime, 'zh_CN'),
-      size: value.type == "directory" ? "-" : formatFileSize(value.size)
+      size: value.type === "directory" ? "-" : formatFileSize(value.size)
     }))
     return result
   }

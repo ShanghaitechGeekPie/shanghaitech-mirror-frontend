@@ -3,6 +3,7 @@ import { Scrollbars } from 'react-custom-scrollbars'
 import TableCell from '@mui/material/TableCell'
 import styles from '@/styles/modules/index.module.css'
 import clsx from 'clsx'
+import * as React from 'react'
 
 const headerHeight = 56, rowHeight = 56
 
@@ -78,7 +79,7 @@ const VirtualizedTable = ({ columns, ...tableProps }) => {
               headerHeight={headerHeight}
               rowStyle={{ display: 'flex' }}
               rowClassName={({ index }) => {
-                const isOnHover = index != -1, isBorderBottom = index < tableProps.rowCount - 1
+                const isOnHover = index !== -1, isBorderBottom = index < tableProps.rowCount - 1
                 return clsx(isOnHover && styles.onHover, isBorderBottom && styles.borderBottom)
               }}
               {...tableProps}

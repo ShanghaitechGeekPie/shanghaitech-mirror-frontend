@@ -8,13 +8,14 @@ import prism from 'markdown-it-prism'
 import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
+import * as React from 'react'
 
 const getHelpContent = () => {
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
   const name = useParams().name ? useParams().name : "default"
   const content = import.meta.glob('@/assets/content/help/*.md', { as: "raw", eager: true })
-  for (const item in content) if (item.includes(name)) return parser.render(content[item])
+  for (const item in content) { if (item.includes(name)) { return parser.render(content[item]) } }
 }
 
 export default () => (

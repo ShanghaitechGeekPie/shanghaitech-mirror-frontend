@@ -17,6 +17,7 @@ import News from '@/components/views/HomeNews'
 import Tools from '@/components/views/HomeTools'
 import Links from '@/components/views/HomeLinks'
 import helpConfig from '@/assets/config/help.json'
+import React from 'react'
 
 const generateNameLink = (name) => (
   <>
@@ -37,10 +38,11 @@ const generateNameLink = (name) => (
 )
 
 const generateStatus = (ifIdle, ifSuccess) => {
-  if (ifIdle)
-    if (ifSuccess) return <Chip icon={<Check />} label="同步成功" size="small" color="success" />
-    else return <Chip icon={<Close />} label="同步失败" size="small" color="warning" />
-  else return <Chip icon={<Sync />} label="正在同步" size="small" color="info" />
+  if (ifIdle) {
+    if (ifSuccess) { return <Chip icon={<Check />} label="同步成功" size="small" color="success" /> }
+    else { return <Chip icon={<Close />} label="同步失败" size="small" color="warning" /> }
+  }
+  else { return <Chip icon={<Sync />} label="正在同步" size="small" color="info" /> }
 }
 
 export default () => {

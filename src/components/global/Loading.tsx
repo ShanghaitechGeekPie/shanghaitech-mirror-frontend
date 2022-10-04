@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import CircularProgress from '@mui/material/CircularProgress'
+import * as React from 'react'
 
 export default ({ inline }) => {
   const [isLoadingTooLong, setIsLoadingTooLong] = useState(false)

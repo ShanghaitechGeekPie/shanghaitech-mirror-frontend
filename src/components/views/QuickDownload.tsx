@@ -13,6 +13,7 @@ import TextField from '@mui/material/TextField'
 import { Download } from 'mdi-material-ui'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
+import React from 'react'
 
 export default () => {
   const [selection, setSelection] = useState()
@@ -21,8 +22,8 @@ export default () => {
     return fetch(`${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}${MIRROR_QUICKDOWNLOAD_PREFIX}`).then((res) => res.json())
   })
 
-  if (isLoading) return <Loading inline />
-  if (isError) return <Failed inline />
+  if (isLoading) { return <Loading inline /> }
+  if (isError) { return <Failed inline /> }
 
   return (
     <Stack spacing={2}>

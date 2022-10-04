@@ -6,18 +6,19 @@ import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import { Clock } from 'mdi-material-ui'
 import MarkdownIt from 'markdown-it'
-import pangu from 'markdown-it-pangu'
+import pangu from 'markdown-it-pangu' // https://github.com/shigma/markdown-it-pangu/issues/1
 import prism from 'markdown-it-prism'
 import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 import newsList from '@/assets/config/news.json'
+import * as React from 'react'
 
 const getPostContent = (id) => {
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
   const content = import.meta.glob('@/assets/content/news/*.md', { as: "raw", eager: true })
-  for (const item in content) if (item.includes(id)) return parser.render(content[item])
+  for (const item in content) { if (item.includes(id)) { return parser.render(content[item])  }}
 }
 
 export default () => {

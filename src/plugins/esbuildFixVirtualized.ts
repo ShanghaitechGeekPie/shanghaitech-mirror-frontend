@@ -1,6 +1,6 @@
 import fs from "fs"
 
-module.exports = () => ({
+export default () => ({
   name: "esbuild-fix-virtualized-plugin",
   setup(build) {
     build.onLoad(

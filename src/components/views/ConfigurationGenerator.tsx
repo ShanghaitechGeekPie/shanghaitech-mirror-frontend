@@ -16,6 +16,7 @@ import distributionsData from '@/assets/config/repository.json'
 import styles from '@/styles/modules/index.module.css'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
+import React from 'react'
 
 const replaceVariables = (template, version, https) => {
   let result = template.replace(/{{ PROTOCOL }}/g, https ? "https" : "http")
@@ -29,7 +30,7 @@ const getTemplate = (distribution, version, https) => {
   const metaGlob = import.meta.glob('@/assets/content/repository/*.template', { as: "raw", eager: true })
   const seperatedMetaGlob = import.meta.glob('@/assets/content/repository/*/*.template', { as: "raw", eager: true })
   const content = distributionsData[distribution].seperated ? seperatedMetaGlob : metaGlob
-  for (const item in content) if (item.includes(templatePath)) return replaceVariables(content[item], version, https)
+  for (const item in content) { if (item.includes(templatePath)) { return replaceVariables(content[item], version, https)  }}
 }
 
 const parseMarkdown = (resultText) => {

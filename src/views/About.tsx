@@ -20,6 +20,7 @@ import prism from 'markdown-it-prism'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 import AboutContent from '@/assets/content/about.md?raw'
+import React from 'react'
 
 const getAboutContent = () => {
   const parser = new MarkdownIt()

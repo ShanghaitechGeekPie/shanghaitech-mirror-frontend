@@ -20,7 +20,7 @@ export default defineConfig({
     viteProgress(),
     viteHtml({
       minify: true,
-      entry: '/src/index.jsx'
+      entry: '/src/index.tsx'
     }),
     viteCompression({
       loginfo: 'silent',

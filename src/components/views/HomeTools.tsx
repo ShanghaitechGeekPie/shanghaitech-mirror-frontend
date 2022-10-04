@@ -20,6 +20,7 @@ import IconButton from '@mui/material/IconButton'
 import { Close, Link, CodeTags } from 'mdi-material-ui'
 import QuickDownload from '@/components/views/QuickDownload'
 import ConfigurationGenerator from '@/components/views/ConfigurationGenerator'
+import * as React from 'react'
 
 const tools = [
   { "title": "获取下载链接", "component": <QuickDownload />, "icon": <Link /> },
@@ -27,7 +28,7 @@ const tools = [
 ]
 
 const Transition = forwardRef((props, ref) => {
-  return <Slide direction="up" ref={ref} {...props} />
+  return <Slide children={undefined} direction="up" ref={ref} {...props} />
 })
 
 export default () => {
@@ -36,7 +37,7 @@ export default () => {
   const [openDialog, setOpenDialog] = useState(false)
   const handleCloseDialog = () => setOpenDialog(false)
   const handleOpenDialog = (title, component) => () => {
-    setDialogData({ "title": title, "component": component })
+    setDialogData({title, component })
     setOpenDialog(true)
   }
 

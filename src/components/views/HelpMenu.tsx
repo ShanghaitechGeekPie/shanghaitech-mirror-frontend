@@ -5,6 +5,7 @@ import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import HelpConfig from '@/assets/config/help.json'
+import * as React from 'react'
 
 export default ({ handleDrawerToggle }) => {
   const location = useLocation()
@@ -19,7 +20,7 @@ export default ({ handleDrawerToggle }) => {
           variant="drawer"
           to={'/help/' + item[0]}
           onClick={isMobileScreen ? handleDrawerToggle : null}
-          selected={location.pathname == '/help/' + item[0]}
+          selected={location.pathname === '/help/' + item[0]}
         >
           <ListItemText variant="button" inset primary={item[1]} disableTypography />
         </ListItemButton>
