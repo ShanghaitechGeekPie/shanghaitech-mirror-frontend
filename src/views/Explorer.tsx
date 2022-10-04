@@ -103,9 +103,9 @@ export default () => {
       const searchRegExp = () => new RegExp(searchText, caseSensitive ? "g" : "gi")
       try { searchRegExp() } catch { setIsRegExpError(true); return }
       setIsRegExpError(false)
-      setFilteredData(data.filter((item) => item.name.match(searchRegExp())))
+      setFilteredData(data.filter((item: any) => item.name.match(searchRegExp())))
     } else {
-      setFilteredData(data.filter((item) => {
+      setFilteredData(data.filter((item: any) => {
         if (caseSensitive) { return item.name.includes(searchText) }
         else { return item.name.toLowerCase().includes(searchText.toLowerCase()) }
       }))
