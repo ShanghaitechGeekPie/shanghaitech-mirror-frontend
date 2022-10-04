@@ -18,7 +18,7 @@ import Tools from '@/components/views/HomeTools'
 import Links from '@/components/views/HomeLinks'
 import helpConfig from '@/assets/config/help.json'
 
-const generateNameLink = (name) => (
+const generateNameLink = (name: string) => (
   <>
     <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={`${name}/`}>{name}</Link>
     {
@@ -36,11 +36,22 @@ const generateNameLink = (name) => (
   </>
 )
 
-const generateStatus = (ifIdle, ifSuccess) => {
+const generateStatus = (ifIdle: boolean, ifSuccess: boolean) => {
   if (ifIdle)
     if (ifSuccess) return <Chip icon={<Check />} label="同步成功" size="small" color="success" />
     else return <Chip icon={<Close />} label="同步失败" size="small" color="warning" />
   else return <Chip icon={<Sync />} label="正在同步" size="small" color="info" />
+}
+
+interface MirrorSummary {
+  Running: boolean,
+  WorkerStatus: { [key: string]: MirrorWorkerStatus } 
+}
+
+interface MirrorWorkerStatus {
+  Result: boolean,
+  LastFinished: string,
+  Idle: boolean
 }
 
 export default () => {
@@ -48,7 +59,7 @@ export default () => {
     const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_SUMMARY_PREFIX } = import.meta.env
     const url = MIRROR_API_PROTOCOL + '://' + MIRROR_DOMAIN + MIRROR_SUMMARY_PREFIX
     return fetch(url).then(async (data) => (
-      Object.entries((await data.json()).WorkerStatus).map(([key, value]) => ({
+      Object.entries((await data.json() as MirrorSummary).WorkerStatus).map(([key, value]) => ({
         name: generateNameLink(key),
         update: format(value.LastFinished, 'zh_CN'),
         status: generateStatus(value.Idle, value.Result)
@@ -66,7 +77,7 @@ export default () => {
               <Paper elevation={3}>
                 <Table
                   rowCount={data.length}
-                  rowGetter={({ index }) => data[index]}
+                  rowGetter={({ index }: { index: number }) => data[index]}
                   columns={[
                     { label: '名称', dataKey: 'name', align: 'left' },
                     { label: '上次同步', dataKey: 'update', align: 'center' },

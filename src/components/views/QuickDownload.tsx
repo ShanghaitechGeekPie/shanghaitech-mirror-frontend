@@ -14,15 +14,31 @@ import { Download } from 'mdi-material-ui'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
 
+interface QuickDownloadData {
+  [key: string]: QuickDownloadItem
+}
+
+interface QuickDownloadItem {
+  display: string,
+  type: string,
+  links: QuickDownloadLink[]
+}
+
+interface QuickDownloadLink {
+  name: string,
+  external: string,
+  link: string
+}
+
 export default () => {
-  const [selection, setSelection] = useState()
-  const { isLoading, isError, data } = useQuery(['quickDownloadData'], () => {
+  const [selection, setSelection] = useState<string>()
+  const { isLoading, isError, data } = useQuery(['quickDownloadData'], (): Promise<QuickDownloadData> => {
     const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_QUICKDOWNLOAD_PREFIX } = import.meta.env
     return fetch(`${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}${MIRROR_QUICKDOWNLOAD_PREFIX}`).then((res) => res.json())
   })
 
-  if (isLoading) return <Loading inline />
-  if (isError) return <Failed inline />
+  if (isLoading) return <Loading isInline />
+  if (isError) return <Failed isInline />
 
   return (
     <Stack spacing={2}>
@@ -41,19 +57,21 @@ export default () => {
           {data[selection ? selection : Object.keys(data)[0]].links.map((item, key) => (
             <Box key={item.link}>
               {Boolean(key) && <Divider />}
-              <ListItem>
+              <ListItem
+                secondaryAction={
+                  <Button
+                    variant="outlined"
+                    startIcon={<Download />}
+                    rel="noopener"
+                    target="_blank"
+                    href={item.link}
+                    sx={{ minWidth: "96px", marginLeft: 1 }}
+                  >
+                    下载
+                  </Button>
+                }
+              >
                 <ListItemText primary={item.name} secondary={item.external} />
-                <Button
-                  edge="end"
-                  variant="outlined"
-                  startIcon={<Download />}
-                  rel="noopener"
-                  target="_blank"
-                  href={item.link}
-                  sx={{ minWidth: "96px", marginLeft: 1 }}
-                >
-                  下载
-                </Button>
               </ListItem>
             </Box>
           ))}

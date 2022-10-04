@@ -1,3 +1,5 @@
+import { ThemeOptions, PaletteOptions } from "@mui/material"
+
 const lightPalette = {
   mode: "light",
   primary: { main: "#b71c1c" },
@@ -11,9 +13,9 @@ const lightPalette = {
     paper: "#ffffff",
     default: "#ffffff"
   }
-}
+} as PaletteOptions
 
-const darPalette = {
+const darkPalette = {
   mode: "dark",
   primary: { main: "#d32f2f" },
   secondary: { main: "#d81b60" },
@@ -26,9 +28,21 @@ const darPalette = {
     paper: "#0b0808",
     default: "#120e0e"
   }
+} as PaletteOptions
+
+declare module '@mui/material/ListItemButton' {
+  interface ListItemButtonBaseProps {
+    variant?: string
+  }
 }
 
-export default (darkMode) => ({
+declare module '@mui/material/ListItemText' {
+  interface ListItemTextProps {
+    variant?: string
+  }
+}
+
+const theme = (mode: boolean): ThemeOptions => ({
   shape: {
     borderRadius: 8
   },
@@ -42,7 +56,6 @@ export default (darkMode) => ({
     drawer: 1100,
     appBar: 1200
   },
-  palette: darkMode ? darPalette : lightPalette,
   components: {
     MuiList: {
       defaultProps: {
@@ -86,5 +99,8 @@ export default (darkMode) => ({
         }
       }
     }
-  }
+  },
+  palette: mode ? darkPalette : lightPalette
 })
+
+export default theme

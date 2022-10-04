@@ -6,31 +6,24 @@ import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
 import { EmoticonSadOutline } from 'mdi-material-ui'
 
-export default ({ inline, button }) => {
+export default ({ isInline = false, hasButton = false }) => {
   const location = useLocation()
+  const lastPageLink = location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)
 
   return (
     <Paper
-      variant={inline ? "outlined" : "elevation"}
-      elevation={inline ? 0 : 3}
+      variant={isInline ? "outlined" : "elevation"}
+      elevation={isInline ? 0 : 3}
     >
       <Fade in={true} {...{ timeout: 1000 }}>
-        <Box sx={{ mx: 'auto', textAlign: 'center', paddingY: inline ? 6 : 8 }}>
+        <Box sx={{ mx: 'auto', textAlign: 'center', paddingY: isInline ? 6 : 8 }}>
           <EmoticonSadOutline color="primary" sx={{ fontSize: "5rem", marginBottom: 4 }} />
-          <Typography
-            component="div"
-            variant="h5"
-            sx={{ fontWeight: 'medium' }}
-          >
+          <Typography component="div" variant="h5" sx={{ fontWeight: 'medium' }}>
             Oops, it failed!
           </Typography>
-          {button &&
-            <Button
-              variant="contained"
-              component={Link}
-              sx={{ fontWeight: 'medium', marginTop: 4 }}
-              to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)}
-            >
+          {
+            hasButton &&
+            <Button variant="contained" component={Link} sx={{ marginTop: 4 }} to={lastPageLink}>
               Back
             </Button>
           }
