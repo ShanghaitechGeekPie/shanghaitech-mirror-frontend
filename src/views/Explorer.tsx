@@ -17,35 +17,45 @@ import Failed from '@/components/global/Failed'
 import { CodeJson, FormatLetterCase } from 'mdi-material-ui'
 import React from 'react'
 
-const formatFileSize = (size) => {
+const formatFileSize = (size: number) => {
   var sizes = [' Bytes', ' KiB', ' MiB', ' GiB']
-  for (let index = 0; index < sizes.length; index++) {
-    if (size < 1024 ** (index + 1)) {
+  for (let index = 0; index < sizes.length; index++)
+    if (size < 1024 ** (index + 1))
       return (Math.round((size / 1024 ** index) * 100) / 100) + sizes[index]
-    }
-  }
   return size
 }
 
-const generateNameLink = (name, type) => (
+const generateNameLink = (name: string, type: string) => (
   <Link
     underline="none"
     component={RouterLink}
     sx={{ fontWeight: 'medium' }}
-    target={type === "directory" ? null : "_blank"}
+    target={type === "directory" ? undefined : "_blank"}
     to={location.pathname + name + (type === "directory" ? "/" : "")}
   >
     {name + (type === "directory" ? "/" : "")}
   </Link>
 )
 
-const useDebounce = (callback, delay) => {
+const useDebounce = (callback: () => void, delay: number) => {
   const { current } = useRef({ callback, timer: null })
   useEffect(() => { current.callback = callback }, [callback])
-  return useCallback((...args) => {
-    if (current.timer) { clearTimeout(current.timer) }
-    current.timer = setTimeout(() => { current.callback(...args) }, delay)
+  return useCallback(() => {
+    if (current.timer) clearTimeout(current.timer)
+    current.timer = setTimeout(() => current.callback(), delay) as any
   }, [])
+}
+
+interface ExplorerItem {
+  name: string,
+  update: string,
+  size: string
+}
+
+interface ExplorerItemComponent {
+  name: JSX.Element,
+  update: string,
+  size: string
 }
 
 export default () => {
@@ -57,8 +67,8 @@ export default () => {
   const [regExpMode, setRegExpMode] = useState(false)
   const [isRegExpError, setIsRegExpError] = useState(false)
   const [caseSensitive, setCaseSensitive] = useState(true)
-  const [filteredData, setFilteredData] = useState([])
-  const [generatedPage, setGeneratedPage] = useState([])
+  const [filteredData, setFilteredData] = useState<ExplorerItem[]>([])
+  const [generatedPage, setGeneratedPage] = useState<ExplorerItemComponent[]>([])
 
   const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () => {
     const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_EXPLORER_PREFIX } = import.meta.env
@@ -81,8 +91,8 @@ export default () => {
   }
 
   const handleFilteredData = () => {
-    if (initialGeneratePage.current) { setGeneratedPage(generatePage(filteredData)) }
-    else { initialGeneratePage.current = true }
+    if (!initialGeneratePage.current) { initialGeneratePage.current = true }
+    else { setGeneratedPage(generatePage()) }
   }
 
   const handleSearchText = useDebounce(() => {
@@ -103,17 +113,21 @@ export default () => {
   }, 150)
 
   const generatePage = () => {
-    let result = []
-    const sliceIndex = location.pathname.slice(0, -1).lastIndexOf("/") + 1
-    const lastPageLink = location.pathname.slice(0, sliceIndex)
-    result.push({
-      name: <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={lastPageLink}>Parent directory/</Link>,
-      update: "-", size: "-"
-    })
-    filteredData.forEach((value) => result.push({
+    const parantPageLink = (
+      <Link
+        component={RouterLink}
+        sx={{ fontWeight: 'medium' }}
+        underline="none"
+        to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)}
+      >
+        Parent directory/
+      </Link>
+    )
+    let result = [{ name: parantPageLink, update: "-", size: "-" }]
+    filteredData.forEach((value: any) => result.push({
       name: generateNameLink(value.name, value.type),
       update: format(value.mtime, 'zh_CN'),
-      size: value.type === "directory" ? "-" : formatFileSize(value.size)
+      size: value.type == "directory" ? "-" : formatFileSize(value.size).toString()
     }))
     return result
   }
@@ -146,12 +160,12 @@ export default () => {
                   <InputAdornment position="end">
                     <Tooltip title="Case sensitive">
                       <IconButton onClick={handleCaseSensitive} edge="end">
-                        <FormatLetterCase color={caseSensitive ? "primary" : "default"} />
+                        <FormatLetterCase color={caseSensitive ? "primary" : undefined} />
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="Use regular expression">
                       <IconButton onClick={handleRegExpMode} edge="end" sx={{ marginLeft: "4px" }}>
-                        <CodeJson fontSize="small" color={regExpMode ? "primary" : "default"} />
+                        <CodeJson fontSize="small" color={regExpMode ? "primary" : undefined} />
                       </IconButton>
                     </Tooltip>
                   </InputAdornment>
@@ -161,12 +175,12 @@ export default () => {
         }
       </Grid>
       {isLoading ? <Loading /> :
-        (isError ? <Failed button /> :
+        (isError ? <Failed hasButton /> :
           generatedPage &&
           <Paper elevation={3}>
             <Table
               rowCount={generatedPage.length}
-              rowGetter={({ index }) => generatedPage[index]}
+              rowGetter={({ index }: { index: number }) => generatedPage[index]}
               columns={[
                 { label: '文件名', dataKey: 'name', align: 'left' },
                 { label: '上次修改', dataKey: 'update', align: 'center' },

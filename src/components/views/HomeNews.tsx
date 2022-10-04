@@ -9,13 +9,17 @@ import ListItemButton from "@mui/material/ListItemButton"
 import ListItemText from "@mui/material/ListItemText"
 import Divider from "@mui/material/Divider"
 import { EmoticonOutline, ThumbDownOutline } from "mdi-material-ui"
-import newsList from "@/assets/config/news.json"
+import _newsList from "@/assets/config/news.json"
 import * as React from 'react'
 
-const icons = {
+const icons: { [key: string]: JSX.Element } = {
   smile: <EmoticonOutline color="secondary" />,
   downtime: <ThumbDownOutline color="error" />
 }
+
+interface NewsListProps { title: string, time: string, icon: string }
+
+const newsList: { [key: string]: NewsListProps } = _newsList
 
 export default () => (
   <Card elevation={3}>

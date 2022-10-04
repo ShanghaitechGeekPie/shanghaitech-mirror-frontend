@@ -48,7 +48,11 @@ const navLinks = [
   { name: "About", link: "/about", icon: <Information /> }
 ]
 
-const Main = styled('main')(({ theme, open }) => ({
+interface MainProps {
+  open: boolean
+}
+
+const Main = styled('main')<MainProps>(({ theme, open }: any) => ({
   flexGrow: 1,
   marginTop: theme.spacing(4),
   marginBottom: theme.spacing(6),
@@ -85,7 +89,7 @@ export default () => {
           key={item.name}
           variant="drawer"
           to={item.link}
-          onClick={isMobileScreen ? handleDrawerToggle : null}
+          onClick={isMobileScreen ? handleDrawerToggle : undefined}
           selected={location.pathname === item.link}
         >
           <ListItemIcon>{item.icon}</ListItemIcon>

@@ -3,7 +3,7 @@ import Container from '@mui/material/Container'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import MarkdownIt from 'markdown-it'
-import pangu from 'markdown-it-pangu'
+import pangu from '@/plugins/markdownItPangu'
 import prism from 'markdown-it-prism'
 import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
@@ -13,9 +13,10 @@ import * as React from 'react'
 const getHelpContent = () => {
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
-  const name = useParams().name ? useParams().name : "default"
+  const name = useParams().name ? useParams().name! : "default"
   const content = import.meta.glob('@/assets/content/help/*.md', { as: "raw", eager: true })
   for (const item in content) { if (item.includes(name)) { return parser.render(content[item]) } }
+  return ""
 }
 
 export default () => (

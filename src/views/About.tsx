@@ -1,4 +1,5 @@
 import { styled } from '@mui/material/styles'
+import { FC, SVGProps } from 'react'
 import Container from '@mui/material/Container'
 import Grid from '@mui/material/Grid'
 import Divider from '@mui/material/Divider'
@@ -7,7 +8,7 @@ import Chip from '@mui/material/Chip'
 import Card from '@mui/material/Card'
 import CardMedia from '@mui/material/CardMedia'
 import CardContent from '@mui/material/CardContent'
-import SvgIcon from '@mui/material/SvgIcon'
+import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
 import ShanghaiTechLogo from '@/assets/image/logo/shanghaitech.svg?raw'
 import GeekpieLogo from '@/assets/image/logo/geekpie.svg?raw'
 import QQChat from '@/assets/image/icons/qqchat.svg?component'
@@ -15,7 +16,7 @@ import Github from '@/assets/image/icons/github.svg?component'
 import Telegram from '@/assets/image/icons/telegram.svg?component'
 import { LinkVariant, Email } from 'mdi-material-ui'
 import MarkdownIt from 'markdown-it'
-import pangu from 'markdown-it-pangu'
+import pangu from '@/plugins/markdownItPangu'
 import prism from 'markdown-it-prism'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
@@ -28,13 +29,21 @@ const getAboutContent = () => {
   return parser.render(AboutContent)
 }
 
-const BrandIcon = styled(SvgIcon)({
-  boxSizing: 'content-box',
-  paddingLeft: 5,
-  fontSize: '1rem',
-})
+interface BrandIconProps extends SvgIconProps {
+  component: FC<SVGProps<SVGSVGElement>>
+}
 
-const ChipGridItem = ({ label, icon, href }) => (
+const BrandIcon = ({ component, ...props }: BrandIconProps) => (
+  <SvgIcon
+    component={component}
+    sx={{ boxSizing: 'content-box', paddingLeft: "4px", fontSize: '1.1rem' }}
+    {...props}
+  />
+)
+
+interface ChipGridItemProps { label: string, href: string, icon: any }
+
+const ChipGridItem = ({ label, icon, href }: ChipGridItemProps) => (
   <Grid item component={Link} href={href} underline="none" rel="noopener" target="_blank">
     <Chip clickable variant="outlined" color="primary" icon={icon} label={label} />
   </Grid>

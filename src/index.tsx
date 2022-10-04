@@ -8,7 +8,7 @@ import '@fontsource/roboto/latin-700.css'
 import '@fontsource/roboto/latin-900.css'
 import * as React from 'react'
 
-ReactDOM.createRoot(document.querySelector('#root')).render(
+ReactDOM.createRoot(document.querySelector('#root') as HTMLElement).render(
   <BrowserRouter>
     <App />
   </BrowserRouter>
