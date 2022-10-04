@@ -12,30 +12,43 @@ import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MarkdownIt from "markdown-it"
 import prism from 'markdown-it-prism'
-import distributionsData from '@/assets/config/repository.json'
+import _distributionsData from '@/assets/config/repository.json'
 import styles from '@/styles/modules/index.module.css'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 
-const replaceVariables = (template, version, https) => {
+const distributionsData: DistributionsData = _distributionsData
+
+const replaceVariables = (template: string, version: string, https: boolean) => {
   let result = template.replace(/{{ PROTOCOL }}/g, https ? "https" : "http")
   result = result.replace(/{{ VERSION }}/g, version)
   result = result.replace(/{{ URL }}/g, import.meta.env.MIRROR_DOMAIN)
   return result
 }
 
-const getTemplate = (distribution, version, https) => {
+const getTemplate = (distribution: string, version: string, https: boolean) => {
   const templatePath = distributionsData[distribution].seperated ? `${distribution}/${version}.template` : `${distribution}.template`
   const metaGlob = import.meta.glob('@/assets/content/repository/*.template', { as: "raw", eager: true })
   const seperatedMetaGlob = import.meta.glob('@/assets/content/repository/*/*.template', { as: "raw", eager: true })
   const content = distributionsData[distribution].seperated ? seperatedMetaGlob : metaGlob
   for (const item in content) if (item.includes(templatePath)) return replaceVariables(content[item], version, https)
+  return ""
 }
 
-const parseMarkdown = (resultText) => {
+const parseMarkdown = (resultText: string) => {
   const parser = new MarkdownIt()
   parser.use(prism)
   return parser.render("```\n" + resultText + "\n```")
+}
+
+interface DistributionsData {
+  [key: string]: DistributionInfo
+}
+
+interface DistributionInfo {
+  name: string
+  seperated: boolean,
+  versions: string[],
 }
 
 export default () => {
@@ -43,9 +56,9 @@ export default () => {
   const [allVersions, setAllVersions] = useState(["rolling"])
   const [selectedVersion, setSelectedVersion] = useState("rolling")
   const [enableHTTPS, setEnableHTTPS] = useState(true)
-  const [resultText, setResultText] = useState()
+  const [resultText, setResultText] = useState("")
 
-  const handleDistribution = (distribution) => {
+  const handleDistribution = (distribution: string) => {
     setSelectedDistribution(distribution)
     setAllVersions(distributionsData[distribution].versions)
     setSelectedVersion(distributionsData[distribution].versions[0])
@@ -97,7 +110,7 @@ export default () => {
       </Grid>
       {shouldShowDebSrcInfo &&
         <Grid item xs={12}>
-          <Alert variant="filled" severity="info" color="primary">源码库默认被禁用以提高同步速度，您可以取消注释以启用之！</Alert>
+          <Alert variant="filled" severity="info">源码库默认被禁用以提高同步速度，您可以取消注释以启用之！</Alert>
         </Grid>
       }
       <Grid item xs={12}>

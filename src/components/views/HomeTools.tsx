@@ -17,6 +17,7 @@ import DialogContent from '@mui/material/DialogContent'
 import Divider from '@mui/material/Divider'
 import Slide from '@mui/material/Slide'
 import IconButton from '@mui/material/IconButton'
+import { TransitionProps } from '@mui/material/transitions'
 import { Close, Link, CodeTags } from 'mdi-material-ui'
 import QuickDownload from '@/components/views/QuickDownload'
 import ConfigurationGenerator from '@/components/views/ConfigurationGenerator'
@@ -26,16 +27,21 @@ const tools = [
   { "title": "生成配置文件", "component": <ConfigurationGenerator />, "icon": <CodeTags /> }
 ]
 
-const Transition = forwardRef((props, ref) => {
+const Transition = forwardRef((
+  props: TransitionProps & { children: React.ReactElement<any, any> },
+  ref: React.Ref<unknown>,
+) => {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
+interface DialogData { title?: string, component?: JSX.Element }
+
 export default () => {
   const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('md'))
-  const [dialogData, setDialogData] = useState({})
+  const [dialogData, setDialogData] = useState<DialogData>({})
   const [openDialog, setOpenDialog] = useState(false)
   const handleCloseDialog = () => setOpenDialog(false)
-  const handleOpenDialog = (title, component) => () => {
+  const handleOpenDialog = (title: string, component: JSX.Element) => () => {
     setDialogData({ "title": title, "component": component })
     setOpenDialog(true)
   }
