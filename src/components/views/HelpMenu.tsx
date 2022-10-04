@@ -19,7 +19,7 @@ export default ({ handleDrawerToggle = () => { } }) => {
           variant="drawer"
           to={'/help/' + item[0]}
           onClick={isMobileScreen ? handleDrawerToggle : undefined}
-          selected={location.pathname == '/help/' + item[0]}
+          selected={location.pathname === '/help/' + item[0]}
         >
           <ListItemText variant="button" inset primary={item[1]} disableTypography />
         </ListItemButton>
