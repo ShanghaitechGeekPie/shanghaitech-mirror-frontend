@@ -76,7 +76,7 @@ export default () => {
   })
 
   const handleData = () => {
-    if (data) setFilteredData(data)
+    if (data) setFilteredData(data.sort((a: ExplorerItem, b: ExplorerItem) => a.name.localeCompare(b.name)))
   }
 
   const handleCaseSensitive = () => {
