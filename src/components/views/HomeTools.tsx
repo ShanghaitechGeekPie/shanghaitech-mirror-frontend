@@ -23,18 +23,19 @@ import QuickDownload from '@/components/views/QuickDownload'
 import ConfigurationGenerator from '@/components/views/ConfigurationGenerator'
 
 const tools = [
-  { "title": "获取下载链接", "component": <QuickDownload />, "icon": <Link /> },
-  { "title": "生成配置文件", "component": <ConfigurationGenerator />, "icon": <CodeTags /> }
+  { title: '获取下载链接', component: <QuickDownload />, icon: <Link /> },
+  { title: '生成配置文件', component: <ConfigurationGenerator />, icon: <CodeTags /> }
 ]
 
 const Transition = forwardRef((
   props: TransitionProps & { children: React.ReactElement<any, any> },
-  ref: React.Ref<unknown>,
-) => {
-  return <Slide direction="up" ref={ref} {...props} />
-})
+  ref: React.Ref<unknown>
+) => <Slide direction="up" ref={ref} {...props} />)
 
-interface DialogData { title?: string, component?: JSX.Element }
+interface DialogData {
+  title?: string
+  component?: JSX.Element
+}
 
 export default () => {
   const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('md'))
@@ -42,14 +43,16 @@ export default () => {
   const [openDialog, setOpenDialog] = useState(false)
   const handleCloseDialog = () => setOpenDialog(false)
   const handleOpenDialog = (title: string, component: JSX.Element) => () => {
-    setDialogData({ "title": title, "component": component })
+    setDialogData({ title: title, component: component })
     setOpenDialog(true)
   }
 
   return (
     <Card elevation={3}>
       <CardContent sx={{ paddingBottom: 0 }}>
-        <Typography component="div" variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>Tools</Typography>
+        <Typography component="div" variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>
+          Tools
+        </Typography>
       </CardContent>
       <List component="div">
         {tools.map((item) => (
@@ -71,23 +74,21 @@ export default () => {
         TransitionComponent={Transition}
         PaperProps={{ elevation: 2 }}
       >
-        {isMobileScreen ?
+        {isMobileScreen ? (
           <AppBar color="inherit" sx={{ position: 'relative' }}>
             <Toolbar>
-              <IconButton
-                onClick={handleCloseDialog}
-                sx={{ marginRight: 2 }}
-              >
+              <IconButton onClick={handleCloseDialog} sx={{ marginRight: 2 }}>
                 <Close />
               </IconButton>
               {dialogData.title}
             </Toolbar>
-          </AppBar> :
-          <DialogTitle sx={{ paddingBottom: 2, paddingX: 3 }}>
-            {dialogData.title}
-          </DialogTitle>
-        }
-        <DialogContent dividers sx={{ paddingTop: 3, borderBottom: 0 }}>{dialogData.component}</DialogContent>
+          </AppBar>
+        ) : (
+          <DialogTitle sx={{ paddingBottom: 2, paddingX: 3 }}>{dialogData.title}</DialogTitle>
+        )}
+        <DialogContent dividers sx={{ paddingTop: 3, borderBottom: 0 }}>
+          {dialogData.component}
+        </DialogContent>
       </Dialog>
     </Card>
   )

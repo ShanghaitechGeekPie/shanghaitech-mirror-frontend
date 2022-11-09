@@ -1,13 +1,11 @@
 # Build Stage
-FROM node:lts-alpine as build-stage
+FROM jitesoft/node-yarn as build-stage
 WORKDIR /app
-COPY package*.json yarn.lock ./
-RUN yarn install
 COPY . ./
-RUN yarn build
+RUN yarn && yarn build
 
 # Production Stage
-FROM peytonyip/nginx-brotli as production-stage
+FROM macbre/nginx-http3 as production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY start.sh /start.sh
 

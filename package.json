@@ -5,40 +5,58 @@
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint src"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
     "@fontsource/roboto": "^4.5.8",
     "@honkhonk/vite-plugin-svgr": "^1.1.0",
-    "@mui/material": "^5.10.3",
-    "@mui/styles": "^5.10.3",
-    "@tanstack/react-query": "^4.10.1",
+    "@mui/material": "^5.10.13",
+    "@mui/styles": "^5.10.10",
+    "@tanstack/react-query": "^4.14.5",
     "@types/markdown-it": "^12.2.3",
     "@types/pangu": "^4.0.0",
-    "@types/react": "^18.0.21",
+    "@types/react": "^18.0.25",
     "@types/react-custom-scrollbars": "^4.0.10",
-    "@types/react-dom": "^18.0.6",
+    "@types/react-dom": "^18.0.8",
     "@types/react-virtualized": "^9.21.21",
-    "@vitejs/plugin-react": "^2.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
+    "@vitejs/plugin-react": "^2.2.0",
+    "eslint": "^8.27.0",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
     "markdown-it": "^13.0.1",
     "markdown-it-pangu": "^1.0.2",
     "markdown-it-prism": "^2.3.0",
-    "mdi-material-ui": "^7.5.0",
+    "mdi-material-ui": "^7.6.0",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-custom-scrollbars": "^4.2.1",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.2",
+    "react-router-dom": "^6.4.3",
     "react-virtualized": "^9.22.3",
     "terser": "^5.15.1",
     "timeago.js": "^4.0.2",
     "typeface-roboto": "^1.1.13",
     "typescript": "^4.8.4",
-    "vite": "^3.0.9",
+    "vite": "^3.2.3",
     "vite-compression-plugin": "^0.0.4",
     "vite-plugin-html": "^3.2.0",
-    "vite-plugin-progress": "^0.0.5"
+    "vite-plugin-progress": "^0.0.6"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
   }
 }

@@ -12,8 +12,8 @@ import { Home, EmoticonCoolOutline } from 'mdi-material-ui'
 
 export default () => {
   const data = [
-    { "title": "Shanghaitech Offical", "href": "https://www.shanghaitech.edu.cn", "icon": <Home /> },
-    { "title": "GeekPie Homepage", "href": "https://geekpie.club", "icon": <EmoticonCoolOutline /> }
+    { title: 'Shanghaitech Offical', href: 'https://www.shanghaitech.edu.cn', icon: <Home /> },
+    { title: 'GeekPie Homepage', href: 'https://geekpie.club', icon: <EmoticonCoolOutline /> }
   ]
 
   return (

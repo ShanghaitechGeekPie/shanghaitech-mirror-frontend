@@ -16,11 +16,24 @@ import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
 import { CodeJson, FormatLetterCase } from 'mdi-material-ui'
 
+interface ExplorerDataItem {
+  name: string,
+  type: string,
+  mtime: string
+}
+
+interface ExplorerPageItem {
+  name: JSX.Element,
+  update: string,
+  size: string
+}
+
 const formatFileSize = (size: number) => {
-  var sizes = [' Bytes', ' KiB', ' MiB', ' GiB']
-  for (let index = 0; index < sizes.length; index++)
+  const sizes = [' Bytes', ' KiB', ' MiB', ' GiB']
+  for (let index = 0; index < sizes.length; index++) {
     if (size < 1024 ** (index + 1))
-      return (Math.round((size / 1024 ** index) * 100) / 100) + sizes[index]
+      return (Math.round(((size / 1024) ** index) * 100) / 100) + sizes[index]
+  }
   return size
 }
 
@@ -29,10 +42,10 @@ const generateNameLink = (name: string, type: string) => (
     underline="none"
     component={RouterLink}
     sx={{ fontWeight: 'medium' }}
-    target={type === "directory" ? undefined : "_blank"}
-    to={location.pathname + name + (type === "directory" ? "/" : "")}
+    target={type === 'directory' ? undefined : '_blank'}
+    to={location.pathname + name + (type === 'directory' ? '/' : '')}
   >
-    {name + (type === "directory" ? "/" : "")}
+    {name + (type === 'directory' ? '/' : '')}
   </Link>
 )
 
@@ -45,29 +58,17 @@ const useDebounce = (callback: () => void, delay: number) => {
   }, [])
 }
 
-interface ExplorerItem {
-  name: string,
-  update: string,
-  size: string
-}
-
-interface ExplorerItemComponent {
-  name: JSX.Element,
-  update: string,
-  size: string
-}
-
 export default () => {
   const location = useLocation()
   const initialSearchText = useRef(false)
   const initialGeneratePage = useRef(false)
 
-  const [searchText, setSearchText] = useState("")
+  const [searchText, setSearchText] = useState('')
   const [regExpMode, setRegExpMode] = useState(false)
   const [isRegExpError, setIsRegExpError] = useState(false)
   const [caseSensitive, setCaseSensitive] = useState(true)
-  const [filteredData, setFilteredData] = useState<ExplorerItem[]>([])
-  const [generatedPage, setGeneratedPage] = useState<ExplorerItemComponent[]>([])
+  const [filteredData, setFilteredData] = useState<ExplorerDataItem[]>([])
+  const [generatedPage, setGeneratedPage] = useState<ExplorerPageItem[]>([])
 
   const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () => {
     const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_EXPLORER_PREFIX } = import.meta.env
@@ -76,7 +77,12 @@ export default () => {
   })
 
   const handleData = () => {
-    if (data) setFilteredData(data.sort((a: ExplorerItem, b: ExplorerItem) => a.name.localeCompare(b.name)))
+    if (data) {
+      setFilteredData(data.sort((a: ExplorerDataItem, b: ExplorerDataItem) => {
+        if (a.type === b.type) return a.name.localeCompare(b.name)
+        return a.type === 'directory' ? -1 : 1
+      }))
+    }
   }
 
   const handleCaseSensitive = () => {
@@ -90,24 +96,24 @@ export default () => {
   }
 
   const handleFilteredData = () => {
-    if (!initialGeneratePage.current) initialGeneratePage.current = true
-    else setGeneratedPage(generatePage())
+    if (initialGeneratePage.current) setGeneratedPage(generatePage())
+    else initialGeneratePage.current = true
   }
 
   const handleSearchText = useDebounce(() => {
-    if (!initialSearchText.current) {
+    if (!initialSearchText.current)
       initialSearchText.current = true
-    }
-    else if (!regExpMode) {
-      setFilteredData(data.filter((item: ExplorerItem) => {
+
+    else if (regExpMode) {
+      const searchRegExp = () => new RegExp(searchText, caseSensitive ? 'g' : 'gi')
+      try { searchRegExp() } catch { setIsRegExpError(true); return }
+      setIsRegExpError(false)
+      setFilteredData(data.filter((item: ExplorerDataItem) => item.name.match(searchRegExp())))
+    } else {
+      setFilteredData(data.filter((item: ExplorerDataItem) => {
         if (caseSensitive) return item.name.includes(searchText)
         else return item.name.toLowerCase().includes(searchText.toLowerCase())
       }))
-    } else {
-      const searchRegExp = () => new RegExp(searchText, caseSensitive ? "g" : "gi")
-      try { searchRegExp() } catch { setIsRegExpError(true); return }
-      setIsRegExpError(false)
-      setFilteredData(data.filter((item: ExplorerItem) => item.name.match(searchRegExp())))
     }
   }, 150)
 
@@ -117,16 +123,16 @@ export default () => {
         component={RouterLink}
         sx={{ fontWeight: 'medium' }}
         underline="none"
-        to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf("/") + 1)}
+        to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf('/') + 1)}
       >
         Parent directory/
       </Link>
     )
-    let result = [{ name: parantPageLink, update: "-", size: "-" }]
+    const result = [{ name: parantPageLink, update: '-', size: '-' }]
     filteredData.forEach((value: any) => result.push({
       name: generateNameLink(value.name, value.type),
       update: format(value.mtime, 'zh_CN'),
-      size: value.type == "directory" ? "-" : formatFileSize(value.size).toString()
+      size: value.type === 'directory' ? '-' : formatFileSize(value.size).toString()
     }))
     return result
   }
@@ -152,19 +158,19 @@ export default () => {
               value={searchText}
               error={isRegExpError}
               placeholder="Search something..."
-              helperText={isRegExpError && "Invalid regexp pattern!"}
+              helperText={isRegExpError && 'Invalid regexp pattern!'}
               onChange={(event) => { setSearchText(event.target.value) }}
               InputProps={{
                 endAdornment:
                   <InputAdornment position="end">
                     <Tooltip title="Case sensitive">
                       <IconButton onClick={handleCaseSensitive} edge="end">
-                        <FormatLetterCase color={caseSensitive ? "primary" : undefined} />
+                        <FormatLetterCase color={caseSensitive ? 'primary' : undefined} />
                       </IconButton>
                     </Tooltip>
                     <Tooltip title="Use regular expression">
-                      <IconButton onClick={handleRegExpMode} edge="end" sx={{ marginLeft: "4px" }}>
-                        <CodeJson fontSize="small" color={regExpMode ? "primary" : undefined} />
+                      <IconButton onClick={handleRegExpMode} edge="end" sx={{ marginLeft: '4px' }}>
+                        <CodeJson fontSize="small" color={regExpMode ? 'primary' : undefined} />
                       </IconButton>
                     </Tooltip>
                   </InputAdornment>

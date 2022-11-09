@@ -1,4 +1,5 @@
-import path from 'path'
+/* eslint-disable camelcase */
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import { createHtmlPlugin as viteHtml } from 'vite-plugin-html'
 import viteReact from '@vitejs/plugin-react'
@@ -12,7 +13,9 @@ export default defineConfig({
   envPrefix: 'MIRROR_',
   json: { stringify: false },
   resolve: {
-    alias: { '@': path.resolve(__dirname, './src') }
+    alias: {
+      '@': resolve(__dirname, './src')
+    }
   },
   plugins: [
     viteSvgr(),
@@ -29,13 +32,13 @@ export default defineConfig({
   ],
   optimizeDeps: {
     esbuildOptions: {
-      plugins: [esbuildFixVirtualized()],
+      plugins: [esbuildFixVirtualized()]
     }
   },
   build: {
-    target: "es2015",
-    minify: "terser",
-    cssTarget: "chrome61",
+    target: 'es2015',
+    minify: 'terser',
+    cssTarget: 'chrome61',
     assetsInlineLimit: 65536,
     reportCompressedSize: false,
     terserOptions: {

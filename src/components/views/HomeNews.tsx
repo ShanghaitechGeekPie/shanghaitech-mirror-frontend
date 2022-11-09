@@ -1,15 +1,15 @@
-import { Link } from "react-router-dom"
-import Box from "@mui/material/Box"
-import Typography from "@mui/material/Typography"
-import Card from "@mui/material/Card"
-import CardContent from "@mui/material/CardContent"
-import List from "@mui/material/List"
-import ListItemIcon from "@mui/material/ListItemIcon"
-import ListItemButton from "@mui/material/ListItemButton"
-import ListItemText from "@mui/material/ListItemText"
-import Divider from "@mui/material/Divider"
-import { EmoticonOutline, ThumbDownOutline } from "mdi-material-ui"
-import _newsList from "@/assets/config/news.json"
+import { Link } from 'react-router-dom'
+import Box from '@mui/material/Box'
+import Typography from '@mui/material/Typography'
+import Card from '@mui/material/Card'
+import CardContent from '@mui/material/CardContent'
+import List from '@mui/material/List'
+import ListItemIcon from '@mui/material/ListItemIcon'
+import ListItemButton from '@mui/material/ListItemButton'
+import ListItemText from '@mui/material/ListItemText'
+import Divider from '@mui/material/Divider'
+import { EmoticonOutline, ThumbDownOutline } from 'mdi-material-ui'
+import _newsList from '@/assets/config/news.json'
 
 const icons: { [key: string]: JSX.Element } = {
   smile: <EmoticonOutline color="secondary" />,
@@ -29,7 +29,7 @@ export default () => (
       {Object.entries(newsList).map(([key, value]) => (
         <Box key={value.title}>
           <Divider />
-          <ListItemButton to={"/news/" + key} component={Link}>
+          <ListItemButton to={'/news/' + key} component={Link}>
             <ListItemIcon>{icons[value.icon]}</ListItemIcon>
             <ListItemText variant="button" primary={value.title} disableTypography />
           </ListItemButton>

@@ -9,19 +9,25 @@ import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 
-const getHelpContent = () => {
+const getHelpContent = (name: string) => {
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
-  const name = useParams().name ? useParams().name! : "default"
-  const content = import.meta.glob('@/assets/content/help/*.md', { as: "raw", eager: true })
+  const content = import.meta.glob('@/assets/content/help/*.md', { as: 'raw', eager: true })
   for (const item in content) if (item.includes(name)) return parser.render(content[item])
-  return ""
+  return ''
 }
 
 export default () => (
   <Container maxWidth="lg">
     <Card elevation={3} sx={{ px: { lg: 1 } }}>
-      <CardContent className="markdown-body" sx={{ marginTop: 2 }} dangerouslySetInnerHTML={{ __html: getHelpContent() }} />
+      <CardContent
+        className="markdown-body"
+        sx={{ marginTop: 2 }}
+        dangerouslySetInnerHTML={{ __html: getHelpContent((() => {
+          const { name } = useParams<{ name: string }>()
+          return name ? name : 'default'
+        })()) }}
+      />
     </Card>
   </Container>
 )

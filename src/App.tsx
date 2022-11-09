@@ -42,9 +42,9 @@ const queryClient = new QueryClient({
 const drawerWidth = 300
 
 const navLinks = [
-  { name: "Home", link: "/", icon: <Home /> },
-  { name: "Help", link: "/help", icon: <HelpBox /> },
-  { name: "About", link: "/about", icon: <Information /> }
+  { name: 'Home', link: '/', icon: <Home /> },
+  { name: 'Help', link: '/help', icon: <HelpBox /> },
+  { name: 'About', link: '/about', icon: <Information /> }
 ]
 
 interface MainProps {
@@ -57,13 +57,13 @@ const Main = styled('main')<MainProps>(({ theme, open }: any) => ({
   marginBottom: theme.spacing(6),
   [theme.breakpoints.up('lg')]: {
     marginLeft: `-${drawerWidth}px`,
-    transition: theme.transitions.create("margin", {
+    transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
     ...(open && {
       marginLeft: 0,
-      transition: theme.transitions.create("margin", {
+      transition: theme.transitions.create('margin', {
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen
       })
@@ -106,14 +106,14 @@ export default () => {
           <AppBar position="fixed">
             <Toolbar>
               <IconButton onClick={handleDrawerToggle} sx={{ marginRight: 3 }} aria-label="Open Drawer">
-                <Menu sx={{ color: "white" }} />
+                <Menu sx={{ color: 'white' }} />
               </IconButton>
               <Typography variant="h6" component="div">Geekpie Open Source Mirror</Typography>
             </Toolbar>
           </AppBar>
           <Box sx={{ width: { sm: drawerWidth } }}>
             <Drawer
-              variant={isMobileScreen ? "temporary" : "persistent"}
+              variant={isMobileScreen ? 'temporary' : 'persistent'}
               open={showDrawer}
               onClose={handleDrawerToggle}
               ModalProps={{ keepMounted: true }}
@@ -121,9 +121,9 @@ export default () => {
             >
               <Scrollbars autoHide autoHideTimeout={200}>
                 <Toolbar />
-                <Paper square sx={{ overflow: "auto", minHeight: "100vh" }}>
+                <Paper square sx={{ overflow: 'auto', minHeight: '100vh' }}>
                   {NavItems}
-                  {location.pathname.startsWith("/help") && <HelpMenu handleDrawerToggle={handleDrawerToggle} />}
+                  {location.pathname.startsWith('/help') && <HelpMenu handleDrawerToggle={handleDrawerToggle} />}
                 </Paper>
               </Scrollbars>
             </Drawer>

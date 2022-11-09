@@ -10,7 +10,7 @@ import Checkbox from '@mui/material/Checkbox'
 import MenuItem from '@mui/material/MenuItem'
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
-import MarkdownIt from "markdown-it"
+import MarkdownIt from 'markdown-it'
 import prism from 'markdown-it-prism'
 import _distributionsData from '@/assets/config/repository.json'
 import styles from '@/styles/modules/index.module.css'
@@ -20,25 +20,29 @@ import '@/styles/markdown/common.css'
 const distributionsData: DistributionsData = _distributionsData
 
 const replaceVariables = (template: string, version: string, https: boolean) => {
-  let result = template.replace(/{{ PROTOCOL }}/g, https ? "https" : "http")
+  let result = template.replace(/{{ PROTOCOL }}/g, https ? 'https' : 'http')
   result = result.replace(/{{ VERSION }}/g, version)
   result = result.replace(/{{ URL }}/g, import.meta.env.MIRROR_DOMAIN)
   return result
 }
 
 const getTemplate = (distribution: string, version: string, https: boolean) => {
-  const templatePath = distributionsData[distribution].seperated ? `${distribution}/${version}.template` : `${distribution}.template`
-  const metaGlob = import.meta.glob('@/assets/content/repository/*.template', { as: "raw", eager: true })
-  const seperatedMetaGlob = import.meta.glob('@/assets/content/repository/*/*.template', { as: "raw", eager: true })
-  const content = distributionsData[distribution].seperated ? seperatedMetaGlob : metaGlob
-  for (const item in content) if (item.includes(templatePath)) return replaceVariables(content[item], version, https)
-  return ""
+  const isSeperated = distributionsData[distribution].seperated
+  const templatePath = isSeperated ? `${distribution}/${version}.template` : `${distribution}.template`
+  const metaGlob = import.meta.glob('@/assets/content/repository/*.template', { as: 'raw', eager: true })
+  const seperatedMetaGlob = import.meta.glob('@/assets/content/repository/*/*.template', { as: 'raw', eager: true })
+  const content = isSeperated ? seperatedMetaGlob : metaGlob
+  for (const item in content) {
+    if (item.includes(templatePath))
+      return replaceVariables(content[item], version, https)
+  }
+  return ''
 }
 
 const parseMarkdown = (resultText: string) => {
   const parser = new MarkdownIt()
   parser.use(prism)
-  return parser.render("```\n" + resultText + "\n```")
+  return parser.render('```\n' + resultText + '\n```')
 }
 
 interface DistributionsData {
@@ -52,11 +56,11 @@ interface DistributionInfo {
 }
 
 export default () => {
-  const [selectedDistribution, setSelectedDistribution] = useState("archlinux")
-  const [allVersions, setAllVersions] = useState(["rolling"])
-  const [selectedVersion, setSelectedVersion] = useState("rolling")
+  const [selectedDistribution, setSelectedDistribution] = useState('archlinux')
+  const [allVersions, setAllVersions] = useState(['rolling'])
+  const [selectedVersion, setSelectedVersion] = useState('rolling')
   const [enableHTTPS, setEnableHTTPS] = useState(true)
-  const [resultText, setResultText] = useState("")
+  const [resultText, setResultText] = useState('')
 
   const handleDistribution = (distribution: string) => {
     setSelectedDistribution(distribution)
@@ -64,7 +68,7 @@ export default () => {
     setSelectedVersion(distributionsData[distribution].versions[0])
   }
 
-  const shouldShowDebSrcInfo = ["debian", "kali", "ubuntu"].includes(selectedDistribution)
+  const shouldShowDebSrcInfo = ['debian', 'kali', 'ubuntu'].includes(selectedDistribution)
 
   useEffect(() => {
     setResultText(getTemplate(selectedDistribution, selectedVersion, enableHTTPS))
@@ -76,7 +80,7 @@ export default () => {
         <Autocomplete
           value={selectedDistribution}
           options={Object.keys(distributionsData)}
-          sx={{ width: "100%" }}
+          sx={{ width: '100%' }}
           disableClearable
           noOptionsText="No such distribution"
           onChange={(event, value) => { handleDistribution(value) }}
@@ -85,7 +89,7 @@ export default () => {
         />
       </Grid>
       <Grid item sm={4} xs={7}>
-        <FormControl sx={{ width: "100%" }}>
+        <FormControl sx={{ width: '100%' }}>
           <InputLabel>版本</InputLabel>
           <Select
             label="版本"

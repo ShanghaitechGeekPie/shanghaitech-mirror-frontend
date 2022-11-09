@@ -34,7 +34,7 @@ interface BrandIconProps extends SvgIconProps {
 const BrandIcon = ({ component, ...props }: BrandIconProps) => (
   <SvgIcon
     component={component}
-    sx={{ boxSizing: 'content-box', paddingLeft: "4px", fontSize: '1.1rem' }}
+    sx={{ boxSizing: 'content-box', paddingLeft: '4px', fontSize: '1.1rem' }}
     {...props}
   />
 )
@@ -58,7 +58,7 @@ export default () => (
             <Grid container spacing={1}>
               <ChipGridItem
                 label="ShanghaiTech IT Services"
-                icon={<LinkVariant sx={{ paddingLeft: "5px" }} />}
+                icon={<LinkVariant sx={{ paddingLeft: '5px' }} />}
                 href="https://it.shanghaitech.edu.cn"
               />
             </Grid>
@@ -72,7 +72,7 @@ export default () => (
               <ChipGridItem
                 label="Email"
                 href="mailto:pie@geekpie.club"
-                icon={<Email sx={{ paddingLeft: "5px" }} />}
+                icon={<Email sx={{ paddingLeft: '5px' }} />}
               />
               <ChipGridItem
                 label="Github"

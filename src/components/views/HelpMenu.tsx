@@ -6,7 +6,9 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import HelpConfig from '@/assets/config/help.json'
 
-export default ({ handleDrawerToggle = () => { } }) => {
+interface HelpMenuProps { handleDrawerToggle: () => void }
+
+export default ({ handleDrawerToggle }: HelpMenuProps) => {
   const location = useLocation()
   const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('lg'))
 
