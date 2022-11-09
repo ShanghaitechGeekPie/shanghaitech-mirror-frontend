@@ -24,9 +24,7 @@ const Table = _Table as unknown as FC<TableProps>
 const headerHeight = 56, rowHeight = 56
 
 interface TableColumn {
-  name: JSX.Element,
-  update: string,
-  size: string
+  [key: string]: string | JSX.Element
 }
 
 interface TableColumnMeta {

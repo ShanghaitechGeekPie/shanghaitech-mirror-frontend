@@ -1,0 +1,7 @@
+pre-commit:
+  parallel: true
+  commands:
+    tsc:
+      run: node_modules/.bin/tsc
+    eslint:
+      run: node_modules/.bin/eslint src --fix
