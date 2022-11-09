@@ -16,9 +16,9 @@ import _newsList from '@/assets/config/news.json'
 const getPostContent = (id: string) => {
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
-  const content = import.meta.glob('@/assets/content/news/*.md', { as: "raw", eager: true })
+  const content = import.meta.glob('@/assets/content/news/*.md', { as: 'raw', eager: true })
   for (const item in content) if (item.includes(id)) return parser.render(content[item])
-  return ""
+  return ''
 }
 
 interface NewsListProps { title: string, time: string, icon: string }
@@ -26,7 +26,7 @@ interface NewsListProps { title: string, time: string, icon: string }
 const newsList: { [key: string]: NewsListProps } = _newsList
 
 export default () => {
-  const { id = "" } = useParams()
+  const { id = '' } = useParams()
   return (
     <Container maxWidth="lg">
       <Typography
@@ -35,7 +35,7 @@ export default () => {
       >
         {newsList[id].title}
       </Typography>
-      <Stack direction="row" spacing={2} sx={{ justifyContent: "center", marginBottom: 3 }}>
+      <Stack direction="row" spacing={2} sx={{ justifyContent: 'center', marginBottom: 3 }}>
         <Clock fontSize="small" />
         <Typography
           variant="body1"
@@ -45,7 +45,11 @@ export default () => {
         </Typography>
       </Stack>
       <Card elevation={3} sx={{ px: { lg: 1 } }}>
-        <CardContent className="markdown-body" sx={{ marginTop: 2 }} dangerouslySetInnerHTML={{ __html: getPostContent(id) }} />
+        <CardContent
+          className="markdown-body"
+          sx={{ marginTop: 2 }}
+          dangerouslySetInnerHTML={{ __html: getPostContent(id) }}
+        />
       </Card>
     </Container>
   )

@@ -45,14 +45,14 @@ export default () => {
       <Autocomplete
         value={selection ? selection : Object.keys(data)[0]}
         options={Object.keys(data)}
-        sx={{ width: "100%" }}
+        sx={{ width: '100%' }}
         disableClearable
         noOptionsText="No result"
         onChange={(event, value) => { setSelection(value) }}
         getOptionLabel={(item) => data[item].display}
         renderInput={(params) => <TextField {...params} />}
       />
-      <Paper variant="outlined" sx={{ backgroundColor: "transparent" }}>
+      <Paper variant="outlined" sx={{ backgroundColor: 'transparent' }}>
         <List>
           {data[selection ? selection : Object.keys(data)[0]].links.map((item, key) => (
             <Box key={item.link}>
@@ -65,7 +65,7 @@ export default () => {
                     rel="noopener"
                     target="_blank"
                     href={item.link}
-                    sx={{ minWidth: "96px", marginLeft: 1 }}
+                    sx={{ minWidth: '96px', marginLeft: 1 }}
                   >
                     下载
                   </Button>

@@ -1,13 +1,17 @@
-// Author: @mochaaP
-// From: https://github.com/shigma/markdown-it-pangu/issues/1
+/*
+  Author: @mochaaP, @wenxuanjun
+  From: https://github.com/shigma/markdown-it-pangu/issues/1
+*/
 
 import pangu from 'pangu'
 import MarkdownIt from 'markdown-it'
 import Token from 'markdown-it/lib/token'
 import { escapeHtml, isWhiteSpace } from 'markdown-it/lib/common/utils'
 
+interface PanguOptions { additionalRules?: [string] }
+
 const getPrevChar = (tokens: Token[], index: number) => {
-  let prevChar = ""
+  let prevChar = ''
   for (let i = index - 1; i >= 0; i -= 1) {
     const { content, type } = tokens[i]
     if (type === 'html_inline') break
@@ -16,10 +20,10 @@ const getPrevChar = (tokens: Token[], index: number) => {
   return prevChar
 }
 
-export default (md: MarkdownIt, options: any = {}) => {
-  const { additionalRules = ['code_inline'] } = options
+export default (md: MarkdownIt, panguOptions: PanguOptions = {}) => {
+  const { additionalRules = ['code_inline'] } = panguOptions
 
-  md.renderer.rules.text = (tokens, index, ...others) => {
+  md.renderer.rules.text = (tokens, index) => {
     const prevChar = getPrevChar(tokens, index)
     return escapeHtml(pangu.spacing(prevChar + tokens[index].content).slice(prevChar.length))
   }

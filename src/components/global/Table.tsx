@@ -23,14 +23,25 @@ const Table = _Table as unknown as FC<TableProps>
 
 const headerHeight = 56, rowHeight = 56
 
+interface TableColumn {
+  name: JSX.Element,
+  update: string,
+  size: string
+}
+
+interface TableColumnMeta {
+  label: string,
+  dataKey: string,
+  align: 'inherit' | 'left' | 'right' | 'center' | 'justify' | undefined
+}
+
 interface VirtualizedTableProps {
-  columns: any
-  rowCount: number
-  rowGetter: any
+  columns: TableColumnMeta[],
+  rowCount: number,
+  rowGetter: ({ index }: { index: number }) => TableColumn
 }
 
 const VirtualizedTable = ({ columns, ...tableProps }: VirtualizedTableProps) => {
-
   interface ExtendTableHeaderProps extends TableHeaderProps { columnIndex: number }
 
   const headerRenderer = ({ label, columnIndex }: ExtendTableHeaderProps) => {
@@ -38,7 +49,7 @@ const VirtualizedTable = ({ columns, ...tableProps }: VirtualizedTableProps) => 
       <TableCell
         component="div"
         variant="head"
-        style={{ height: headerHeight, display: "block", fontSize: "0.95rem" }}
+        style={{ height: headerHeight, display: 'block', fontSize: '0.95rem' }}
         align={columns[columnIndex].align}
       >
         {label as JSX.Element}
@@ -50,15 +61,15 @@ const VirtualizedTable = ({ columns, ...tableProps }: VirtualizedTableProps) => 
     <TableCell
       component="div"
       variant="body"
-      style={{ height: rowHeight, flex: "auto", paddingBottom: "12px", whiteSpace: "nowrap", borderBottom: 0 }}
+      style={{ height: rowHeight, flex: 'auto', paddingBottom: '12px', whiteSpace: 'nowrap', borderBottom: 0 }}
       align={columns[columnIndex].align}
     >
       {/*
-          react-custom-scrollbars does not adapt to mobile scrollbars,
+          The react-custom-scrollbars does not adapt to mobile scrollbars,
           so you must add overflowY: "hidden" to ensure that
           the mobile side will not scroll in the Y-axis,
           but I do not know whether it is just a bug of the package,
-          which will lead to the scrollbar of the desktop side 
+          which will lead to the scrollbar of the desktop side
           can not display the content completely,
           so here you must use both marginRight: 0 and overflowY: "hidden"
           in order to ensure that the content can be displayed completely.
@@ -70,7 +81,7 @@ const VirtualizedTable = ({ columns, ...tableProps }: VirtualizedTableProps) => 
         renderTrackVertical={() => <div />}
         renderThumbVertical={() => <div />}
         renderView={({ style, ...props }) => (
-          <div {...props} style={{ ...style, marginRight: 0, overflowY: "hidden" }} />
+          <div {...props} style={{ ...style, marginRight: 0, overflowY: 'hidden' }} />
         )}
       >
         {cellData}
@@ -111,9 +122,13 @@ const VirtualizedTable = ({ columns, ...tableProps }: VirtualizedTableProps) => 
                   width={width}
                   key={dataKey}
                   dataKey={dataKey}
-                  headerRenderer={(headerProps: any) => headerRenderer({ ...headerProps, columnIndex: index })}
-                  cellRenderer={(cellProps: any) => cellRenderer({ ...cellProps })}
                   style={{ display: 'flex' }}
+                  headerRenderer={(headerProps: TableHeaderProps) =>
+                    headerRenderer({ ...headerProps, columnIndex: index })
+                  }
+                  cellRenderer={(cellProps: TableCellProps) =>
+                    cellRenderer({ ...cellProps })
+                  }
                   {...columnProps}
                 />
               ))}
@@ -125,4 +140,4 @@ const VirtualizedTable = ({ columns, ...tableProps }: VirtualizedTableProps) => 
   )
 }
 
-export default (props: any) => <VirtualizedTable {...props} />
+export default (props: VirtualizedTableProps) => <VirtualizedTable {...props} />

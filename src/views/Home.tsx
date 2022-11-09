@@ -22,7 +22,7 @@ const generateNameLink = (name: string) => (
   <>
     <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={`${name}/`}>{name}</Link>
     {
-      helpConfig.hasOwnProperty(name) &&
+      Object.prototype.hasOwnProperty.call(helpConfig, name) &&
       <IconButton
         component={RouterLink}
         color="primary"
@@ -37,15 +37,15 @@ const generateNameLink = (name: string) => (
 )
 
 const generateStatus = (ifIdle: boolean, ifSuccess: boolean) => {
-  if (ifIdle)
+  if (ifIdle) {
     if (ifSuccess) return <Chip icon={<Check />} label="同步成功" size="small" color="success" />
     else return <Chip icon={<Close />} label="同步失败" size="small" color="warning" />
-  else return <Chip icon={<Sync />} label="正在同步" size="small" color="info" />
+  } else return <Chip icon={<Sync />} label="正在同步" size="small" color="info" />
 }
 
 interface MirrorSummary {
   Running: boolean,
-  WorkerStatus: { [key: string]: MirrorWorkerStatus } 
+  WorkerStatus: { [key: string]: MirrorWorkerStatus }
 }
 
 interface MirrorWorkerStatus {
@@ -58,8 +58,8 @@ export default () => {
   const { isLoading, isError, data } = useQuery(['summaryData'], () => {
     const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_SUMMARY_PREFIX } = import.meta.env
     const url = MIRROR_API_PROTOCOL + '://' + MIRROR_DOMAIN + MIRROR_SUMMARY_PREFIX
-    return fetch(url).then(async (data) => (
-      Object.entries((await data.json() as MirrorSummary).WorkerStatus).map(([key, value]) => ({
+    return fetch(url).then(async (result) => (
+      Object.entries((await result.json() as MirrorSummary).WorkerStatus).map(([key, value]) => ({
         name: generateNameLink(key),
         update: format(value.LastFinished, 'zh_CN'),
         status: generateStatus(value.Idle, value.Result)
