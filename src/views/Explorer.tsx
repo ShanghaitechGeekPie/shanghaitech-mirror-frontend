@@ -22,7 +22,7 @@ interface ExplorerDataItem {
   mtime: string
 }
 
-interface ExplorerPageItem {
+type ExplorerPageItem = {
   name: JSX.Element,
   update: string,
   size: string

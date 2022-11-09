@@ -6,7 +6,8 @@
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -28,8 +29,7 @@
     "eslint": "^8.27.0",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "husky": "^8.0.2",
-    "lint-staged": "^13.0.3",
+    "lefthook": "^1.2.0",
     "markdown-it": "^13.0.1",
     "markdown-it-pangu": "^1.0.2",
     "markdown-it-prism": "^2.3.0",
@@ -48,15 +48,5 @@
     "vite-compression-plugin": "^0.0.4",
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-progress": "^0.0.6"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
-    ]
   }
 }
