@@ -32,11 +32,7 @@ const getTemplate = (distribution: string, version: string, https: boolean) => {
   const metaGlob = import.meta.glob('@/assets/content/repository/*.template', { as: 'raw', eager: true })
   const seperatedMetaGlob = import.meta.glob('@/assets/content/repository/*/*.template', { as: 'raw', eager: true })
   const content = isSeperated ? seperatedMetaGlob : metaGlob
-  for (const item in content) {
-    if (item.includes(templatePath))
-      return replaceVariables(content[item], version, https)
-  }
-  return ''
+  return replaceVariables(Object.entries(content).find(([key]) => key.includes(templatePath))![1], version, https)
 }
 
 const parseMarkdown = (resultText: string) => {

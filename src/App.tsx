@@ -51,7 +51,7 @@ interface MainProps {
   open: boolean
 }
 
-const Main = styled('main')<MainProps>(({ theme, open }: any) => ({
+const Main = styled('main')<MainProps>(({ theme, open }) => ({
   flexGrow: 1,
   marginTop: theme.spacing(4),
   marginBottom: theme.spacing(6),

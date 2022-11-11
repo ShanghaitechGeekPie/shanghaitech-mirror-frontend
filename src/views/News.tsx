@@ -17,8 +17,7 @@ const getPostContent = (id: string) => {
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
   const content = import.meta.glob('@/assets/content/news/*.md', { as: 'raw', eager: true })
-  for (const item in content) if (item.includes(id)) return parser.render(content[item])
-  return ''
+  return parser.render(Object.entries(content).find(([key]) => key.includes(id))![1])
 }
 
 interface NewsListProps { title: string, time: string, icon: string }
