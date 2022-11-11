@@ -10,7 +10,7 @@
 
 [Github](https://github.com/ShanghaitechGeekPie/shanghaitech-mirror-frontend)
 
-[Gitlab（仅校内）](https://gitlab.isp.moe/geekpie/shanghaitech-mirror-frontend)
+[Gitlab](https://gitlab.isp.moe/geekpie/shanghaitech-mirror-frontend)
 
 ### 特别鸣谢
 

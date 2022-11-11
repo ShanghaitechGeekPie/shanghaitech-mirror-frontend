@@ -13,8 +13,7 @@ const getHelpContent = (name: string) => {
   const parser = new MarkdownIt()
   parser.use(pangu).use(prism)
   const content = import.meta.glob('@/assets/content/help/*.md', { as: 'raw', eager: true })
-  for (const item in content) if (item.includes(name)) return parser.render(content[item])
-  return ''
+  return parser.render(Object.entries(content).find(([key]) => key.includes(name))![1])
 }
 
 export default () => (

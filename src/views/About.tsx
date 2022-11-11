@@ -39,7 +39,7 @@ const BrandIcon = ({ component, ...props }: BrandIconProps) => (
   />
 )
 
-interface ChipGridItemProps { label: string, href: string, icon: any }
+interface ChipGridItemProps { label: string, href: string, icon: JSX.Element }
 
 const ChipGridItem = ({ label, icon, href }: ChipGridItemProps) => (
   <Grid item component={Link} href={href} underline="none" rel="noopener" target="_blank">

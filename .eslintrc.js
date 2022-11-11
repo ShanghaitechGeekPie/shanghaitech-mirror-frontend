@@ -88,7 +88,8 @@ module.exports = {
 
     // Options that we don't want to use
     'react/display-name': 'off',
-    'react/react-in-jsx-scope': 'off'
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off'
   },
   plugins: ['react', 'react-hooks', '@typescript-eslint'],
   parser: '@typescript-eslint/parser'

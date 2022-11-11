@@ -19,7 +19,8 @@ import { CodeJson, FormatLetterCase } from 'mdi-material-ui'
 interface ExplorerDataItem {
   name: string,
   type: string,
-  mtime: string
+  mtime: string,
+  size?: number
 }
 
 type ExplorerPageItem = {
@@ -32,7 +33,7 @@ const formatFileSize = (size: number) => {
   const sizes = [' Bytes', ' KiB', ' MiB', ' GiB']
   for (let index = 0; index < sizes.length; index++) {
     if (size < 1024 ** (index + 1))
-      return (Math.round(((size / 1024) ** index) * 100) / 100) + sizes[index]
+      return (Math.round((size / (1024 ** index)) * 100) / 100) + sizes[index]
   }
   return size
 }
@@ -50,11 +51,12 @@ const generateNameLink = (name: string, type: string) => (
 )
 
 const useDebounce = (callback: () => void, delay: number) => {
-  const { current } = useRef({ callback, timer: null })
+  type DebounceRef = { callback: () => void, timer: NodeJS.Timeout | null }
+  const { current } = useRef<DebounceRef>({ callback, timer: null })
   useEffect(() => { current.callback = callback }, [callback])
   return useCallback(() => {
     if (current.timer) clearTimeout(current.timer)
-    current.timer = setTimeout(() => current.callback(), delay) as any
+    current.timer = setTimeout(() => current.callback(), delay)
   }, [])
 }
 
@@ -129,10 +131,10 @@ export default () => {
       </Link>
     )
     const result = [{ name: parantPageLink, update: '-', size: '-' }]
-    filteredData.forEach((value: any) => result.push({
+    filteredData.forEach((value: ExplorerDataItem) => result.push({
       name: generateNameLink(value.name, value.type),
       update: format(value.mtime, 'zh_CN'),
-      size: value.type === 'directory' ? '-' : formatFileSize(value.size).toString()
+      size: value.type === 'directory' ? '-' : formatFileSize(value.size!).toString()
     }))
     return result
   }

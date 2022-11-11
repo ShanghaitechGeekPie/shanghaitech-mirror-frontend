@@ -16,7 +16,7 @@
     "@honkhonk/vite-plugin-svgr": "^1.1.0",
     "@mui/material": "^5.10.13",
     "@mui/styles": "^5.10.10",
-    "@tanstack/react-query": "^4.14.5",
+    "@tanstack/react-query": "^4.14.6",
     "@types/markdown-it": "^12.2.3",
     "@types/pangu": "^4.0.0",
     "@types/react": "^18.0.25",
