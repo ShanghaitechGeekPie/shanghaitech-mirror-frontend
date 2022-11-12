@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
-import { createHtmlPlugin as viteHtml } from 'vite-plugin-html'
+import { createHtmlPlugin } from 'vite-plugin-html'
 import viteReact from '@vitejs/plugin-react'
 import viteProgress from 'vite-plugin-progress'
 import viteSvgr from '@honkhonk/vite-plugin-svgr'
@@ -21,7 +21,7 @@ export default defineConfig({
     viteSvgr(),
     viteReact(),
     viteProgress(),
-    viteHtml({
+    createHtmlPlugin({
       minify: true,
       entry: '/src/index.tsx'
     }),
