@@ -56,8 +56,8 @@ interface MirrorWorkerStatus {
 
 export default () => {
   const { isLoading, isError, data } = useQuery(['summaryData'], () => {
-    const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_SUMMARY_PREFIX } = import.meta.env
-    const url = MIRROR_API_PROTOCOL + '://' + MIRROR_DOMAIN + MIRROR_SUMMARY_PREFIX
+    const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_SUMMARY } = import.meta.env
+    const url = MIRROR_API_PROTOCOL + '://' + MIRROR_DOMAIN + MIRROR_SUMMARY
     return fetch(url).then(async (result) => (
       Object.entries((await result.json() as MirrorSummary).WorkerStatus).map(([key, value]) => ({
         name: generateNameLink(key),

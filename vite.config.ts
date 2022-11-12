@@ -2,10 +2,10 @@
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
+import { compression } from 'vite-plugin-compression2'
 import viteReact from '@vitejs/plugin-react'
 import viteProgress from 'vite-plugin-progress'
 import viteSvgr from '@honkhonk/vite-plugin-svgr'
-import viteCompression from 'vite-compression-plugin'
 import esbuildFixVirtualized from './src/plugins/esbuildFixVirtualized'
 
 export default defineConfig({
@@ -21,13 +21,12 @@ export default defineConfig({
     viteSvgr(),
     viteReact(),
     viteProgress(),
+    compression({
+      algorithm: 'brotliCompress'
+    }),
     createHtmlPlugin({
       minify: true,
       entry: '/src/index.tsx'
-    }),
-    viteCompression({
-      loginfo: 'silent',
-      algorithm: 'brotliCompress'
     })
   ],
   optimizeDeps: {
@@ -42,9 +41,13 @@ export default defineConfig({
     assetsInlineLimit: 65536,
     reportCompressedSize: false,
     terserOptions: {
+      format: {
+        comments: false
+      },
       compress: {
+        passes: 3,
         drop_console: true,
-        drop_debugger: true
+        booleans_as_integers: true
       }
     },
     rollupOptions: {
