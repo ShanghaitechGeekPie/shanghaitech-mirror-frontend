@@ -33,8 +33,8 @@ interface QuickDownloadLink {
 export default () => {
   const [selection, setSelection] = useState<string>()
   const { isLoading, isError, data } = useQuery(['quickDownloadData'], (): Promise<QuickDownloadData> => {
-    const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_QUICKDOWNLOAD_PREFIX } = import.meta.env
-    return fetch(`${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}${MIRROR_QUICKDOWNLOAD_PREFIX}`).then((res) => res.json())
+    const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_QUICKDOWNLOAD } = import.meta.env
+    return fetch(`${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}${MIRROR_QUICKDOWNLOAD}`).then((res) => res.json())
   })
 
   if (isLoading) return <Loading isInline />
