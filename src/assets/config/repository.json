@@ -7,7 +7,7 @@
     "debian": {
         "name": "Debian",
         "seperated": true,
-        "versions": ["bullseye", "buster", "stretch", "bookworm", "sid"]
+        "versions": ["bookworm", "bullseye", "buster", "stretch", "sid"]
     },
     "kali": {
         "name": "Kali Linux",
@@ -22,11 +22,11 @@
     "raspbian": {
         "name": "Raspbian",
         "seperated": false,
-        "versions": ["bullseye", "buster", "stretch"]
+        "versions": ["bookworm", "bullseye", "buster", "stretch"]
     },
     "ubuntu": {
         "name": "Ubuntu",
         "seperated": false,
-        "versions": ["jammy", "impish", "hirsute", "groovy", "focal", "eoan", "disco", "cosmic", "bionic", "artful", "zesty", "yakkety", "xenial"]
+        "versions": ["lunar", "kinetic", "jammy", "focal", "devel", "bionic", "xenial", "trusty"]
     }
 }

@@ -7,5 +7,5 @@ deb {{ PROTOCOL }}://{{ URL }}/debian/ buster-updates main contrib non-free
 deb {{ PROTOCOL }}://{{ URL }}/debian/ buster-backports main contrib non-free
 # deb-src {{ PROTOCOL }}://{{ URL }}/debian/ buster-backports main contrib non-free
 
-deb {{ PROTOCOL }}://{{ URL }}/debian-security/ buster-security main contrib non-free
-# deb-src {{ PROTOCOL }}://{{ URL }}/debian-security/ buster-security main contrib non-free
+deb {{ PROTOCOL }}://{{ URL }}/debian-security/ buster/updates main contrib non-free
+# deb-src {{ PROTOCOL }}://{{ URL }}/debian-security/ buster/updates main contrib non-free
