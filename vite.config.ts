@@ -41,13 +41,8 @@ export default defineConfig({
     assetsInlineLimit: 65536,
     reportCompressedSize: false,
     terserOptions: {
-      format: {
-        comments: false
-      },
       compress: {
-        passes: 3,
-        drop_console: true,
-        booleans_as_integers: true
+        drop_console: true
       }
     },
     rollupOptions: {
