@@ -35,13 +35,12 @@ export default defineConfig({
     }
   },
   build: {
-    target: 'es2015',
     minify: 'terser',
-    cssTarget: 'chrome61',
     assetsInlineLimit: 65536,
     reportCompressedSize: false,
     terserOptions: {
       compress: {
+        passes: 3,
         drop_console: true
       }
     },
