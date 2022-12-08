@@ -14,10 +14,9 @@ RUN apk add --update git-daemon fcgiwrap spawn-fcgi curl && rm -rf /var/cache/ap
 
 # Fetch Node Exporter
 RUN curl -L \
-    https://github.com/prometheus/node_exporter/releases/download/v1.3.1/node_exporter-1.3.1.linux-amd64.tar.gz \
-    --output /tmp/node_exporter-1.3.1.linux-amd64.tar.gz && \
-    tar -xzf /tmp/node_exporter-1.3.1.linux-amd64.tar.gz -C /tmp && \
-    mv /tmp/node_exporter-1.3.1.linux-amd64/node_exporter /usr/local/bin/
+    https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz \
+    -o /tmp/node_exporter.tar.gz && tar -xzf /tmp/node_exporter.tar.gz -C /tmp && \
+    mv /tmp/node_exporter-1.5.0.linux-amd64/node_exporter /usr/local/bin/
 
 EXPOSE 80
 CMD ["/start.sh"]

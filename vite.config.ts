@@ -6,7 +6,7 @@ import { compression } from 'vite-plugin-compression2'
 import viteReact from '@vitejs/plugin-react'
 import viteProgress from 'vite-plugin-progress'
 import viteSvgr from '@honkhonk/vite-plugin-svgr'
-import esbuildFixVirtualized from './src/plugins/esbuildFixVirtualized'
+import fixReactVirtualized from './src/plugins/fixReactVirtualized'
 
 export default defineConfig({
   clearScreen: false,
@@ -27,13 +27,9 @@ export default defineConfig({
     createHtmlPlugin({
       minify: true,
       entry: '/src/index.tsx'
-    })
+    }),
+    fixReactVirtualized()
   ],
-  optimizeDeps: {
-    esbuildOptions: {
-      plugins: [esbuildFixVirtualized()]
-    }
-  },
   build: {
     minify: 'terser',
     assetsInlineLimit: 65536,
