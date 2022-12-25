@@ -5,7 +5,7 @@ COPY . ./
 RUN yarn && yarn build
 
 # Production Stage
-FROM macbre/nginx-http3 as production-stage
+FROM imraango/nginx-http3 as production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY start.sh /start.sh
 

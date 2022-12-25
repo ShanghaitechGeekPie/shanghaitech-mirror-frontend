@@ -90,17 +90,10 @@ module.exports = {
   },
   overrides: [
     {
-      files: [
-        'src/**/*.{ts,tsx}'
-      ],
-      extends: [
-        'plugin:@typescript-eslint/recommended'
-      ],
+      files: ['src/**/*.{ts,tsx}'],
+      extends: ['plugin:@typescript-eslint/recommended'],
       rules: {
-        // Best Practices
         '@typescript-eslint/no-unused-vars': 'error',
-
-        // Options that we don't want to use
         '@typescript-eslint/no-non-null-assertion': 'off'
       },
       parser: '@typescript-eslint/parser',

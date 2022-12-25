@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
-    "postinstall": "patch-package --patch-dir src/patches"
+    "postinstall": "patch-package --patch-dir src/patches",
+    "autocorrect": "node src/tools/autocorrect src/**/*.md --verbose"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
