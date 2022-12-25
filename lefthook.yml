@@ -5,3 +5,5 @@ pre-commit:
       run: node_modules/.bin/tsc
     eslint:
       run: node_modules/.bin/eslint src --fix
+    autocorrect:
+      run: node src/tools/autocorrect src/**/*.md

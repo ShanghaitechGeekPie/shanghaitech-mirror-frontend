@@ -1,4 +1,4 @@
-## openSUSE镜像使用帮助
+## openSUSE 镜像使用帮助
 
 ### openSUSE Leap
 

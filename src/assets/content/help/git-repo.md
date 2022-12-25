@@ -1,8 +1,8 @@
-## Repo镜像使用帮助
+## Repo 镜像使用帮助
 
-您应当首先考虑使用您的Linux发行版中的官方软件包。
+您应当首先考虑使用您的 Linux 发行版中的官方软件包。
 
-如果您发现软件包版本已过时，或您的Linux发行版中没有可用的官方软件包，您可以从Google官方（参见`AOSP`帮助文档）或我们的镜像源获取`Repo`：
+如果您发现软件包版本已过时，或您的 Linux 发行版中没有可用的官方软件包，您可以从 Google 官方（参见`AOSP`帮助文档）或我们的镜像源获取`Repo`：
 
 ```bash
 export REPO=$(mktemp /tmp/repo.XXXXXXXXX)

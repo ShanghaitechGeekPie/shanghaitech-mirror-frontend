@@ -1,6 +1,6 @@
-## Ubuntu Ports镜像使用帮助
+## Ubuntu Ports 镜像使用帮助
 
-打开`/etc/apt/sources.list`，检查您的版本代号，并将所有原来的内容修改为如下所示，您应手动将示例中的`$version`替换为您自己使用的Ubuntu的版本代号：
+打开`/etc/apt/sources.list`，检查您的版本代号，并将所有原来的内容修改为如下所示，您应手动将示例中的`$version`替换为您自己使用的 Ubuntu 的版本代号：
 
 ```
 deb https://mirrors.shanghaitech.edu.cn/ubuntu-ports/ $version main restricted universe multiverse

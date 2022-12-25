@@ -30,4 +30,5 @@
 
 > 这个镜像站没有超级牛力。
 
-[沪 ICP 备 13001436 号 -1](https://beian.miit.gov.cn)
+<!-- autocorrect: false -->
+[沪ICP备13001436 号-1](https://beian.miit.gov.cn)

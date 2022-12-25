@@ -10,7 +10,6 @@
     "lint:fix": "eslint src --fix",
     "postinstall": "patch-package --patch-dir src/patches"
   },
-  
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -33,6 +32,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "lefthook": "^1.2.6",
     "markdown-it": "^13.0.1",
+    "markdown-it-inline-comments": "^1.0.1",
     "markdown-it-prism": "^2.3.0",
     "mdi-material-ui": "^7.6.0",
     "patch-package": "^6.5.0",

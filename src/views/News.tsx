@@ -7,6 +7,7 @@ import Stack from '@mui/material/Stack'
 import { Clock } from 'mdi-material-ui'
 import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
+import MarkdownInlineComments from 'markdown-it-inline-comments'
 import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
@@ -14,7 +15,7 @@ import _newsList from '@/assets/config/news.json'
 
 const getPostContent = (id: string) => {
   const parser = new MarkdownIt()
-  parser.use(MarkdownItPrism)
+  parser.use(MarkdownItPrism).use(MarkdownInlineComments)
   const content = import.meta.glob('@/assets/content/news/*.md', { as: 'raw', eager: true })
   return parser.render(Object.entries(content).find(([key]) => key.includes(id))![1])
 }
