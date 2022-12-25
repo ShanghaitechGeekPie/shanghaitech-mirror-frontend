@@ -6,8 +6,7 @@ import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import { Clock } from 'mdi-material-ui'
 import MarkdownIt from 'markdown-it'
-import prism from 'markdown-it-prism'
-import pangu from 'markdown-it-pangu-ts'
+import MarkdownItPrism from 'markdown-it-prism'
 import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
@@ -15,7 +14,7 @@ import _newsList from '@/assets/config/news.json'
 
 const getPostContent = (id: string) => {
   const parser = new MarkdownIt()
-  parser.use(pangu).use(prism)
+  parser.use(MarkdownItPrism)
   const content = import.meta.glob('@/assets/content/news/*.md', { as: 'raw', eager: true })
   return parser.render(Object.entries(content).find(([key]) => key.includes(id))![1])
 }

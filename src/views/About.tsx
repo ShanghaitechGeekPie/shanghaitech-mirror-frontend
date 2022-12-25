@@ -15,15 +15,14 @@ import Github from '@/assets/image/icons/github.svg?component'
 import Telegram from '@/assets/image/icons/telegram.svg?component'
 import { LinkVariant, Email } from 'mdi-material-ui'
 import MarkdownIt from 'markdown-it'
-import prism from 'markdown-it-prism'
-import pangu from 'markdown-it-pangu-ts'
+import MarkdownItPrism from 'markdown-it-prism'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 import AboutContent from '@/assets/content/about.md?raw'
 
 const getAboutContent = () => {
   const parser = new MarkdownIt()
-  parser.use(pangu).use(prism)
+  parser.use(MarkdownItPrism)
   return parser.render(AboutContent)
 }
 
