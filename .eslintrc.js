@@ -1,8 +1,7 @@
 module.exports = {
   extends: [
     'eslint:recommended',
-    'plugin:react/recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:react/recommended'
   ],
   parserOptions: {
     ecmaVersion: 'latest',
@@ -28,7 +27,6 @@ module.exports = {
     'no-implied-eval': 'error',
     'react/sort-comp': 'error',
     'react-hooks/rules-of-hooks': 'error',
-    '@typescript-eslint/no-unused-vars': 'error',
     'curly': ['error', 'multi-or-nest'],
     'dot-location': ['error', 'property'],
     'yoda': ['error', 'never', { exceptRange: true }],
@@ -88,9 +86,29 @@ module.exports = {
 
     // Options that we don't want to use
     'react/display-name': 'off',
-    'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/no-non-null-assertion': 'off'
+    'react/react-in-jsx-scope': 'off'
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint'],
-  parser: '@typescript-eslint/parser'
+  overrides: [
+    {
+      files: [
+        'src/**/*.{ts,tsx}'
+      ],
+      extends: [
+        'plugin:@typescript-eslint/recommended'
+      ],
+      rules: {
+        // Best Practices
+        '@typescript-eslint/no-unused-vars': 'error',
+
+        // Options that we don't want to use
+        '@typescript-eslint/no-non-null-assertion': 'off'
+      },
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        tsconfigRootDir: './',
+        project: './tsconfig.json'
+      }
+    }
+  ],
+  plugins: ['react', 'react-hooks', '@typescript-eslint']
 }

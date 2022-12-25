@@ -1,6 +1,6 @@
-## Alpine镜像使用帮助
+## Alpine 镜像使用帮助
 
-Alpine Linux是一个面向安全，轻量级的Linux发行版。
+Alpine Linux 是一个面向安全，轻量级的 Linux 发行版。
 
 在终端输入以下命令以使用我们的镜像源：
 

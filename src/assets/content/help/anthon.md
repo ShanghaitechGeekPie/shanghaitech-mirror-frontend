@@ -1,6 +1,6 @@
-## AOSC OS镜像使用帮助
+## AOSC OS 镜像使用帮助
 
-AOSC OS（安同 OS）软件源。AOSC OS是一个由安同开源社区（<https://aosc.io>）开发的半滚动Linux发行版，支持多种处理器架构。
+AOSC OS（安同 OS）软件源。AOSC OS 是一个由安同开源社区（<https://aosc.io>）开发的半滚动 Linux 发行版，支持多种处理器架构。
 
 ### 使用说明
 

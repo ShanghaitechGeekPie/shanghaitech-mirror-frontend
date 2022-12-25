@@ -1,6 +1,6 @@
-## AOSP Monthly镜像使用帮助
+## AOSP Monthly 镜像使用帮助
 
-这是每月自动打包的AOSP初始化包。
+这是每月自动打包的 AOSP 初始化包。
 
 ### 使用说明
 

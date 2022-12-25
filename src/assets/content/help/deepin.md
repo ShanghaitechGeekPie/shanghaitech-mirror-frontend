@@ -1,4 +1,4 @@
-## Deepin镜像使用帮助
+## Deepin 镜像使用帮助
 
 备份`/etc/apt/sources.list`，然后一键替换：
 
