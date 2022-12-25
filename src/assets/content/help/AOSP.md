@@ -1,8 +1,8 @@
-## AOSP镜像使用帮助
+## AOSP 镜像使用帮助
 
-### 安装Repo客户端
+### 安装 Repo 客户端
 
-您应当首先考虑使用您的Linux发行版中的官方软件包。
+您应当首先考虑使用您的 Linux 发行版中的官方软件包。
 
 #### Ubuntu
 
@@ -24,11 +24,19 @@ dnf update
 dnf install repo
 ```
 
-如果这些命令不适用于您的系统（例如，您发现软件包版本已过时，或您的Linux发行版中没有可用的官方软件包），请使用以下命令手动安装`Repo`：
+如果这些命令不适用于您的系统（例如，您发现软件包版本已过时，或您的 Linux 发行版中没有可用的官方软件包），请使用以下命令手动安装`Repo`：
 
 ```bash
 export REPO=$(mktemp /tmp/repo.XXXXXXXXX)
 curl -o ${REPO} https://storage.googleapis.com/git-repo-downloads/repo
+install -m 755 ${REPO} ~/bin/repo
+```
+
+您可能会希望从我们的镜像源获取`Repo`：
+
+```bash
+export REPO=$(mktemp /tmp/repo.XXXXXXXXX)
+curl -o ${REPO} https://mirrors.shanghaitech.edu.cn/git-repo/repo
 install -m 755 ${REPO} ~/bin/repo
 ```
 
@@ -42,11 +50,11 @@ repo launcher version 2.21
 (from /usr/bin/repo)
 ```
 
-- 如果报告的`repo launcher version`编号为2.15或更高，则表明版本号正确，安装无误。
+- 如果报告的`repo launcher version`编号为 2.15 或更高，则表明版本号正确，安装无误。
 - `(from /usr/bin/repo)`表明是通过软件包进行安装的。
 - `(from /home/<>/bin/repo)`表明是手动安装的。
 
-### 初始化Repo客户端
+### 初始化 Repo 客户端
 
 创建一个空目录来存放您的工作文件。为其指定一个您喜欢的任意名称：
 
@@ -62,10 +70,16 @@ git config --global user.name Your Name
 git config --global user.email you@example.com
 ```
 
-### 初始化仓库:
+### 初始化仓库：
 
 ```bash
 repo init -u https://mirrors.shanghaitech.edu.cn/git/AOSP/platform/manifest.git
+```
+
+`Repo`会在初始化仓库前尝试从官方源获取更新，如果您无法访问官方源，可设置以下环境变量以使用我们的镜像源：
+
+```bash
+export REPO_URL="https://mirrors.shanghaitech.edu.cn/git/git-repo"
 ```
 
 如需签出某个特定的`Android`版本：
@@ -113,7 +127,7 @@ repo sync
 
 您可以将镜像存储在内网的服务器上，然后通过`NFS`、`Git`或`SSH`访问它。您还可以将其存储在移动存储盘上，并在用户之间或计算机之间传递该存储盘。
 
-### 替换已有源码的Remote
+### 替换已有源码的 Remote
 
 若您之前已通过某种途径获得了`AOSP`的源码，仅需修改`.repo/manifests.git/config`，将`url`字段更改为：
 

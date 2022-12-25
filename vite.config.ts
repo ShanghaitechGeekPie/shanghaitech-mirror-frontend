@@ -3,10 +3,9 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import { createHtmlPlugin } from 'vite-plugin-html'
 import { compression } from 'vite-plugin-compression2'
-import viteReact from '@vitejs/plugin-react'
+import viteReact from '@vitejs/plugin-react-swc'
 import viteProgress from 'vite-plugin-progress'
 import viteSvgr from '@honkhonk/vite-plugin-svgr'
-import fixReactVirtualized from './src/plugins/fixReactVirtualized'
 
 export default defineConfig({
   clearScreen: false,
@@ -27,8 +26,7 @@ export default defineConfig({
     createHtmlPlugin({
       minify: true,
       entry: '/src/index.tsx'
-    }),
-    fixReactVirtualized()
+    })
   ],
   build: {
     minify: 'terser',

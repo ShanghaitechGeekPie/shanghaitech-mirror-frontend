@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem'
 import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MarkdownIt from 'markdown-it'
-import prism from 'markdown-it-prism'
+import MarkdownItPrism from 'markdown-it-prism'
 import _distributionsData from '@/assets/config/repository.json'
 import styles from '@/styles/modules/index.module.css'
 import '@/styles/markdown/prism.css'
@@ -37,7 +37,7 @@ const getTemplate = (distribution: string, version: string, https: boolean) => {
 
 const parseMarkdown = (resultText: string) => {
   const parser = new MarkdownIt()
-  parser.use(prism)
+  parser.use(MarkdownItPrism)
   return parser.render('```\n' + resultText + '\n```')
 }
 
