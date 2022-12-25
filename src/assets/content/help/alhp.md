@@ -4,7 +4,7 @@ ALHP 是一个第三方 Arch Linux 仓库，其包含用不同`x86-64`微架构�
 
 本镜像包含此仓库所有受支持的微架构功能等级，包括`x86-64-v2`和`x86-64-v3`。
 
-您可以在[此处](https://alhp.anonfunc.dev/packages.html)查询所有软件包的构建信息。
+您可以在[此处](https://mirrors.shanghaitech.edu.cn/alhp/packages.html)查询所有软件包的构建信息。
 
 ### 检查系统兼容性
 
@@ -23,7 +23,7 @@ Subdirectories of glibc-hwcaps directories, in priority order:
 
 从 AUR 安装`alhp-keyring`和`alhp-mirrorlist`。比如，使用`yay`：
 
-```
+```bash
 yay -S alhp-keyring alhp-mirrorlist
 ```
 
@@ -63,7 +63,7 @@ Include = /etc/pacman.d/mirrorlist
 
 ### 更新系统
 
-```
+```bash
 sudo pacman -Syu
 ````
 
@@ -73,6 +73,6 @@ sudo pacman -Syu
 
 然后，你可以刷新数据库并更换回官方软件包，比如：
 
-```
+```bash
 sudo pacman -Syuu
 ```
