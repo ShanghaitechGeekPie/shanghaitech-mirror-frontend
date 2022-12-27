@@ -18,5 +18,8 @@ RUN curl -L \
     -o /tmp/node_exporter.tar.gz && tar -xzf /tmp/node_exporter.tar.gz -C /tmp && \
     mv /tmp/node_exporter-1.5.0.linux-amd64/node_exporter /usr/local/bin/
 
+# Fetch and install the vindex
+RUN curl https://cdn.jsdelivr.net/gh/wenxuanjun/vindex/vindex -o /usr/bin/vindex && chmod +x /usr/bin/vindex
+
 EXPOSE 80
 CMD ["/start.sh"]
