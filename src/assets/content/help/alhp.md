@@ -33,6 +33,16 @@ yay -S alhp-keyring alhp-mirrorlist
 
 编辑`/etc/pacman.d/alhp-mirrorlist`，通过注释来启用或禁用镜像。默认的选择是一个基于 Cloudflare 的镜像，它本应该在全球范围内提供一个较快的速度，但由于种种原因，它可能在某些地区不可用，因此您也许会希望使用我们的镜像。
 
+您只需要将我们的镜像移动到其他镜像之前即可，譬如这样：
+
+```
+# Asia
+Server = https://mirrors.shanghaitech.edu.cn/alhp/$repo/os/$arch/
+
+## Worldwide (Cloudfare)
+Server = https://alhp.krautflare.de/$repo/os/$arch/
+```
+
 ### 配置 Pacman
 
 编辑`/etc/pacman.conf`，在官方仓库的上方添加相应的仓库。
