@@ -2,7 +2,7 @@
 
 ![Pipeline status](https://gitlab.isp.moe/geekpie/shanghaitech-mirror-frontend/badges/master/pipeline.svg)
 ![GitHub stars](https://badgen.net/github/stars/ShanghaitechGeekPie/shanghaitech-mirror-frontend)
-
+![GitHub forks](https://badgen.net/github/forks/ShanghaitechGeekPie/shanghaitech-mirror-frontend)
 
 It is the frontend of the ShanghaiTech Open Source Mirror.
 

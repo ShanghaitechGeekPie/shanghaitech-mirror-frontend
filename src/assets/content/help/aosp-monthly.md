@@ -1,29 +1,34 @@
 ## AOSP Monthly 镜像使用帮助
 
-这是每月自动打包的 AOSP 初始化包。
+这是每月~~自动~~打包的 AOSP 初始化包。
 
 ### 使用说明
 
 先下载初始化包：
 
 ```bash
-wget -c https://mirrors.shanghaitech.edu.cn/aosp-monthly/aosp-latest.tar.gz
+curl -C - -O https://mirrors.shanghaitech.edu.cn/aosp-monthly/aosp-latest.tar
 ```
 
-然后解压（您可以使用`pigz`来加速解压）：
+校验 SHA256 值：
 
 ```bash
-tar -xf aosp-latest.tar.gz --use-compress-program=pigz
+curl -s https://mirrors.shanghaitech.edu.cn/aosp-monthly/aosp-latest.tar.sha256 | sha256sum -c
 ```
 
-然后进入`AOSP`目录，并同步并签出源码：
+解包，会释放出一个隐藏目录`.repo`：
 
 ```bash
-cd AOSP
+tar -xf aosp-latest.tar
+```
+
+同步并签出源码：
+
+```bash
 repo sync
 ```
 
-您可以只检出而不同步源码以节省时间：
+您可以只签出而不同步源码以节省时间：
 
 ```bash
 repo sync -l

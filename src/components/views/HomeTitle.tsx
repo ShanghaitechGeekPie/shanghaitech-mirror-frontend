@@ -14,7 +14,7 @@ export default () => (
       variant="h6"
       sx={{ marginBottom: { xs: 3, lg: 5 } }}
     >
-      托管于华西教育网边缘节点张江理工学院
+      托管于华东教育网边缘节点张江理工学院
     </Typography>
   </>
 )
