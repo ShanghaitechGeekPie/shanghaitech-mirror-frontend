@@ -17,7 +17,7 @@ const getPostContent = (id: string) => {
   const parser = new MarkdownIt()
   parser.use(MarkdownItPrism).use(MarkdownInlineComments)
   const content = import.meta.glob('@/assets/content/news/*.md', { as: 'raw', eager: true })
-  return parser.render(Object.entries(content).find(([key]) => key.includes(id))![1])
+  return parser.render(Object.entries(content).find(([key]) => key.includes(`${id}.md`))![1])
 }
 
 interface NewsListProps { title: string, time: string, icon: string }

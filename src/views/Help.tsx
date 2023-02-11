@@ -13,7 +13,7 @@ const getHelpContent = (name: string) => {
   const parser = new MarkdownIt()
   parser.use(MarkdownItPrism).use(MarkdownInlineComments)
   const content = import.meta.glob('@/assets/content/help/*.md', { as: 'raw', eager: true })
-  return parser.render(Object.entries(content).find(([key]) => key.includes(name))![1])
+  return parser.render(Object.entries(content).find(([key]) => key.includes(`${name}.md`))![1])
 }
 
 export default () => (
