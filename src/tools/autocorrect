@@ -1,6 +1,18 @@
 #!/usr/bin/env node
 /* eslint no-undef: 0 */
 
+/**
+ * This code is a Node.js script that uses the `autocorrect-node` package to
+ * automatically fix the formatting of various filetypes (e.g. fixing indentation,
+ * line endings, etc.) for a given file or files.
+ * The script accepts an optional `--verbose` flag, which enables verbose logging.
+ * it also accepts a single argument (required), which is the filepath of
+ * the file or files to process. The pattern can be a glob pattern (e.g. `*.md`).
+ * The script will print a summary of the results to stdout.
+ * Example usage:
+ *   node autocorrect-node.js --verbose *.md
+ */
+
 (function main() {
   const fs = require('fs')
   const glob = require('glob')
