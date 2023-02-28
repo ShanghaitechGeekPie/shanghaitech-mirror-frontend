@@ -1,16 +1,16 @@
 # Build Stage
-FROM jitesoft/node-yarn as build-stage
+FROM sawacl/node-pnpm as build-stage
 WORKDIR /app
 COPY . ./
-RUN yarn && yarn build
+RUN pnpm install && pnpm build
 
 # Production Stage
-FROM imraango/nginx-http3 as production-stage
+FROM georgjung/nginx-brotli as production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY start.sh /start.sh
 
 # Packages for Git HTTP Backend
-RUN apk add --update git-daemon curl && rm -rf /var/cache/apk/*
+RUN apt update && apt install git curl -y
 
 # Fetch Node Exporter
 RUN curl -L \
