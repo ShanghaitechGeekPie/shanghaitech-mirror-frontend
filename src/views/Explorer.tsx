@@ -51,7 +51,10 @@ const generateNameLink = (name: string, type: string) => (
 )
 
 const useDebounce = (callback: () => void, delay: number) => {
-  type DebounceRef = { callback: () => void, timer: NodeJS.Timeout | null }
+  type DebounceRef = {
+    callback: () => void,
+    timer: ReturnType<typeof setTimeout> | null
+  }
   const { current } = useRef<DebounceRef>({ callback, timer: null })
   useEffect(() => { current.callback = callback }, [callback])
   return useCallback(() => {
