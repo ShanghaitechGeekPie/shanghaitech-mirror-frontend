@@ -5,6 +5,7 @@ import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import HelpConfig from '@/assets/config/help.json'
+import { Divider } from '@mui/material'
 
 interface HelpMenuProps { handleDrawerToggle: () => void }
 
@@ -13,19 +14,22 @@ export default ({ handleDrawerToggle }: HelpMenuProps) => {
   const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('lg'))
 
   return (
-    <List component="div">
-      {Object.entries(HelpConfig).map((item) => (
-        <ListItemButton
-          component={Link}
-          key={item[0]}
-          variant="drawer"
-          to={'/help/' + item[0]}
-          onClick={isMobileScreen ? handleDrawerToggle : undefined}
-          selected={location.pathname === '/help/' + item[0]}
-        >
-          <ListItemText variant="button" inset primary={item[1]} disableTypography />
-        </ListItemButton>
-      ))}
-    </List>
+    <>
+      <Divider sx={{ my: 1 }} />
+      <List component="div">
+        {Object.entries(HelpConfig).map((item) => (
+          <ListItemButton
+            component={Link}
+            key={item[0]}
+            variant="drawer"
+            to={'/help/' + item[0]}
+            onClick={isMobileScreen ? handleDrawerToggle : undefined}
+            selected={location.pathname === '/help/' + item[0]}
+          >
+            <ListItemText variant="button" inset primary={item[1]} disableTypography />
+          </ListItemButton>
+        ))}
+      </List>
+    </>
   )
 }
