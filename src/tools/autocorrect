@@ -29,7 +29,7 @@
   else if (args.length > 1) return console.error('Too many arguments!')
   else return console.error('No filepath specified!')
 
-  const files = glob.sync(config.filepath)
+  const files = glob.globSync(config.filepath)
   const logPrefix = '[AutoCorrect]'
 
   let changedCount = 0
