@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Unstable_Grid2'
 import Box from '@mui/material/Box'
 import Alert from '@mui/material/Alert'
 import Autocomplete from '@mui/material/Autocomplete'
@@ -72,12 +72,15 @@ export default () => {
   }, [selectedDistribution, selectedVersion, enableHTTPS])
 
   return (
-    <Grid container spacing={2}>
-      <Grid item sm={6} xs={12} container>
+    <Grid container spacing={2} columns={12}>
+      {/*
+        Bug: Must specify columns={12} to make Grid2 know the number of columns,
+        otherwise it will be undefined and cannot display correctly.
+      */}
+      <Grid xs={12} sm={6}>
         <Autocomplete
           value={selectedDistribution}
           options={Object.keys(distributionsData)}
-          sx={{ width: '100%' }}
           disableClearable
           noOptionsText="No such distribution"
           onChange={(event, value) => { handleDistribution(value) }}
@@ -85,8 +88,8 @@ export default () => {
           renderInput={(params) => <TextField {...params} label="发行版" />}
         />
       </Grid>
-      <Grid item sm={4} xs={7}>
-        <FormControl sx={{ width: '100%' }}>
+      <Grid xs={7} sm={4}>
+        <FormControl fullWidth>
           <InputLabel>版本</InputLabel>
           <Select
             label="版本"
@@ -100,7 +103,7 @@ export default () => {
           </Select>
         </FormControl>
       </Grid>
-      <Grid item sm={2} xs={5}>
+      <Grid xs={5} sm={2}>
         <FormControlLabel
           checked={enableHTTPS}
           onChange={(event, value) => { setEnableHTTPS(value) }}
@@ -110,11 +113,11 @@ export default () => {
         />
       </Grid>
       {shouldShowDebSrcInfo &&
-        <Grid item xs={12}>
+        <Grid xs={12}>
           <Alert variant="filled" severity="info">源码库默认被禁用以提高同步速度，您可以取消注释以启用之！</Alert>
         </Grid>
       }
-      <Grid item xs={12}>
+      <Grid xs={12}>
         {/* Word break on mobile screen to enhance reading experience */}
         <Box className={styles.wordBreak}>
           <Box className="markdown-body" dangerouslySetInnerHTML={{ __html: parseMarkdown(resultText) }} />
