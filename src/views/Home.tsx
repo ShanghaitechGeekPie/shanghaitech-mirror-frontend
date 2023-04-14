@@ -2,7 +2,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import { format } from 'timeago.js'
 import { useQuery } from '@tanstack/react-query'
 import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Unstable_Grid2'
 import Stack from '@mui/material/Stack'
 import Paper from '@mui/material/Paper'
 import Chip from '@mui/material/Chip'
@@ -71,7 +71,7 @@ export default () => {
     <Container maxWidth="lg">
       <Title />
       <Grid container spacing={4}>
-        <Grid item xs={12} md={8}>
+        <Grid xs={12} md={8}>
           {isLoading ? <Loading /> :
             (isError ? <Failed /> :
               <Paper elevation={3}>
@@ -88,7 +88,7 @@ export default () => {
             )
           }
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid xs={12} md={4}>
           <Stack spacing={4}>
             <News />
             <Tools />

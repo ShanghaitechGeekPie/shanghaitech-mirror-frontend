@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { format } from 'timeago.js'
 import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Unstable_Grid2'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Link from '@mui/material/Link'
@@ -149,13 +149,13 @@ export default () => {
   return (
     <Container maxWidth="lg">
       <Grid container spacing={2} sx={{ marginTop: { lg: 4 }, marginBottom: 2 }}>
-        <Grid item sm={9} xs={12} container>
+        <Grid sm={9} xs={12}>
           <Typography component="div" variant="h5" sx={{ fontWeight: 'bold' }}>
             {`Index of: ${location.pathname}`}
           </Typography>
         </Grid>
         {!isLoading && !isError &&
-          <Grid item sm={3} xs={12} container>
+          <Grid sm={3} xs={12}>
             <TextField
               fullWidth
               size="small"

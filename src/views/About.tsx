@@ -1,6 +1,7 @@
 import { FC, SVGProps } from 'react'
 import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Unstable_Grid2'
+import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
 import Link from '@mui/material/Link'
 import Chip from '@mui/material/Chip'
@@ -39,36 +40,49 @@ const BrandIcon = ({ component, ...props }: BrandIconProps) => (
   />
 )
 
-interface ChipGridItemProps { label: string, href: string, icon: JSX.Element }
+interface ChipGridItemProps {
+  label: string,
+  href: string,
+  icon: JSX.Element
+}
 
 const ChipGridItem = ({ label, icon, href }: ChipGridItemProps) => (
-  <Grid item component={Link} href={href} underline="none" rel="noopener" target="_blank">
-    <Chip clickable variant="outlined" color="primary" icon={icon} label={label} />
-  </Grid>
+  <Chip
+    component={Link}
+    href={href}
+    underline="none"
+    rel="noopener"
+    target="_blank"
+    clickable
+    variant="outlined"
+    color="primary"
+    icon={icon}
+    label={label}
+  />
 )
 
 export default () => (
   <Container maxWidth="lg">
     <Grid container alignItems="flex" spacing={4}>
-      <Grid item xs={12} md={4}>
+      <Grid xs={12} md={4}>
         <Card elevation={3} sx={{ marginBottom: 4 }}>
           <CardMedia component="img" image={`data:image/svg+xml;utf8,${ShanghaiTechLogo}`} />
           <Divider sx={{ marginBottom: 1 }} />
           <CardContent>
-            <Grid container spacing={1}>
+            <Stack direction="row" spacing={1} flexWrap="wrap">
               <ChipGridItem
                 label="ShanghaiTech IT Services"
                 icon={<LinkVariant sx={{ paddingLeft: '5px' }} />}
                 href="https://it.shanghaitech.edu.cn"
               />
-            </Grid>
+            </Stack>
           </CardContent>
         </Card>
         <Card elevation={3}>
           <CardMedia component="img" image={`data:image/svg+xml;utf8,${GeekpieLogo}`} />
           <Divider sx={{ marginBottom: 1 }} />
           <CardContent>
-            <Grid container spacing={1}>
+            <Stack direction="row" spacing={1} flexWrap="wrap">
               <ChipGridItem
                 label="Email"
                 href="mailto:pie@geekpie.club"
@@ -89,11 +103,11 @@ export default () => (
                 href="https://jq.qq.com/?k=UjYsRHCR"
                 icon={<BrandIcon component={QQChat} viewBox="0 0 448 512" />}
               />
-            </Grid>
+            </Stack>
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={12} md={8}>
+      <Grid xs={12} md={8}>
         <Card elevation={3} sx={{ px: { lg: 1 } }}>
           <CardContent
             className="markdown-body"
