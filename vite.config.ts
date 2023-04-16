@@ -6,6 +6,7 @@ import { compression } from 'vite-plugin-compression2'
 import viteReact from '@vitejs/plugin-react-swc'
 import viteProgress from 'vite-plugin-progress'
 import viteSvgr from '@honkhonk/vite-plugin-svgr'
+import { splitVendorChunkPlugin } from 'vite'
 
 export default defineConfig({
   clearScreen: false,
@@ -26,7 +27,8 @@ export default defineConfig({
     createHtmlPlugin({
       minify: true,
       entry: '/src/index.tsx'
-    })
+    }),
+    splitVendorChunkPlugin()
   ],
   build: {
     minify: 'terser',
@@ -35,7 +37,8 @@ export default defineConfig({
     terserOptions: {
       compress: {
         passes: 3,
-        drop_console: true
+        drop_console: true,
+        drop_debugger: true
       }
     },
     rollupOptions: {

@@ -18,6 +18,7 @@ import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
+import { zhCN } from '@mui/material/locale'
 import { Menu, Home, HelpBox, Information } from 'mdi-material-ui'
 import HelpMenu from '@/components/views/HelpMenu'
 import Router from '@/router/index'
@@ -74,7 +75,7 @@ const Main = styled('main')<MainProps>(({ theme, open }) => ({
 export default () => {
   const location = useLocation()
   const darkMode = useMediaQuery('(prefers-color-scheme: dark)')
-  const theme = responsiveFontSizes(createTheme(getTheme(darkMode)))
+  const theme = responsiveFontSizes(createTheme(getTheme(darkMode), zhCN))
   const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('lg'))
 
   const [showDrawer, setShowDrawer] = useState(false)
