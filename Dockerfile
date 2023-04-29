@@ -10,7 +10,7 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY start.sh /start.sh
 
 # Packages for Git HTTP Backend
-RUN apt update && apt install git curl -y
+RUN apt update && apt install git fcgiwrap spawn-fcgi curl -y
 
 # Fetch Node Exporter
 RUN curl -L \

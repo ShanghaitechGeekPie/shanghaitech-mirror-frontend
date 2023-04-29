@@ -15,6 +15,7 @@ node_exporter \
 vindex -d /mirrors -l 127.0.0.1 -v &
 
 # Git HTTP Backend
+spawn-fcgi -s /var/run/fcgiwrap.sock /usr/bin/fcgiwrap && chmod 777 /var/run/fcgiwrap.sock
 git-cgi-server --export-all /mirrors &
 
 # Start Nginx
