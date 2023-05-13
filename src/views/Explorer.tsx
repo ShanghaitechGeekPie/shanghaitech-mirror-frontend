@@ -76,9 +76,9 @@ export default () => {
   const [generatedPage, setGeneratedPage] = useState<ExplorerPageItem[]>([])
 
   const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () => {
-    const { MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_EXPLORER_PREFIX } = import.meta.env
-    const url = MIRROR_API_PROTOCOL + '://' + MIRROR_DOMAIN + MIRROR_EXPLORER_PREFIX + location.pathname
-    return fetch(url).then((res) => res.json())
+    const { MIRROR_BACKEND_SEPARATION, MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_EXPLORER_PREFIX } = import.meta.env
+    const prefixAddress = MIRROR_BACKEND_SEPARATION === 'true' ? `${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}` : ''
+    return fetch(`${prefixAddress}${MIRROR_EXPLORER_PREFIX}`).then((res) => res.json())
   })
 
   const handleData = () => {
