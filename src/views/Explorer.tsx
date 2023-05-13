@@ -78,7 +78,7 @@ export default () => {
   const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () => {
     const { MIRROR_BACKEND_SEPARATION, MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_EXPLORER_PREFIX } = import.meta.env
     const prefixAddress = MIRROR_BACKEND_SEPARATION === 'true' ? `${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}` : ''
-    return fetch(`${prefixAddress}${MIRROR_EXPLORER_PREFIX}`).then((res) => res.json())
+    return fetch(`${prefixAddress}${MIRROR_EXPLORER_PREFIX}${location.pathname}`).then((res) => res.json())
   })
 
   const handleData = () => {

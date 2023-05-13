@@ -24,7 +24,7 @@ RUN curl -L \
     -o /usr/bin/git-cgi-server && chmod +x /usr/bin/git-cgi-server
 
 # Fetch and install the vindex
-RUN curl https://github.com/wenxuanjun/vindex/releases/download/default/vindex \
+RUN curl -L https://github.com/wenxuanjun/vindex/releases/download/default/vindex \
     -o /usr/bin/vindex && chmod +x /usr/bin/vindex
 
 EXPOSE 80
