@@ -8,13 +8,12 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
-import { Home, EmoticonCoolOutline, SourceRepositoryMultiple } from 'mdi-material-ui'
+import { Home, EmoticonCoolOutline } from 'mdi-material-ui'
 
 export default () => {
   const data = [
     { title: 'Shanghaitech Offical', href: 'https://www.shanghaitech.edu.cn', icon: <Home /> },
-    { title: 'GeekPie Homepage', href: 'https://geekpie.club', icon: <EmoticonCoolOutline /> },
-    { title: 'MirrorZ Homepage', href: 'https://mirrorz.org', icon: <SourceRepositoryMultiple /> }
+    { title: 'GeekPie Homepage', href: 'https://geekpie.club', icon: <EmoticonCoolOutline /> }
   ]
 
   return (
