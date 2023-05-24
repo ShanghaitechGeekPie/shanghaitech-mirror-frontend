@@ -49,6 +49,8 @@ Server = https://alhp.krautflare.de/$repo/os/$arch/
 
 比如，如果您的 CPU 支持`x86-64-v3`，则修改后应该如下所示：
 
+> Archlinux 已在 2023 年 5 月 19 日将`community`仓库合并至`extra`仓库，因此您无需添加`community-x86-64-vN`仓库。
+
 ```
 [core-x86-64-v3]
 Include = /etc/pacman.d/alhp-mirrorlist
@@ -56,16 +58,10 @@ Include = /etc/pacman.d/alhp-mirrorlist
 [extra-x86-64-v3]
 Include = /etc/pacman.d/alhp-mirrorlist
 
-[community-x86-64-v3]
-Include = /etc/pacman.d/alhp-mirrorlist
-
 [core]
 Include = /etc/pacman.d/mirrorlist
 
 [extra]
-Include = /etc/pacman.d/mirrorlist
-
-[community]
 Include = /etc/pacman.d/mirrorlist
 ```
 
