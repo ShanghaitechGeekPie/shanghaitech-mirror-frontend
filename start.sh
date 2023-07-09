@@ -12,7 +12,7 @@ node_exporter \
 --collector.netclass &
 
 # Vindex
-vindex -d /mirrors -l 127.0.0.1 -v &
+vindex -d /mirrors -p 3500 -v &
 
 # Git HTTP Backend
 spawn-fcgi -s /var/run/fcgiwrap.sock /usr/bin/fcgiwrap && chmod 777 /var/run/fcgiwrap.sock
