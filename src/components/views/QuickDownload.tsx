@@ -44,7 +44,7 @@ export default () => {
   return (
     <Stack spacing={2}>
       <Autocomplete
-        value={selection ? selection : Object.keys(data)[0]}
+        value={selection ?? Object.keys(data)[0]}
         options={Object.keys(data)}
         sx={{ width: '100%' }}
         disableClearable
@@ -55,7 +55,7 @@ export default () => {
       />
       <Paper variant="outlined" sx={{ backgroundColor: 'transparent' }}>
         <List>
-          {data[selection ? selection : Object.keys(data)[0]].links.map((item, key) => (
+          {data[selection ?? Object.keys(data)[0]].links.map((item, key) => (
             <Box key={item.link}>
               {Boolean(key) && <Divider />}
               <ListItem
