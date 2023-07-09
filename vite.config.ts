@@ -32,7 +32,6 @@ export default defineConfig({
   ],
   build: {
     minify: 'terser',
-    assetsInlineLimit: 65536,
     reportCompressedSize: false,
     terserOptions: {
       compress: {
