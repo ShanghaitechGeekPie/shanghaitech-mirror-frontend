@@ -22,10 +22,7 @@ export default () => (
       <CardContent
         className="markdown-body"
         sx={{ marginTop: 2 }}
-        dangerouslySetInnerHTML={{ __html: getHelpContent((() => {
-          const { name } = useParams<{ name: string }>()
-          return name ? name : 'default'
-        })()) }}
+        dangerouslySetInnerHTML={{ __html: getHelpContent(useParams<{ name: string }>().name ?? 'default') }}
       />
     </Card>
   </Container>
