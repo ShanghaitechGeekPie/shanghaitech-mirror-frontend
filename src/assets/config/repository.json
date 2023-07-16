@@ -27,6 +27,6 @@
     "ubuntu": {
         "name": "Ubuntu",
         "seperated": false,
-        "versions": ["lunar", "kinetic", "jammy", "focal", "devel", "bionic", "xenial", "trusty"]
+        "versions": ["mantic", "lunar", "kinetic", "jammy", "focal", "devel", "bionic", "xenial", "trusty"]
     }
 }

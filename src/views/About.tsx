@@ -17,14 +17,13 @@ import Telegram from '@/assets/image/icons/telegram.svg?component'
 import { LinkVariant, Email } from 'mdi-material-ui'
 import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
-import MarkdownInlineComments from 'markdown-it-inline-comments'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 import AboutContent from '@/assets/content/about.md?raw'
 
 const getAboutContent = () => {
   const parser = new MarkdownIt({ html: true })
-  parser.use(MarkdownItPrism).use(MarkdownInlineComments)
+  parser.use(MarkdownItPrism)
   return parser.render(AboutContent)
 }
 

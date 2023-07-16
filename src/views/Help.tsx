@@ -4,16 +4,15 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
-import MarkdownInlineComments from 'markdown-it-inline-comments'
 import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 
 const getHelpContent = (name: string) => {
   const parser = new MarkdownIt()
-  parser.use(MarkdownItPrism).use(MarkdownInlineComments)
+  parser.use(MarkdownItPrism)
   const content = import.meta.glob('@/assets/content/help/*.md', { as: 'raw', eager: true })
-  return parser.render(Object.entries(content).find(([key]) => key.includes(`${name}.md`))![1])
+  return parser.render(Object.entries(content).find(([key]) => key.endsWith(`${name}.md`))![1])
 }
 
 export default () => (

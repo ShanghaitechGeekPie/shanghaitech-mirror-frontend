@@ -12,6 +12,7 @@ import { Check, Sync, Close, HelpCircle } from 'mdi-material-ui'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
 import Table from '@/components/global/Table'
+import { TableColumnMeta } from '@/components/global/Table'
 import Title from '@/components/views/HomeTitle'
 import News from '@/components/views/HomeNews'
 import Tools from '@/components/views/HomeTools'
@@ -37,10 +38,20 @@ const generateNameLink = (name: string) => (
 )
 
 const generateStatus = (ifIdle: boolean, ifSuccess: boolean) => {
-  if (ifIdle) {
-    if (ifSuccess) return <Chip icon={<Check />} label="同步成功" size="small" color="success" />
-    else return <Chip icon={<Close />} label="同步失败" size="small" color="warning" />
-  } else return <Chip icon={<Sync />} label="正在同步" size="small" color="info" />
+  enum Status { Idle, Success, Fail }
+  interface SyncStatusMeta {
+    icon: JSX.Element,
+    label: string,
+    color: 'info' | 'success' | 'warning'
+  }
+  const syncStatusMeta = {
+    [Status.Idle]: { icon: <Sync />, label: '正在同步', color: 'info' },
+    [Status.Success]: { icon: <Check />, label: '同步成功', color: 'success' },
+    [Status.Fail]: { icon: <Close />, label: '同步失败', color: 'warning' }
+  } as { [key in Status]: SyncStatusMeta }
+  const status = ifIdle ? (ifSuccess ? Status.Success : Status.Fail) : Status.Idle
+  const { icon, label, color } = syncStatusMeta[status]
+  return <Chip icon={icon} label={label} size="small" color={color} />
 }
 
 interface MirrorSummary {
@@ -54,10 +65,24 @@ interface MirrorWorkerStatus {
   Idle: boolean
 }
 
+const homeTableColumns = [
+  { label: '名称', dataKey: 'name', align: 'left' },
+  { label: '上次同步', dataKey: 'update', align: 'center' },
+  { label: '状态', dataKey: 'status', align: 'right' }
+] as TableColumnMeta[]
+
 export default () => {
   const { isLoading, isError, data } = useQuery(['summaryData'], () => {
-    const { MIRROR_BACKEND_SEPARATION, MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_SUMMARY } = import.meta.env
-    const prefixAddress = MIRROR_BACKEND_SEPARATION === 'true' ? `${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}` : ''
+    const {
+      MIRROR_BACKEND_SEPARATION,
+      MIRROR_API_PROTOCOL,
+      MIRROR_DOMAIN,
+      MIRROR_SUMMARY
+    } = import.meta.env
+
+    const prefixAddress = MIRROR_BACKEND_SEPARATION === 'true' ?
+      `${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}` : ''
+
     return fetch(`${prefixAddress}${MIRROR_SUMMARY}`).then(async (result) => (
       Object.entries((await result.json() as MirrorSummary).WorkerStatus).map(([key, value]) => ({
         name: generateNameLink(key),
@@ -75,15 +100,7 @@ export default () => {
           {isLoading ? <Loading /> :
             (isError ? <Failed /> :
               <Paper elevation={3}>
-                <Table
-                  rowCount={data.length}
-                  rowGetter={({ index }: { index: number }) => data[index]}
-                  columns={[
-                    { label: '名称', dataKey: 'name', align: 'left' },
-                    { label: '上次同步', dataKey: 'update', align: 'center' },
-                    { label: '状态', dataKey: 'status', align: 'right' }
-                  ]}
-                />
+                <Table data={data} columns={homeTableColumns} />
               </Paper>
             )
           }

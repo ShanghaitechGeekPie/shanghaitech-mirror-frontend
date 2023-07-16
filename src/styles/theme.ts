@@ -43,6 +43,14 @@ declare module '@mui/material/ListItemText' {
 }
 
 const theme = (mode: boolean): ThemeOptions => ({
+
+  /*
+    Z-index of the MuiDrawer is 1200 by default. So set
+    the MuiAppBar z-index to 1201 to make it always on top.
+  */
+  zIndex: {
+    appBar: 1201
+  },
   shape: {
     borderRadius: 8
   },
@@ -52,10 +60,7 @@ const theme = (mode: boolean): ThemeOptions => ({
     fontWeightMedium: 700,
     fontWeightBold: 900
   },
-  zIndex: {
-    drawer: 1100,
-    appBar: 1200
-  },
+
   components: {
     MuiList: {
       defaultProps: {
