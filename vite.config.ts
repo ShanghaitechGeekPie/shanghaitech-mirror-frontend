@@ -7,6 +7,7 @@ import viteReact from '@vitejs/plugin-react-swc'
 import viteProgress from 'vite-plugin-progress'
 import viteSvgr from '@honkhonk/vite-plugin-svgr'
 import { splitVendorChunkPlugin } from 'vite'
+import { replaceCodePlugin } from "vite-plugin-replace"
 
 export default defineConfig({
   clearScreen: false,
@@ -28,7 +29,19 @@ export default defineConfig({
       minify: true,
       entry: '/src/index.tsx'
     }),
-    splitVendorChunkPlugin()
+    splitVendorChunkPlugin(),
+    replaceCodePlugin({
+      replacements: [
+        /*
+          The entities.json required by markdown-it is too large
+          and we don't need it, so replace it with an empty object.
+        */
+        {
+          from: "require('entities/lib/maps/entities.json');",
+          to: "{}"
+        },
+    ],
+    }),
   ],
   build: {
     minify: 'terser',

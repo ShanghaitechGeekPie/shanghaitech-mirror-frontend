@@ -12,6 +12,7 @@ import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
 import Table from '@/components/global/Table'
+import { TableColumnMeta } from '@/components/global/Table'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
 import { CodeJson, FormatLetterCase } from 'mdi-material-ui'
@@ -28,6 +29,12 @@ type ExplorerPageItem = {
   update: string,
   size: string
 }
+
+const explorerTableColumns = [
+  { label: '文件名', dataKey: 'name', align: 'left' },
+  { label: '上次修改', dataKey: 'update', align: 'center' },
+  { label: '大小', dataKey: 'size', align: 'right' }
+] as TableColumnMeta[]
 
 const formatFileSize = (size: number) => {
   const sizes = [' Bytes', ' KiB', ' MiB', ' GiB']
@@ -75,9 +82,15 @@ export default () => {
   const [filteredData, setFilteredData] = useState<ExplorerDataItem[]>([])
   const [generatedPage, setGeneratedPage] = useState<ExplorerPageItem[]>([])
 
-  const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], () => {
-    const { MIRROR_BACKEND_SEPARATION, MIRROR_API_PROTOCOL, MIRROR_DOMAIN, MIRROR_EXPLORER_PREFIX } = import.meta.env
-    const prefixAddress = MIRROR_BACKEND_SEPARATION === 'true' ? `${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}` : ''
+  const { isLoading, isError, data } = useQuery(['explorerData', { path: location.pathname }], async () => {
+    const {
+      MIRROR_BACKEND_SEPARATION,
+      MIRROR_API_PROTOCOL,
+      MIRROR_DOMAIN,
+      MIRROR_EXPLORER_PREFIX
+    } = import.meta.env
+    const prefixAddress = MIRROR_BACKEND_SEPARATION === 'true' ?
+      `${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}` : ''
     return fetch(`${prefixAddress}${MIRROR_EXPLORER_PREFIX}${location.pathname}`).then((res) => res.json())
   })
 
@@ -188,15 +201,7 @@ export default () => {
         (isError ? <Failed hasButton /> :
           generatedPage &&
           <Paper elevation={3}>
-            <Table
-              rowCount={generatedPage.length}
-              rowGetter={({ index }: { index: number }) => generatedPage[index]}
-              columns={[
-                { label: '文件名', dataKey: 'name', align: 'left' },
-                { label: '上次修改', dataKey: 'update', align: 'center' },
-                { label: '大小', dataKey: 'size', align: 'right' }
-              ]}
-            />
+            <Table data={generatedPage} columns={explorerTableColumns} />
           </Paper>
         )
       }

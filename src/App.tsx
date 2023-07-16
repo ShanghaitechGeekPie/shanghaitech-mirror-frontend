@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { unstable_ClassNameGenerator } from '@mui/material/className'
 import { styled, useTheme, ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
-import { Scrollbars } from 'react-custom-scrollbars'
 import getTheme from '@/styles/theme'
 import CssBaseline from '@mui/material/CssBaseline'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -81,7 +80,7 @@ export default () => {
   const [showDrawer, setShowDrawer] = useState(false)
   const handleDrawerToggle = () => setShowDrawer(!showDrawer)
 
-  const NavItems = (
+  const NavItems = () => (
     <List sx={{ marginTop: 1 }}>
       {navLinks.map((item) => (
         <ListItemButton
@@ -118,15 +117,20 @@ export default () => {
               open={showDrawer}
               onClose={handleDrawerToggle}
               ModalProps={{ keepMounted: true }}
-              sx={{ '& .drawer-paper': { boxSizing: 'border-box', width: drawerWidth } }}
+              sx={{
+                '& .drawer-paper': {
+                  minHeight: '100vh',
+                  boxSizing: 'border-box',
+                  overflow: 'hidden',
+                  width: drawerWidth
+                }
+              }}
             >
-              <Scrollbars autoHide autoHideTimeout={200}>
-                <Toolbar />
-                <Paper square sx={{ overflow: 'auto', minHeight: '100vh' }}>
-                  {NavItems}
-                  {location.pathname.startsWith('/help') && <HelpMenu handleDrawerToggle={handleDrawerToggle} />}
-                </Paper>
-              </Scrollbars>
+              <Toolbar />
+              <Paper square sx={{ overflow: 'auto', height: '100%' }}>
+                <NavItems />
+                {location.pathname.startsWith('/help') && <HelpMenu handleDrawerToggle={handleDrawerToggle} />}
+              </Paper>
             </Drawer>
           </Box>
           <Main open={showDrawer}>

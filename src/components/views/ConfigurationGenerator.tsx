@@ -32,7 +32,7 @@ const getTemplate = (distribution: string, version: string, https: boolean) => {
   const metaGlob = import.meta.glob('@/assets/content/repository/*.template', { as: 'raw', eager: true })
   const seperatedMetaGlob = import.meta.glob('@/assets/content/repository/*/*.template', { as: 'raw', eager: true })
   const content = isSeperated ? seperatedMetaGlob : metaGlob
-  const template = Object.entries(content).find(([key]) => key.includes(templatePath))![1]
+  const template = Object.entries(content).find(([key]) => key.endsWith(templatePath))![1]
   return replaceVariables(template, version, https)
 }
 

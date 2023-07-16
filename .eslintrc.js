@@ -19,7 +19,6 @@ module.exports = {
     'eqeqeq': 'error',
     'no-eval': 'error',
     'no-labels': 'error',
-    'no-shadow': 'error',
     'dot-notation': 'error',
     'no-multi-str': 'error',
     'no-lone-blocks': 'error',
@@ -94,7 +93,8 @@ module.exports = {
       extends: ['plugin:@typescript-eslint/recommended'],
       rules: {
         '@typescript-eslint/no-unused-vars': 'error',
-        '@typescript-eslint/no-non-null-assertion': 'off'
+        '@typescript-eslint/no-non-null-assertion': 'off',
+        '@typescript-eslint/no-shadow': 'error'
       },
       parser: '@typescript-eslint/parser',
       parserOptions: {
