@@ -104,16 +104,6 @@ const theme = (mode: boolean): ThemeOptions => ({
           paddingTop: '12px'
         }
       }
-    },
-
-    /*
-      Use flexbox gap for providing space between items in
-      horizontal direction in the Stack component.
-    */
-    MuiStack: {
-      defaultProps: {
-        useFlexGap: true
-      }
     }
   },
   palette: mode ? darkPalette : lightPalette

@@ -40,7 +40,7 @@ export default defineConfig({
           from: "require('entities/lib/maps/entities.json');",
           to: "{}"
         },
-    ],
+      ],
     }),
   ],
   build: {
