@@ -52,8 +52,17 @@
     border-left: .3em solid rgba(160, 160, 160, .6);
 }
 
-.markdown-body blockquote > p {
+.markdown-body blockquote ul, ol {
+    padding-left: 0 !important;
     padding: 16px 0;
+}
+
+.markdown-body blockquote ul, ol > li {
+    line-height: 1.8em !important;
+}
+
+.markdown-body blockquote ul, ol > li {
+    line-height: 1.8em !important;
 }
 
 .markdown-body hr {
