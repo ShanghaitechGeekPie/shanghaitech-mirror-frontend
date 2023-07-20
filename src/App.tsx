@@ -108,7 +108,7 @@ export default () => {
               <IconButton onClick={handleDrawerToggle} sx={{ marginRight: 3 }} aria-label="Open Drawer">
                 <Menu sx={{ color: 'white' }} />
               </IconButton>
-              <Typography variant="h6" component="div">Geekpie Open Source Mirror</Typography>
+              <Typography variant="h6" component="div">GeekPie Open Source Mirror</Typography>
             </Toolbar>
           </AppBar>
           <Box sx={{ width: { sm: drawerWidth } }}>
