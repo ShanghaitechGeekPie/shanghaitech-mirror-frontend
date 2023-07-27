@@ -8,7 +8,8 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
-import { EmoticonOutline, ThumbDownOutline } from 'mdi-material-ui'
+import EmoticonOutline from 'mdi-material-ui/EmoticonOutline'
+import ThumbDownOutline from 'mdi-material-ui/ThumbDownOutline'
 import _newsList from '@/assets/config/news.json'
 
 const icons: { [key: string]: JSX.Element } = {

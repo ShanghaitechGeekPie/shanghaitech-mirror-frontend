@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Timezone (Bad but I need)
+ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 # Node Monitor
 node_exporter \
 --collector.disable-defaults \
@@ -11,8 +14,8 @@ node_exporter \
 --collector.netdev \
 --collector.netclass &
 
-# Vindex
-vindex -d /mirrors -l 127.0.0.1 -v &
+# Rindex
+rindex -d /mirrors -a 127.0.0.1 -p 3500 -f /mirrors/logs -v &
 
 # Git HTTP Backend
 spawn-fcgi -s /var/run/fcgiwrap.sock /usr/bin/fcgiwrap && chmod 777 /var/run/fcgiwrap.sock

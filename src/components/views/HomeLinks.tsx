@@ -8,7 +8,8 @@ import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
-import { Home, EmoticonCoolOutline } from 'mdi-material-ui'
+import Home from 'mdi-material-ui/Home'
+import EmoticonCoolOutline from 'mdi-material-ui/EmoticonCoolOutline'
 
 export default () => {
   const data = [

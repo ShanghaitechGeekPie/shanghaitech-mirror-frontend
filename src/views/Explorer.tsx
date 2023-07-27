@@ -15,7 +15,8 @@ import Table from '@/components/global/Table'
 import { TableColumnMeta } from '@/components/global/Table'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
-import { CodeJson, FormatLetterCase } from 'mdi-material-ui'
+import CodeJson from 'mdi-material-ui/CodeJson'
+import FormatLetterCase from 'mdi-material-ui/FormatLetterCase'
 
 interface ExplorerDataItem {
   name: string,

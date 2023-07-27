@@ -4,7 +4,7 @@ import Box from '@mui/material/Box'
 import Paper from '@mui/material/Paper'
 import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
-import { EmoticonSadOutline } from 'mdi-material-ui'
+import EmoticonSadOutline from 'mdi-material-ui/EmoticonSadOutline'
 
 interface FailedProps { isInline?: boolean, hasButton?: boolean }
 

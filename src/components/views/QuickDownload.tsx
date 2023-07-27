@@ -10,7 +10,7 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import TextField from '@mui/material/TextField'
-import { Download } from 'mdi-material-ui'
+import Download from 'mdi-material-ui/Download'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
 

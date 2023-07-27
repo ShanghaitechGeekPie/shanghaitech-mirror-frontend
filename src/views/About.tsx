@@ -14,7 +14,8 @@ import GeekpieLogo from '@/assets/image/logo/geekpie.svg?raw'
 import QQChat from '@/assets/image/icons/qqchat.svg?component'
 import Github from '@/assets/image/icons/github.svg?component'
 import Telegram from '@/assets/image/icons/telegram.svg?component'
-import { LinkVariant, Email } from 'mdi-material-ui'
+import LinkVariant from 'mdi-material-ui/LinkVariant'
+import Email from 'mdi-material-ui/Email'
 import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
 import '@/styles/markdown/prism.css'
@@ -27,7 +28,7 @@ const getAboutContent = () => {
   return parser.render(AboutContent)
 }
 
-interface BrandIconProps extends SvgIconProps {
+interface BrandIconProps extends Omit<SvgIconProps, 'component'> {
   component: FC<SVGProps<SVGSVGElement>>
 }
 

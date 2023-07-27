@@ -23,9 +23,9 @@ RUN curl -L \
     https://github.com/pasela/git-cgi-server/releases/download/v1.0.1/git-cgi-server-linux-amd64 \
     -o /usr/bin/git-cgi-server && chmod +x /usr/bin/git-cgi-server
 
-# Fetch and install the vindex
-RUN curl -L https://github.com/wenxuanjun/vindex/releases/download/default/vindex \
-    -o /usr/bin/vindex && chmod +x /usr/bin/vindex
+# Fetch and install the rindex
+RUN curl -L https://github.com/wenxuanjun/rindex/releases/download/default/rindex \
+    -o /usr/bin/rindex && chmod +x /usr/bin/rindex
 
 # Set executable permission
 RUN chmod +x /start.sh

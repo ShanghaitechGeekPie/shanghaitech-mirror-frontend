@@ -48,7 +48,6 @@ export default defineConfig({
     reportCompressedSize: false,
     terserOptions: {
       compress: {
-        passes: 3,
         drop_console: true,
         drop_debugger: true
       }
