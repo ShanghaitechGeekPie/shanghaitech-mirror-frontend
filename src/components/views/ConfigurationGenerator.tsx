@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Unstable_Grid2'
 import Box from '@mui/material/Box'
 import Alert from '@mui/material/Alert'
@@ -13,9 +14,18 @@ import Select from '@mui/material/Select'
 import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
 import _distributionsData from '@/assets/config/repository.json'
-import styles from '@/styles/modules/index.module.css'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
+
+const WordBreakWrapper = styled(Box)(({ theme }) => ({
+  [theme.breakpoints.down('lg')]: {
+    '.markdown-body code': {
+      whiteSpace: 'pre-wrap',
+      wordBreak: 'break-all',
+      overflow: 'hidden'
+    }
+  }
+}))
 
 const distributionsData: DistributionsData = _distributionsData
 
@@ -119,9 +129,9 @@ export default () => {
       }
       <Grid xs={12}>
         {/* Word break on mobile screen to enhance reading experience */}
-        <Box className={styles.wordBreak}>
+        <WordBreakWrapper>
           <Box className="markdown-body" dangerouslySetInnerHTML={{ __html: parseMarkdown(resultText) }} />
-        </Box>
+        </WordBreakWrapper>
       </Grid>
     </Grid>
   )

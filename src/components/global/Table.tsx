@@ -1,6 +1,7 @@
 import { useRef, useLayoutEffect } from 'react'
 import { useWindowVirtualizer } from '@tanstack/react-virtual'
 import TableCell from '@mui/material/TableCell'
+import { styled } from '@mui/material/styles'
 
 /**
  * EstimateRowHeight means the height of table row with
@@ -47,6 +48,12 @@ const TableHeader = ({ columns }: TableHeaderProps) => (
   </div>
 )
 
+const HoverableTableRow = styled('div')(() => ({
+  '&:hover': {
+    backgroundColor: 'rgba(128, 128, 128, .08)'
+  }
+}))
+
 const TableBody = ({ columns, data }: TableBodyProps) => {
   const parentOffsetRef = useRef(0)
   const parentRef = useRef<HTMLDivElement>(null)
@@ -72,7 +79,7 @@ const TableBody = ({ columns, data }: TableBodyProps) => {
       }}
     >
       {virtualizer.getVirtualItems().map((row) => (
-        <div
+        <HoverableTableRow
           key={row.key}
           data-index={row.index}
           ref={virtualizer.measureElement}
@@ -94,11 +101,11 @@ const TableBody = ({ columns, data }: TableBodyProps) => {
                 align={column.align}
                 style={{ width: '100%' }}
               >
-                <div>{data[row.index][column.dataKey]}</div>
+                {data[row.index][column.dataKey]}
               </TableCell>
             )
           })}
-        </div>
+        </HoverableTableRow>
       ))}
     </div>
   )
