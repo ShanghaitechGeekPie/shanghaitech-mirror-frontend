@@ -1,6 +1,6 @@
 # ShanghaiTech Open Source Mirror Frontend
 
-![Pipeline status](https://gitlab.isp.moe/geekpie/shanghaitech-mirror-frontend/badges/master/pipeline.svg)
+![Workflow status](https://github.com/ShanghaitechGeekPie/shanghaitech-mirror-frontend/actions/workflows/docker-image.yml/badge.svg)
 ![GitHub stars](https://badgen.net/github/stars/ShanghaitechGeekPie/shanghaitech-mirror-frontend)
 ![GitHub forks](https://badgen.net/github/forks/ShanghaitechGeekPie/shanghaitech-mirror-frontend)
 
