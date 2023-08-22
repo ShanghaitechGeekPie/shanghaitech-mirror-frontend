@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      tag: ${{ secrets.CI_REGISTRY }}/geekpie/coursebench-backend:latest
+      tag: ${{ secrets.CI_REGISTRY }}/geekpie/shanghaitech-mirror-frontend:latest
     steps:
     - uses: actions/checkout@v3
     - name: Login to Docker Hub
