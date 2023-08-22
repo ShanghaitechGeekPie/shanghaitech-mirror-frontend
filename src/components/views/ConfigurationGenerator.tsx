@@ -82,11 +82,7 @@ export default () => {
   }, [selectedDistribution, selectedVersion, enableHTTPS])
 
   return (
-    <Grid container spacing={2} columns={12}>
-      {/*
-        Bug: Must specify columns={12} to make Grid2 know the number of columns,
-        otherwise it will be undefined and cannot display correctly.
-      */}
+    <Grid container spacing={2}>
       <Grid xs={12} sm={6}>
         <Autocomplete
           value={selectedDistribution}

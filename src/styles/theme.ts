@@ -1,3 +1,4 @@
+/* eslint-disable lines-around-comment */
 import { ThemeOptions, PaletteOptions } from '@mui/material'
 
 const lightPalette = {
@@ -43,7 +44,6 @@ declare module '@mui/material/ListItemText' {
 }
 
 const theme = (mode: boolean): ThemeOptions => ({
-
   /*
     Z-index of the MuiDrawer is 1200 by default. So set
     the MuiAppBar z-index to 1201 to make it always on top.

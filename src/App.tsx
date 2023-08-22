@@ -50,11 +50,7 @@ const navLinks = [
   { name: 'About', link: '/about', icon: <Information /> }
 ]
 
-interface MainProps {
-  open: boolean
-}
-
-const Main = styled('main')<MainProps>(({ theme, open }) => ({
+const Main = styled('main')<{ open?: boolean }>(({ theme, open }) => ({
   flexGrow: 1,
   marginTop: theme.spacing(4),
   marginBottom: theme.spacing(6),
