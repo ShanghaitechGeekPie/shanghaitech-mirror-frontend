@@ -18,7 +18,7 @@ node_exporter \
 rindex -d /mirrors -a 127.0.0.1 -p 3500 -f /mirrors/logs -v &
 
 # Git HTTP Backend
-spawn-fcgi -s /var/run/fcgiwrap.sock /usr/sbin/fcgiwrap && chmod 777 /var/run/fcgiwrap.sock
+spawn-fcgi -s /var/run/fcgiwrap.sock -- /usr/bin/multiwatch -f $(nproc) -- /usr/sbin/fcgiwrap && chmod 777 /var/run/fcgiwrap.sock
 git-cgi-server --export-all /mirrors &
 
 # Start Nginx
