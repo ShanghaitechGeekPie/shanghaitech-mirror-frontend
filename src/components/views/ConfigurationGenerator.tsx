@@ -13,7 +13,7 @@ import InputLabel from '@mui/material/InputLabel'
 import Select from '@mui/material/Select'
 import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
-import _distributionsData from '@/assets/config/repository.json'
+import _distributionsData from '@/assets/metadata/repository.json'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 
@@ -39,8 +39,8 @@ const replaceVariables = (template: string, version: string, https: boolean) => 
 const getTemplate = (distribution: string, version: string, https: boolean) => {
   const isSeperated = distributionsData[distribution].seperated
   const templatePath = isSeperated ? `${distribution}/${version}.template` : `${distribution}.template`
-  const metaGlob = import.meta.glob('@/assets/content/repository/*.template', { as: 'raw', eager: true })
-  const seperatedMetaGlob = import.meta.glob('@/assets/content/repository/*/*.template', { as: 'raw', eager: true })
+  const metaGlob = import.meta.glob('@/contents/repository/*.template', { as: 'raw', eager: true })
+  const seperatedMetaGlob = import.meta.glob('@/contents/repository/*/*.template', { as: 'raw', eager: true })
   const content = isSeperated ? seperatedMetaGlob : metaGlob
   const template = Object.entries(content).find(([key]) => key.endsWith(templatePath))![1]
   return replaceVariables(template, version, https)

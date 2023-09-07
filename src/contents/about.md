@@ -10,8 +10,6 @@
 
 [Github](https://github.com/ShanghaitechGeekPie/shanghaitech-mirror-frontend)
 
-[Gitlab](https://gitlab.isp.moe/geekpie/shanghaitech-mirror-frontend)
-
 ### 特别鸣谢
 
 [ShanghaiTech IT Services 上海科技大学图书与信息中心](https://it.shanghaitech.edu.cn)

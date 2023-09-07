@@ -10,12 +10,12 @@ import MarkdownItPrism from 'markdown-it-prism'
 import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
-import _newsList from '@/assets/config/news.json'
+import _newsList from '@/assets/metadata/news.json'
 
 const getPostContent = (id: string) => {
   const parser = new MarkdownIt()
   parser.use(MarkdownItPrism)
-  const content = import.meta.glob('@/assets/content/news/*.md', { as: 'raw', eager: true })
+  const content = import.meta.glob('@/contents/news/*.md', { as: 'raw', eager: true })
   return parser.render(Object.entries(content).find(([key]) => key.endsWith(`${id}.md`))![1])
 }
 

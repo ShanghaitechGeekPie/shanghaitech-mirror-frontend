@@ -4,7 +4,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
-import HelpConfig from '@/assets/config/help.json'
+import HelpConfig from '@/assets/metadata/help.json'
 
 interface HelpMenuProps { handleDrawerToggle: () => void }
 

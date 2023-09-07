@@ -20,7 +20,7 @@ import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
-import AboutContent from '@/assets/content/about.md?raw'
+import AboutContent from '@/contents/about.md?raw'
 
 const getAboutContent = () => {
   const parser = new MarkdownIt({ html: true })

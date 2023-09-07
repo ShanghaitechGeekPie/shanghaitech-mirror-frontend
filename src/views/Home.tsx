@@ -20,7 +20,7 @@ import Title from '@/components/views/HomeTitle'
 import News from '@/components/views/HomeNews'
 import Tools from '@/components/views/HomeTools'
 import Links from '@/components/views/HomeLinks'
-import helpConfig from '@/assets/config/help.json'
+import helpConfig from '@/assets/metadata/help.json'
 
 const generateNameLink = (name: string) => (
   <>

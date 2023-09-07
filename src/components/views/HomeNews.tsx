@@ -10,7 +10,7 @@ import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
 import EmoticonOutline from 'mdi-material-ui/EmoticonOutline'
 import ThumbDownOutline from 'mdi-material-ui/ThumbDownOutline'
-import _newsList from '@/assets/config/news.json'
+import _newsList from '@/assets/metadata/news.json'
 
 const icons: { [key: string]: JSX.Element } = {
   smile: <EmoticonOutline color="secondary" />,
