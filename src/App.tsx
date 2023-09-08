@@ -1,8 +1,9 @@
 import { useState } from 'react'
+import { styled, useTheme, ThemeProvider } from '@mui/material/styles'
 import { Link, useLocation } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { unstable_ClassNameGenerator } from '@mui/material/className'
-import { styled, useTheme, ThemeProvider, createTheme, responsiveFontSizes } from '@mui/material/styles'
+import { createTheme, responsiveFontSizes } from '@mui/material/styles'
+import { zhCN } from '@mui/material/locale'
 import getTheme from '@/styles/theme'
 import CssBaseline from '@mui/material/CssBaseline'
 import useMediaQuery from '@mui/material/useMediaQuery'
@@ -17,17 +18,12 @@ import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
-import { zhCN } from '@mui/material/locale'
 import Menu from 'mdi-material-ui/Menu'
 import Home from 'mdi-material-ui/Home'
 import HelpBox from 'mdi-material-ui/HelpBox'
 import Information from 'mdi-material-ui/Information'
 import HelpMenu from '@/components/views/HelpMenu'
 import Router from '@/router/index'
-
-unstable_ClassNameGenerator.configure((componentName) =>
-  componentName.replace('Mui', '').toLowerCase()
-)
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -117,7 +113,7 @@ export default () => {
               onClose={handleDrawerToggle}
               ModalProps={{ keepMounted: true }}
               sx={{
-                '& .drawer-paper': {
+                '& .MuiDrawer-paper': {
                   minHeight: '100vh',
                   boxSizing: 'border-box',
                   overflow: 'hidden',
@@ -128,7 +124,7 @@ export default () => {
               <Toolbar />
               <Paper square sx={{ overflow: 'auto', height: '100%' }}>
                 <NavItems />
-                {location.pathname.startsWith('/help') && <HelpMenu handleDrawerToggle={handleDrawerToggle} />}
+                <HelpMenu handleDrawerToggle={handleDrawerToggle} />
               </Paper>
             </Drawer>
           </Box>

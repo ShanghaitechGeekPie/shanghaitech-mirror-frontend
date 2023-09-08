@@ -13,19 +13,21 @@ export default ({ handleDrawerToggle }: HelpMenuProps) => {
   const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('lg'))
 
   return (
-    <List component="div">
-      {Object.entries(HelpConfig).map((item) => (
-        <ListItemButton
-          component={Link}
-          key={item[0]}
-          variant="drawer"
-          to={'/help/' + item[0]}
-          onClick={isMobileScreen ? handleDrawerToggle : undefined}
-          selected={location.pathname === '/help/' + item[0]}
-        >
-          <ListItemText variant="button" inset primary={item[1]} disableTypography />
-        </ListItemButton>
-      ))}
-    </List>
+    location.pathname.startsWith('/help') && (
+      <List component="div">
+        {Object.entries(HelpConfig).map((item) => (
+          <ListItemButton
+            component={Link}
+            key={item[0]}
+            variant="drawer"
+            to={'/help/' + item[0]}
+            onClick={isMobileScreen ? handleDrawerToggle : undefined}
+            selected={location.pathname === '/help/' + item[0]}
+          >
+            <ListItemText variant="button" inset primary={item[1]} disableTypography />
+          </ListItemButton>
+        ))}
+      </List>
+    )
   )
 }

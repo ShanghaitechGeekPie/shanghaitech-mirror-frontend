@@ -40,7 +40,7 @@ const TableHeader = ({ columns }: TableHeaderProps) => (
         component="div"
         variant="head"
         align={column.align}
-        style={{ width: '100%' }}
+        style={{ width: '100%', borderBottom: '0' }}
       >
         {column.label}
       </TableCell>
@@ -99,7 +99,11 @@ const TableBody = ({ columns, data }: TableBodyProps) => {
                 component="div"
                 variant="body"
                 align={column.align}
-                style={{ width: '100%' }}
+                style={{
+                  width: '100%',
+                  borderBottom: '0',
+                  borderTop: '1px solid rgba(81, 81, 81, 1)'
+                }}
               >
                 {data[row.index][column.dataKey]}
               </TableCell>
