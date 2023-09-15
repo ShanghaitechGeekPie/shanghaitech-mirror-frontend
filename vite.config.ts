@@ -1,12 +1,10 @@
-/* eslint-disable camelcase */
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
-import { createHtmlPlugin } from 'vite-plugin-html'
+import { ViteMinifyPlugin } from 'vite-plugin-minify'
 import { compression } from 'vite-plugin-compression2'
 import viteReact from '@vitejs/plugin-react-swc'
 import viteProgress from 'vite-plugin-progress'
 import viteSvgr from '@honkhonk/vite-plugin-svgr'
-import { splitVendorChunkPlugin } from 'vite'
 import { replaceCodePlugin } from "vite-plugin-replace"
 
 export default defineConfig({
@@ -22,14 +20,10 @@ export default defineConfig({
     viteSvgr(),
     viteReact(),
     viteProgress(),
+    ViteMinifyPlugin(),
     compression({
       algorithm: 'brotliCompress'
     }),
-    createHtmlPlugin({
-      minify: true,
-      entry: '/src/index.tsx'
-    }),
-    splitVendorChunkPlugin(),
     replaceCodePlugin({
       replacements: [
         /*

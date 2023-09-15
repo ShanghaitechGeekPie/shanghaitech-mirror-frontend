@@ -11,7 +11,6 @@ import CardContent from '@mui/material/CardContent'
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
 import ShanghaiTechLogo from '@/assets/image/logo/shanghaitech.svg?raw'
 import GeekpieLogo from '@/assets/image/logo/geekpie.svg?raw'
-import QQChat from '@/assets/image/icons/qqchat.svg?component'
 import Github from '@/assets/image/icons/github.svg?component'
 import Telegram from '@/assets/image/icons/telegram.svg?component'
 import LinkVariant from 'mdi-material-ui/LinkVariant'
@@ -97,11 +96,6 @@ export default () => (
                 label="Telegram"
                 href="https://t.me/GeekPie_mirrors"
                 icon={<BrandIcon component={Telegram} viewBox="0 0 496 512" />}
-              />
-              <ChipGridItem
-                label="QQ"
-                href="https://jq.qq.com/?k=UjYsRHCR"
-                icon={<BrandIcon component={QQChat} viewBox="0 0 448 512" />}
               />
             </Stack>
           </CardContent>

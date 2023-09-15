@@ -15,7 +15,6 @@ import HelpCircle from 'mdi-material-ui/HelpCircle'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
 import Table from '@/components/global/Table'
-import { TableColumnMeta } from '@/components/global/Table'
 import Title from '@/components/views/HomeTitle'
 import News from '@/components/views/HomeNews'
 import Tools from '@/components/views/HomeTools'
@@ -68,12 +67,6 @@ interface MirrorWorkerStatus {
   Idle: boolean
 }
 
-const homeTableColumns = [
-  { label: '名称', dataKey: 'name', align: 'left' },
-  { label: '上次同步', dataKey: 'update', align: 'center' },
-  { label: '状态', dataKey: 'status', align: 'right' }
-] as TableColumnMeta[]
-
 export default () => {
   const { isLoading, isError, data } = useQuery(['summaryData'], () => {
     const {
@@ -103,7 +96,11 @@ export default () => {
           {isLoading ? <Loading /> :
             (isError ? <Failed /> :
               <Paper elevation={3}>
-                <Table data={data} columns={homeTableColumns} />
+                <Table data={data} columns={[
+                  { label: '名称', dataKey: 'name', align: 'left' },
+                  { label: '上次同步', dataKey: 'update', align: 'center' },
+                  { label: '状态', dataKey: 'status', align: 'right' }
+                ]} />
               </Paper>
             )
           }

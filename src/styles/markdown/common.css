@@ -44,7 +44,8 @@
     width: 100%;
     margin-left: 0;
     margin-bottom: 16px;
-    padding-left: 16px;
+    padding: 16px 0 0 16px;
+    display: flex;
     font-style: italic;
     border-radius: 4px;
     color: rgb(160, 160, 160);

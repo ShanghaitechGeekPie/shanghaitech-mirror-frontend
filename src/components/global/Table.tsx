@@ -125,5 +125,3 @@ export default (props: VirtualizedTableProps) => {
     </>
   )
 }
-
-export type { TableColumnMeta }

@@ -19,7 +19,7 @@ const getPostContent = (id: string) => {
   return parser.render(Object.entries(content).find(([key]) => key.endsWith(`${id}.md`))![1])
 }
 
-interface NewsListProps { title: string, time: string, icon: string }
+interface NewsListProps { title: string, time: string }
 
 const newsList: { [key: string]: NewsListProps } = _newsList
 
