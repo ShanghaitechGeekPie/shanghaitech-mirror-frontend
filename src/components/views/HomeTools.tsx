@@ -52,7 +52,12 @@ export default () => {
   return (
     <Card elevation={3}>
       <CardContent sx={{ paddingBottom: 0 }}>
-        <Typography component="div" variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>
+        <Typography
+          component="div"
+          variant="h6"
+          sx={{ fontWeight: 'bold' }}
+          gutterBottom
+        >
           Tools
         </Typography>
       </CardContent>
@@ -60,7 +65,10 @@ export default () => {
         {tools.map((item) => (
           <Box key={item.title}>
             <Divider />
-            <ListItemButton component="div" onClick={handleOpenDialog(item.title, item.component)}>
+            <ListItemButton
+              component="div"
+              onClick={handleOpenDialog(item.title, item.component)}
+            >
               <ListItemIcon>{item.icon}</ListItemIcon>
               <ListItemText variant="button" primary={item.title} disableTypography />
             </ListItemButton>
@@ -88,7 +96,10 @@ export default () => {
         ) : (
           <DialogTitle sx={{ paddingBottom: 2, paddingX: 3 }}>{dialogData.title}</DialogTitle>
         )}
-        <DialogContent dividers sx={{ paddingTop: 3, borderBottom: 0 }}>
+        <DialogContent
+          dividers
+          sx={{ paddingTop: 3, borderBottom: 0 }}
+        >
           {dialogData.component}
         </DialogContent>
       </Dialog>

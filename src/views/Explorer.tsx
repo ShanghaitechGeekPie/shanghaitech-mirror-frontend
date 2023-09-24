@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback, useLayoutEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
-import { format } from 'timeago.js'
+import { format as formatTimeAgo } from 'timeago.js'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Container from '@mui/material/Container'
@@ -40,30 +40,9 @@ interface LinkRouterProps extends LinkProps {
   replace?: boolean
 }
 
-const formatFileSize = (size: number) => {
-  const sizes = [' Bytes', ' KiB', ' MiB', ' GiB']
-  for (let index = 0; index < sizes.length; index++) {
-    if (size < 1024 ** (index + 1))
-      return (Math.round((size / (1024 ** index)) * 100) / 100) + sizes[index]
-  }
-  return size
-}
-
 const LinkRouter = (props: LinkRouterProps) => {
   return <Link {...props} component={RouterLink} />
 }
-
-const generateNameLink = (name: string, type: string) => (
-  <Link
-    underline="none"
-    component={RouterLink}
-    sx={{ fontWeight: 'medium' }}
-    target={type === 'directory' ? undefined : '_blank'}
-    to={location.pathname + name + (type === 'directory' ? '/' : '')}
-  >
-    {name + (type === 'directory' ? '/' : '')}
-  </Link>
-)
 
 const useDebounce = (callback: () => void, delay: number) => {
   type DebounceRef = {
@@ -120,7 +99,9 @@ export default () => {
   }
 
   const handleFilteredData = () => {
-    if (initialGeneratePage.current) setGeneratedPage(generatePage())
+    if (initialGeneratePage.current) {
+      setGeneratedPage(generatePage())
+    }
     else initialGeneratePage.current = true
   }
 
@@ -147,17 +128,44 @@ export default () => {
         component={RouterLink}
         sx={{ fontWeight: 'medium' }}
         underline="none"
-        to={location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf('/') + 1)}
+        to={location.pathname.replace(/\/[^/]*\/$/, '/')}
       >
         ../
       </Link>
     )
+
+    const generateNameLink = (name: string, type: string) => (
+      <Link
+        underline="none"
+        component={RouterLink}
+        sx={{ fontWeight: 'medium' }}
+        target={type === 'directory' ? undefined : '_blank'}
+        to={location.pathname + name + (type === 'directory' ? '/' : '')}
+      >
+        {name + (type === 'directory' ? '/' : '')}
+      </Link>
+    )
+
+    const formatFileSize = (size: number): string => {
+      const sizes = [' Bytes', ' KiB', ' MiB', ' GiB']
+      for (let index = 0; index < sizes.length; index++) {
+        if (size < 1024)
+          return (Math.round(size * 100) / 100) + sizes[index]
+        size /= 1024
+      }
+      return (Math.round(size * 100) / 100) + sizes[sizes.length - 1]
+    }
+
     const result = [{ name: parantPageLink, update: '-', size: '-' }]
-    filteredData.forEach((value: ExplorerDataItem) => result.push({
-      name: generateNameLink(value.name, value.type),
-      update: format(value.mtime, 'zh_CN'),
-      size: value.type === 'directory' ? '-' : formatFileSize(value.size!).toString()
-    }))
+
+    for (const value of filteredData) {
+      result.push({
+        name: generateNameLink(value.name, value.type),
+        update: formatTimeAgo(new Date(value.mtime).getTime(), 'zh_CN'),
+        size: value.type === 'directory' ? '-' : formatFileSize(value.size!)
+      })
+    }
+
     return result
   }
 
