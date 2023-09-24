@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback, useLayoutEffect } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { format } from 'timeago.js'
@@ -163,7 +163,7 @@ export default () => {
 
   useEffect(handleFilteredData, [filteredData])
   useEffect(handleSearchText, [searchText])
-  useEffect(() => data && setFilteredData(data), [data])
+  useLayoutEffect(() => data && setFilteredData(data), [data])
 
   return (
     <Container maxWidth="lg">
