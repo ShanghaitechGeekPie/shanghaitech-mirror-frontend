@@ -20,6 +20,7 @@
     "pypi": "PyPI",
     "raspbian": "Raspbian",
     "ros": "ROS",
+    "scoop": "Scoop",
     "ubuntu": "Ubuntu",
     "ubuntu-ports": "Ubuntu Ports",
     "ubuntu-releases": "Ubuntu Releases"

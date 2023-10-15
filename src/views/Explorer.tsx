@@ -99,9 +99,9 @@ export default () => {
   }
 
   const handleFilteredData = () => {
-    if (initialGeneratePage.current) {
+    if (initialGeneratePage.current)
       setGeneratedPage(generatePage())
-    }
+
     else initialGeneratePage.current = true
   }
 

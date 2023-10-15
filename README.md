@@ -8,9 +8,10 @@ It is the frontend of the ShanghaiTech Open Source Mirror.
 
 ## Features
 
-- Single page application (Frontend routing)
-- Search bar (Simple mode / RegExp mode)
-- Quick Downloader & Configuration Generator
+- SPA (Frontend routing)
+- Search bar (Simple / RegExp mode)
+- Quick Downloader
+- Configuration Generator
 - High performance in rendering large list page
 - Adaptive dark theme
 - Query Caching
