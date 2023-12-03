@@ -71,9 +71,9 @@ export default () => {
   const initialSearchText = useRef(false)
   const initialGeneratePage = useRef(false)
 
-  const { isLoading, isError, data } = useQuery(
-    ['explorerData', { path: location.pathname }],
-    async () => {
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ['explorerData', { path: location.pathname }],
+    queryFn: async () => {
       const {
         MIRROR_BACKEND_SEPARATION,
         MIRROR_API_PROTOCOL,
@@ -86,7 +86,7 @@ export default () => {
       const url = `${prefixAddress}${MIRROR_EXPLORER_PREFIX}${location.pathname}`
       return fetch(url).then((res) => res.json())
     }
-  )
+  })
 
   const handleCaseSensitive = () => {
     handleSearchText()

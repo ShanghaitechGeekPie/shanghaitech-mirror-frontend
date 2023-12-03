@@ -21,6 +21,23 @@ import Tools from '@/components/views/HomeTools'
 import Links from '@/components/views/HomeLinks'
 import helpConfig from '@/assets/metadata/help.json'
 
+interface MirrorWorkerStatus {
+  Result: boolean,
+  LastFinished: string,
+  Idle: boolean
+}
+
+interface MirrorSummary {
+  Running: boolean,
+  WorkerStatus: { [key: string]: MirrorWorkerStatus }
+}
+
+type HomeMirrorItem = {
+  name: JSX.Element,
+  update: string,
+  status: JSX.Element
+}
+
 const generateNameLink = (name: string) => (
   <>
     <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={`${name}/`}>{name}</Link>
@@ -56,37 +73,29 @@ const generateStatus = (ifIdle: boolean, ifSuccess: boolean) => {
   return <Chip icon={icon} label={label} size="small" color={color} />
 }
 
-interface MirrorSummary {
-  Running: boolean,
-  WorkerStatus: { [key: string]: MirrorWorkerStatus }
-}
-
-interface MirrorWorkerStatus {
-  Result: boolean,
-  LastFinished: string,
-  Idle: boolean
-}
-
 export default () => {
-  const { isLoading, isError, data } = useQuery(['summaryData'], () => {
-    const {
-      MIRROR_BACKEND_SEPARATION,
-      MIRROR_API_PROTOCOL,
-      MIRROR_DOMAIN,
-      MIRROR_SUMMARY
-    } = import.meta.env
+  const { isLoading, isError, data } = useQuery({
+    queryKey: ['summaryData'],
+    queryFn: async () => {
+      const {
+        MIRROR_BACKEND_SEPARATION,
+        MIRROR_API_PROTOCOL,
+        MIRROR_DOMAIN,
+        MIRROR_SUMMARY
+      } = import.meta.env
 
-    const prefixAddress = MIRROR_BACKEND_SEPARATION === 'true' ?
-      `${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}` : ''
+      const prefixAddress = MIRROR_BACKEND_SEPARATION === 'true' ?
+        `${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}` : ''
 
-    return fetch(`${prefixAddress}${MIRROR_SUMMARY}`).then(async (result) => (
-      Object.entries((await result.json() as MirrorSummary).WorkerStatus).map(([key, value]) => ({
-        name: generateNameLink(key),
-        update: format(value.LastFinished, 'zh_CN'),
-        status: generateStatus(value.Idle, value.Result)
-      }))
-    ))
-  })
+      return fetch(`${prefixAddress}${MIRROR_SUMMARY}`).then(async (result) => (
+        Object.entries((await result.json() as MirrorSummary).WorkerStatus).map(([key, value]) => ({
+          name: generateNameLink(key),
+          update: format(value.LastFinished, 'zh_CN'),
+          status: generateStatus(value.Idle, value.Result)
+        }))
+      ))
+    }
+  }) as { isLoading: boolean, isError: boolean, data: HomeMirrorItem[] }
 
   return (
     <Container maxWidth="lg">

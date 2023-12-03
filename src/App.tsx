@@ -30,7 +30,6 @@ const queryClient = new QueryClient({
     queries: {
       retry: 0,
       staleTime: 10 * 60 * 1000,
-      cacheTime: Infinity,
       refetchOnWindowFocus: false,
       refetchOnMount: false,
       networkMode: 'offlineFirst'

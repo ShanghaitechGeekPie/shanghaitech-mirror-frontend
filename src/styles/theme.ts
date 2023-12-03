@@ -11,23 +11,23 @@ const lightPalette = {
   success: { main: '#2e7d32' },
   action: { selectedOpacity: 0.1 },
   background: {
-    paper: '#ffffff',
-    default: '#ffffff'
+    paper: '#fff8f5',
+    default: '#fff6f4'
   }
 } as PaletteOptions
 
 const darkPalette = {
   mode: 'dark',
-  primary: { main: '#d32f2f' },
+  primary: { main: '#e53935' },
   secondary: { main: '#d81b60' },
   error: { main: '#ef5350' },
   warning: { main: '#ffc107' },
   info: { main: '#1976d2' },
   success: { main: '#4caf50' },
-  action: { selectedOpacity: 0.6 },
+  action: { selectedOpacity: 0.5 },
   background: {
-    paper: '#0b0808',
-    default: '#120e0e'
+    paper: '#0f0909',
+    default: '#181211'
   }
 } as PaletteOptions
 

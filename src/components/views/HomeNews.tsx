@@ -7,11 +7,7 @@ import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
-import _newsList from '@/assets/metadata/news.json'
-
-interface NewsListProps { title: string, time: string }
-
-const newsList: { [key: string]: NewsListProps } = _newsList
+import newsList from '@/assets/metadata/news.json'
 
 export default () => (
   <Card elevation={3}>
