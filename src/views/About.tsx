@@ -11,15 +11,15 @@ import CardContent from '@mui/material/CardContent'
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
 import ShanghaiTechLogo from '@/assets/image/logo/shanghaitech.svg?raw'
 import GeekpieLogo from '@/assets/image/logo/geekpie.svg?raw'
-import Github from '@/assets/image/icons/github.svg?component'
-import Telegram from '@/assets/image/icons/telegram.svg?component'
+import Github from '@/assets/image/icons/github.svg?react'
+import Telegram from '@/assets/image/icons/telegram.svg?react'
 import LinkVariant from 'mdi-material-ui/LinkVariant'
 import Email from 'mdi-material-ui/Email'
 import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
+import AboutContent from '@/contents/about.md?raw'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
-import AboutContent from '@/contents/about.md?raw'
 
 const getAboutContent = () => {
   const parser = new MarkdownIt({ html: true })

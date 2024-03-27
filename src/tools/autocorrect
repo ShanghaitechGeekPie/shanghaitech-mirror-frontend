@@ -13,11 +13,11 @@
  *   node autocorrect-node.js --verbose *.md
  */
 
-(function main() {
-  const fs = require('fs')
-  const glob = require('glob')
-  const autocorrect = require('autocorrect-node')
+import * as fs from 'fs'
+import * as glob from 'glob'
+import * as autocorrect from 'autocorrect-node'
 
+(function main() {
   let config = { verbose: false, filepath: null }
 
   let args = process.argv.slice(2)

@@ -11,7 +11,7 @@ import '@/styles/markdown/common.css'
 const getHelpContent = (name: string) => {
   const parser = new MarkdownIt()
   parser.use(MarkdownItPrism)
-  const content = import.meta.glob('@/contents/help/*.md', { as: 'raw', eager: true })
+  const content = import.meta.glob('../contents/help/*.md', { as: 'raw', eager: true })
   return parser.render(Object.entries(content).find(([key]) => key.endsWith(`${name}.md`))![1])
 }
 

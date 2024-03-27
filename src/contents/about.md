@@ -12,17 +12,11 @@
 
 ### 特别鸣谢
 
-[ShanghaiTech IT Services 上海科技大学图书与信息中心](https://it.shanghaitech.edu.cn)
+[上海科技大学图书与信息中心](https://it.shanghaitech.edu.cn)
 
 [上海科技大学信息科学与技术学院](https://sist.shanghaitech.edu.cn)
 
 [SJTU *NIX User Group](https://github.com/sjtug/lug)
-
-### TODO
-
-- 一个更加现代的首页
-- 更多的动画与过渡
-- 多语言 (i18n)
 
 ### 其他
 
