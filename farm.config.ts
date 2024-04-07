@@ -19,12 +19,17 @@ export default defineConfig({
         '@': resolve(process.cwd(), './src')
       },
     },
+    partialBundling: {
+      enforceTargetMinSize: true,
+      targetConcurrentRequests: 10,
+      targetMinSize: 200 * 1024
+    },
     output: {
       targetEnv: 'browser-esnext',
-      filename: '[ext]/[resourceName].[ext]',
-      assetsFilename: '[ext]/[resourceName].[ext]'
+      entryFilename: '[entryName].[contentHash].[ext]',
+      filename: '[ext]/[resourceName].[contentHash].[ext]',
+      assetsFilename: '[ext]/[resourceName].[contentHash].[ext]'
     },
-    comments: false,
     sourcemap: false
   },
   envPrefix: ['MIRROR_']
