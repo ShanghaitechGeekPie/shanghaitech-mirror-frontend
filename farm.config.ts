@@ -26,7 +26,6 @@ export default defineConfig({
     },
     output: {
       targetEnv: 'browser-esnext',
-      entryFilename: '[entryName].[contentHash].[ext]',
       filename: '[ext]/[resourceName].[contentHash].[ext]',
       assetsFilename: '[ext]/[resourceName].[contentHash].[ext]'
     },
