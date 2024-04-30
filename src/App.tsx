@@ -23,7 +23,7 @@ import Home from 'mdi-material-ui/Home'
 import HelpBox from 'mdi-material-ui/HelpBox'
 import Information from 'mdi-material-ui/Information'
 import HelpMenu from '@/components/views/HelpMenu'
-import Router from '@/router/index'
+import Router from '@/router'
 
 const queryClient = new QueryClient({
   defaultOptions: {
