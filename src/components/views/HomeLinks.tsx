@@ -11,28 +11,26 @@ import Divider from '@mui/material/Divider'
 import Home from 'mdi-material-ui/Home'
 import EmoticonCoolOutline from 'mdi-material-ui/EmoticonCoolOutline'
 
-export default () => {
-  const data = [
-    { title: 'ShanghaiTech Offical', href: 'https://www.shanghaitech.edu.cn', icon: <Home /> },
-    { title: 'GeekPie Homepage', href: 'https://geekpie.club', icon: <EmoticonCoolOutline /> }
-  ]
+const linksData = [
+  { title: 'ShanghaiTech Offical', href: 'https://www.shanghaitech.edu.cn', icon: <Home /> },
+  { title: 'GeekPie Homepage', href: 'https://geekpie.club', icon: <EmoticonCoolOutline /> }
+]
 
-  return (
-    <Card elevation={3}>
-      <CardContent sx={{ paddingBottom: 0 }}>
-        <Typography component="div" variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>Links</Typography>
-      </CardContent>
-      <List component="div">
-        {data.map((item) => (
-          <Box key={item.title}>
-            <Divider />
-            <ListItemButton href={item.href} rel="noopener" target="_blank" component={Link}>
-              <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText variant="button" primary={item.title} disableTypography />
-            </ListItemButton>
-          </Box>
-        ))}
-      </List>
-    </Card>
-  )
-}
+export default () => (
+  <Card elevation={3}>
+    <CardContent sx={{ paddingBottom: 0 }}>
+      <Typography component="div" variant="h6" sx={{ fontWeight: 'bold' }} gutterBottom>Links</Typography>
+    </CardContent>
+    <List component="div">
+      {linksData.map((item) => (
+        <Box key={item.title}>
+          <Divider />
+          <ListItemButton href={item.href} rel="noopener" target="_blank" component={Link}>
+            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemText variant="button" primary={item.title} disableTypography />
+          </ListItemButton>
+        </Box>
+      ))}
+    </List>
+  </Card>
+)

@@ -21,7 +21,7 @@ export default () => {
             <Route path=":name" element={<Help />} />
           </Route>
           <Route path="about" element={<About />} />
-          <Route path="*" element={<Explorer key={location.pathname} />} />
+          <Route path="*" element={<Explorer />} />
         </Route>
       </Routes>
     </Suspense>

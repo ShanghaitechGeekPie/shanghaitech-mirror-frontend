@@ -24,7 +24,7 @@ import CodeTags from 'mdi-material-ui/CodeTags'
 import QuickDownload from '@/components/views/QuickDownload'
 import ConfigurationGenerator from '@/components/views/ConfigurationGenerator'
 
-const tools = [
+const toolsData = [
   { title: '获取下载链接', component: <QuickDownload />, icon: <Link /> },
   { title: '生成配置文件', component: <ConfigurationGenerator />, icon: <CodeTags /> }
 ]
@@ -62,7 +62,7 @@ export default () => {
         </Typography>
       </CardContent>
       <List component="div">
-        {tools.map((item) => (
+        {toolsData.map((item) => (
           <Box key={item.title}>
             <Divider />
             <ListItemButton
