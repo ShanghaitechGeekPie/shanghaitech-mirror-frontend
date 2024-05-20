@@ -3,7 +3,7 @@ import { ThemeOptions, PaletteOptions } from '@mui/material'
 
 const lightPalette = {
   mode: 'light',
-  primary: { main: '#b71c1c' },
+  primary: { main: '#a30b19' },
   secondary: { main: '#ad1457' },
   error: { main: '#e53935' },
   warning: { main: '#ffa000' },
@@ -11,8 +11,8 @@ const lightPalette = {
   success: { main: '#2e7d32' },
   action: { selectedOpacity: 0.1 },
   background: {
-    paper: '#fff8f5',
-    default: '#fff6f4'
+    paper: '#fffcfd',
+    default: '#fffbfc'
   }
 } as PaletteOptions
 
