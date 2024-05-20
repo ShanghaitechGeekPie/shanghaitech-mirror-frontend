@@ -3,7 +3,6 @@
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
-	word-break: normal;
 	word-wrap: normal;
 	line-height: 1.5;
 	-moz-tab-size: 4;
@@ -40,6 +39,7 @@
 	font-size: 0.85em;
 	font-weight: 700;
 	white-space: normal;
+	word-break: break-all;
 }
 
 @media (min-width: 1200px) {

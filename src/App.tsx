@@ -71,7 +71,7 @@ export default () => {
   const theme = responsiveFontSizes(createTheme(getTheme(darkMode), zhCN))
   const isMobileScreen = useMediaQuery(useTheme().breakpoints.down('lg'))
 
-  const [showDrawer, setShowDrawer] = useState(false)
+  const [showDrawer, setShowDrawer] = useState(!isMobileScreen)
   const handleDrawerToggle = () => setShowDrawer(!showDrawer)
 
   const NavItems = () => (
@@ -95,38 +95,39 @@ export default () => {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
-        <Box sx={{ display: { lg: 'flex' } }}>
+        <Box sx={{ display: '-webkit-box' }}>
           <CssBaseline enableColorScheme />
           <AppBar position="fixed">
             <Toolbar>
-              <IconButton onClick={handleDrawerToggle} sx={{ marginRight: 3 }} aria-label="Open Drawer">
+              <IconButton onClick={handleDrawerToggle} sx={{ marginRight: 3 }}>
                 <Menu sx={{ color: 'white' }} />
               </IconButton>
               <Typography variant="h6" component="div">GeekPie Open Source Mirror</Typography>
             </Toolbar>
           </AppBar>
-          <Box sx={{ width: { sm: drawerWidth } }}>
-            <Drawer
-              variant={isMobileScreen ? 'temporary' : 'persistent'}
-              open={showDrawer}
-              onClose={handleDrawerToggle}
-              ModalProps={{ keepMounted: true }}
-              sx={{
-                '& .MuiDrawer-paper': {
-                  minHeight: '100vh',
-                  boxSizing: 'border-box',
-                  overflow: 'hidden',
-                  width: drawerWidth
-                }
-              }}
-            >
-              <Toolbar />
-              <Paper square sx={{ overflow: 'auto', height: '100%' }}>
-                <NavItems />
-                <HelpMenu handleDrawerToggle={handleDrawerToggle} />
-              </Paper>
-            </Drawer>
-          </Box>
+          <Drawer
+            variant={isMobileScreen ? 'temporary' : 'persistent'}
+            open={showDrawer}
+            anchor="left"
+            onClose={handleDrawerToggle}
+            ModalProps={{ keepMounted: true }}
+            sx={{
+              'width': drawerWidth,
+              'flexShrink': 0,
+              '& .MuiDrawer-paper': {
+                width: drawerWidth,
+                minHeight: '100vh',
+                boxSizing: 'border-box',
+                overflow: 'hidden'
+              }
+            }}
+          >
+            <Toolbar />
+            <Paper square sx={{ overflow: 'auto', height: '100%' }}>
+              <NavItems />
+              <HelpMenu handleDrawerToggle={handleDrawerToggle} />
+            </Paper>
+          </Drawer>
           <Main open={showDrawer}>
             <Toolbar />
             <Router />
