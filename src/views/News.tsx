@@ -12,19 +12,23 @@ import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 import _newsList from '@/assets/metadata/news.json'
 
-const getPostContent = (id: string) => {
-  const parser = new MarkdownIt()
-  parser.use(MarkdownItPrism)
-  const content = import.meta.glob('../contents/news/*.md', { as: 'raw', eager: true })
-  return parser.render(Object.entries(content).find(([key]) => key.endsWith(`${id}.md`))![1])
-}
-
 interface NewsListProps { title: string, time: string }
 
-const newsList: { [key: string]: NewsListProps } = _newsList
+const newsList: Record<string, NewsListProps> = _newsList
+
+const parser = new MarkdownIt()
+parser.use(MarkdownItPrism)
+
+const markdownFiles = Object.entries(import.meta.glob(
+  '@/contents/news/*.md',
+  { query: '?raw', import: 'default', eager: true }
+))
 
 export default () => {
-  const { id = '' } = useParams()
+  const { id = '' } = useParams<{ id: string }>()
+  const targetFileEntry = markdownFiles.find(([key]) => key.endsWith(`${id}.md`))!
+  const renderedText = parser.render(targetFileEntry[1] as string)
+
   return (
     <Container maxWidth="lg">
       <Typography
@@ -46,7 +50,7 @@ export default () => {
         <CardContent
           className="markdown-body"
           sx={{ marginTop: 2 }}
-          dangerouslySetInnerHTML={{ __html: getPostContent(id) }}
+          dangerouslySetInnerHTML={{ __html: renderedText }}
         />
       </Card>
     </Container>

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { styled } from '@mui/material/styles'
 import Grid from '@mui/material/Unstable_Grid2'
 import Box from '@mui/material/Box'
 import Alert from '@mui/material/Alert'
@@ -17,58 +16,35 @@ import _distributionsData from '@/assets/metadata/repository.json'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 
-const WordBreakWrapper = styled(Box)(({ theme }) => ({
-  [theme.breakpoints.down('lg')]: {
-    '.markdown-body code': {
-      whiteSpace: 'pre-wrap',
-      wordBreak: 'break-all',
-      overflow: 'hidden'
-    }
-  }
-}))
-
-const distributionsData: DistributionsData = _distributionsData
-
-const replaceVariables = (template: string, version: string, https: boolean) => {
-  let result = template.replace(/{{ PROTOCOL }}/g, https ? 'https' : 'http')
-  result = result.replace(/{{ VERSION }}/g, version)
-  result = result.replace(/{{ URL }}/g, import.meta.env.MIRROR_DOMAIN)
-  return result
-}
-
-const getTemplate = (distribution: string, version: string, https: boolean) => {
-  const isSeperated = distributionsData[distribution].seperated
-  const templatePath = isSeperated ? `${distribution}/${version}.template` : `${distribution}.template`
-  const metaGlob = import.meta.glob('../../contents/repository/*.template', { as: 'raw', eager: true })
-  const seperatedMetaGlob = import.meta.glob('../../contents/repository/*/*.template', { as: 'raw', eager: true })
-  const content = isSeperated ? seperatedMetaGlob : metaGlob
-
-  const template = Object.entries(content).find(([key]) => key.endsWith(templatePath))![1]
-  return replaceVariables(template, version, https)
-}
-
-const parseMarkdown = (resultText: string) => {
-  const parser = new MarkdownIt()
-  parser.use(MarkdownItPrism)
-  return parser.render('```\n' + resultText + '\n```')
-}
-
-interface DistributionsData {
-  [key: string]: DistributionInfo
-}
-
 interface DistributionInfo {
   name: string
   seperated: boolean,
   versions: string[],
 }
 
+const debSrcInfoDistributions = ['debian', 'kali', 'ubuntu']
+const distributionsData: Record<string, DistributionInfo> = _distributionsData
+
+const metaGlob = Object.entries(import.meta.glob(
+  '@/contents/repository/*.template',
+  { query: '?raw', import: 'default', eager: true }
+))
+
+const seperatedMetaGlob = Object.entries(import.meta.glob(
+  '@/contents/repository/*/*.template',
+  { query: '?raw', import: 'default', eager: true }
+))
+
+const parser = new MarkdownIt()
+parser.use(MarkdownItPrism)
+
 export default () => {
   const [selectedDistribution, setSelectedDistribution] = useState('archlinux')
   const [allVersions, setAllVersions] = useState(['rolling'])
   const [selectedVersion, setSelectedVersion] = useState('rolling')
   const [enableHTTPS, setEnableHTTPS] = useState(true)
-  const [resultText, setResultText] = useState('')
+  const [templateText, setTemplateText] = useState('')
+  const shouldShowDebSrcInfo = debSrcInfoDistributions.includes(selectedDistribution)
 
   const handleDistribution = (distribution: string) => {
     setSelectedDistribution(distribution)
@@ -76,10 +52,22 @@ export default () => {
     setSelectedVersion(distributionsData[distribution].versions[0])
   }
 
-  const shouldShowDebSrcInfo = ['debian', 'kali', 'ubuntu'].includes(selectedDistribution)
-
   useEffect(() => {
-    setResultText(getTemplate(selectedDistribution, selectedVersion, enableHTTPS))
+    const constructTemplate = () => {
+      const { seperated } = distributionsData[selectedDistribution]
+      const templatePath = seperated ?
+        `${selectedDistribution}/${selectedVersion}.template` :
+        `${selectedDistribution}.template`
+
+      const template = (seperated ? seperatedMetaGlob : metaGlob)
+        .find(([key]) => key.endsWith(templatePath))![1] as string
+
+      return template
+        .replace(/{{ PROTOCOL }}/g, enableHTTPS ? 'https' : 'http')
+        .replace(/{{ VERSION }}/g, selectedVersion)
+        .replace(/{{ URL }}/g, import.meta.env.MIRROR_DOMAIN)
+    }
+    setTemplateText(constructTemplate())
   }, [selectedDistribution, selectedVersion, enableHTTPS])
 
   return (
@@ -126,9 +114,20 @@ export default () => {
       }
       <Grid xs={12}>
         {/* Word break on mobile screen to enhance reading experience */}
-        <WordBreakWrapper>
-          <Box className="markdown-body" dangerouslySetInnerHTML={{ __html: parseMarkdown(resultText) }} />
-        </WordBreakWrapper>
+        <Box
+          sx={
+            (theme) => ({
+              [theme.breakpoints.down('lg')]: {
+                code: {
+                  whiteSpace: 'pre-wrap !important',
+                  wordBreak: 'break-all'
+                }
+              }
+            })
+          }
+          className="markdown-body"
+          dangerouslySetInnerHTML={{ __html: parser.render('```\n' + templateText + '\n```') }}
+        />
       </Grid>
     </Grid>
   )

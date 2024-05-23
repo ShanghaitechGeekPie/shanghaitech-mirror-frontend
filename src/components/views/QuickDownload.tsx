@@ -14,10 +14,6 @@ import Download from 'mdi-material-ui/Download'
 import Loading from '@/components/global/Loading'
 import Failed from '@/components/global/Failed'
 
-interface QuickDownloadData {
-  [key: string]: QuickDownloadItem
-}
-
 interface QuickDownloadItem {
   display: string,
   type: string,
@@ -45,7 +41,7 @@ export default () => {
         `${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}` : ''
       return fetch(`${prefixAddress}${MIRROR_QUICKDOWNLOAD}`).then(async (res) => await res.json())
     }
-  }) as { isLoading: boolean, isError: boolean, data: QuickDownloadData }
+  }) as { isLoading: boolean, isError: boolean, data: Record<string, QuickDownloadItem> }
 
   if (isLoading) return <Loading isInline />
   if (isError) return <Failed isInline />

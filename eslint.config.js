@@ -3,6 +3,7 @@ import tseslint from 'typescript-eslint'
 import { fixupPluginRules } from '@eslint/compat'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
+import eslintPluginReactCompiler from 'eslint-plugin-react-compiler'
 
 export default [
   pluginJs.configs.recommended,
@@ -19,7 +20,8 @@ export default [
     },
     plugins: {
       'react': fixupPluginRules(eslintPluginReact),
-      'react-hooks': fixupPluginRules(eslintPluginReactHooks)
+      'react-hooks': fixupPluginRules(eslintPluginReactHooks),
+      'react-compiler': fixupPluginRules(eslintPluginReactCompiler)
     },
     settings: {
       react: {
@@ -29,6 +31,7 @@ export default [
     rules: {
       ...eslintPluginReact.configs.recommended.rules,
       ...eslintPluginReactHooks.configs.recommended.rules,
+      'react-compiler/react-compiler': 'error',
 
       // Best Practices
       'no-new': 'error',

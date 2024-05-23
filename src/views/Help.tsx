@@ -8,21 +8,28 @@ import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 
-const getHelpContent = (name: string) => {
-  const parser = new MarkdownIt()
-  parser.use(MarkdownItPrism)
-  const content = import.meta.glob('../contents/help/*.md', { as: 'raw', eager: true })
-  return parser.render(Object.entries(content).find(([key]) => key.endsWith(`${name}.md`))![1])
-}
+const parser = new MarkdownIt()
+parser.use(MarkdownItPrism)
 
-export default () => (
-  <Container maxWidth="lg">
-    <Card elevation={3} sx={{ px: { lg: 1 } }}>
-      <CardContent
-        className="markdown-body"
-        sx={{ marginTop: 2 }}
-        dangerouslySetInnerHTML={{ __html: getHelpContent(useParams<{ name: string }>().name ?? 'default') }}
-      />
-    </Card>
-  </Container>
-)
+const markdownFiles = Object.entries(import.meta.glob(
+  '@/contents/help/*.md',
+  { query: '?raw', import: 'default', eager: true }
+))
+
+export default () => {
+  const targetFileKey = `${useParams<{ name: string }>().name ?? 'default'}.md`
+  const targetFileEntry = markdownFiles.find(([key]) => key.endsWith(targetFileKey))!
+  const renderedText = parser.render(targetFileEntry[1] as string)
+
+  return (
+    <Container maxWidth="lg">
+      <Card elevation={3} sx={{ px: { lg: 1 } }}>
+        <CardContent
+          className="markdown-body"
+          sx={{ marginTop: 2 }}
+          dangerouslySetInnerHTML={{ __html: renderedText }}
+        />
+      </Card>
+    </Container>
+  )
+}

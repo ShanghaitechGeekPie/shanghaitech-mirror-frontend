@@ -1,7 +1,7 @@
-import { useRef, useLayoutEffect } from 'react'
+import { useRef } from 'react'
 import { useWindowVirtualizer } from '@tanstack/react-virtual'
+import Box from '@mui/material/Box'
 import TableCell from '@mui/material/TableCell'
-import { styled } from '@mui/material/styles'
 
 /**
  * EstimateRowHeight means the height of table row with
@@ -11,10 +11,6 @@ import { styled } from '@mui/material/styles'
  * For mobile browsers, it does not matter due to no scrollbars.
  */
 const estimateRowHeight = 53
-
-interface TableColumn {
-  [key: string]: string | JSX.Element
-}
 
 interface TableColumnMeta {
   label: string,
@@ -27,7 +23,7 @@ interface TableHeaderProps {
 }
 
 type TableBodyProps = TableHeaderProps & {
-  data: TableColumn[]
+  data: Record<string, string | JSX.Element>[]
 }
 
 type VirtualizedTableProps = TableBodyProps
@@ -48,48 +44,40 @@ const TableHeader = ({ columns }: TableHeaderProps) => (
   </div>
 )
 
-const HoverableTableRow = styled('div')(() => ({
-  '&:hover': {
-    backgroundColor: 'rgba(128, 128, 128, .08)'
-  }
-}))
-
 const TableBody = ({ columns, data }: TableBodyProps) => {
-  const parentOffsetRef = useRef(0)
-  const parentRef = useRef<HTMLDivElement>(null)
-
-  useLayoutEffect(() => {
-    parentOffsetRef.current = parentRef.current?.offsetTop ?? 0
-  }, [])
+  const parentRef = useRef<HTMLDivElement | null>(null)
 
   const virtualizer = useWindowVirtualizer({
     count: data.length,
     estimateSize: () => estimateRowHeight,
-    scrollMargin: parentOffsetRef.current,
-    overscan: 10
+    scrollMargin: parentRef.current?.offsetTop ?? 0,
+    overscan: 5
   })
 
   return (
     <div
       ref={parentRef}
       style={{
-        height: virtualizer.getTotalSize(),
+        height: `${virtualizer.getTotalSize()}px`,
         width: '100%',
         position: 'relative'
       }}
     >
       {virtualizer.getVirtualItems().map((row) => (
-        <HoverableTableRow
+        <Box
           key={row.key}
           data-index={row.index}
           ref={virtualizer.measureElement}
+          sx={{
+            '&:hover': {
+              backgroundColor: 'rgba(128, 128, 128, .08)'
+            }
+          }}
           style={{
             position: 'absolute',
             width: '100%',
             display: 'flex',
-            transform: `translateY(${
-              row.start - virtualizer.options.scrollMargin
-            }px)`
+            transform: `translateY(${row.start - virtualizer.options.scrollMargin}px)`
           }}
         >
           {columns.map((column) => {
@@ -109,7 +97,7 @@ const TableBody = ({ columns, data }: TableBodyProps) => {
               </TableCell>
             )
           })}
-        </HoverableTableRow>
+        </Box>
       ))}
     </div>
   )

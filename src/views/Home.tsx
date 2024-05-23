@@ -29,7 +29,7 @@ interface MirrorWorkerStatus {
 
 interface MirrorSummary {
   Running: boolean,
-  WorkerStatus: { [key: string]: MirrorWorkerStatus }
+  WorkerStatus: Record<string, MirrorWorkerStatus>
 }
 
 type HomeMirrorItem = {
@@ -38,25 +38,31 @@ type HomeMirrorItem = {
   status: JSX.Element
 }
 
-const generateNameLink = (name: string) => (
+const MirrorNameWithHelp = ({ name }: { name: string }) => (
   <>
-    <Link component={RouterLink} sx={{ fontWeight: 'medium' }} underline="none" to={`${name}/`}>{name}</Link>
-    {
-      Object.prototype.hasOwnProperty.call(helpConfig, name) &&
+    <Link
+      component={RouterLink}
+      sx={{ fontWeight: 'medium' }}
+      underline="none"
+      to={`${name}/`}
+    >
+      {name}
+    </Link>
+    {Object.prototype.hasOwnProperty.call(helpConfig, name) &&
       <IconButton
         component={RouterLink}
         color="primary"
         size="small"
         to={`/help/${name}`}
-        aria-label={`Help for ${name}`}
+        title={`Help for ${name}`}
       >
-        <HelpCircle fontSize="inherit" />
+        <HelpCircle fontSize="small" />
       </IconButton>
     }
   </>
 )
 
-const generateStatus = (ifIdle: boolean, ifSuccess: boolean) => {
+const StatusChip = ({ idle, success }: { idle: boolean, success: boolean }) => {
   enum Status { Idle, Success, Fail }
   interface SyncStatusMeta {
     icon: JSX.Element,
@@ -67,8 +73,8 @@ const generateStatus = (ifIdle: boolean, ifSuccess: boolean) => {
     [Status.Idle]: { icon: <Sync />, label: '正在同步', color: 'info' },
     [Status.Success]: { icon: <Check />, label: '同步成功', color: 'success' },
     [Status.Fail]: { icon: <Close />, label: '同步失败', color: 'warning' }
-  } as { [key in Status]: SyncStatusMeta }
-  const status = ifIdle ? (ifSuccess ? Status.Success : Status.Fail) : Status.Idle
+  } as Record<Status, SyncStatusMeta>
+  const status = idle ? (success ? Status.Success : Status.Fail) : Status.Idle
   const { icon, label, color } = syncStatusMeta[status]
   return <Chip icon={icon} label={label} size="small" color={color} />
 }
@@ -87,13 +93,14 @@ export default () => {
       const prefixAddress = MIRROR_BACKEND_SEPARATION === 'true' ?
         `${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}` : ''
 
-      return fetch(`${prefixAddress}${MIRROR_SUMMARY}`).then(async (result) => (
-        Object.entries((await result.json() as MirrorSummary).WorkerStatus).map(([key, value]) => ({
-          name: generateNameLink(key),
-          update: format(value.LastFinished, 'zh_CN'),
-          status: generateStatus(value.Idle, value.Result)
-        }))
-      ))
+      const response = await fetch(`${prefixAddress}${MIRROR_SUMMARY}`)
+      const summary = await response.json() as MirrorSummary
+
+      return Object.entries(summary.WorkerStatus).map(([key, value]) => ({
+        name: <MirrorNameWithHelp name={key} />,
+        update: format(value.LastFinished, 'zh_CN'),
+        status: <StatusChip idle={value.Idle} success={value.Result} />
+      }))
     }
   }) as { isLoading: boolean, isError: boolean, data: HomeMirrorItem[] }
 

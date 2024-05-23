@@ -100,8 +100,7 @@ export default () => {
 
   const handleFilteredData = () => {
     if (initialGeneratePage.current)
-      setGeneratedPage(generatePage())
-
+      setGeneratedPage(generateExplorerPage())
     else initialGeneratePage.current = true
   }
 
@@ -122,19 +121,8 @@ export default () => {
     }
   }, 150)
 
-  const generatePage = () => {
-    const parantPageLink = (
-      <Link
-        component={RouterLink}
-        sx={{ fontWeight: 'medium' }}
-        underline="none"
-        to={location.pathname.replace(/\/[^/]*\/$/, '/')}
-      >
-        ../
-      </Link>
-    )
-
-    const generateNameLink = (name: string, type: string) => (
+  const generateExplorerPage = () => {
+    const NameLink = ({ name, type }: { name: string, type: string }) => (
       <Link
         underline="none"
         component={RouterLink}
@@ -156,17 +144,11 @@ export default () => {
       return (Math.round(size * 100) / 100) + sizes[sizes.length - 1]
     }
 
-    const result = [{ name: parantPageLink, update: '-', size: '-' }]
-
-    for (const value of filteredData) {
-      result.push({
-        name: generateNameLink(value.name, value.type),
-        update: formatTimeAgo(new Date(value.mtime).getTime(), 'zh_CN'),
-        size: value.type === 'directory' ? '-' : formatFileSize(value.size!)
-      })
-    }
-
-    return result
+    return filteredData.map((value) => ({
+      name: <NameLink name={value.name} type={value.type} />,
+      update: formatTimeAgo(new Date(value.mtime).getTime(), 'zh_CN'),
+      size: value.type === 'directory' ? '-' : formatFileSize(value.size!)
+    }))
   }
 
   useEffect(handleFilteredData, [filteredData])

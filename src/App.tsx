@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { styled, useTheme, ThemeProvider } from '@mui/material/styles'
+import { useTheme, ThemeProvider } from '@mui/material/styles'
 import { Link, useLocation } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { createTheme, responsiveFontSizes } from '@mui/material/styles'
@@ -45,26 +45,6 @@ const navLinks = [
   { name: 'About', link: '/about', icon: <Information /> }
 ]
 
-const Main = styled('main')<{ open?: boolean }>(({ theme, open }) => ({
-  flexGrow: 1,
-  marginTop: theme.spacing(4),
-  marginBottom: theme.spacing(6),
-  [theme.breakpoints.up('lg')]: {
-    marginLeft: `-${drawerWidth}px`,
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    }),
-    ...(open && {
-      marginLeft: 0,
-      transition: theme.transitions.create('margin', {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen
-      })
-    })
-  }
-}))
-
 export default () => {
   const location = useLocation()
   const darkMode = useMediaQuery('(prefers-color-scheme: dark)')
@@ -75,7 +55,7 @@ export default () => {
   const handleDrawerToggle = () => setShowDrawer(!showDrawer)
 
   const NavItems = () => (
-    <List sx={{ marginTop: 1 }}>
+    <List component="div" sx={{ marginTop: 1 }}>
       {navLinks.map((item) => (
         <ListItemButton
           component={Link}
@@ -99,7 +79,11 @@ export default () => {
           <CssBaseline enableColorScheme />
           <AppBar position="fixed">
             <Toolbar>
-              <IconButton onClick={handleDrawerToggle} sx={{ marginRight: 3 }}>
+              <IconButton
+                onClick={handleDrawerToggle}
+                sx={{ marginRight: 3 }}
+                aria-label="Drawer toggle"
+              >
                 <Menu sx={{ color: 'white' }} />
               </IconButton>
               <Typography variant="h6" component="div">GeekPie Open Source Mirror</Typography>
@@ -128,10 +112,30 @@ export default () => {
               <HelpMenu handleDrawerToggle={handleDrawerToggle} />
             </Paper>
           </Drawer>
-          <Main open={showDrawer}>
+          <Box sx={
+            {
+              flexGrow: 1,
+              marginTop: theme.spacing(4),
+              marginBottom: theme.spacing(6),
+              [theme.breakpoints.up('lg')]: {
+                marginLeft: `-${drawerWidth}px`,
+                transition: theme.transitions.create('margin', {
+                  easing: theme.transitions.easing.sharp,
+                  duration: theme.transitions.duration.leavingScreen
+                }),
+                ...(showDrawer && {
+                  marginLeft: 0,
+                  transition: theme.transitions.create('margin', {
+                    easing: theme.transitions.easing.easeOut,
+                    duration: theme.transitions.duration.enteringScreen
+                  })
+                })
+              }
+            }
+          }>
             <Toolbar />
             <Router />
-          </Main>
+          </Box>
         </Box>
       </ThemeProvider>
     </QueryClientProvider>

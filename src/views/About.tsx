@@ -21,12 +21,6 @@ import AboutContent from '@/contents/about.md?raw'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 
-const getAboutContent = () => {
-  const parser = new MarkdownIt({ html: true })
-  parser.use(MarkdownItPrism)
-  return parser.render(AboutContent)
-}
-
 interface BrandIconProps extends Omit<SvgIconProps, 'component'> {
   component: FC<SVGProps<SVGSVGElement>>
 }
@@ -59,6 +53,9 @@ const ChipGridItem = ({ label, icon, href }: ChipGridItemProps) => (
     label={label}
   />
 )
+
+const parser = new MarkdownIt({ html: true })
+parser.use(MarkdownItPrism)
 
 export default () => (
   <Container maxWidth="lg">
@@ -106,7 +103,7 @@ export default () => (
           <CardContent
             className="markdown-body"
             sx={{ marginTop: 2 }}
-            dangerouslySetInnerHTML={{ __html: getAboutContent() }}
+            dangerouslySetInnerHTML={{ __html: parser.render(AboutContent) }}
           />
         </Card>
       </Grid>

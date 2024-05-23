@@ -14,9 +14,9 @@ RUN apt update && apt install git fcgiwrap spawn-fcgi multiwatch curl -y && apt 
 
 # Fetch Node Exporter
 RUN curl -L \
-    https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz \
+    https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1.linux-amd64.tar.gz \
     -o /tmp/node_exporter.tar.gz && tar -xzf /tmp/node_exporter.tar.gz -C /tmp && \
-    mv /tmp/node_exporter-1.5.0.linux-amd64/node_exporter /usr/local/bin/node_exporter
+    mv /tmp/node_exporter-1.8.1.linux-amd64/node_exporter /usr/local/bin/node_exporter
 
 # Fetch and install the rindex
 RUN curl -L https://github.com/wenxuanjun/rindex/releases/download/default/rindex \
