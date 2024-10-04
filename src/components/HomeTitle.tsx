@@ -5,7 +5,8 @@ export default () => (
     <Typography
       component="h1"
       variant="h4"
-      sx={{ fontWeight: 'bold', marginTop: { lg: 4 }, marginBottom: 1 }}
+      sx={{ fontWeight: 'bold', marginTop: { lg: 4 } }}
+      gutterBottom
     >
       抽风、龟速、复古的镜像服务
     </Typography>

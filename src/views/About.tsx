@@ -1,11 +1,12 @@
 import { FC, SVGProps } from 'react'
 import Container from '@mui/material/Container'
-import Grid from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid2'
 import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
 import Link from '@mui/material/Link'
 import Chip from '@mui/material/Chip'
 import Card from '@mui/material/Card'
+import Paper from '@mui/material/Paper'
 import CardMedia from '@mui/material/CardMedia'
 import CardContent from '@mui/material/CardContent'
 import SvgIcon, { SvgIconProps } from '@mui/material/SvgIcon'
@@ -60,7 +61,7 @@ parser.use(MarkdownItPrism)
 export default () => (
   <Container maxWidth="lg">
     <Grid container alignItems="flex" spacing={4}>
-      <Grid xs={12} md={4}>
+      <Grid size={{ xs: 12, md: 4 }}>
         <Card elevation={3} sx={{ marginBottom: 4 }}>
           <CardMedia component="img" image={`data:image/svg+xml;utf8,${ShanghaiTechLogo}`} />
           <Divider sx={{ marginBottom: 1 }} />
@@ -98,14 +99,13 @@ export default () => (
           </CardContent>
         </Card>
       </Grid>
-      <Grid xs={12} md={8}>
-        <Card elevation={3} sx={{ px: { lg: 1 } }}>
-          <CardContent
-            className="markdown-body"
-            sx={{ marginTop: 2 }}
-            dangerouslySetInnerHTML={{ __html: parser.render(AboutContent) }}
-          />
-        </Card>
+      <Grid size={{ xs: 12, md: 8 }}>
+        <Paper
+          elevation={3}
+          className="markdown-body"
+          sx={{ px: 3, pt: 3, pb: 1 }}
+          dangerouslySetInnerHTML={{ __html: parser.render(AboutContent) }}
+        />
       </Grid>
     </Grid>
   </Container>

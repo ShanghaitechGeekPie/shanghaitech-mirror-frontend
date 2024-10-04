@@ -6,9 +6,12 @@ import Fade from '@mui/material/Fade'
 import Button from '@mui/material/Button'
 import EmoticonSadOutline from 'mdi-material-ui/EmoticonSadOutline'
 
-interface FailedProps { isInline?: boolean, hasButton?: boolean }
+interface LoadFailedProps {
+  isInline?: boolean,
+  hasButton?: boolean
+}
 
-export default (props: FailedProps) => {
+export default (props: LoadFailedProps) => {
   const location = useLocation()
   const { isInline = false, hasButton = false } = props
   const lastPageLink = location.pathname.slice(0, location.pathname.slice(0, -1).lastIndexOf('/') + 1)

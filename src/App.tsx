@@ -21,8 +21,9 @@ import ListItemText from '@mui/material/ListItemText'
 import Menu from 'mdi-material-ui/Menu'
 import Home from 'mdi-material-ui/Home'
 import HelpBox from 'mdi-material-ui/HelpBox'
+import Newspaper from 'mdi-material-ui/Newspaper'
 import Information from 'mdi-material-ui/Information'
-import HelpMenu from '@/components/views/HelpMenu'
+import HelpMenu from '@/components/HelpMenu'
 import Router from '@/router'
 
 const queryClient = new QueryClient({
@@ -42,6 +43,7 @@ const drawerWidth = 300
 const navLinks = [
   { name: 'Home', link: '/', icon: <Home /> },
   { name: 'Help', link: '/help', icon: <HelpBox /> },
+  { name: 'News', link: '/news', icon: <Newspaper /> },
   { name: 'About', link: '/about', icon: <Information /> }
 ]
 

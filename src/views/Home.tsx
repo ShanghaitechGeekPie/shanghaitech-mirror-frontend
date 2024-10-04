@@ -2,7 +2,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import { format } from 'timeago.js'
 import { useQuery } from '@tanstack/react-query'
 import Container from '@mui/material/Container'
-import Grid from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid2'
 import Stack from '@mui/material/Stack'
 import Paper from '@mui/material/Paper'
 import Chip from '@mui/material/Chip'
@@ -12,13 +12,12 @@ import Check from 'mdi-material-ui/Check'
 import Sync from 'mdi-material-ui/Sync'
 import Close from 'mdi-material-ui/Close'
 import HelpCircle from 'mdi-material-ui/HelpCircle'
-import Loading from '@/components/global/Loading'
-import Failed from '@/components/global/Failed'
-import Table from '@/components/global/Table'
-import Title from '@/components/views/HomeTitle'
-import News from '@/components/views/HomeNews'
-import Tools from '@/components/views/HomeTools'
-import Links from '@/components/views/HomeLinks'
+import Loading from '@/components/Loading'
+import LoadFailed from '@/components/LoadFailed'
+import VirtualizedTable from '@/components/VirtualizedTable'
+import Title from '@/components/HomeTitle'
+import Tools from '@/components/HomeTools'
+import Links from '@/components/HomeLinks'
 import helpConfig from '@/assets/metadata/help.json'
 
 interface MirrorWorkerStatus {
@@ -55,8 +54,9 @@ const MirrorNameWithHelp = ({ name }: { name: string }) => (
         size="small"
         to={`/help/${name}`}
         title={`Help for ${name}`}
+        sx={{ padding: 0, marginLeft: '4px' }}
       >
-        <HelpCircle fontSize="small" />
+        <HelpCircle sx={{ fontSize: 16 }} />
       </IconButton>
     }
   </>
@@ -108,11 +108,11 @@ export default () => {
     <Container maxWidth="lg">
       <Title />
       <Grid container spacing={4}>
-        <Grid xs={12} md={8}>
+        <Grid size={{ xs: 12, md: 8 }}>
           {isLoading ? <Loading /> :
-            (isError ? <Failed /> :
+            (isError ? <LoadFailed /> :
               <Paper elevation={3}>
-                <Table data={data} columns={[
+                <VirtualizedTable data={data} columns={[
                   { label: '名称', dataKey: 'name', align: 'left' },
                   { label: '上次同步', dataKey: 'update', align: 'center' },
                   { label: '状态', dataKey: 'status', align: 'right' }
@@ -121,9 +121,8 @@ export default () => {
             )
           }
         </Grid>
-        <Grid xs={12} md={4}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Stack spacing={4}>
-            <News />
             <Tools />
             <Links />
           </Stack>

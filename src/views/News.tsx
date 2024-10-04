@@ -1,22 +1,19 @@
-import { useParams } from 'react-router-dom'
 import Container from '@mui/material/Container'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
+import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import Clock from 'mdi-material-ui/Clock'
 import MarkdownIt from 'markdown-it'
+import MarkdownItMeta from 'markdown-it-meta'
 import MarkdownItPrism from 'markdown-it-prism'
 import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
-import _newsList from '@/assets/metadata/news.json'
-
-interface NewsListProps { title: string, time: string }
-
-const newsList: Record<string, NewsListProps> = _newsList
+import newsList from '@/assets/metadata/news.json'
+import { Divider } from '@mui/material'
 
 const parser = new MarkdownIt()
+parser.use(MarkdownItMeta)
 parser.use(MarkdownItPrism)
 
 const markdownFiles = Object.entries(import.meta.glob(
@@ -24,35 +21,47 @@ const markdownFiles = Object.entries(import.meta.glob(
   { query: '?raw', import: 'default', eager: true }
 ))
 
-export default () => {
-  const { id = '' } = useParams<{ id: string }>()
+const News = ({ id }: { id: string }) => {
+  const newsData = newsList.find((news) => news.id === id)!
   const targetFileEntry = markdownFiles.find(([key]) => key.endsWith(`${id}.md`))!
   const renderedText = parser.render(targetFileEntry[1] as string)
 
   return (
-    <Container maxWidth="lg">
+    <Paper
+      variant="outlined"
+      sx={{
+        px: { lg: 4, xs: 2 },
+        py: 2,
+        backgroundColor: 'transparent'
+      }}
+    >
       <Typography
-        variant="h4"
-        sx={{ textAlign: 'center', fontWeight: 'bold', marginBottom: 3 }}
-      >
-        {newsList[id].title}
-      </Typography>
-      <Stack direction="row" spacing={2} sx={{ justifyContent: 'center', marginBottom: 3 }}>
-        <Clock fontSize="small" />
+        className="markdown-body"
+        sx={{ marginTop: 2 }}
+        dangerouslySetInnerHTML={{ __html: renderedText }}
+      />
+      <Divider sx={{ my: 2 }} />
+      <Stack direction="row" spacing={2} alignItems="center">
+        <Clock sx={{ fontSize: 16 }} />
         <Typography
-          variant="body1"
-          sx={{ textAlign: 'center', fontWeight: 'bold' }}
+          variant="overline"
+          sx={{ fontWeight: 'bold' }}
         >
-          {newsList[id].time}
+          {newsData.date.split('T')[0]}
         </Typography>
       </Stack>
-      <Card elevation={3} sx={{ px: { lg: 1 } }}>
-        <CardContent
-          className="markdown-body"
-          sx={{ marginTop: 2 }}
-          dangerouslySetInnerHTML={{ __html: renderedText }}
-        />
-      </Card>
-    </Container>
+    </Paper>
+  )
+}
+
+export default () => {
+  return (
+    <Container maxWidth="md">
+      <Stack spacing={2}>
+        {newsList.map((news) => (
+          <News key={news.id} id={news.id} />
+        ))}
+      </Stack>
+    </Container >
   )
 }

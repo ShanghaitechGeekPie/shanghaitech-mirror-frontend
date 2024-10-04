@@ -34,7 +34,7 @@ import * as autocorrect from 'autocorrect-node'
 
   let changedCount = 0
   files.forEach(file => {
-    config.verbose && console.log(`${logPrefix} Processing file: ${file}`)
+    if (config.verbose) console.log(`${logPrefix} Processing file: ${file}`)
     const fileContent = fs.readFileSync(file, 'utf8')
     const corrected = autocorrect.formatFor(fileContent, file.split('.').pop())
     if (corrected !== fileContent) changedCount += 1

@@ -47,7 +47,7 @@
     	font-size: .95em;
 	}
 	.markdown-body :not(pre) > code {
-		font-size: .9em;
+		font-size: .85em;
 	}
 }
 

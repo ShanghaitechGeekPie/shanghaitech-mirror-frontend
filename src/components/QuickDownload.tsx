@@ -11,8 +11,8 @@ import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import TextField from '@mui/material/TextField'
 import Download from 'mdi-material-ui/Download'
-import Loading from '@/components/global/Loading'
-import Failed from '@/components/global/Failed'
+import Loading from '@/components/Loading'
+import LoadFailed from '@/components/LoadFailed'
 
 interface QuickDownloadItem {
   display: string,
@@ -44,7 +44,7 @@ export default () => {
   }) as { isLoading: boolean, isError: boolean, data: Record<string, QuickDownloadItem> }
 
   if (isLoading) return <Loading isInline />
-  if (isError) return <Failed isInline />
+  if (isError) return <LoadFailed isInline />
 
   return (
     <Stack spacing={2}>

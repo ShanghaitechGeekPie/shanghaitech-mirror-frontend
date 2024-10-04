@@ -3,9 +3,11 @@ import tseslint from 'typescript-eslint'
 import { fixupPluginRules } from '@eslint/compat'
 import eslintPluginReact from 'eslint-plugin-react'
 import eslintPluginReactHooks from 'eslint-plugin-react-hooks'
-import eslintPluginReactCompiler from 'eslint-plugin-react-compiler'
 
 export default [
+  {
+    ignores: ['**/dist/*']
+  },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
   {
@@ -20,8 +22,7 @@ export default [
     },
     plugins: {
       'react': fixupPluginRules(eslintPluginReact),
-      'react-hooks': fixupPluginRules(eslintPluginReactHooks),
-      'react-compiler': fixupPluginRules(eslintPluginReactCompiler)
+      'react-hooks': fixupPluginRules(eslintPluginReactHooks)
     },
     settings: {
       react: {
@@ -31,7 +32,6 @@ export default [
     rules: {
       ...eslintPluginReact.configs.recommended.rules,
       ...eslintPluginReactHooks.configs.recommended.rules,
-      'react-compiler/react-compiler': 'error',
 
       // Best Practices
       'no-new': 'error',
@@ -61,7 +61,7 @@ export default [
       'no-unneeded-ternary': 'error',
       'no-negated-condition': 'error',
       'no-whitespace-before-property': 'error',
-      'indent': ['error', 2],
+      'indent': ['error', 2, { SwitchCase: 1 }],
       'max-depth': ['error', 4],
       'quotes': ['error', 'single'],
       'max-len': ['error', { code: 120 }],
@@ -89,7 +89,6 @@ export default [
       'linebreak-style': ['error', 'unix'],
       'lines-around-comment': ['error', { beforeBlockComment: true }],
       'no-multiple-empty-lines': ['error', { max: 1, maxBOF: 0, maxEOF: 1 }],
-      'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
       'object-curly-spacing': ['error', 'always'],
       'padded-blocks': ['error', 'never'],
       'jsx-quotes': ['error', 'prefer-double'],

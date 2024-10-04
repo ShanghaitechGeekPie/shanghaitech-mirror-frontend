@@ -1,6 +1,7 @@
-{
-    "the_mirror_is_synchronized": {
+[
+    {
         "title": "镜像同步完成",
-        "time": "2022-01-30"
+        "date": "2022-01-30T00:00:00.000Z",
+        "id": "mirror_synchronized"
     }
-}
+]

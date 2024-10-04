@@ -4,7 +4,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import List from '@mui/material/List'
 import ListItemButton from '@mui/material/ListItemButton'
 import ListItemText from '@mui/material/ListItemText'
-import HelpConfig from '@/assets/metadata/help.json'
+import helpConfig from '@/assets/metadata/help.json'
 
 interface HelpMenuProps { handleDrawerToggle: () => void }
 
@@ -15,7 +15,7 @@ export default ({ handleDrawerToggle }: HelpMenuProps) => {
   return (
     location.pathname.startsWith('/help') && (
       <List component="div">
-        {Object.entries(HelpConfig).map((item) => (
+        {Object.entries(helpConfig).map((item) => (
           <ListItemButton
             component={Link}
             key={item[0]}

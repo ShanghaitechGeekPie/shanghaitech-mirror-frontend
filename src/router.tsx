@@ -11,9 +11,7 @@ export default () => (
     <Routes>
       <Route path="/" >
         <Route index element={<Home />} />
-        <Route path="news">
-          <Route path=":id" element={<News />} />
-        </Route>
+        <Route path="news" element={<News />} />
         <Route path="help">
           <Route index element={<Help />} />
           <Route path=":name" element={<Help />} />

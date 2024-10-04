@@ -21,12 +21,12 @@ import { TransitionProps } from '@mui/material/transitions'
 import Close from 'mdi-material-ui/Close'
 import Link from 'mdi-material-ui/Link'
 import CodeTags from 'mdi-material-ui/CodeTags'
-import QuickDownload from '@/components/views/QuickDownload'
-import ConfigurationGenerator from '@/components/views/ConfigurationGenerator'
+import QuickDownload from '@/components/QuickDownload'
+import Configuration from '@/components/Configuration'
 
 const toolsData = [
   { title: '获取下载链接', component: <QuickDownload />, icon: <Link /> },
-  { title: '生成配置文件', component: <ConfigurationGenerator />, icon: <CodeTags /> }
+  { title: '生成配置文件', component: <Configuration />, icon: <CodeTags /> }
 ]
 
 const Transition = forwardRef((

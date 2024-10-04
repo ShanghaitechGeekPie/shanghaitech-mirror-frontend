@@ -1,7 +1,6 @@
 import { useParams } from 'react-router-dom'
 import Container from '@mui/material/Container'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
+import Paper from '@mui/material/Paper'
 import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
 import 'prismjs/components/prism-bash'
@@ -19,17 +18,15 @@ const markdownFiles = Object.entries(import.meta.glob(
 export default () => {
   const targetFileKey = `${useParams<{ name: string }>().name ?? 'default'}.md`
   const targetFileEntry = markdownFiles.find(([key]) => key.endsWith(targetFileKey))!
-  const renderedText = parser.render(targetFileEntry[1] as string)
 
   return (
     <Container maxWidth="lg">
-      <Card elevation={3} sx={{ px: { lg: 1 } }}>
-        <CardContent
-          className="markdown-body"
-          sx={{ marginTop: 2 }}
-          dangerouslySetInnerHTML={{ __html: renderedText }}
-        />
-      </Card>
+      <Paper
+        elevation={3}
+        className="markdown-body"
+        sx={{ px: 3, pt: 3, pb: 1 }}
+        dangerouslySetInnerHTML={{ __html: parser.render(targetFileEntry[1] as string) }}
+      />
     </Container>
   )
 }

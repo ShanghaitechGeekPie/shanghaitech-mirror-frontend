@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Grid from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid2'
 import Box from '@mui/material/Box'
 import Alert from '@mui/material/Alert'
 import Autocomplete from '@mui/material/Autocomplete'
@@ -72,7 +72,7 @@ export default () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid xs={12} sm={6}>
+      <Grid size={{ xs: 12, sm: 6 }}>
         <Autocomplete
           value={selectedDistribution}
           options={Object.keys(distributionsData)}
@@ -83,7 +83,7 @@ export default () => {
           renderInput={(params) => <TextField {...params} label="发行版" />}
         />
       </Grid>
-      <Grid xs={7} sm={4}>
+      <Grid size={{ xs: 7, sm: 4 }}>
         <FormControl fullWidth>
           <InputLabel>版本</InputLabel>
           <Select
@@ -98,7 +98,7 @@ export default () => {
           </Select>
         </FormControl>
       </Grid>
-      <Grid xs={5} sm={2}>
+      <Grid size={{ xs: 5, sm: 2 }}>
         <FormControlLabel
           checked={enableHTTPS}
           onChange={(event, value) => { setEnableHTTPS(value) }}
@@ -108,11 +108,11 @@ export default () => {
         />
       </Grid>
       {shouldShowDebSrcInfo &&
-        <Grid xs={12}>
+        <Grid size={12}>
           <Alert variant="filled" severity="info">源码库默认被禁用以提高同步速度，您可以取消注释以启用之！</Alert>
         </Grid>
       }
-      <Grid xs={12}>
+      <Grid size={12}>
         {/* Word break on mobile screen to enhance reading experience */}
         <Box
           sx={

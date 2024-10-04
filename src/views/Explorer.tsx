@@ -5,7 +5,7 @@ import { format as formatTimeAgo } from 'timeago.js'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Container from '@mui/material/Container'
-import Grid from '@mui/material/Unstable_Grid2'
+import Grid from '@mui/material/Grid2'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Link, { LinkProps } from '@mui/material/Link'
@@ -14,9 +14,9 @@ import Tooltip from '@mui/material/Tooltip'
 import TextField from '@mui/material/TextField'
 import InputAdornment from '@mui/material/InputAdornment'
 import IconButton from '@mui/material/IconButton'
-import Table from '@/components/global/Table'
-import Loading from '@/components/global/Loading'
-import Failed from '@/components/global/Failed'
+import VirtualizedTable from '@/components/VirtualizedTable'
+import Loading from '@/components/Loading'
+import LoadFailed from '@/components/LoadFailed'
 import Home from 'mdi-material-ui/Home'
 import CodeJson from 'mdi-material-ui/CodeJson'
 import ListBoxOutline from 'mdi-material-ui/ListBoxOutline'
@@ -159,7 +159,7 @@ export default () => {
     <Container maxWidth="lg">
       <Stack spacing={2} sx={{ marginTop: { lg: 4 } }}>
         <Grid container rowSpacing={{ xs: 2, sm: 0 }}>
-          <Grid sm={9} xs={12}>
+          <Grid size={{ xs: 12, sm: 9 }}>
             <Typography
               component="div"
               variant="h5"
@@ -172,7 +172,7 @@ export default () => {
               </Stack>
             </Typography>
           </Grid>
-          <Grid sm={3} xs={12}>
+          <Grid size={{ xs: 12, sm: 3 }}>
             <TextField
               fullWidth
               size="small"
@@ -235,10 +235,10 @@ export default () => {
           </Breadcrumbs>
         </Paper>
         {isLoading ? <Loading /> :
-          (isError ? <Failed hasButton /> :
+          (isError ? <LoadFailed hasButton /> :
             generatedPage &&
             <Paper elevation={2}>
-              <Table data={generatedPage} columns={[
+              <VirtualizedTable data={generatedPage} columns={[
                 { label: '文件名', dataKey: 'name', align: 'left' },
                 { label: '上次修改', dataKey: 'update', align: 'center' },
                 { label: '大小', dataKey: 'size', align: 'right' }

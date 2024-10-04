@@ -1,5 +1,5 @@
 # Build Stage
-FROM sawacl/node-pnpm as build-stage
+FROM gplane/pnpm as build-stage
 WORKDIR /app
 COPY . ./
 RUN pnpm install && pnpm build
@@ -7,7 +7,7 @@ RUN pnpm install && pnpm build
 # Production Stage
 FROM georgjung/nginx-brotli as production-stage
 COPY --from=build-stage /app/dist /usr/share/nginx/html
-COPY service-start.sh /start.sh
+COPY service-start.sh /service-start.sh
 
 # Packages for Git HTTP Backend
 RUN apt update && apt install git fcgiwrap spawn-fcgi multiwatch curl -y && apt clean && rm -rf /var/lib/apt/lists/*
@@ -23,7 +23,7 @@ RUN curl -L https://github.com/wenxuanjun/rindex/releases/download/default/rinde
     -o /usr/bin/rindex && chmod +x /usr/bin/rindex
 
 # Set executable permission
-RUN chmod +x /start.sh
+RUN chmod +x /service-start.sh
 
 EXPOSE 80
-CMD ["/start.sh"]
+CMD ["/service-start.sh"]
