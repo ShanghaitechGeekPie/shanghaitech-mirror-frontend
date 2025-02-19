@@ -47,7 +47,7 @@ const MirrorNameWithHelp = ({ name }: { name: string }) => (
     >
       {name}
     </Link>
-    {Object.prototype.hasOwnProperty.call(helpConfig, name) &&
+    {Object.hasOwn(helpConfig, name) &&
       <IconButton
         component={RouterLink}
         color="primary"
