@@ -3,12 +3,15 @@ import Container from '@mui/material/Container'
 import Paper from '@mui/material/Paper'
 import MarkdownIt from 'markdown-it'
 import MarkdownItPrism from 'markdown-it-prism'
+import '@mdit/plugin-alert/style';
+import { alert } from "@mdit/plugin-alert";
 import 'prismjs/components/prism-bash'
 import '@/styles/markdown/prism.css'
 import '@/styles/markdown/common.css'
 
 const parser = new MarkdownIt()
 parser.use(MarkdownItPrism)
+parser.use(alert);
 
 const markdownFiles = Object.entries(import.meta.glob(
   '@/contents/help/*.md',
