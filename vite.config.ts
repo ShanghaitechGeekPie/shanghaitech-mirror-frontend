@@ -7,6 +7,11 @@ import viteCompression from 'vite-plugin-compression'
 import { ViteMinifyPlugin } from 'vite-plugin-minify'
 
 export default defineConfig({
+  server: {
+    headers: {
+      'X-Frame-Options': 'DENY',
+    }
+  },
   clearScreen: false,
   envPrefix: 'MIRROR_',
   json: { stringify: false },
