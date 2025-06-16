@@ -8,8 +8,17 @@ import { ViteMinifyPlugin } from 'vite-plugin-minify'
 
 export default defineConfig({
   server: {
-    headers: {
-      'X-Frame-Options': 'DENY',
+    proxy: { // 代理后端到源站点，本地开发后端时请注释
+      '/summary': {
+        target: 'https://mirrors.shanghaitech.edu.cn',
+        secure: false,
+        changeOrigin: true,
+      },
+      '/downloads': {
+        target: 'https://mirrors.shanghaitech.edu.cn',
+        secure: false,
+        changeOrigin: true,
+      },
     }
   },
   clearScreen: false,
