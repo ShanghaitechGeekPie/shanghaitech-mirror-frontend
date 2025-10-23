@@ -46,6 +46,7 @@ const TableHeader = ({ columns }: TableHeaderProps) => (
 
 const TableBody = ({ columns, data }: TableBodyProps) => {
   const parentRef = useRef<HTMLDivElement | null>(null)
+
   const virtualizer = useWindowVirtualizer({
     count: data.length,
     estimateSize: () => estimateRowHeight,

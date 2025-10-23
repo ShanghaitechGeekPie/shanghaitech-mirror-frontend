@@ -54,7 +54,7 @@ const useDebounce = (callback: () => void, delay: number) => {
   return useCallback(() => {
     if (current.timer) clearTimeout(current.timer)
     current.timer = setTimeout(() => current.callback(), delay)
-  }, [])
+  }, [delay])
 }
 
 export default () => {

@@ -105,6 +105,7 @@ export default [
       // Options that we don't want to use
       'react/display-name': 'off',
       'react/react-in-jsx-scope': 'off',
+      'react-hooks/refs': 'off',
       'react-hooks/exhaustive-deps': 'off'
     }
   }
