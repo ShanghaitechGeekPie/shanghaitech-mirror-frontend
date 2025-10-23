@@ -24,6 +24,7 @@ Fetch the dependencies.
 
 ```bash
 pnpm install
+pnpm approve-builds
 ```
 
 Copy `.env` to `.env.local` and modify it.
