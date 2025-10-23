@@ -36,7 +36,7 @@ const Transition = forwardRef((
 
 interface DialogData {
   title?: string
-  component?: JSX.Element
+  component?: React.JSX.Element
 }
 
 export default () => {
@@ -44,7 +44,7 @@ export default () => {
   const [dialogData, setDialogData] = useState<DialogData>({})
   const [openDialog, setOpenDialog] = useState(false)
   const handleCloseDialog = () => setOpenDialog(false)
-  const handleOpenDialog = (title: string, component: JSX.Element) => () => {
+  const handleOpenDialog = (title: string, component: React.JSX.Element) => () => {
     setDialogData({ title: title, component: component })
     setOpenDialog(true)
   }

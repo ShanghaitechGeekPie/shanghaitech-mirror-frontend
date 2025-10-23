@@ -2,7 +2,7 @@ import { Link as RouterLink } from 'react-router-dom'
 import { format } from 'timeago.js'
 import { useQuery } from '@tanstack/react-query'
 import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack'
 import Paper from '@mui/material/Paper'
 import Chip from '@mui/material/Chip'
@@ -32,9 +32,9 @@ interface MirrorSummary {
 }
 
 type HomeMirrorItem = {
-  name: JSX.Element,
+  name: React.JSX.Element,
   update: string,
-  status: JSX.Element
+  status: React.JSX.Element
 }
 
 const MirrorNameWithHelp = ({ name }: { name: string }) => (
@@ -65,7 +65,7 @@ const MirrorNameWithHelp = ({ name }: { name: string }) => (
 const StatusChip = ({ idle, success }: { idle: boolean, success: boolean }) => {
   enum Status { Idle, Success, Fail }
   interface SyncStatusMeta {
-    icon: JSX.Element,
+    icon: React.JSX.Element,
     label: string,
     color: 'info' | 'success' | 'warning'
   }

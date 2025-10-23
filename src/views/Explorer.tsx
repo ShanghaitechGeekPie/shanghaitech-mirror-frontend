@@ -5,7 +5,7 @@ import { format as formatTimeAgo } from 'timeago.js'
 import Box from '@mui/material/Box'
 import Stack from '@mui/material/Stack'
 import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import Paper from '@mui/material/Paper'
 import Link, { LinkProps } from '@mui/material/Link'
@@ -30,7 +30,7 @@ interface ExplorerDataItem {
 }
 
 type ExplorerPageItem = {
-  name: JSX.Element,
+  name: React.JSX.Element,
   update: string,
   size: string
 }

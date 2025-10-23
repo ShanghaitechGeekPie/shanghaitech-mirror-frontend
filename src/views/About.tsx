@@ -1,6 +1,6 @@
 import { FC, SVGProps } from 'react'
 import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid2'
+import Grid from '@mui/material/Grid'
 import Stack from '@mui/material/Stack'
 import Divider from '@mui/material/Divider'
 import Link from '@mui/material/Link'
@@ -37,7 +37,7 @@ const BrandIcon = ({ component, ...props }: BrandIconProps) => (
 interface ChipGridItemProps {
   label: string,
   href: string,
-  icon: JSX.Element
+  icon: React.JSX.Element
 }
 
 const ChipGridItem = ({ label, icon, href }: ChipGridItemProps) => (

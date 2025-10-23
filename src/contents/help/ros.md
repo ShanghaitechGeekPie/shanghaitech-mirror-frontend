@@ -1,6 +1,6 @@
 ## ROS 镜像使用帮助
 
-新建`/etc/apt/sources.list.d/ros-latest.list`，内容为（您应手动将示例中的`$version`替换为您自己使用的Ubuntu/Debian的版本代号）：
+新建`/etc/apt/sources.list.d/ros-latest.list`，内容为（您应手动将示例中的`$version`替换为您自己使用的 Ubuntu/Debian 的版本代号）：
 
 ```plain
 deb https://mirrors.shanghaitech.edu.cn/ros/ubuntu/ $version main

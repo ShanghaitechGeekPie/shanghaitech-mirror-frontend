@@ -23,7 +23,7 @@ interface TableHeaderProps {
 }
 
 type TableBodyProps = TableHeaderProps & {
-  data: Record<string, string | JSX.Element>[]
+  data: Record<string, string | React.JSX.Element>[]
 }
 
 type VirtualizedTableProps = TableBodyProps
