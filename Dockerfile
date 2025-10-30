@@ -2,7 +2,7 @@
 FROM oven/bun as build-stage
 WORKDIR /app
 COPY . ./
-RUN bun install && bun build
+RUN bun install && bun run build
 
 # Production Stage
 FROM georgjung/nginx-brotli as production-stage
