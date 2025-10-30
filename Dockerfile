@@ -1,8 +1,8 @@
 # Build Stage
-FROM gplane/pnpm as build-stage
+FROM oven/bun as build-stage
 WORKDIR /app
 COPY . ./
-RUN pnpm install && pnpm build
+RUN bun install && bun build
 
 # Production Stage
 FROM georgjung/nginx-brotli as production-stage
@@ -10,13 +10,12 @@ COPY --from=build-stage /app/dist /usr/share/nginx/html
 COPY service-start.sh /service-start.sh
 
 # Packages for Git HTTP Backend
-RUN apt update && apt install git fcgiwrap spawn-fcgi multiwatch curl -y && apt clean && rm -rf /var/lib/apt/lists/*
-
-# Fetch Node Exporter
-RUN curl -L \
-    https://github.com/prometheus/node_exporter/releases/download/v1.8.1/node_exporter-1.8.1.linux-amd64.tar.gz \
-    -o /tmp/node_exporter.tar.gz && tar -xzf /tmp/node_exporter.tar.gz -C /tmp && \
-    mv /tmp/node_exporter-1.8.1.linux-amd64/node_exporter /usr/local/bin/node_exporter
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        git fcgiwrap spawn-fcgi \
+        multiwatch curl ca-certificates && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Fetch and install the rindex
 RUN curl -L https://github.com/wenxuanjun/rindex/releases/download/default/rindex \

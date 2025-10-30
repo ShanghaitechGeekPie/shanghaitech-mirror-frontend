@@ -37,6 +37,12 @@ type HomeMirrorItem = {
   status: React.JSX.Element
 }
 
+interface HomeMirrorList {
+  isLoading: boolean,
+  isError: boolean,
+  data: HomeMirrorItem[]
+}
+
 const MirrorNameWithHelp = ({ name }: { name: string }) => (
   <>
     <Link
@@ -83,17 +89,7 @@ export default () => {
   const { isLoading, isError, data } = useQuery({
     queryKey: ['summaryData'],
     queryFn: async () => {
-      const {
-        MIRROR_BACKEND_SEPARATION,
-        MIRROR_API_PROTOCOL,
-        MIRROR_DOMAIN,
-        MIRROR_SUMMARY
-      } = import.meta.env
-
-      const prefixAddress = MIRROR_BACKEND_SEPARATION === 'true' ?
-        `${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}` : ''
-
-      const response = await fetch(`${prefixAddress}${MIRROR_SUMMARY}`)
+      const response = await fetch(`/api${import.meta.env.MIRROR_SUMMARY}`)
       const summary = await response.json() as MirrorSummary
 
       return Object.entries(summary.WorkerStatus).map(([key, value]) => ({
@@ -102,7 +98,7 @@ export default () => {
         status: <StatusChip idle={value.Idle} success={value.Result} />
       }))
     }
-  }) as { isLoading: boolean, isError: boolean, data: HomeMirrorItem[] }
+  }) as HomeMirrorList
 
   return (
     <Container maxWidth="lg">

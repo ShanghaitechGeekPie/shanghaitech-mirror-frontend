@@ -26,22 +26,22 @@ interface QuickDownloadLink {
   link: string
 }
 
+interface QuickDownloadQueryResult {
+  isLoading: boolean
+  isError: boolean
+  data: Record<string, QuickDownloadItem>
+}
+
 export default () => {
   const [selection, setSelection] = useState<string>()
+
   const { isLoading, isError, data } = useQuery({
     queryKey: ['quickDownloadData'],
     queryFn: async () => {
-      const {
-        MIRROR_BACKEND_SEPARATION,
-        MIRROR_API_PROTOCOL,
-        MIRROR_DOMAIN,
-        MIRROR_QUICKDOWNLOAD
-      } = import.meta.env
-      const prefixAddress = MIRROR_BACKEND_SEPARATION === 'true' ?
-        `${MIRROR_API_PROTOCOL}://${MIRROR_DOMAIN}` : ''
-      return fetch(`${prefixAddress}${MIRROR_QUICKDOWNLOAD}`).then(async (res) => await res.json())
+      const url = `/api${import.meta.env.MIRROR_QUICKDOWNLOAD}`
+      return fetch(url).then((res) => res.json())
     }
-  }) as { isLoading: boolean, isError: boolean, data: Record<string, QuickDownloadItem> }
+  }) as QuickDownloadQueryResult
 
   if (isLoading) return <Loading isInline />
   if (isError) return <LoadFailed isInline />
