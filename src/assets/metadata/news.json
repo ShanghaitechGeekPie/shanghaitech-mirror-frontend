@@ -1,5 +1,9 @@
 [
     {
+        "date": "2025-11-29T10:44:55.000Z",
+        "id": "mirror_recovered"
+    },
+    {
         "date": "2022-01-30T11:45:14.000Z",
         "id": "mirror_synchronized"
     }

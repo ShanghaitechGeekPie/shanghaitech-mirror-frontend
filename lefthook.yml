@@ -6,4 +6,4 @@ pre-commit:
     eslint:
       run: node_modules/.bin/eslint --fix
     autocorrect:
-      run: node src/tools/autocorrect src/**/*.md
+      run: node src/tools/autocorrect 'src/**/*.md'
