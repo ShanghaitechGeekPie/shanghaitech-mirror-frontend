@@ -30,7 +30,7 @@ export default defineConfig(({ mode }) => {
         '/api': {
           target: `https://${env.MIRROR_DOMAIN}`,
           changeOrigin: true,
-          rewrite: (path) => path.replace(/^\/api/, '')
+          // rewrite: (path) => path.replace(/^\/api/, '')
         },
       }
     },
