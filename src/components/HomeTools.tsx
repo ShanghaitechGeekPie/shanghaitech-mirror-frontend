@@ -19,13 +19,13 @@ import Slide from '@mui/material/Slide'
 import IconButton from '@mui/material/IconButton'
 import { TransitionProps } from '@mui/material/transitions'
 import Close from 'mdi-material-ui/Close'
-import Link from 'mdi-material-ui/Link'
+import Download from 'mdi-material-ui/Download'
 import CodeTags from 'mdi-material-ui/CodeTags'
 import QuickDownload from '@/components/QuickDownload'
 import Configuration from '@/components/Configuration'
 
 const toolsData = [
-  { title: '获取下载链接', component: <QuickDownload />, icon: <Link /> },
+  { title: '下载系统镜像/软件包/其他资源', component: <QuickDownload />, icon: <Download /> },
   { title: '生成配置文件', component: <Configuration />, icon: <CodeTags /> }
 ]
 
