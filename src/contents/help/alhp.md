@@ -4,8 +4,6 @@ ALHP 是一个第三方 Arch Linux 仓库，其包含用不同`x86-64`微架构�
 
 本镜像包含此仓库所有受支持的微架构功能等级，包括`x86-64-v2`和`x86-64-v3`。
 
-您可以在[此处](https://mirrors.shanghaitech.edu.cn/alhp/packages.html)查询所有软件包的构建信息。
-
 ### 检查系统兼容性
 
 使用`/lib/ld-linux-x86-64.so.2 --help`命令来检测您的 CPU 支持哪种微架构功能等级。
